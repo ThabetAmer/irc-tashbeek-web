@@ -12,15 +12,17 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::query()
+        $mlUser = User::query()
             ->where('email', '=', 'ml@tashbeek.org')
-            ->delete();
+            ->first();
 
+        if (!$mlUser) {
+            User::query()->insert([
+                'name' => 'ML User',
+                'email' => 'ml@tashbeek.org',
+                'password' => bcrypt('irc123!')
+            ]);
+        }
 
-        User::query()->insert([
-            'name' => 'ML User',
-            'email' => 'ml@tashbeek.org',
-            'password' => bcrypt('irc123!')
-        ]);
     }
 }

@@ -4,11 +4,32 @@
 
 // Variables
 @import 'variables';
+@import 'vue_modal';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+
+@import "~tailwindcss/components.css";
+@import "~tailwindcss/utilities.css";
+@import "~tailwindcss/preflight.css";
+
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+
+}
+
+.content{
+  width: 100%;
+}
+
+
+.multiselect__element{
+  color:black !important;
+
+  span{
+    color:black !important;
+  }
 }

@@ -8,7 +8,10 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{asset('./css/app.css')}}">
         <!-- Styles -->
         <style>
             html, body {
@@ -80,8 +83,12 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    IRC
+                {{--<div class="title m-b-md">--}}
+                    {{--IRC--}}
+                {{--</div>--}}
+
+                <div class="" id="builder">
+                    <builder></builder>
                 </div>
 
                 <div class="links">
@@ -90,3 +97,6 @@
         </div>
     </body>
 </html>
+
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="{{ asset('js/app.js') }}" type="text/javascript"></script>

@@ -93,16 +93,34 @@
                         :label="'name'"
                         :options="SelectOptions"
                         track-by="name"
-                        :value="value"
+                        v-model="value"
                         @select="handleSelect"
                 >
                 </CustomSelect>
+
+                <pre style="margin-top: 10px">{{value}}</pre>
             </div>
+
+
+            <div class="col-md-2 offset-md-4">
+                <h3>Multi Select</h3>
+                <CustomSelect
+                        :label="'name'"
+                        :options="SelectOptions"
+                        track-by="name"
+                        v-model="mulValue"
+                        :multiple="mulProp"
+                        @select="handleSelectMul"
+                >
+                </CustomSelect>
+
+                <pre style="margin-top: 10px">{{mulValue}}</pre>
+            </div>
+
 
         </div>
 
         <div class="row">
-
             <div class="col-md-6">
                 <h3>Button Group</h3>
                 <buttonGroup>
@@ -114,7 +132,6 @@
                                 Primary
                             </template>
                     </btn>
-
                     <btn
                             @btn-click="btnClick"
                             :theme="'failure'"
@@ -125,7 +142,38 @@
                     </btn>
                 </buttonGroup>
             </div>
+
+            <div class="col-md-6">
+                <h3>Checkbox</h3>
+                <checkbox
+                        :label="'Single Checkbox'"
+                        :value="singleCheck"
+                        :checked="checked"
+                        @input="checkboxChange"
+                >
+
+                </checkbox>
+                <pre style="width: 20%;margin: 15px auto;">{{checked}}
+                </pre>
+            </div>
+
         </div>
+
+
+        <div class="row" style="margin-top: 20px">
+            <div class="col-md-6">
+                <h3>Checkbox Group</h3>
+                <checkboxGroup
+                        :checkboxes="checkboxes"
+                        @change="multipleChanged"
+                >
+                </checkboxGroup>
+                <pre style="width: 20%;margin: 15px auto;">{{multipleCheckboxvalues}}
+                </pre>
+            </div>
+
+        </div>
+
 
         <modal
                 v-if="showModal"
@@ -167,12 +215,29 @@
     import CustomSelect from './components/select/select'
     import modal from './components/modal/modal'
     import buttonGroup from './components/buttonGroup/buttonGroup'
-
+    import checkbox from './components/checkbox/checkbox'
+    import checkboxGroup from './components/checkboxGroup/checkbox-group'
     export default {
-        components: {btn, AnchorLink, CustomSelect, modal,buttonGroup},
+        components: {btn, AnchorLink,
+            CustomSelect, modal,buttonGroup,
+            checkbox,checkboxGroup
+        },
         props: {},
         data() {
             return {
+                checkboxes:[
+                    {
+                        value: 'Ahamd',
+                        label: 'Ahmad'
+                    },
+                    {
+                        value: 'Noor',
+                        label: 'Ali'
+                    }
+                ],
+                multipleCheckboxvalues:[],
+                singleCheck:'Ahmad',
+                checked:false,
                 SelectOptions: [
                     {name: 'Vue.js', language: 'JavaScript'},
                     {name: 'Rails', language: 'Ruby'},
@@ -181,7 +246,10 @@
                     {name: 'Phoenix', language: 'Elixir'}
                 ],
                 value: '',
-                showModal: false
+                showModal: false,
+                mulValue:[],
+                mulProp:true,
+
             }
         },
         created() {
@@ -191,6 +259,14 @@
 
         },
         methods: {
+            multipleChanged(values){
+                console.log('multiple change is ', values);
+                this.multipleCheckboxvalues = values;
+            },
+            checkboxChange(change){
+                console.log('change is ', change);
+                this.checked = change;
+            },
             btnClick() {
                 console.log(' btn has been clicked');
                 this.showModal = true;
@@ -198,6 +274,10 @@
             handleSelect(selected) {
                 console.log('selected is ', selected);
                 this.value = selected;
+            },
+            handleSelectMul(selected){
+                console.log('selected is ', selected);
+                // this.value = selected;
             }
         },
         filters: {},

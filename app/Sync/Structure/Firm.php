@@ -3,6 +3,11 @@
 
 class Firm
 {
+    public function id()
+    {
+        return '';
+    }
+
     public function handle()
     {
 

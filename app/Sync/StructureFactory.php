@@ -1,14 +1,17 @@
 <?php namespace App\Sync;
 
+use App\Sync\Structure\Firm;
+use App\Sync\Structure\Followup;
+use App\Sync\Structure\JobOpening;
 use App\Sync\Structure\JobSeeker;
 
 class StructureFactory
 {
     protected $caseTypes = [
         'jobseeker' => JobSeeker::class,
-        'firm' => JobSeeker::class,
-        'job-opening' => JobSeeker::class,
-        'followup' => JobSeeker::class
+        'firm' => Firm::class,
+        'job-opening' => JobOpening::class,
+        'followup' => Followup::class
     ];
     /**
      * @var StructureRequest
@@ -38,7 +41,11 @@ class StructureFactory
 
         foreach($this->caseTypes as $type => $class){
             if(is_null($case) || $type === $case){
-                app($class)->handle();
+                $object = app($class);
+
+                $object->id();
+                
+//                ->handle();
             }
         }
     }

@@ -26,21 +26,20 @@
         computed: {
             btnStyle() {
                 let style = "";
-                if (this.theme === 'default') {
-                    style = 'bg-white hover:bg-grey-lightest text-grey-darkest';
+                switch (this.theme) {
+                    case 'default':
+                        style = 'bg-white hover:bg-grey-lightest text-grey-darkest'
+                        break
+                    case 'primary':
+                        style = 'bg-blue hover:bg-blue-dark text-white'
+                        break
+                    case 'success':
+                        style = 'bg-green hover:bg-green-dark text-white'
+                        break
+                    case 'danger':
+                        style = 'bg-red hover:bg-red-dark text-white'
+                        break
                 }
-                else if (this.theme === 'primary') {
-                    style = 'bg-blue hover:bg-blue-dark text-white';
-                }
-
-                else if (this.theme === 'success') {
-                    style = 'bg-green hover:bg-green-dark text-white';
-                }
-
-                else if (this.theme === 'failure') {
-                    style = 'bg-red hover:bg-red-dark text-white';
-                }
-
                 return classNames([style, this.btnClass, 'font-bold', 'shadow', 'rounded', 'py-2', 'px-4']);
             }
         },

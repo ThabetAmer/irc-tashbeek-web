@@ -5,8 +5,18 @@
     <transition name="modal">
         <div class="modal-mask">
             <div class="modal-wrapper">
-                <div class="modal-container" :style="{width:width}">
-                    <div class="modal-header">
+                <div class="modal-container pl-12 relative"
+                     :style="{width:width}"
+                >
+                    <a
+                            href="javascript:void(0)"
+                            @click="$emit('close')">
+                        <i class="fas fa-times
+                        absolute text-grey-dark
+                        text-3xl mt-4 ml-4 pin-t pin-l"></i>
+                    </a>
+                    <div class="modal-header text-black font-bold border-none
+                                ">
                         <slot name="header">
                             default header
                         </slot>

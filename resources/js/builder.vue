@@ -1,180 +1,247 @@
 <template>
     <div>
-        <div class="row" style="margin-bottom: 30px ;">
-            <div class="col-md-6">
-                <h3>buttons</h3>
-                <btn
-                        @btn-click="btnClick"
-                        :theme="'primary'"
-                        :btnClass="'mb-2'">
-                    <template slot="text">
-                        Primary
-                    </template>
-                </btn>
 
-                <btn
-                        @btn-click="btnClick"
-                        :theme="'default'"
-                        :btnClass="'mb-2'">
-                    <template slot="text">
-                        Default
-                    </template>
-                </btn>
-
-                <btn
-                        @btn-click="btnClick"
-                        :theme="'success'"
-                        :btnClass="'mb-2'">
-                    <template slot="text">
-                        Success
-                    </template>
-                </btn>
-
-                <btn
-                        @btn-click="btnClick"
-
-                        :theme="'failure'"
-                        :btnClass="'mb-2'">
-                    <template slot="text">
-                        Failure
-                    </template>
-                </btn>
-            </div>
-
-            <div class="col-md-6">
-                <h3>links</h3>
-                <AnchorLink
-                        linkRef="/"
-                        :theme="'primary'"
-                        :btnClass="'mr-2'">
-                    <template slot="text">
-                        Primary Link
-                    </template>
-                </AnchorLink>
-
-                <AnchorLink
-                        linkRef="/"
-                        :theme="'default'"
-                        :btnClass="'mr-2'">
-                    <template slot="text">
-                        Default Link
-                    </template>
-                </AnchorLink>
+        <div class="container">
 
 
-                <AnchorLink
-                        linkRef="/"
-                        :theme="'success'"
-                        :btnClass="'mr-2'">
-                    <template slot="text">
-                        Success Link
-                    </template>
-                </AnchorLink>
+            <div class="row mb-12 mt-12" style="">
+                <div class="col-md-4">
 
-                <AnchorLink
-                        linkRef="/"
-                        :theme="'failure'"
-                        :btnClass="'mr-2'">
-                    <template slot="text">
-                        Failure Link
-                    </template>
-                </AnchorLink>
+                    <panel>
+                        <h3>TEST</h3>
+                    </panel>
 
-
-            </div>
-
-        </div>
-
-        <div style="margin-bottom: 30px" class="row">
-
-            <div class="col-md-2 offset-md-2">
-                <h3>Select</h3>
-                <CustomSelect
-                        :label="'name'"
-                        :options="SelectOptions"
-                        track-by="name"
-                        v-model="value"
-                        @select="handleSelect"
-                >
-                </CustomSelect>
-
-                <pre style="margin-top: 10px">{{value}}</pre>
+                </div>
             </div>
 
 
-            <div class="col-md-2 offset-md-4">
-                <h3>Multi Select</h3>
-                <CustomSelect
-                        :label="'name'"
-                        :options="SelectOptions"
-                        track-by="name"
-                        v-model="mulValue"
-                        :multiple="mulProp"
-                        @select="handleSelectMul"
-                >
-                </CustomSelect>
+            <div class="row mb-8">
+                <div class="col-md-3">
+                    <metricCard
+                            :icon-class="'fas fa-calendar-alt'"
+                            :count="'11'"
+                            :text="'Pending Follow Ups'"
+                    ></metricCard>
+                </div>
 
-                <pre style="margin-top: 10px">{{mulValue}}</pre>
+                <div class="col-md-3">
+                    <metricCard
+                            :icon-class="'fas fa-briefcase'"
+                            :count="'11'"
+                            :text="'Firm Intakes'"
+                    ></metricCard>
+                </div>
+
+
+                <div class="col-md-3">
+                    <metricCard
+                            :icon-class="'fas fa-plus'"
+                            :count="'11'"
+                            :text="'Current Jobs'"
+                    ></metricCard>
+                </div>
+
             </div>
 
+            <div class="row mb-8">
+                <div class="col-md-8">
+                    <panel
+                            has-title="true"
+                            title="Recent Activity"
+                    >
 
-        </div>
+                    </panel>
+                </div>
+            </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Button Group</h3>
-                <buttonGroup>
+            <div class="row mb-8">
+                <div class="col-md-4">
+                    <btn
+                            @btn-click="btnClickNote"
+                            :theme="'primary'"
+                            :btnClass="'mb-2'">
+                        <template slot="text">
+                            Show Note
+                        </template>
+                    </btn>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 30px ;">
+                <div class="col-md-6">
+                    <h3>buttons</h3>
                     <btn
                             @btn-click="btnClick"
                             :theme="'primary'"
                             :btnClass="'mb-2'">
+                        <template slot="text">
+                            Primary
+                        </template>
+                    </btn>
+
+                    <btn
+                            @btn-click="btnClick"
+                            :theme="'default'"
+                            :btnClass="'mb-2'">
+                        <template slot="text">
+                            Default
+                        </template>
+                    </btn>
+
+                    <btn
+                            @btn-click="btnClick"
+                            :theme="'success'"
+                            :btnClass="'mb-2'">
+                        <template slot="text">
+                            Success
+                        </template>
+                    </btn>
+
+                    <btn
+                            @btn-click="btnClick"
+
+                            :theme="'danger'"
+                            :btnClass="'mb-2'">
+                        <template slot="text">
+                            Failure
+                        </template>
+                    </btn>
+                </div>
+
+                <div class="col-md-6">
+                    <h3>links</h3>
+                    <AnchorLink
+                            linkRef="/"
+                            :theme="'primary'"
+                            :btnClass="'mr-2'">
+                        <template slot="text">
+                            Primary Link
+                        </template>
+                    </AnchorLink>
+
+                    <AnchorLink
+                            linkRef="/"
+                            :theme="'default'"
+                            :btnClass="'mr-2'">
+                        <template slot="text">
+                            Default Link
+                        </template>
+                    </AnchorLink>
+
+
+                    <AnchorLink
+                            linkRef="/"
+                            :theme="'success'"
+                            :btnClass="'mr-2'">
+                        <template slot="text">
+                            Success Link
+                        </template>
+                    </AnchorLink>
+
+                    <AnchorLink
+                            linkRef="/"
+                            :theme="'danger'"
+                            :btnClass="'mr-2'">
+                        <template slot="text">
+                            Failure Link
+                        </template>
+                    </AnchorLink>
+
+
+                </div>
+
+            </div>
+
+            <div style="margin-bottom: 30px" class="row">
+
+                <div class="col-md-2 offset-md-2">
+                    <h3>Select</h3>
+                    <CustomSelect
+                            :label="'name'"
+                            :options="SelectOptions"
+                            track-by="name"
+                            v-model="value"
+                            @select="handleSelect"
+                    >
+                    </CustomSelect>
+
+                    <pre style="margin-top: 10px">{{value}}</pre>
+                </div>
+
+
+                <div class="col-md-2 offset-md-4">
+                    <h3>Multi Select</h3>
+                    <CustomSelect
+                            :label="'name'"
+                            :options="SelectOptions"
+                            track-by="name"
+                            v-model="mulValue"
+                            :multiple="mulProp"
+                            @select="handleSelectMul"
+                    >
+                    </CustomSelect>
+
+                    <pre style="margin-top: 10px">{{mulValue}}</pre>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Button Group</h3>
+                    <buttonGroup>
+                        <btn
+                                @btn-click="btnClick"
+                                :theme="'primary'"
+                                :btnClass="'mb-2'">
                             <template slot="text">
                                 Primary
                             </template>
-                    </btn>
-                    <btn
-                            @btn-click="btnClick"
-                            :theme="'failure'"
-                            :btnClass="'mb-2'">
+                        </btn>
+                        <btn
+                                @btn-click="btnClick"
+                                :theme="'danger'"
+                                :btnClass="'mb-2'">
                             <template slot="text">
                                 Failure
                             </template>
-                    </btn>
-                </buttonGroup>
-            </div>
+                        </btn>
+                    </buttonGroup>
+                </div>
 
-            <div class="col-md-6">
-                <h3>Checkbox</h3>
-                <checkbox
-                        :label="'Single Checkbox'"
-                        :value="singleCheck"
-                        :checked="checked"
-                        @input="checkboxChange"
-                >
+                <div class="col-md-6">
+                    <h3>Checkbox</h3>
+                    <checkbox
+                            :label="'Single Checkbox'"
+                            :value="singleCheck"
+                            :checked="checked"
+                            @input="checkboxChange"
+                    >
 
-                </checkbox>
-                <pre style="width: 20%;margin: 15px auto;">{{checked}}
+                    </checkbox>
+                    <pre style="width: 20%;margin: 15px auto;">{{checked}}
                 </pre>
+                </div>
+
             </div>
+
+
+            <div class="row" style="margin-top: 20px">
+                <div class="col-md-6">
+                    <h3>Checkbox Group</h3>
+                    <checkboxGroup
+                            :checkboxes="checkboxes"
+                            @change="multipleChanged"
+                    >
+                    </checkboxGroup>
+                    <pre style="width: 20%;margin: 15px auto;">{{multipleCheckboxvalues}}
+                </pre>
+                </div>
+
+            </div>
+
 
         </div>
-
-
-        <div class="row" style="margin-top: 20px">
-            <div class="col-md-6">
-                <h3>Checkbox Group</h3>
-                <checkboxGroup
-                        :checkboxes="checkboxes"
-                        @change="multipleChanged"
-                >
-                </checkboxGroup>
-                <pre style="width: 20%;margin: 15px auto;">{{multipleCheckboxvalues}}
-                </pre>
-            </div>
-
-        </div>
-
-
         <modal
                 v-if="showModal"
                 @close="showModal = false"
@@ -193,16 +260,23 @@
 
             <btn
                     slot="footer"
-                    :theme="'failure'"
+                    :theme="'danger'"
                     :btnClass="'mb-2'"
                     @btn-click="showModal = false">
-                    <template slot="text">
-                        Close
-                    </template>
+                <template slot="text">
+                    Close
+                </template>
             </btn>
 
         </modal>
 
+
+
+        <addNoteModal
+                :show-modal="showModalNote"
+        >
+
+        </addNoteModal>
     </div>
 
 </template>
@@ -214,18 +288,24 @@
     import AnchorLink from './components/link/link'
     import CustomSelect from './components/select/select'
     import modal from './components/modal/modal'
+    import addNoteModal from './components/modal/addNoteModal'
     import buttonGroup from './components/buttonGroup/buttonGroup'
     import checkbox from './components/checkbox/checkbox'
     import checkboxGroup from './components/checkboxGroup/checkbox-group'
+    import panel from './components/panel/panel'
+    import metricCard from './components/metricCard/metricCard'
+
     export default {
-        components: {btn, AnchorLink,
-            CustomSelect, modal,buttonGroup,
-            checkbox,checkboxGroup
+        components: {
+            btn, AnchorLink,
+            CustomSelect, modal, buttonGroup,
+            checkbox, checkboxGroup, panel, metricCard,
+            addNoteModal
         },
         props: {},
         data() {
             return {
-                checkboxes:[
+                checkboxes: [
                     {
                         value: 'Ahamd',
                         label: 'Ahmad'
@@ -235,9 +315,9 @@
                         label: 'Ali'
                     }
                 ],
-                multipleCheckboxvalues:[],
-                singleCheck:'Ahmad',
-                checked:false,
+                multipleCheckboxvalues: [],
+                singleCheck: 'Ahmad',
+                checked: false,
                 SelectOptions: [
                     {name: 'Vue.js', language: 'JavaScript'},
                     {name: 'Rails', language: 'Ruby'},
@@ -247,8 +327,9 @@
                 ],
                 value: '',
                 showModal: false,
-                mulValue:[],
-                mulProp:true,
+                showModalNote: false,
+                mulValue: [],
+                mulProp: true,
 
             }
         },
@@ -259,13 +340,16 @@
 
         },
         methods: {
-            multipleChanged(values){
+            multipleChanged(values) {
                 console.log('multiple change is ', values);
                 this.multipleCheckboxvalues = values;
             },
-            checkboxChange(change){
+            checkboxChange(change) {
                 console.log('change is ', change);
                 this.checked = change;
+            },
+            btnClickNote(){
+                this.showModalNote = true;
             },
             btnClick() {
                 console.log(' btn has been clicked');
@@ -275,7 +359,7 @@
                 console.log('selected is ', selected);
                 this.value = selected;
             },
-            handleSelectMul(selected){
+            handleSelectMul(selected) {
                 console.log('selected is ', selected);
                 // this.value = selected;
             }

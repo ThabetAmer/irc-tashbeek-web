@@ -38888,7 +38888,7 @@ a.text-dark:focus {
 .modal-container {
   width: 300px;
   margin: 0px auto;
-  padding: 20px 30px;
+  padding: .5rem 3rem;
   background-color: #fff;
   border-radius: 2px;
   -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
@@ -38898,9 +38898,12 @@ a.text-dark:focus {
   font-family: Helvetica, Arial, sans-serif;
 }
 
+.modal-header {
+  border: none !important;
+}
+
 .modal-header h3 {
   margin-top: 0;
-  color: #42b983;
 }
 
 .modal-body {
@@ -49408,6 +49411,10 @@ a.text-dark:focus {
 
 .multiselect__element span {
   color: black !important;
+}
+
+body {
+  background-color: #f0f0f0 !important;
 }
 
 pre {

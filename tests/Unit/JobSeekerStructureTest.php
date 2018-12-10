@@ -57,7 +57,7 @@ class JobSeekerStructureTest extends TestCase
     public function createSchema()
     {
 
-        $contents = file_get_contents(base_path('tests/Unit/job_seeker_json_data.json'));
+        $contents = file_get_contents(base_path('tests/Fixtures/job_seeker_json_data.json'));
 
         $data = json_decode($contents, true);
 

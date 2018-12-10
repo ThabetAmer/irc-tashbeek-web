@@ -2,24 +2,24 @@
 
 namespace App\Console\Commands;
 
-use App\Sync\StructureFactory;
+use App\Sync\CaseFactory;
 use Illuminate\Console\Command;
 
-class SyncStructure extends Command
+class SyncCase extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'sync:structure {case? : (Optional) Case type [job-seeker|firm|job-opening]}';
+    protected $signature = 'sync:case {caseType} : Case Type jobseeker, job-opening, firm, followup';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Sync CommCare cases structure';
+    protected $description = 'Sync CommCare cases';
 
     /**
      * Create a new command instance.
@@ -38,8 +38,6 @@ class SyncStructure extends Command
      */
     public function handle()
     {
-        $case = $this->argument('case');
-
-        app(StructureFactory::class)->make($case);
+        app(CaseFactory::class)->make($this->argument('caseType'));
     }
 }

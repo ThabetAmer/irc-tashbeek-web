@@ -1,11 +1,8 @@
 <?php namespace App\Sync\Structure;
 
-use App\JobSeeker as JobSeekerModel;
-
 class JobSeeker extends AbstractStructure
 {
-    public $model = JobSeekerModel::class;
-
+    public $model = \App\JobSeeker::class;
 
     public $questions = [
         '/JS_Training_01/tn/tn5' => [
@@ -26,5 +23,4 @@ class JobSeeker extends AbstractStructure
     {
         return 'c34aa2e60c9858cc95aaeb9a263c2eeba1472e70';
     }
-
 }

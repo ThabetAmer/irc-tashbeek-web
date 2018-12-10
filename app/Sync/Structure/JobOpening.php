@@ -36,5 +36,4 @@ class JobOpening extends AbstractStructure
     {
         return 'c8e84a46588b5001be2e593f45034f20a1ff35c2';
     }
-    
 }

@@ -1,11 +1,11 @@
 <?php namespace App\Sync\Cases;
 
-class JobSeeker extends AbstractCase
+class JobOpening extends AbstractCase
 {
 
-    public function handle($data)
+    public function handle()
     {
-        dd($this->prepareProperties($data[0]['properties']));
+
     }
 
     /**
@@ -15,6 +15,6 @@ class JobSeeker extends AbstractCase
      */
     public function caseType(): string
     {
-        return 'job-seeker';
+        return 'opening';
     }
 }

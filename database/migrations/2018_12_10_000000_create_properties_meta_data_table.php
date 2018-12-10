@@ -17,12 +17,15 @@ class CreatePropertiesMetaDataTable extends Migration
         Schema::create('properties_meta_data', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->enum('case_type', array_keys(app(StructureFactory::class)->getCaseTypes()));
+
+            $table->string('case_type',20)->index();
+
             $table->string('commcare_id', 255)->index();
 
             $table->json('attributes')->nullable();
 
             $table->timestamps();
+
             $table->softDeletes();
 
         });

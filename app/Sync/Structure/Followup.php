@@ -1,15 +1,15 @@
 <?php namespace App\Sync\Structure;
 
 
-class Followup
+class Followup extends AbstractStructure
 {
+    public $questions = [
+    ];
+
+
     public function id()
     {
-        return '';
+        return 'todo';
     }
 
-    public function handle()
-    {
-
-    }
 }

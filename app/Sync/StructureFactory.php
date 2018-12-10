@@ -19,6 +19,14 @@ class StructureFactory
     private $request;
 
     /**
+     * @return array
+     */
+    public function getCaseTypes(): array
+    {
+        return $this->caseTypes;
+    }
+
+    /**
      * StructureFactory constructor.
      * @param StructureRequest $request
      */
@@ -36,16 +44,12 @@ class StructureFactory
         $this->verifyCaseType($case);
 
         $modules = $this->request->getModules();
+        $modules = collect($modules)->keyBy('unique_id');
 
-
-
-        foreach($this->caseTypes as $type => $class){
-            if(is_null($case) || $type === $case){
+        foreach ($this->caseTypes as $type => $class) {
+            if (is_null($case) || $type === $case) {
                 $object = app($class);
-
-                $object->id();
-                
-//                ->handle();
+                $object->handle($modules->get($object->id()));
             }
         }
     }

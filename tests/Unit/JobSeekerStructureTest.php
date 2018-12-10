@@ -6,7 +6,6 @@ use App\PropertiesMetaData;
 use App\Sync\Structure\JobSeeker;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class JobSeekerStructureTest extends TestCase
@@ -56,7 +55,6 @@ class JobSeekerStructureTest extends TestCase
 
     public function createSchema()
     {
-
         $contents = file_get_contents(base_path('tests/Fixtures/job_seeker_json_data.json'));
 
         $data = json_decode($contents, true);

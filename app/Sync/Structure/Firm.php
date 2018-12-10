@@ -9,6 +9,28 @@ class Firm extends AbstractStructure
 
 
     public $questions = [
+        '/Firm_Intake_05/id/fesoid' => [
+            'name' => 'fesoid',
+            'type' => 'text'
+        ],
+        '/Firm_Intake_05/id/fidmeth' => [
+            'name' => 'fidmeth',
+            'type' => 'text'
+        ],
+        '/Firm_Intake_05/id/rname' => [
+            'name' => 'rname',
+            'type' => 'text'
+        ],
+        '/Firm_Intake_05/id/fgps' => [
+            'name' => 'fgps',
+            'type' => 'text'
+        ],
+        '/Firm_Intake_05/id/fdate' => [
+            'name' => 'fdate',
+            'type' => 'date'
+        ],
+
+
     ];
 
 

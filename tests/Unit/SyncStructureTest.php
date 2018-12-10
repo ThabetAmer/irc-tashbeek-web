@@ -3,13 +3,18 @@
 namespace Tests\Unit;
 
 use App\Sync\StructureFactory;
+use App\Sync\StructureRequest;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class SyncStructureTest extends TestCase
 {
+    use RefreshDatabase;
 
     public function test_a_factory_can_use_null_case()
     {
+        $this->mockStructureRequest();
+
         $factory = app(StructureFactory::class);
 
         $factory->make();
@@ -31,9 +36,11 @@ class SyncStructureTest extends TestCase
 
     public function test_a_factory_has_valid_case()
     {
+        $this->mockStructureRequest();
+
         $factory = app(StructureFactory::class);
 
-        $type = "jobseeker";
+        $type = "job-seeker";
 
         $factory->make($type);
 
@@ -42,9 +49,11 @@ class SyncStructureTest extends TestCase
 
     public function test_a_jobseeker_is_valid_case()
     {
+        $this->mockStructureRequest();
+
         $factory = app(StructureFactory::class);
 
-        $type = "jobseeker";
+        $type = "job-seeker";
 
         $factory->make($type);
 
@@ -53,6 +62,8 @@ class SyncStructureTest extends TestCase
 
     public function test_a_job_opening_is_valid_case()
     {
+        $this->mockStructureRequest();
+
         $factory = app(StructureFactory::class);
 
         $type = "job-opening";
@@ -64,6 +75,8 @@ class SyncStructureTest extends TestCase
 
     public function test_a_firm_is_valid_case()
     {
+        $this->mockStructureRequest();
+
         $factory = app(StructureFactory::class);
 
         $type = "firm";
@@ -73,14 +86,14 @@ class SyncStructureTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function test_a_followup_is_valid_case()
+    protected function mockStructureRequest()
     {
-        $factory = app(StructureFactory::class);
+        $requestMock = \Mockery::mock(StructureRequest::class);
 
-        $type = "followup";
+        $structure = json_decode(file_get_contents(base_path('tests/Fixtures/structure.json')),true)['modules'];
 
-        $factory->make($type);
+        $requestMock->shouldReceive('getModules')->andReturn($structure);
 
-        $this->assertTrue(true);
+        app()->instance(StructureRequest::class, $requestMock);
     }
 }

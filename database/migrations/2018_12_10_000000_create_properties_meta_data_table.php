@@ -18,7 +18,7 @@ class CreatePropertiesMetaDataTable extends Migration
 
             $table->increments('id');
             $table->enum('case_type', array_keys(app(StructureFactory::class)->getCaseTypes()));
-            $table->string('commcare_id', 255)->index();  //TDOD::Ask sol..
+            $table->string('commcare_id', 255)->index();
 
             $table->json('attributes')->nullable();
 

@@ -12,7 +12,7 @@ trait CaseVerification
      * @param $type
      * @throws \Throwable
      */
-    public function verifyCaseType($type)
+    protected function verifyCaseType($type)
     {
         $types = array_map(function($caseType){
             return $this->getTypeFromClass($caseType);

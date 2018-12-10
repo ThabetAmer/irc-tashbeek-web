@@ -12,7 +12,7 @@ class SyncCase extends Command
      *
      * @var string
      */
-    protected $signature = 'sync:case {caseType} : Case Type jobseeker, job-opening, firm, followup';
+    protected $signature = 'sync:case {caseType} : Case Type job-seeker, job-opening, firm';
 
     /**
      * The console command description.

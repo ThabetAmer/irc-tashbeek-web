@@ -7,7 +7,6 @@ class Firm extends AbstractStructure
 
     public $model = FirmModel::class;
 
-
     public $questions = [
         '/Firm_Intake_05/id/fesoid' => [
             'name' => 'fesoid',

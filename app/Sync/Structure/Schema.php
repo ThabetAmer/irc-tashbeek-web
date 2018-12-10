@@ -41,7 +41,7 @@ class Schema
 
             $values = [
                 'case_type' => $caseType,
-                'attributes' => json_encode($attributes)
+                'attributes' => $attributes
             ];
 
             PropertiesMetaData::query()

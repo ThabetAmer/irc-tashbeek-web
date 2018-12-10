@@ -16,9 +16,9 @@ class PropertiesMetaData extends Model
 
     ];
 
-//    protected $casts = [
-//        'attributes' => 'json',
-//    ];
+    protected $casts = [
+        'attributes' => 'array',
+    ];
 
     public function ofType($query, $type)
     {

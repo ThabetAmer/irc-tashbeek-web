@@ -1,20 +1,40 @@
 <?php namespace App\Sync\Cases;
 
+
 class JobSeeker extends AbstractCase
 {
+    public $model = \App\JobSeeker::class;
 
-    public function handle($data)
+    /**
+     * CommCare module ID
+     *
+     * @return mixed
+     */
+    public function id(): string
     {
-        dd($this->prepareProperties($data[0]['properties']));
+        return 'c34aa2e60c9858cc95aaeb9a263c2eeba1472e70';
     }
 
     /**
-     * Case type required for to call endpoint filtered by class case type
+     * CommCare questions
      *
-     * @return string
+     * @return array
      */
-    public function caseType(): string
+    public function questions(): array
     {
-        return 'job-seeker';
+        return [
+            '/JS_Training_01/tn/tn5' => [
+                'name' => 'tn5',
+                'type' => 'text'
+            ],
+            '/JS_Training_01/tn/tnstart' => [
+                'name' => 'tnstart',
+                'type' => 'date'
+            ],
+            '/JS_Training_01/tn/tn6_other' => [
+                'name' => 'tn6_other',
+                'type' => 'text'
+            ]
+        ];
     }
 }

@@ -1,23 +1,45 @@
-<?php
-/**
- * Created by Solaiman Kmail <psokmail@gmail.com>
- */
+<?php namespace App\Sync\Cases;
 
-namespace App\Sync\Cases;
-
+use Illuminate\Database\Eloquent\Model;
 
 abstract class AbstractCase
 {
     /**
-     * Case type required to call endpoint filtered by class case type
+     * @var Model
+     */
+    protected $model;
+
+    /**
+     * CommCare module ID
+     *
+     * @return mixed
+     */
+    abstract public function id() :string ;
+
+    /**
+     * CommCare questions
+     *
+     * @return array
+     */
+    abstract public function questions(): array ;
+
+    /**
+     * Case type saved on CommCare side
      *
      * @return string
      */
-    abstract public function caseType() : string;
+    public function caseType(): string
+    {
+        return kebab_case(class_basename(static::class));
+    }
 
-    protected function prepareProperties(array $properties){
-        dd(
-            $properties
-        );
+    /**
+     * Return model
+     *
+     * @return string
+     */
+    public function model() : string
+    {
+        return $this->model;
     }
 }

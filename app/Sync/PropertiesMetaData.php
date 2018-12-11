@@ -3,7 +3,7 @@
  * Created by Solaiman Kmail <psokmail@gmail.com>
  */
 
-namespace App\Sync\Structure;
+namespace App\Sync;
 
 
 use App\PropertyMetaData as PropertyMetaDataModel;
@@ -11,7 +11,6 @@ use App\PropertyOption;
 
 class PropertiesMetaData
 {
-
     public function insert($questions, $caseType)
     {
         foreach ($questions as $question) {

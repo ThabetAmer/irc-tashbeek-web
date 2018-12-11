@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class JobSeekerStructureTest extends TestCase
+class JobSeekerStructureTestX extends TestCase
 {
     use RefreshDatabase;
 

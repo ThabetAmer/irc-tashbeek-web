@@ -1,9 +1,12 @@
 <?php namespace App\Sync;
 
-use App\Sync\Structure\Firm;
-use App\Sync\Structure\JobMatching;
-use App\Sync\Structure\JobSeeker;
-use App\Sync\Structure\JobOpening;
+use App\Sync\Cases\AbstractCase;
+use App\Sync\Cases\Firm;
+use App\Sync\Cases\JobMatching;
+use App\Sync\Cases\JobSeeker;
+use App\Sync\Cases\JobOpening;
+use App\Sync\PropertiesMetaData;
+use App\Sync\Schema;
 
 class StructureFactory
 {
@@ -20,14 +23,26 @@ class StructureFactory
      * @var StructureRequest
      */
     protected $request;
+    /**
+     * @var Schema
+     */
+    private $schema;
+    /**
+     * @var PropertiesMetaData
+     */
+    private $propertiesMetaData;
 
     /**
      * StructureFactory constructor.
      * @param StructureRequest $request
+     * @param Schema $schema
+     * @param PropertiesMetaData $propertiesMetaData
      */
-    public function __construct(StructureRequest $request)
+    public function __construct(StructureRequest $request, Schema $schema, PropertiesMetaData $propertiesMetaData)
     {
         $this->request = $request;
+        $this->schema = $schema;
+        $this->propertiesMetaData = $propertiesMetaData;
     }
 
     /**
@@ -45,9 +60,33 @@ class StructureFactory
         foreach ($this->caseTypes as $class) {
             if (is_null($case) || $this->getTypeFromClass($class) === $case) {
                 $object = app($class);
-                $object->handle($modules->get($object->id()));
+                $this->createStructure($modules->get($object->id()),$object);
             }
         }
+    }
+
+
+    /**
+     * Create Case Structure
+     * @param array $data
+     * @param AbstractCase $case
+     */
+    protected function createStructure(array $data, AbstractCase $case){
+
+        $questionObjects = [];
+
+        foreach ($data['forms'] as $form) {
+            foreach ($form['questions'] as $question) {
+                if (isset($this->questions[$question['hashtagValue']])) {
+                    $questionObjects[] = $question;
+                }
+            }
+        }
+        $model = $case->model();
+
+        $this->schema->create((new $model)->getTable(), $case->questions());
+
+        $this->propertiesMetaData->insert($questionObjects, $case->caseType());
     }
 }
 

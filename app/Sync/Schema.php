@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Sync\Structure;
+namespace App\Sync;
 
 
 use Illuminate\Support\Facades\Schema as schemaBlueprint;

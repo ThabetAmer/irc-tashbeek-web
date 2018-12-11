@@ -5,7 +5,7 @@ class DataRequest
     /**
      * @var \GuzzleHttp\Client
      */
-    private $client;
+    protected $client;
 
     /**
      * @var string

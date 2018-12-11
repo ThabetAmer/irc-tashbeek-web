@@ -5,7 +5,7 @@ class StructureRequest
     /**
      * @var \GuzzleHttp\Client
      */
-    private $client;
+    protected $client;
 
     /**
      * @var string

@@ -18,7 +18,7 @@ class DataFactory
     /**
      * @var StructureRequest
      */
-    private $request;
+    protected $request;
 
     /**
      * StructureFactory constructor.

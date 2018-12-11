@@ -25,12 +25,12 @@ class StructureFactory
     /**
      * @var Schema
      */
-    private $schema;
+    protected $schema;
 
     /**
      * @var PropertiesMetaData
      */
-    private $propertiesMetaData;
+    protected $propertiesMetaData;
 
     /**
      * StructureFactory constructor.

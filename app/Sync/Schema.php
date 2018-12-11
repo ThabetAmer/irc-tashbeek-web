@@ -3,23 +3,35 @@
 namespace App\Sync;
 
 
-use Illuminate\Support\Facades\Schema as schemaBlueprint;
+use Illuminate\Support\Facades\Schema as LaravelSchema;
 use Illuminate\Database\Schema\Blueprint;
 
 class Schema
 {
-    public function create($tableName, $fields)
+    public function generate($tableName, $fields)
     {
-        // check if table is not already exists
-        if (!schemaBlueprint::hasTable($tableName)) {
-            schemaBlueprint::create($tableName, function (Blueprint $table) use ($fields, $tableName) {
+        $method = LaravelSchema::hasTable($tableName) ? 'table' : 'create';
+
+        LaravelSchema::$method($tableName, function (Blueprint $table) use ($fields,$method) {
+
+            if($method === 'create'){
                 $table->increments('id');
-                foreach ($fields as $field) {
-                    $table->{$field['type']}($field['name'])->nullable();
+            }
+
+            foreach ($fields as $field) {
+                $field = $table->{$field['type']}($field['name'])->nullable();
+                if ($method === 'table' && LaravelSchema::hasColumn($table->getTable(), $field['name'])) {
+                    $field->change();
                 }
-                $table->string('commcare_id',60)->index();
+            }
+
+            if ($method === 'create' || !LaravelSchema::hasColumn($table->getTable(), 'commcare_id')) {
+                $table->string('commcare_id', 60)->index();
+            }
+
+            if ($method === 'create') {
                 $table->timestamps();
-            });
-        }
+            }
+        });
     }
 }

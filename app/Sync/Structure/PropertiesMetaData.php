@@ -6,7 +6,8 @@
 namespace App\Sync\Structure;
 
 
-use App\PropertiesMetaData as PropertiesMetaDataModel;
+use App\PropertyMetaData as PropertyMetaDataModel;
+use App\PropertyOption;
 
 class PropertiesMetaData
 {
@@ -22,13 +23,33 @@ class PropertiesMetaData
                 'attributes' => $this->getAttributes($question)
             ];
 
-            PropertiesMetaDataModel::query()->updateOrCreate($keys, $values);
+            $property = PropertyMetaDataModel::query()->updateOrCreate($keys, $values);
+
+            // Insert PropertyMetaData Options
+            $this->insertOptions($property, $question);
         }
     }
+
+    public function insertOptions($property, $question)
+    {
+
+        foreach ($question['options'] ?? [] as $option) {
+
+            $keys = ['commcare_id' => $option['value']];
+
+            $values = ['name' => $option['translations']];
+
+            $property->options()->updateOrCreate($keys, $values);
+        }
+
+        $property->options()->whereNotIn('commcare_id', array_pluck($question['options'] ?? [], 'value'))->forceDelete();
+    }
+
 
     protected function getAttributes($question)
     {
         return array_only($question, ['label', 'options', 'constraint', 'type']);
     }
+
 
 }

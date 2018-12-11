@@ -8,6 +8,7 @@ class JobOpening extends AbstractStructure
     public $model = JobModel::class;
 
     public $questions = [
+
 //        '/Firm_Intake_05/id/fesoid' => [
 //            'name' => 'fesoid',
 //            'type' => 'text'
@@ -28,7 +29,6 @@ class JobOpening extends AbstractStructure
 //            'name' => 'fdate',
 //            'type' => 'date'
 //        ],
-
 
     ];
 

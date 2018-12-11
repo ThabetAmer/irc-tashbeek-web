@@ -3,7 +3,6 @@
 namespace App\Sync\Structure;
 
 
-use App\PropertiesMetaData;
 use Illuminate\Support\Facades\Schema as schemaBlueprint;
 use Illuminate\Database\Schema\Blueprint;
 

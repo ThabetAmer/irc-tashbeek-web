@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\PropertiesMetaData;
+use App\PropertyMetaData;
 use App\Sync\Structure\JobSeeker;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
@@ -42,7 +42,7 @@ class JobSeekerStructureTest extends TestCase
     {
         $this->createSchema();
 
-        $properties = PropertiesMetaData::all();
+        $properties = PropertyMetaData::all();
 
         $this->assertCount(3, $properties);
 

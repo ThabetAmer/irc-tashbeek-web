@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PropertiesMetaData extends Model
+class PropertyMetaData extends Model
 {
 
     protected $table = 'properties_meta_data';
@@ -20,9 +20,14 @@ class PropertiesMetaData extends Model
         'attributes' => 'array',
     ];
 
-    public function ofType($query, $type)
+    public function scopeOfType($query, $type)
     {
         return $query->where('case_type', '=', $type);
+    }
+
+    public function options()
+    {
+        return $this->hasMany(PropertyOption::class);
     }
 
 

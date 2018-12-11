@@ -46,10 +46,10 @@ class StructureFactory
     }
 
     /**
-     * @param null $case
+     * @param string $case
      * @throws \Throwable
      */
-    public function make($case = null)
+    public function make(string $case = null)
     {
         $this->verifyCaseType($case);
 
@@ -89,7 +89,7 @@ class StructureFactory
      * @param $case
      * @return array
      */
-    protected function getCaseQuestions($data, AbstractCase $case)
+    protected function getCaseQuestions(array $data, AbstractCase $case) : array
     {
         $questionObjects = [];
 

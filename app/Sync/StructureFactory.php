@@ -23,10 +23,12 @@ class StructureFactory
      * @var StructureRequest
      */
     protected $request;
+
     /**
      * @var Schema
      */
     private $schema;
+
     /**
      * @var PropertiesMetaData
      */
@@ -68,6 +70,7 @@ class StructureFactory
 
     /**
      * Create Case Structure
+     *
      * @param array $data
      * @param AbstractCase $case
      */

@@ -73,6 +73,24 @@ class StructureFactory
      */
     protected function generate(array $data, AbstractCase $case){
 
+        $questionObjects = $this->getCaseQuestions($data,$case);
+
+        $model = $case->model();
+
+        $this->schema->generate((new $model)->getTable(), $case->questions());
+
+        $this->propertiesMetaData->insert($questionObjects, $case->caseType());
+    }
+
+    /**
+     * Get white listed questions from CommCare response data
+     *
+     * @param $data
+     * @param $case
+     * @return array
+     */
+    protected function getCaseQuestions($data, AbstractCase $case)
+    {
         $questionObjects = [];
 
         foreach ($data['forms'] as $form) {
@@ -82,11 +100,8 @@ class StructureFactory
                 }
             }
         }
-        $model = $case->model();
 
-        $this->schema->generate((new $model)->getTable(), $case->questions());
-
-        $this->propertiesMetaData->insert($questionObjects, $case->caseType());
+        return $questionObjects;
     }
 }
 

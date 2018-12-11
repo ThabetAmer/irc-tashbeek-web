@@ -12,7 +12,7 @@ class SyncStructure extends Command
      *
      * @var string
      */
-    protected $signature = 'sync:structure {case? : (Optional) Case type [job-seeker|firm|job-opening]}';
+    protected $signature = 'sync:structure {caseType? : (Optional) Case type [job-seeker|firm|job-opening]}';
 
     /**
      * The console command description.
@@ -39,7 +39,7 @@ class SyncStructure extends Command
     public function handle()
     {
         try{
-            app(StructureFactory::class)->make($this->argument('case'));
+            app(StructureFactory::class)->make($this->argument('caseType'));
 
             $this->info("Sync [" . $this->argument('caseType') . "] structure completed.");
         }catch(\Throwable $e){

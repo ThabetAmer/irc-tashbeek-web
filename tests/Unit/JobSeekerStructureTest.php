@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\PropertyMetaData;
+use App\PropertyOption;
 use App\Sync\StructureFactory;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
@@ -46,12 +47,39 @@ class JobSeekerStructureTest extends TestCase
 
         $this->assertCount(3, $properties);
 
-        $this->assertEquals('/JS_Training_01/tn/tn5', $properties->get(0)->commcare_id );
+        $this->assertEquals('/JS_Training_01/tn/tn5', $properties->get(0)->commcare_id);
 
-        $this->assertEquals('/JS_Training_01/tn/tn6_other', $properties->get(1)->commcare_id );
+        $this->assertEquals('/JS_Training_01/tn/tn6_other', $properties->get(1)->commcare_id);
 
-        $this->assertEquals('/JS_Training_01/tn/tnstart', $properties->get(2)->commcare_id );
+        $this->assertEquals('/JS_Training_01/tn/tnstart', $properties->get(2)->commcare_id);
     }
+
+    public function test_it_creates_property_options_data()
+    {
+        $this->createSchema();
+
+        $propertiesOptions = PropertyOption::all();
+
+        $this->assertCount(8, $propertiesOptions);
+
+        $this->assertEquals('cooking', $propertiesOptions->get(0)->commcare_id);
+
+        $this->assertEquals('sewing', $propertiesOptions->get(1)->commcare_id);
+
+        $this->assertEquals('construction', $propertiesOptions->get(2)->commcare_id);
+
+        $this->assertEquals('production', $propertiesOptions->get(3)->commcare_id);
+
+        $this->assertEquals('farming', $propertiesOptions->get(4)->commcare_id);
+
+        $this->assertEquals('business', $propertiesOptions->get(5)->commcare_id);
+
+        $this->assertEquals('finance_accounting', $propertiesOptions->get(6)->commcare_id);
+
+        $this->assertEquals('other', $propertiesOptions->get(7)->commcare_id);
+
+    }
+
 
     public function createSchema()
     {

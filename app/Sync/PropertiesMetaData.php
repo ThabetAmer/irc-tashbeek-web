@@ -24,7 +24,6 @@ class PropertiesMetaData
 
             $property = PropertyMetaDataModel::query()->updateOrCreate($keys, $values);
 
-            // Insert PropertyMetaData Options
             $this->insertOptions($property, $question);
         }
     }

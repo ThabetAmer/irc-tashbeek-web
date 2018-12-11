@@ -1,6 +1,7 @@
 <?php namespace App\Sync;
 
 use App\Sync\Structure\Firm;
+use App\Sync\Structure\JobMatching;
 use App\Sync\Structure\JobSeeker;
 use App\Sync\Structure\JobOpening;
 
@@ -12,6 +13,7 @@ class StructureFactory
         Firm::class,
         JobSeeker::class,
         JobOpening::class,
+        JobMatching::class,
     ];
 
     /**

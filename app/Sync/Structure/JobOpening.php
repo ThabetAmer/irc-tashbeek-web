@@ -1,35 +1,24 @@
 <?php namespace App\Sync\Structure;
 
 
-use App\Job as JobModel;
 
 class JobOpening extends AbstractStructure
 {
-    public $model = JobModel::class;
+    public $model = \App\JobOpening::class;
 
     public $questions = [
-
-//        '/Firm_Intake_05/id/fesoid' => [
-//            'name' => 'fesoid',
-//            'type' => 'text'
-//        ],
-//        '/Firm_Intake_05/id/fidmeth' => [
-//            'name' => 'fidmeth',
-//            'type' => 'text'
-//        ],
-//        '/Firm_Intake_05/id/rname' => [
-//            'name' => 'rname',
-//            'type' => 'text'
-//        ],
-//        '/Firm_Intake_05/id/fgps' => [
-//            'name' => 'fgps',
-//            'type' => 'text'
-//        ],
-//        '/Firm_Intake_05/id/fdate' => [
-//            'name' => 'fdate',
-//            'type' => 'date'
-//        ],
-
+        '#form/date_required' => [
+            'name' => 'date_required',
+            'type' => 'date'
+        ],
+        '#form/job_id' => [
+            'name' => 'job_id',
+            'type' => 'text'
+        ],
+        '#form/why_close_job_opening' => [
+            'name' => 'why_close_job_opening',
+            'type' => 'text'
+        ],
     ];
 
     public function id()

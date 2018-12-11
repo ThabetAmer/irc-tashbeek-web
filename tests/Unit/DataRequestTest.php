@@ -7,14 +7,14 @@ use Tests\TestCase;
 
 class DataRequestTest extends TestCase
 {
-    public function test_it_send_modules_request()
+    public function test_it_send_request_to_pull_cases_data()
     {
         $mock = \Mockery::mock(\GuzzleHttp\Client::class);
 
         $responseMock = \Mockery::mock(\GuzzleHttp\Psr7\Response::class);
         $streamMock = \Mockery::mock(\GuzzleHttp\Psr7\Stream::class);
 
-        $url = 'https://www.commcarehq.org/a/billy-excerpt/api/v0.5/case/?case_type=job-seeker&limit=40';
+        $url = 'https://www.commcarehq.org/a/billy-excerpt/api/v0.5/case/?type=job-seeker&limit=40&offset=0';
 
         $mock->shouldReceive('get')->with($url,[
             'headers' => [

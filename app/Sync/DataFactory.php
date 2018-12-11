@@ -33,19 +33,22 @@ class DataFactory
      * Sync case data to database
      *
      * @param null $caseType
+     * @param int $page
      * @throws \Throwable
      */
-    public function make($caseType)
+    public function make($caseType, $page = 1)
     {
         $this->verifyCaseType($caseType);
 
         $case = app($this->getClassFromType($caseType));
 
-        $response = $this->request->data($case->caseType());
-
-        dd($response['meta']);
+        $response = $this->request->data($case->caseType(), ['page' => $page]);
 
         $this->saveItems($case, $response['objects']);
+
+        if (!is_null($response['meta']['next'])) {
+            $this->make($caseType, $page + 1);
+        }
     }
 
     /**

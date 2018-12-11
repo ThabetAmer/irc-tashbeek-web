@@ -1,10 +1,10 @@
 {
   "meta": {
     "limit": 40,
-    "next": "?case_type=job-seeker&limit=40&offset=40",
+    "next": null,
     "offset": 0,
     "previous": null,
-    "total_count": 2557
+    "total_count": 40
   },
   "objects": [
     {

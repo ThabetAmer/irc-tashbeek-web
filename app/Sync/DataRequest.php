@@ -10,12 +10,14 @@ class DataRequest
     /**
      * @var string
      */
-    protected $url = 'https://www.commcarehq.org/a/billy-excerpt/api/v0.5/case/?case_type={caseType}&limit=40';
+    protected $url = 'https://www.commcarehq.org/a/billy-excerpt/api/v0.5/case/';
 
-    /**
-     * @var string
-     */
-    protected $apiKey = 'issa@souktel.org:f9fcd4b96a0d632d7195b42413417c8ba61a5f5b';
+    protected $whiteListParams = [
+        'type',
+        'limit',
+        'offset',
+        'page'
+    ];
 
     /**
      * StructureRequest constructor.
@@ -28,11 +30,15 @@ class DataRequest
 
     /**
      * @param $caseType
+     * @param array $params
      * @return mixed
      */
-    public function data($caseType)
+    public function data($caseType, array $params = [])
     {
-        $url = str_replace('{caseType}', $caseType, $this->url);
+        $params['type'] = $caseType;
+
+        $url = $this->url . '?' . $this->buildParamsHttpQuery($params);
+
 
         $response = $this->client->get($url, [
             'headers' => [
@@ -46,6 +52,19 @@ class DataRequest
         $responseContents = json_decode($responseContents, true);
 
         return $responseContents;
+    }
+
+    protected function buildParamsHttpQuery($params)
+    {
+        $params['limit'] = array_get($params, 'limit') ?? 40;
+
+        $params['page'] = array_get($params, 'page') ?? 1;
+        $page = $params['page'];
+        unset($params['page']);
+
+        $params['offset'] = array_get($params, 'offset') ?? ($page - 1) * $params['limit'];
+
+        return http_build_query($params);
     }
 }
 

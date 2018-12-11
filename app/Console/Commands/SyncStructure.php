@@ -38,8 +38,12 @@ class SyncStructure extends Command
      */
     public function handle()
     {
-        $case = $this->argument('case');
+        try{
+            app(StructureFactory::class)->make($this->argument('case'));
 
-        app(StructureFactory::class)->make($case);
+            $this->info("Sync [" . $this->argument('caseType') . "] structure completed.");
+        }catch(\Throwable $e){
+            $this->error($e->getMessage() . ', Line: ' . $e->getLine() . ', File: '. $e->getFile());
+        }
     }
 }

@@ -38,6 +38,12 @@ class SyncData extends Command
      */
     public function handle()
     {
-        app(DataFactory::class)->make($this->argument('caseType'));
+        try{
+            app(DataFactory::class)->make($this->argument('caseType'));
+
+            $this->info("Sync " . $this->argument('caseType') . ' data completed.');
+        }catch(\Throwable $e){
+            $this->error($e->getMessage() . ', Line: ' . $e->getLine() . ', File: '. $e->getFile());
+        }
     }
 }

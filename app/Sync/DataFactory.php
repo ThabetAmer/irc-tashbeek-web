@@ -41,9 +41,11 @@ class DataFactory
 
         $case = app($this->getClassFromType($caseType));
 
-        $cases = $this->request->data($case->caseType());
+        $response = $this->request->data($case->caseType());
 
-        $this->saveItems($case, $cases['objects']);
+        dd($response['meta']);
+
+        $this->saveItems($case, $response['objects']);
     }
 
     /**

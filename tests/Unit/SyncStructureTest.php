@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use App\Sync\StructureFactory;
-use App\Sync\StructureRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -84,16 +83,5 @@ class SyncStructureTest extends TestCase
         $factory->make($type);
 
         $this->assertTrue(true);
-    }
-
-    protected function mockStructureRequest()
-    {
-        $requestMock = \Mockery::mock(StructureRequest::class);
-
-        $structure = json_decode(file_get_contents(base_path('tests/Fixtures/structure.json')),true)['modules'];
-
-        $requestMock->shouldReceive('getModules')->andReturn($structure);
-
-        app()->instance(StructureRequest::class, $requestMock);
     }
 }

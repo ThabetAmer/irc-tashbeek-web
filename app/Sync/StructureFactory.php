@@ -5,8 +5,6 @@ use App\Sync\Cases\Firm;
 use App\Sync\Cases\JobMatching;
 use App\Sync\Cases\JobSeeker;
 use App\Sync\Cases\JobOpening;
-use App\Sync\PropertiesMetaData;
-use App\Sync\Schema;
 
 class StructureFactory
 {
@@ -67,7 +65,6 @@ class StructureFactory
         }
     }
 
-
     /**
      * Create Case Structure
      *
@@ -80,7 +77,7 @@ class StructureFactory
 
         foreach ($data['forms'] as $form) {
             foreach ($form['questions'] as $question) {
-                if (isset($this->questions[$question['hashtagValue']])) {
+                if (isset($case->questions()[$question['hashtagValue']])) {
                     $questionObjects[] = $question;
                 }
             }

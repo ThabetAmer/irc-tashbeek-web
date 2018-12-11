@@ -3,12 +3,12 @@
 namespace Tests\Unit;
 
 use App\PropertyMetaData;
-use App\Sync\Structure\JobSeeker;
+use App\Sync\StructureFactory;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class JobSeekerStructureTestX extends TestCase
+class JobSeekerStructureTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -55,11 +55,8 @@ class JobSeekerStructureTestX extends TestCase
 
     public function createSchema()
     {
-        $contents = file_get_contents(base_path('tests/Fixtures/job_seeker_json_data.json'));
+        $this->mockStructureRequest();
 
-        $data = json_decode($contents, true);
-
-        app(JobSeeker::class)->handle($data);
+        app(StructureFactory::class)->make('job-seeker');
     }
-
 }

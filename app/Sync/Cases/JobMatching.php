@@ -1,8 +1,5 @@
 <?php namespace App\Sync\Cases;
 
-
-
-
 class JobMatching extends AbstractCase
 {
     public $model = \App\JobMatch::class;

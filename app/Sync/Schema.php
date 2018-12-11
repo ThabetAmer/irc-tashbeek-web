@@ -17,6 +17,7 @@ class Schema
                 foreach ($fields as $field) {
                     $table->{$field['type']}($field['name'])->nullable();
                 }
+                $table->string('commcare_id',60)->index();
                 $table->timestamps();
             });
         }

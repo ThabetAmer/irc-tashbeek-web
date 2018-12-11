@@ -1,6 +1,6 @@
 <?php namespace App\Sync;
 
-class CaseRequest
+class DataRequest
 {
     /**
      * @var \GuzzleHttp\Client
@@ -27,16 +27,17 @@ class CaseRequest
     }
 
     /**
+     * @param $caseType
      * @return mixed
      */
-    public function getCases($caseType)
+    public function data($caseType)
     {
         $url = str_replace('{caseType}', $caseType, $this->url);
 
         $response = $this->client->get($url, [
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Authorization' => "ApiKEY {$this->apiKey}"
+                'Authorization' => "ApiKEY " . config('irc.commcare_api_key')
             ]
         ]);
 

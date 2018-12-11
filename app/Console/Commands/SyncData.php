@@ -2,24 +2,24 @@
 
 namespace App\Console\Commands;
 
-use App\Sync\CaseFactory;
+use App\Sync\DataFactory;
 use Illuminate\Console\Command;
 
-class SyncCase extends Command
+class SyncData extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'sync:case {caseType} : Case Type job-seeker, job-opening, firm';
+    protected $signature = 'sync:data {caseType} : Case Type job-seeker, job-opening, firm';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Sync CommCare cases';
+    protected $description = 'Sync CommCare cases data';
 
     /**
      * Create a new command instance.
@@ -38,6 +38,6 @@ class SyncCase extends Command
      */
     public function handle()
     {
-        app(CaseFactory::class)->make($this->argument('caseType'));
+        app(DataFactory::class)->make($this->argument('caseType'));
     }
 }

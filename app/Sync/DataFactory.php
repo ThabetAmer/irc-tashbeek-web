@@ -43,7 +43,7 @@ class DataFactory
 
         $cases = $this->request->data($case->caseType());
 
-        $this->saveItems($case, $cases);
+        $this->saveItems($case, $cases['objects']);
     }
 
     /**
@@ -54,7 +54,7 @@ class DataFactory
      */
     protected function saveItems(AbstractCase $caseObject, $cases)
     {
-        foreach($cases as $case){
+        foreach ($cases as $case) {
             $this->saveItem($caseObject, $case);
         }
     }
@@ -69,7 +69,7 @@ class DataFactory
     {
         $data = $this->getCaseFields($caseObject, $case);
 
-        $caseObject->model()::updateOrCreate(array_only($data,'commcare_id'),$data);
+        $caseObject->model()::updateOrCreate(array_only($data, 'commcare_id'), $data);
     }
 
     /**
@@ -78,8 +78,9 @@ class DataFactory
      * @param $path
      * @return mixed
      */
-    protected function fetchQuestionIdFromPath($path){
-        $segments = explode('/',$path);
+    protected function fetchQuestionIdFromPath($path)
+    {
+        $segments = explode('/', $path);
 
         return end($segments);
     }
@@ -95,10 +96,10 @@ class DataFactory
     {
         $data = [];
 
-        foreach($caseObject->questions() as $questionIdPath => $question){
+        foreach ($caseObject->questions() as $questionIdPath => $question) {
             $questionId = $this->fetchQuestionIdFromPath($questionIdPath);
 
-            $value = array_get(array_get($case,'properties'),$questionId);
+            $value = array_get(array_get($case, 'properties'), $questionId);
 
             $data[$question['name']] = $value;
         }

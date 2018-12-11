@@ -31,7 +31,7 @@ abstract class TestCase extends BaseTestCase
 
         $requestMock = \Mockery::mock(DataRequest::class);
 
-        $data = json_decode(file_get_contents(base_path('tests/Fixtures/job_seeker_json_data.json')),true)['objects'];
+        $data = json_decode(file_get_contents(base_path('tests/Fixtures/job_seeker_json_data.json')),true);
 
         $requestMock->shouldReceive('data')->andReturn($data);
 

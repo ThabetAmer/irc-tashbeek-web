@@ -25,12 +25,16 @@ class DataRequestTest extends TestCase
 
         $responseMock->shouldReceive('getBody')->andReturn($streamMock);
 
-        $streamMock->shouldReceive('getContents')->andReturn('{"objects":[]}');
+        $streamMock->shouldReceive('getContents')->andReturn('{"objects":[],"meta":[]}');
 
         app()->instance(\GuzzleHttp\Client::class,$mock);
 
         $request = app(DataRequest::class);
 
-        $this->assertTrue(is_array($request->data('job-seeker')));
+        $data = $request->data('job-seeker');
+
+        $this->assertArrayHasKey('meta',$data);
+
+        $this->assertArrayHasKey('objects',$data);
     }
 }

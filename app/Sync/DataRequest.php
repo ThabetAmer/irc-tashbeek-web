@@ -45,7 +45,7 @@ class DataRequest
 
         $responseContents = json_decode($responseContents, true);
 
-        return $responseContents['objects'];
+        return $responseContents;
     }
 }
 

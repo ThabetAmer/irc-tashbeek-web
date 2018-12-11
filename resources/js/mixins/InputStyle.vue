@@ -15,7 +15,7 @@
         },
         computed: {
             computedInputClass() {
-                return classNames(['form-control', this.inputClass]);
+                return classNames(['', this.inputClass]);
             }
         },
     }

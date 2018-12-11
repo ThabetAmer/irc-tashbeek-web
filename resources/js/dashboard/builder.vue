@@ -4,6 +4,42 @@
         <div class="container">
 
 
+            <div class="row mt-12 mb-12">
+                <div class="col-md-12">
+                    <panel
+                            :has-title="hasTitle"
+                            title="Table"
+                    >
+
+                        <datatable></datatable>
+                    </panel>
+                </div>
+
+            </div>
+            <div class="row mt-12">
+                <div class="col-md-6">
+                    <panel
+                            :has-title="hasTitle"
+                            title="Recent Activity / Notes Box"
+                    >
+                        <notebox></notebox>
+                        <notebox></notebox>
+                        <notebox></notebox>
+                    </panel>
+                </div>
+
+                <div class="col-md-6">
+                    <panel
+                            :has-title="hasTitle"
+                            title="Job Opening"
+                    >
+                        <jobOpening></jobOpening>
+                        <jobOpening></jobOpening>
+                        <jobOpening></jobOpening>
+                    </panel>
+                </div>
+
+            </div>
             <div class="row mb-12 mt-12" style="">
                 <div class="col-md-4">
 
@@ -271,7 +307,6 @@
         </modal>
 
 
-
         <addNoteModal
                 :show-modal="showModalNote"
         >
@@ -284,23 +319,26 @@
 
 <script>
     import Vue from 'vue';
-    import btn from './components/button/button'
-    import AnchorLink from './components/link/link'
-    import CustomSelect from './components/select/select'
-    import modal from './components/modal/modal'
-    import addNoteModal from './components/modal/addNoteModal'
-    import buttonGroup from './components/buttonGroup/buttonGroup'
-    import checkbox from './components/checkbox/checkbox'
-    import checkboxGroup from './components/checkboxGroup/checkbox-group'
-    import panel from './components/panel/panel'
-    import metricCard from './components/metricCard/metricCard'
+    import btn from '../components/button/button'
+    import AnchorLink from '../components/link/link'
+    import CustomSelect from '../components/select/select'
+    import modal from '../components/modal/modal'
+    import addNoteModal from '../components/modal/addNoteModal'
+    import buttonGroup from '../components/buttonGroup/buttonGroup'
+    import checkbox from '../components/checkbox/checkbox'
+    import checkboxGroup from '../components/checkboxGroup/checkbox-group'
+    import panel from '../components/panel/panel'
+    import metricCard from '../components/metricCard/metricCard'
+    import notebox from '../components/notebox/notebox'
+    import jobOpening from '../components/jobOpening/jobOpening'
+    import datatable from '../components/datatable/datatable'
 
     export default {
         components: {
             btn, AnchorLink,
             CustomSelect, modal, buttonGroup,
             checkbox, checkboxGroup, panel, metricCard,
-            addNoteModal
+            addNoteModal, notebox, jobOpening, datatable
         },
         props: {},
         data() {
@@ -315,6 +353,7 @@
                         label: 'Ali'
                     }
                 ],
+                hasTitle: true,
                 multipleCheckboxvalues: [],
                 singleCheck: 'Ahmad',
                 checked: false,
@@ -348,7 +387,7 @@
                 console.log('change is ', change);
                 this.checked = change;
             },
-            btnClickNote(){
+            btnClickNote() {
                 this.showModalNote = true;
             },
             btnClick() {

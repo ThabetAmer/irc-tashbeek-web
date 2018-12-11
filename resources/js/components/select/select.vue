@@ -11,7 +11,7 @@
    @input and @select are events that emit the
    select object/s
    -->
-    <multiselect class="multiselect-field"
+    <multiselect :class="selectStyle"
                  :options="options"
                  :value="value"
                  :multiple="multiple"
@@ -50,11 +50,15 @@
             },
             placeholder: {
                 type: String,
-                default: 'click to select'
+                default: 'select'
             },
             trackBy: {
                 type: String,
                 default: "name"
+            },
+            customClass:{
+                type:String,
+                default:''
             }
         },
         methods: {
@@ -64,6 +68,12 @@
             handleSelect(selectedOption) {
                 this.$emit('select', selectedOption);
             }
+        },
+        computed:{
+          selectStyle(){
+              return classNames([
+                  'multiselect-field',this.customClass]);
+          }
         },
         components: {Multiselect}
     }

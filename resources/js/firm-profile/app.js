@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require('../bootstrap');
 
 window.Vue = require('vue');
 
@@ -28,10 +28,10 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import Builder from "./builder.vue";
+import firmProfile from "./firmProfile.vue";
 
 
 const app = new Vue({
-    el: '#builder',
-    render: h => h(Builder),
+    el: '#firmProfile',
+    render: h => h(firmProfile),
 });

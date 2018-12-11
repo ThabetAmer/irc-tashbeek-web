@@ -4,7 +4,7 @@
     <div :class="panelStyle">
         <div
                 v-if="hasTitle"
-                class="text-black text-left font-bold text-2xl"
+                class="text-black text-left font-bold text-xl mb-3"
         >
             {{title}}
         </div>
@@ -24,7 +24,7 @@
          */
         props:{
             hasTitle:{
-                type:Boolean,
+                type:[Boolean, String],
                 default:false
             },
             title:{

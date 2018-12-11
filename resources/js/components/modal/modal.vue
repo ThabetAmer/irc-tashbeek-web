@@ -5,7 +5,7 @@
     <transition name="modal">
         <div class="modal-mask">
             <div class="modal-wrapper">
-                <div class="modal-container pl-12 relative"
+                <div class="modal-container pl-12 relative rounded"
                      :style="{width:width}"
                 >
                     <a
@@ -30,10 +30,7 @@
 
                     <div class="modal-footer">
                         <slot name="footer">
-                            default footer
-                            <button class="modal-default-button" @click="$emit('close')">
-                                OK
-                            </button>
+
                         </slot>
                     </div>
                 </div>
@@ -53,7 +50,7 @@
         props: {
             width:{
                 type:String,
-                default:"60%"
+                default:"40%"
             }
         },
         mixins: []

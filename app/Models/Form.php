@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Firm extends Model implements SyncableInterface
+class Form extends Model
 {
-    use MorphToForm;
-
     protected $guarded = ['id'];
+
+    protected $casts = [
+        'name' => 'array',
+    ];
 }

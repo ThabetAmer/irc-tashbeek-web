@@ -79,7 +79,7 @@ class JobSeekerStructureTest extends TestCase
         $this->assertEquals('other', $propertiesOptions->get(7)->commcare_id);
 
     }
-
+    
 
     public function createSchema()
     {

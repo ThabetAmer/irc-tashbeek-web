@@ -1,5 +1,6 @@
 <?php namespace App\Sync;
 
+use App\Models\Form;
 use App\Sync\Cases\AbstractCase;
 use App\Sync\Cases\Firm;
 use App\Sync\Cases\Match;
@@ -99,6 +100,11 @@ class StructureFactory
                     $questionObjects[] = $question;
                 }
             }
+
+            Form::create([
+                'name' => $form['name'],
+                'commcare_id' => $form['unique_id']
+            ]);
         }
 
         return $questionObjects;

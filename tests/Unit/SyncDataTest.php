@@ -23,4 +23,19 @@ class SyncDataTest extends TestCase
 
         $this->assertCount(40,JobSeeker::all());
     }
+
+    public function test_it_create_relation_with_forms()
+    {
+
+        $this->syncStructure('job-seeker');
+
+        $this->mockDataRequest();
+
+        $factory = app(DataFactory::class);
+
+        $factory->make('job-seeker');
+
+        $this->assertCount(40,JobSeeker::all());
+
+    }
 }

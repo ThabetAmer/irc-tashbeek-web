@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\JobMatching;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\JobMatch;
+use App\JobSeeker;
 use Illuminate\Http\Request;
 
-class JobMatchController extends Controller
+class JobSeekerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class JobMatchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\JobMatch  $jobMatch
+     * @param  \App\JobSeeker  $jobSeeker
      * @return \Illuminate\Http\Response
      */
-    public function show(JobMatch $jobMatch)
+    public function show(JobSeeker $jobSeeker)
     {
         //
     }
@@ -53,10 +53,10 @@ class JobMatchController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\JobMatch  $jobMatch
+     * @param  \App\JobSeeker  $jobSeeker
      * @return \Illuminate\Http\Response
      */
-    public function edit(JobMatch $jobMatch)
+    public function edit(JobSeeker $jobSeeker)
     {
         //
     }
@@ -65,10 +65,10 @@ class JobMatchController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\JobMatch  $jobMatch
+     * @param  \App\JobSeeker  $jobSeeker
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, JobMatch $jobMatch)
+    public function update(Request $request, JobSeeker $jobSeeker)
     {
         //
     }
@@ -76,10 +76,10 @@ class JobMatchController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\JobMatch  $jobMatch
+     * @param  \App\JobSeeker  $jobSeeker
      * @return \Illuminate\Http\Response
      */
-    public function destroy(JobMatch $jobMatch)
+    public function destroy(JobSeeker $jobSeeker)
     {
         //
     }

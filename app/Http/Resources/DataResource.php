@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\PropertyMetaData;
+use App\Models\PropertyMetaData;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class DataResource extends ResourceCollection
@@ -19,9 +19,7 @@ class DataResource extends ResourceCollection
         parent::__construct($resource);
         $this->resource = $resource;
 
-        $this->case = app($data['case']);
-
-        $this->model = $this->case->model;
+        $this->model = $data['model'];
 
     }
 
@@ -45,7 +43,7 @@ class DataResource extends ResourceCollection
      */
     public function with($request)
     {
-        $caseType = $this->case->caseType();
+        $caseType = case_type($this->model);
 
         $properties = PropertyMetaData::query()
             ->ofType($caseType)

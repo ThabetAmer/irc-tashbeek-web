@@ -19,9 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group(['middleware' => ['auth:api']], function () {
-    Route::put('jobs/{job}/scores', 'JobMatching\JobController@updateScores');
-    Route::put('config', 'JobMatching\JobController@setConfig');
-    Route::get('config', 'JobMatching\JobController@getConfig');
+    Route::put('jobs/{job}/scores', 'JobController@updateScores');
+    Route::put('config', 'JobController@setConfig');
+    Route::get('config', 'JobController@getConfig');
 });
 
 

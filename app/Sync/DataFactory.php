@@ -2,7 +2,7 @@
 
 use App\Sync\Cases\AbstractCase;
 use App\Sync\Cases\Firm;
-use App\Sync\Cases\JobMatching;
+use App\Sync\Cases\Match;
 use App\Sync\Cases\JobOpening;
 use App\Sync\Cases\JobSeeker;
 
@@ -14,7 +14,7 @@ class DataFactory
         Firm::class,
         JobSeeker::class,
         JobOpening::class,
-        JobMatching::class
+        Match::class
     ];
 
     /**

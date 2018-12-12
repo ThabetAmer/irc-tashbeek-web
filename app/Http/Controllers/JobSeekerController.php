@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\JobSeeker;
+use App\Models\JobSeeker;
 use Illuminate\Http\Request;
 
 class JobSeekerController extends Controller
@@ -42,7 +42,7 @@ class JobSeekerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\JobSeeker  $jobSeeker
+     * @param  \App\Models\JobSeeker  $jobSeeker
      * @return \Illuminate\Http\Response
      */
     public function show(JobSeeker $jobSeeker)
@@ -53,7 +53,7 @@ class JobSeekerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\JobSeeker  $jobSeeker
+     * @param  \App\Models\JobSeeker  $jobSeeker
      * @return \Illuminate\Http\Response
      */
     public function edit(JobSeeker $jobSeeker)
@@ -65,7 +65,7 @@ class JobSeekerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\JobSeeker  $jobSeeker
+     * @param  \App\Models\JobSeeker  $jobSeeker
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, JobSeeker $jobSeeker)
@@ -76,7 +76,7 @@ class JobSeekerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\JobSeeker  $jobSeeker
+     * @param  \App\Models\JobSeeker  $jobSeeker
      * @return \Illuminate\Http\Response
      */
     public function destroy(JobSeeker $jobSeeker)

@@ -1,10 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Firm extends Model
+class JobOpening extends Model
 {
     protected $guarded = ['id'];
+
 }

@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use App\Models\PropertyMetaData;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class DataResource extends ResourceCollection
+class CaseDataResource extends ResourceCollection
 {
     protected $caseType;
 

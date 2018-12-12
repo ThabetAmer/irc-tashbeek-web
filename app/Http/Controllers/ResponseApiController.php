@@ -21,5 +21,4 @@ class ResponseApiController extends Controller
 
         return new CaseDataResource($model->paginate(), $caseType);
     }
-
 }

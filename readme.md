@@ -1,14 +1,7 @@
-### Sync Cases Structure
+### Sync Cases
 - JobSeeker
 - Firms
 - Job Opening
-- Followups 
-
-### Sync Cases
-- JobSeeker
-- Firm
-- Job Opening
-- Followups
-
+- JobMatch 
 
 ### What's next...?

@@ -36,4 +36,9 @@ class JobMatching extends AbstractCase
             ],
         ];
     }
+
+    public function caseType(): string
+    {
+        return 'match';
+    }
 }

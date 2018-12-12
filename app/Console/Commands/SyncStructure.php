@@ -12,7 +12,7 @@ class SyncStructure extends Command
      *
      * @var string
      */
-    protected $signature = 'sync:structure {caseType? : (Optional) Case type [job-seeker|firm|job-opening]}';
+    protected $signature = 'sync:structure {caseType? : (Optional) Case type: job-seeker, firm, job-opening, job-matching}';
 
     /**
      * The console command description.

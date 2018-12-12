@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class JobSeeker extends Model
+class JobSeeker extends Model implements SyncableInterface
 {
     protected $guarded = ['id'];
 

@@ -7,22 +7,18 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class DataResource extends ResourceCollection
 {
+    protected $caseType;
 
-
-    protected $model;
-
-    protected $case;
-
-    public function __construct($resource, $data)
+    /**
+     * DataResource constructor.
+     * @param $resource
+     * @param $caseType
+     */
+    public function __construct($resource, $caseType)
     {
-        // Ensure you call the parent constructor
         parent::__construct($resource);
-        $this->resource = $resource;
-
-        $this->model = $data['model'];
-
+        $this->caseType = $caseType;
     }
-
 
     /**
      * Transform the resource into an array.
@@ -43,10 +39,8 @@ class DataResource extends ResourceCollection
      */
     public function with($request)
     {
-        $caseType = case_type($this->model);
-
         $properties = PropertyMetaData::query()
-            ->ofType($caseType)
+            ->ofType($this->caseType)
             ->pluck('attributes')
             ->toArray();
 

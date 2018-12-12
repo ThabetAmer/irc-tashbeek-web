@@ -12,13 +12,14 @@ class ResponseApiController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @throws \Exception
+     * @param $caseType
+     * @return DataResource
      */
-    public function index(Request $request, $caseType)
+    public function index($caseType)
     {
         $model = get_case_type_model($caseType);
 
-        return new DataResource($model->paginate(), ['model' => $model]);
+        return new DataResource($model->paginate(), $caseType);
     }
 
 }

@@ -41,11 +41,19 @@ class CaseDataResource extends ResourceCollection
     {
         $properties = PropertyMetaData::query()
             ->ofType($this->caseType)
-            ->pluck('attributes')
-            ->toArray();
+            ->get();
 
+
+        $data = [];
+        foreach ($properties as $property) {
+            $commcareId = explode('/', $property->commcare_id);
+            $data[] = [
+                'translations' => $property->attributes['translations'],
+                'name' => end($commcareId),
+            ];
+        }
         return [
-            'headers' => array_pluck($properties, 'translations')
+            'headers' => $data
         ];
     }
 

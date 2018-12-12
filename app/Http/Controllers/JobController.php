@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\JobMatching;
+namespace App\Http\Controllers;
 
 use App\Configuration;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ConfigurationRequest;
-use App\Job;
 use Illuminate\Http\Request;
 
 class JobController extends Controller

@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\JobMatching;
+namespace App\Http\Controllers;
 
+use App\Firm;
 use App\Http\Controllers\Controller;
-use App\JobSeeker;
+use App\Http\GeneralDataTransfer;
 use Illuminate\Http\Request;
 
-class JobSeekerController extends Controller
+class FirmController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return app(GeneralDataTransfer::class)->handle($request->all(), \App\Sync\Cases\Firm::class);
     }
 
     /**
@@ -31,7 +32,7 @@ class JobSeekerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,10 +43,10 @@ class JobSeekerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\JobSeeker  $jobSeeker
+     * @param  \App\Firm $firm
      * @return \Illuminate\Http\Response
      */
-    public function show(JobSeeker $jobSeeker)
+    public function show(Firm $firm)
     {
         //
     }
@@ -53,10 +54,10 @@ class JobSeekerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\JobSeeker  $jobSeeker
+     * @param  \App\Firm $firm
      * @return \Illuminate\Http\Response
      */
-    public function edit(JobSeeker $jobSeeker)
+    public function edit(Firm $firm)
     {
         //
     }
@@ -64,11 +65,11 @@ class JobSeekerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\JobSeeker  $jobSeeker
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Firm $firm
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, JobSeeker $jobSeeker)
+    public function update(Request $request, Firm $firm)
     {
         //
     }
@@ -76,10 +77,10 @@ class JobSeekerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\JobSeeker  $jobSeeker
+     * @param  \App\Firm $firm
      * @return \Illuminate\Http\Response
      */
-    public function destroy(JobSeeker $jobSeeker)
+    public function destroy(Firm $firm)
     {
         //
     }

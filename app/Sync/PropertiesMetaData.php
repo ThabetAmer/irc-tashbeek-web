@@ -46,7 +46,7 @@ class PropertiesMetaData
 
     protected function getAttributes($question)
     {
-        return array_only($question, ['label', 'options', 'constraint', 'type']);
+        return array_only($question, ['label', 'options', 'constraint', 'type', 'translations']);
     }
 
 

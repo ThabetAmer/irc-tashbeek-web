@@ -3,7 +3,7 @@
 
 class JobOpening extends AbstractCase
 {
-    public $model = \App\JobOpening::class;
+    public $model = \App\Models\JobOpening::class;
 
     /**
      * CommCare module ID

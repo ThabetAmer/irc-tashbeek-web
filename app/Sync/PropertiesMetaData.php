@@ -6,8 +6,8 @@
 namespace App\Sync;
 
 
-use App\PropertyMetaData as PropertyMetaDataModel;
-use App\PropertyOption;
+use App\Models\PropertyMetaData as PropertyMetaDataModel;
+use App\Models\PropertyOption;
 
 class PropertiesMetaData
 {

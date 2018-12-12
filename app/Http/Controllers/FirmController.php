@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Firm;
+use App\Models\Firm;
 use App\Http\Controllers\Controller;
-use App\Http\GeneralDataTransfer;
 use Illuminate\Http\Request;
 
 class FirmController extends Controller
@@ -16,7 +15,6 @@ class FirmController extends Controller
      */
     public function index(Request $request)
     {
-        return app(GeneralDataTransfer::class)->handle($request->all(), \App\Sync\Cases\Firm::class);
     }
 
     /**
@@ -43,7 +41,7 @@ class FirmController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Firm $firm
+     * @param  \App\Models\Firm $firm
      * @return \Illuminate\Http\Response
      */
     public function show(Firm $firm)
@@ -54,7 +52,7 @@ class FirmController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Firm $firm
+     * @param  \App\Models\Firm $firm
      * @return \Illuminate\Http\Response
      */
     public function edit(Firm $firm)
@@ -66,7 +64,7 @@ class FirmController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Firm $firm
+     * @param  \App\Models\Firm $firm
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Firm $firm)
@@ -77,7 +75,7 @@ class FirmController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Firm $firm
+     * @param  \App\Models\Firm $firm
      * @return \Illuminate\Http\Response
      */
     public function destroy(Firm $firm)

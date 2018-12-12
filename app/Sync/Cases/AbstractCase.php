@@ -14,14 +14,14 @@ abstract class AbstractCase
      *
      * @return mixed
      */
-    abstract public function id() :string ;
+    abstract public function id(): string;
 
     /**
      * CommCare questions
      *
      * @return array
      */
-    abstract public function questions(): array ;
+    abstract public function questions(): array;
 
     /**
      * Case type saved on CommCare side
@@ -30,7 +30,7 @@ abstract class AbstractCase
      */
     public function caseType(): string
     {
-        return kebab_case(class_basename(static::class));
+        return case_type(static::class);
     }
 
     /**
@@ -38,7 +38,7 @@ abstract class AbstractCase
      *
      * @return string
      */
-    public function model() : string
+    public function model(): string
     {
         return $this->model;
     }

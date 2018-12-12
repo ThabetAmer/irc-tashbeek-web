@@ -1,6 +1,6 @@
 <?php namespace App\Sync\Cases;
 
-use App\Firm as FirmModel;
+use App\Models\Firm as FirmModel;
 
 class Firm extends AbstractCase
 {

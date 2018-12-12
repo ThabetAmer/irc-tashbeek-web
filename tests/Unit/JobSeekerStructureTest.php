@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\PropertyMetaData;
-use App\PropertyOption;
+use App\Models\PropertyMetaData;
+use App\Models\PropertyOption;
 use App\Sync\StructureFactory;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
@@ -18,7 +18,7 @@ class JobSeekerStructureTest extends TestCase
         $this->createSchema();
 
         $this->assertTrue(
-            Schema::hasTable(app(\App\JobSeeker::class)->getTable())
+            Schema::hasTable(app(\App\Models\JobSeeker::class)->getTable())
         );
     }
 
@@ -27,15 +27,15 @@ class JobSeekerStructureTest extends TestCase
         $this->createSchema();
 
         $this->assertTrue(
-            Schema::hasColumn(app(\App\JobSeeker::class)->getTable(), 'tn5')
+            Schema::hasColumn(app(\App\Models\JobSeeker::class)->getTable(), 'tn5')
         );
 
         $this->assertTrue(
-            Schema::hasColumn(app(\App\JobSeeker::class)->getTable(), 'tnstart')
+            Schema::hasColumn(app(\App\Models\JobSeeker::class)->getTable(), 'tnstart')
         );
 
         $this->assertTrue(
-            Schema::hasColumn(app(\App\JobSeeker::class)->getTable(), 'tn6_other')
+            Schema::hasColumn(app(\App\Models\JobSeeker::class)->getTable(), 'tn6_other')
         );
     }
 

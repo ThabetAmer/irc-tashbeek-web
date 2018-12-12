@@ -1,8 +1,8 @@
 <?php namespace App\Sync\Cases;
 
-class JobMatching extends AbstractCase
+class Match extends AbstractCase
 {
-    public $model = \App\JobMatch::class;
+    public $model = \App\Models\Match::class;
 
     /**
      * CommCare module ID

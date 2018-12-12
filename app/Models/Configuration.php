@@ -1,11 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class JobOpening extends Model
+class Configuration extends Model
 {
     protected $guarded = ['id'];
-
 }

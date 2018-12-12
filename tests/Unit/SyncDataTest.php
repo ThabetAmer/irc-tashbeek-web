@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\JobSeeker;
+use App\Models\JobSeeker;
 use App\Sync\DataFactory;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;

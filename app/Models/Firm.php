@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Firm extends Model
+class Firm extends Model implements SyncableInterface
 {
     protected $guarded = ['id'];
 }

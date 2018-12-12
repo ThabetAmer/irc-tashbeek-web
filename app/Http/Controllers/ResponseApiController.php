@@ -16,7 +16,8 @@ class ResponseApiController extends Controller
      */
     public function index(Request $request, $caseType)
     {
-        $model = get_model_from_case_type($caseType);
+        $model = get_case_type_model($caseType);
+
         return new DataResource($model->paginate(), ['model' => $model]);
     }
 

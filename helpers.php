@@ -15,11 +15,23 @@ if (!function_exists('case_type')) {
 }
 
 
-if (!function_exists('get_model_from_case_type')) {
-    function get_model_from_case_type($case_type)
+if (!function_exists('get_case_type_model')) {
+    function get_case_type_model($case_type)
     {
         $class = studly_case($case_type);
-        return app("App\\Models\\$class");
+        $class = "App\\Models\\$class";
+
+        if (!class_exists($class)) {
+            abort(500, "Class not found");
+        }
+
+        $model = app($class);
+
+        if (!$model instanceof \App\Models\SyncableInterface) {
+            abort(500, "API Model should implement SyncableInterface");
+        }
+
+        return $model;
     }
 }
 

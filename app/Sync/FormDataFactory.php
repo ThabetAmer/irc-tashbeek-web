@@ -5,6 +5,7 @@ use App\Sync\Cases\Firm;
 use App\Sync\Cases\Match;
 use App\Sync\Cases\JobOpening;
 use App\Sync\Cases\JobSeeker;
+use Illuminate\Support\Facades\Storage;
 
 class FormDataFactory
 {
@@ -16,6 +17,11 @@ class FormDataFactory
         JobOpening::class,
         Match::class
     ];
+
+    /**
+     * @var string
+     */
+    protected $lastFetchDateFile = 'form_data_last_fetch.txt';
 
     /**
      * @var FormDataRequest
@@ -38,12 +44,19 @@ class FormDataFactory
      */
     public function make($page = 1)
     {
-        $response = $this->request->data(['page' => $page]);
+        $params = ['page' => $page];
+        if ($page === 1) {
+            $params['received_on_start'] = $this->lastFetchDate();
+        }
+
+        $response = $this->request->data($params);
 
         $this->saveFormsData($response['objects']);
 
         if (!is_null($response['meta']['next'])) {
             $this->make($page + 1);
+        }else{
+            $this->saveLastFetchDate();
         }
     }
 
@@ -54,7 +67,7 @@ class FormDataFactory
      */
     protected function saveFormsData($formData)
     {
-        foreach($formData as $form){
+        foreach ($formData as $form) {
             $this->saveForm($form);
         }
     }
@@ -70,10 +83,10 @@ class FormDataFactory
 
         $formId = strtolower($formId);
 
-        $form = Form::where('commcare_id',$formId)->first();
+        $form = Form::where('commcare_id', $formId)->first();
 
-        if(!$form){
-            return ;
+        if (!$form) {
+            return;
         }
 
         $case = $formData['form']['case'];
@@ -81,12 +94,13 @@ class FormDataFactory
         $caseId = $case['@case_id'];
         $caseType = $case['create']['case_type'];
 
-        $model = app($this->getClassFromType($caseType))->model()::where('commcare_id',$caseId)->first();
+        $model = app($this->getClassFromType($caseType))->model()::where('commcare_id', $caseId)->first();
 
-        if(!$model){
-            return ;
+        if (!$model) {
+            return;
         }
-        if(!$model->forms()->where('form_id',$form->id)->first()){
+
+        if (!$model->forms()->where('form_id', $form->id)->first()) {
             $model->forms()->attach($form->id);
         }
     }
@@ -97,11 +111,31 @@ class FormDataFactory
      * @param $xmlns
      * @return mixed
      */
-    protected function getFormIdFromXmlns($xmlns){
+    protected function getFormIdFromXmlns($xmlns)
+    {
 
-        $segments = explode('/',parse_url($xmlns)['path']);
+        $segments = explode('/', parse_url($xmlns)['path']);
 
         return end($segments);
     }
+
+
+    protected function lastFetchDate()
+    {
+        $disk = Storage::disk('local');
+        $lastFetchDate = null;
+        if ($disk->exists($this->lastFetchDateFile)) {
+            $lastFetchDate = $disk->get($this->lastFetchDateFile);
+        }
+        return $lastFetchDate;
+    }
+
+    protected function saveLastFetchDate($date = null)
+    {
+        $disk = Storage::disk('local');
+        $lastFetchDate = $date ?? \Carbon\Carbon::now()->format('Y-m-d');
+        $disk->put($this->lastFetchDateFile, $lastFetchDate);
+    }
+
 }
 

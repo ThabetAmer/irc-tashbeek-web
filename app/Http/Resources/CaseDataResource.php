@@ -44,16 +44,25 @@ class CaseDataResource extends ResourceCollection
             ->get();
 
 
-        $data = [];
+        $headers = [];
+        $filters = [];
         foreach ($properties as $property) {
             $commcareId = explode('/', $property->commcare_id);
-            $data[] = [
+            $headers[] = [
                 'translations' => $property->attributes['translations'],
                 'name' => end($commcareId),
             ];
+
+            $filters[] = [
+                'has_filter' => $property->has_filter,
+                'name' => end($commcareId),
+                'type' => $property->attributes['type'] ?? 'Text',
+                'options' => $property->attributes['options'] ?? [],
+            ];
         }
         return [
-            'headers' => $data
+            'headers' => $headers,
+            'filters' => $filters
         ];
     }
 

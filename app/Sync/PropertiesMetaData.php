@@ -11,7 +11,7 @@ use App\Models\PropertyOption;
 
 class PropertiesMetaData
 {
-    public function insert($questions, $caseType)
+    public function insert($questions, $caseType, $caseQuestions)
     {
         foreach ($questions as $question) {
 
@@ -19,7 +19,8 @@ class PropertiesMetaData
 
             $values = [
                 'case_type' => $caseType,
-                'attributes' => $this->getAttributes($question)
+                'attributes' => $this->getAttributes($question),
+                'has_filter' => $caseQuestions[$question['hashtagValue']]['has_filter'] ?? false
             ];
 
             $property = PropertyMetaDataModel::query()->updateOrCreate($keys, $values);

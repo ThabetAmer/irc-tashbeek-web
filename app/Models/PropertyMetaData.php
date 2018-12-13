@@ -13,11 +13,12 @@ class PropertyMetaData extends Model
         'commcare_id',
         'case_type',
         'attributes',
-
+        'has_filter'
     ];
 
     protected $casts = [
         'attributes' => 'array',
+        'has_filter' => 'boolean'
     ];
 
     public function scopeOfType($query, $type)

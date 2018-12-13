@@ -18,11 +18,13 @@ class CreatePropertiesMetaDataTable extends Migration
 
             $table->increments('id');
 
-            $table->string('case_type',20)->index();
+            $table->string('case_type', 20)->index();
 
             $table->string('commcare_id', 255)->index();
 
             $table->json('attributes')->nullable();
+
+            $table->boolean('has_filter')->default(false);
 
             $table->timestamps();
 

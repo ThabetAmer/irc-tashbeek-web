@@ -53,12 +53,13 @@ class CaseDataResource extends ResourceCollection
                 'name' => end($commcareId),
             ];
 
-            $filters[] = [
-                'has_filter' => $property->has_filter,
-                'name' => end($commcareId),
-                'type' => $property->attributes['type'] ?? 'Text',
-                'options' => $property->attributes['options'] ?? [],
-            ];
+            if ($property->has_filter) {
+                $filters[] = [
+                    'name' => end($commcareId),
+                    'type' => strtolower($property->attributes['type']) ?? 'text',
+                    'options' => PropertyOptionsResource::collection(collect($property->attributes['options'] ?? [])),
+                ];
+            }
         }
         return [
             'headers' => $headers,

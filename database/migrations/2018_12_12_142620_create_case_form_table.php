@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJobSeekersTable extends Migration
+class CreateCaseFormTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateJobSeekersTable extends Migration
      */
     public function up()
     {
-        Schema::create('job_seekers', function (Blueprint $table) {
+        Schema::create('case_forms', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->unsignedInteger('location_id');
-
-
+            $table->morphs('case_form');
+            $table->integer('form_id')->unsigned()->index();
             $table->timestamps();
-            $table->softDeletes();
-
         });
     }
 
@@ -32,6 +28,6 @@ class CreateJobSeekersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('job_seekers');
+        Schema::dropIfExists('case_forms');
     }
 }

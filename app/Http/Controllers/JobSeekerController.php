@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\JobMatching;
+namespace App\Http\Controllers;
 
-use App\Firm;
 use App\Http\Controllers\Controller;
+use App\Models\JobSeeker;
 use Illuminate\Http\Request;
 
-class FirmController extends Controller
+class JobSeekerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class FirmController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Firm  $firm
+     * @param  \App\Models\JobSeeker  $jobSeeker
      * @return \Illuminate\Http\Response
      */
-    public function show(Firm $firm)
+    public function show(JobSeeker $jobSeeker)
     {
         //
     }
@@ -53,10 +53,10 @@ class FirmController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Firm  $firm
+     * @param  \App\Models\JobSeeker  $jobSeeker
      * @return \Illuminate\Http\Response
      */
-    public function edit(Firm $firm)
+    public function edit(JobSeeker $jobSeeker)
     {
         //
     }
@@ -65,10 +65,10 @@ class FirmController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Firm  $firm
+     * @param  \App\Models\JobSeeker  $jobSeeker
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Firm $firm)
+    public function update(Request $request, JobSeeker $jobSeeker)
     {
         //
     }
@@ -76,10 +76,10 @@ class FirmController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Firm  $firm
+     * @param  \App\Models\JobSeeker  $jobSeeker
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Firm $firm)
+    public function destroy(JobSeeker $jobSeeker)
     {
         //
     }

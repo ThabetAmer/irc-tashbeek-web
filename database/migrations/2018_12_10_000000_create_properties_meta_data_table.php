@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Sync\StructureFactory;
 
-class CreateFirmsTable extends Migration
+class CreatePropertiesMetaDataTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +14,20 @@ class CreateFirmsTable extends Migration
      */
     public function up()
     {
-        Schema::create('firms', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title');
-            $table->text('description')->nullable();
+        Schema::create('properties_meta_data', function (Blueprint $table) {
 
+            $table->increments('id');
+
+            $table->string('case_type',20)->index();
+
+            $table->string('commcare_id', 255)->index();
+
+            $table->json('attributes')->nullable();
 
             $table->timestamps();
+
             $table->softDeletes();
+
         });
     }
 
@@ -31,6 +38,6 @@ class CreateFirmsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('firms');
+        Schema::dropIfExists('properties_meta_data');
     }
 }

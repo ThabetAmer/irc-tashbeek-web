@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\JobMatching;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\JobMatch;
+use App\Models\Match;
 use Illuminate\Http\Request;
 
-class JobMatchController extends Controller
+class MatchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,7 +31,7 @@ class JobMatchController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,10 +42,10 @@ class JobMatchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\JobMatch  $jobMatch
+     * @param  \App\Models\Match $Match
      * @return \Illuminate\Http\Response
      */
-    public function show(JobMatch $jobMatch)
+    public function show(Match $Match)
     {
         //
     }
@@ -53,10 +53,10 @@ class JobMatchController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\JobMatch  $jobMatch
+     * @param  \App\Models\Match $Match
      * @return \Illuminate\Http\Response
      */
-    public function edit(JobMatch $jobMatch)
+    public function edit(Match $Match)
     {
         //
     }
@@ -64,11 +64,11 @@ class JobMatchController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\JobMatch  $jobMatch
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Match $Match
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, JobMatch $jobMatch)
+    public function update(Request $request, Match $Match)
     {
         //
     }
@@ -76,10 +76,10 @@ class JobMatchController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\JobMatch  $jobMatch
+     * @param  \App\Models\Match $Match
      * @return \Illuminate\Http\Response
      */
-    public function destroy(JobMatch $jobMatch)
+    public function destroy(Match $Match)
     {
         //
     }

@@ -171,6 +171,8 @@ module.exports = {
     'md': '768px',
     'lg': '992px',
     'xl': '1200px',
+    'hd': '1366px',
+    'fhd': '1500px',
   },
 
 

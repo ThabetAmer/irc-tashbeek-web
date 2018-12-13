@@ -88,42 +88,6 @@ body{
   align-items: stretch;
 }
 
-#sidebar {
-  min-width: 300px;
-  max-width: 300px;
-}
-
-#sidebar.active {
-  margin-left: -250px;
-}
-
-
-#sidebar {
-  min-width: 300px;
-  max-width: 300px;
-  min-height: 100vh;
-}
-
-a[data-toggle="collapse"] {
-  position: relative;
-}
-
-.dropdown-toggle::after {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-}
-
-@media (max-width: 768px) {
-  #sidebar {
-    margin-left: -250px;
-  }
-  #sidebar.active {
-    margin-left: 0;
-  }
-}
 
 //@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
@@ -182,9 +146,105 @@ a[data-toggle="collapse"] {
 .custom-navs{
   a.active{
     color:#1F9D55 !important;
-    background: rgba(211,211,211, 0.25) !important;
+    background: rgba(92,182,87, 0.15) !important;
     border-radius: 9999px !important;
   }
 
 
+}
+
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: transparent;
+}
+.table-striped tbody tr:nth-of-type(even) {
+  background-color: rgba(0, 0, 0, .05);
+}
+
+//#sidebar {
+//  min-width: 300px;
+//  max-width: 300px;
+//}
+
+#sidebar.active {
+  margin-left: -250px;
+}
+
+
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+
+
+@media only screen and (min-width: 768px) {
+  #sidebar {
+    margin-left: 0px;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #sidebar {
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 100vh;
+  }
+
+}
+
+
+@media only screen and  (min-width: 1350px) {
+  #sidebar {
+    margin-left: -0px;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #sidebar {
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 100vh;
+  }
+
+}
+
+@media only screen and  (min-width: 1500px) {
+  #sidebar {
+    margin-left: 0px;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #sidebar {
+    min-width: 350px;
+    max-width: 350px;
+    min-height: 100vh;
+  }
+
+}
+
+
+.fade{
+  transition: opacity .15s linear;
+}
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+.minHeight900{
+  min-height: 900px !important;
 }

@@ -28,3 +28,11 @@ Route::get('/dashboard', function (){
 Route::get('/profile', function () {
     return view('profile');
 });
+
+Route::get('/seeker', function () {
+    return view('seeker');
+});
+
+Route::get('/firms', function () {
+    return view('firms');
+});

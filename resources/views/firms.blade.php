@@ -1,7 +1,7 @@
 @extends('master.master')
 @section('content')
-    <div class="" id="builder">
-        <builder></builder>
+    <div class="" id="all-firms">
+        <firms></firms>
     </div>
 @endsection
 

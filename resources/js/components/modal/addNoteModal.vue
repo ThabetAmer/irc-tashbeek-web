@@ -3,7 +3,7 @@
     -->
     <modal
             v-if="showModal"
-            @close="showModal = false">
+            @close="closeModal">
         <div slot="header" class="relative w-full text-left">
             <h3>Add Note</h3>
             <btn
@@ -80,6 +80,9 @@
             this.show = this.showModal;
         },
         methods: {
+            closeModal(){
+                this.$emit('close');
+            },
             addNote() {
                 console.log('clicked on add note');
             },

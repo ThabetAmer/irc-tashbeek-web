@@ -4,33 +4,34 @@
             <panel
                     customClass=""
                     :hasTitle="hasTitle"
-                    title="Shams El Balad">
+                    title="Sara Hourani">
                 <div class="firm-id uppercase text-green text-left font-bold -mt-4 mb-4">
-                    ID 456465456
+                    ID 56544156
                 </div>
-
                 <ul class="firm-info list-reset text-left pr-8">
-                    <li class=" border-b border-grey-light py-3 pl-16 text-xl text-black relative">
+                    <li class=" border-b border-grey-light py-3 pl-16  hd:text-lg xl:text-md text-black relative">
                         Restaurant
                         <i class="fas fa-store absolute pin-l pin-t text-grey-darkest text-2xl mt-3 ml-1"></i>
                     </li>
-                    <li class=" border-b border-grey-light py-3 pl-16 text-xl text-black relative">
+                    <li class=" border-b border-grey-light py-3 pl-16 hd:text-lg xl:text-md text-black relative">
                         Located in Amman
                         <i class="fas fa-map-marker-alt absolute pin-l pin-t text-grey-darkest text-2xl mt-3 ml-1 "></i>
 
                     </li>
-                    <li class=" border-b border-grey-light py-3 pl-16 text-xl text-black relative">
+                    <li class=" border-b border-grey-light py-3 pl-16 hd:text-lg xl:text-md text-black relative">
                         +123 456 789 234
                         <i class="fas fa-phone absolute pin-l pin-t text-grey-darkest text-2xl mt-3 ml-1 "></i>
 
                     </li>
-                    <li class=" border-b border-grey-light py-3 pl-16 text-xl text-black relative">
+                    <li class=" border-b border-grey-light py-3 pl-16 hd:text-lg xl:text-md text-black relative">
                         Looking for waiters
                         <i class="fas fa-briefcase absolute pin-l pin-t text-grey-darkest text-2xl mt-3 ml-1"></i>
 
                     </li>
 
                 </ul>
+
+
 
                 <div class="stared-note uppercase text-green text-left font-bold mt-4 mb-4">
                     Starred Note
@@ -51,12 +52,12 @@
                     <li class="">
                         <a data-toggle="tab" class="nav-link active border-0
                                             rounded-full
-                                            text-grey-dark text-lg font-semibold "
+                                            text-grey-dark text-base font-semibold "
                            href="#current">Current</a>
                     </li>
                     <li class="">
                         <a data-toggle="tab" class="nav-link border-0
-                                                text-grey-dark text-lg font-semibold"
+                                                text-grey-dark text-base font-semibold"
                            href="#matches">Matches</a>
                     </li>
                 </ul>
@@ -67,7 +68,10 @@
                     </div>
 
                     <div id="matches" class="tab-pane fade in">
-                        <h3>Matches</h3>
+                        <datatable
+                                :hasPagination="filters"
+                                :hasFilters="filters"
+                        ></datatable>
                     </div>
                 </div>
 
@@ -122,7 +126,8 @@
         data() {
             return {
                 hasTitle: true,
-                showStar:false
+                showStar:false,
+                filters:false,
             }
         },
         created() {

@@ -73,7 +73,7 @@
 <div class="wrapper bg-grey-lighter">
     @include('master.sidebar')
 
-    <div class="content p-10" id="content">
+    <div class="content p-10 container" id="content">
         @yield('content')
     </div>
 </div>
@@ -82,3 +82,5 @@
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 {{--<script src="{{ asset('js/dashboard.js') }}" type="text/javascript"></script>--}}
 <script src="{{ asset('js/firmProfile.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/seekerProfile.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/firms.js') }}" type="text/javascript"></script>

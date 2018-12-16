@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -72,11 +73,11 @@
 <body class="bg-grey-light">
 <div class="wrapper bg-grey-lighter">
 
-    @if(Route::currentRouteName() != 'login')
-        @include('master.sidebar')
+    @if(auth()->check())
+        @include('layouts.sidebar')
     @endif
 
-    <div class="content p-10 container mx-auto px-16" id="content">
+    <div class="content p-10 container mx-auto px-16" id="app">
         @yield('content')
     </div>
 </div>
@@ -98,10 +99,11 @@
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar').toggleClass('minified');
         });
-
-
     });
 </script>
+
+<script src="{{asset('./js/app.js')}}"></script>
+
 
 {{--<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>--}}
 

@@ -1,8 +1,4 @@
 {
-    "/js/dashboard.js": "/js/dashboard.js",
-    "/js/firms.js": "/js/firms.js",
-    "/js/seekerProfile.js": "/js/seekerProfile.js",
-    "/js/builder.js": "/js/builder.js",
-    "/css/app.css": "/css/app.css",
-    "/js/firmProfile.js": "/js/firmProfile.js"
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css"
 }

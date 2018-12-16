@@ -11,18 +11,19 @@
 |
 */
 
+Auth::routes();
 
-Route::get('/', function () {
-//    return redirect()->route('login');
-    return view('welcome');
+Route::group(['middleware' => ['web','auth']],function(){
+    Route::get('/','HomeController@index');
+    Route::get('/job-seekers','JobSeekerController@index');
 });
 
+//
 Route::get('/dashboard', function () {
 //    return redirect()->route('login');
     return view('dashboard');
 });
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('index/{case_type}', 'ResponseApiController@index');

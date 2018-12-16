@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('layouts.layout')
 
 @section('content')
     <div class="row justify-content-center">

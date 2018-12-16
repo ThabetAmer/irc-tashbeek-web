@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-// require('../bootstrap');
+require('./bootstrap');
 
 window.Vue = require('vue');
 
@@ -17,10 +17,12 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
+Vue.component('Builder', require('./builder/builder'));
+Vue.component('Dashboard', require('./dashboard/dashboard'));
+Vue.component('FirmProfile', require('./firm-profile/firmProfile'));
+Vue.component('Firms', require('./firms/firms'));
+Vue.component('SeekerProfile', require('./seeker-profile/seekerProfile'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,10 +30,6 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import Builder from "./builder.vue";
-
-
 const app = new Vue({
-    el: '#builder',
-    render: h => h(Builder),
+  el: '#app'
 });

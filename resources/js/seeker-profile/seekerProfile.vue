@@ -171,102 +171,102 @@
 
 
 <script>
-    import btn from '../components/button/button'
-    import AnchorLink from '../components/link/link'
-    import CustomSelect from '../components/select/select'
-    import modal from '../components/modal/modal'
-    import addNoteModal from '../components/modal/addNoteModal'
-    import buttonGroup from '../components/buttonGroup/buttonGroup'
-    import checkbox from '../components/checkbox/checkbox'
-    import checkboxGroup from '../components/checkboxGroup/checkbox-group'
-    import panel from '../components/panel/panel'
-    import metricCard from '../components/metricCard/metricCard'
-    import notebox from '../components/notebox/notebox'
-    import screenbox from '../components/screenbox/screenbox'
-    import jobOpening from '../components/jobOpening/jobOpening'
-    import datatable from '../components/datatable/datatable'
-    // import addNoteModal from '../components/modal/addNoteModal'
+  import btn from '../components/button/button'
+  import AnchorLink from '../components/link/link'
+  import CustomSelect from '../components/select/select'
+  import modal from '../components/modal/modal'
+  import addNoteModal from '../components/modal/addNoteModal'
+  import buttonGroup from '../components/buttonGroup/buttonGroup'
+  import checkbox from '../components/checkbox/checkbox'
+  import checkboxGroup from '../components/checkboxGroup/checkbox-group'
+  import panel from '../components/panel/panel'
+  import metricCard from '../components/metricCard/metricCard'
+  import notebox from '../components/notebox/notebox'
+  import screenbox from '../components/screenbox/screenbox'
+  import jobOpening from '../components/jobOpening/jobOpening'
+  import datatable from '../components/datatable/datatable'
+  // import addNoteModal from '../components/modal/addNoteModal'
 
-    export default {
-        components: {
-            btn, AnchorLink,
-            CustomSelect, modal, buttonGroup,
-            checkbox, checkboxGroup, panel, metricCard,
-            addNoteModal, notebox, jobOpening, datatable, screenbox
+  export default {
+    components: {
+      btn, AnchorLink,
+      CustomSelect, modal, buttonGroup,
+      checkbox, checkboxGroup, panel, metricCard,
+      addNoteModal, notebox, jobOpening, datatable, screenbox
+    },
+    props: {},
+    data() {
+      return {
+        jobOpeningView: 'all',
+        showFullNote: false,
+        showAddNote: false,
+        hasTitle: true,
+        showStar: false,
+        filters: false,
+        showAddModalNote: false,
+        starredNote: {
+          id: 1,
+          date: 'Wednesday 12 November',
+          author: 'Mohammad Karmi',
+          body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s\n' +
+          '            standard dummy text ever since the 1500s, when an unknown printer\n' +
+          '            took a galley of type and scrambled it to make a type specimen book.\n' +
+          '            It has survived not only five centuries, but also the leap into electronic\n' +
+          '            typesetting, remaining essentially unchanged',
         },
-        props: {},
-        data() {
-            return {
-                jobOpeningView: 'all',
-                showFullNote: false,
-                showAddNote: false,
-                hasTitle: true,
-                showStar: false,
-                filters: false,
-                showAddModalNote: false,
-                starredNote: {
-                    id: 1,
-                    date: 'Wednesday 12 November',
-                    author: 'Mohammad Karmi',
-                    body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s\n' +
-                    '            standard dummy text ever since the 1500s, when an unknown printer\n' +
-                    '            took a galley of type and scrambled it to make a type specimen book.\n' +
-                    '            It has survived not only five centuries, but also the leap into electronic\n' +
-                    '            typesetting, remaining essentially unchanged',
-                },
-                notes: [
-                    {
-                        id: 1,
-                        date: 'Wednesday 12 November',
-                        author: 'Mohammad Karmi',
-                        body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s\n' +
-                        '            It has survived not only five centuries, but also the leap into electronic\n' +
-                        '            typesetting, remaining essentially unchanged',
+        notes: [
+          {
+            id: 1,
+            date: 'Wednesday 12 November',
+            author: 'Mohammad Karmi',
+            body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s\n' +
+            '            It has survived not only five centuries, but also the leap into electronic\n' +
+            '            typesetting, remaining essentially unchanged',
 
-                    },
-                    {
-                        id: 2,
-                        date: 'Wednesday 12 November',
-                        author: 'Mohammad Karmi',
-                        body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s\n' +
-                        '            standard dummy text ever since the 1500s, when an unknown printer\n' +
-                        '            took a galley of type and scrambled it to make a type specimen book.\n' +
-                        '            It has survived not only five centuries, but also the leap into electronic\n' +
-                        '            typesetting, remaining essentially unchanged',
+          },
+          {
+            id: 2,
+            date: 'Wednesday 12 November',
+            author: 'Mohammad Karmi',
+            body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s\n' +
+            '            standard dummy text ever since the 1500s, when an unknown printer\n' +
+            '            took a galley of type and scrambled it to make a type specimen book.\n' +
+            '            It has survived not only five centuries, but also the leap into electronic\n' +
+            '            typesetting, remaining essentially unchanged',
 
-                    }
-                ]
-            }
-        },
-        methods: {
-            changeJobOpeningview(view) {
-                console.log(' view is ', view);
-                this.jobOpeningView = view;
-                if (view == 'notes') {
-                    this.showAddNote = true;
-                }
-            },
-            addNoteClick() {
-                this.showAddModalNote = true;
-            },
-            closeModalNote() {
-                this.showAddModalNote = false;
+          }
+        ]
+      }
+    },
+    methods: {
+      changeJobOpeningview(view) {
+        console.log(' view is ', view);
+        this.jobOpeningView = view;
+        if (view == 'notes') {
+          this.showAddNote = true;
+        }
+      },
+      addNoteClick() {
+        this.showAddModalNote = true;
+      },
+      closeModalNote() {
+        this.showAddModalNote = false;
 
-            },
-            addNoteToList(noteText) {
-                console.log(' added note is ', noteText);
-                this.notes.push({
-                    id: 3,
-                    body: noteText,
-                    date: 'Wednesday 12 November',
-                    author: 'Mohammad Karmi'
+      },
+      addNoteToList(noteText) {
+        console.log(' added note is ', noteText);
+        this.notes.push({
+          id: 3,
+          body: noteText,
+          date: 'Wednesday 12 November',
+          author: 'Mohammad Karmi'
 
-                })
-            },
-            changeStarredNote(note) {
-                this.starredNote = note;
-            }
-        },
+        })
+      },
+      changeStarredNote(note) {
+        this.starredNote = note;
+      }
+    },
 
-    }
+  }
 </script>

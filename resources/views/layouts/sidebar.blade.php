@@ -24,8 +24,8 @@
         </li>
 
         <li class="uppercase  text-white ">
-            <a href="/seeker" class="text-white text-sm remove-text-minified  pl-20 py-5 relative mb-3">
-                <i class="fas fa-users absolute pin-l pin-t text-xl mt-4 ml-3"></i>
+            <a href="/job-seekers" class="text-white text-sm remove-text-minified  pl-20 py-5 relative mb-3">
+                <i class="fas fa-users absolute pin-l pin-t text-2xl mt-4 ml-3"></i>
                 All job seekers
 
             </a>
@@ -48,11 +48,17 @@
         </li>
 
         <li class="uppercase  text-white">
-            <a href="" class="text-white text-sm remove-text-minified  pl-20 py-5 relative mb-4">
-                <i class="fas fa-lock absolute pin-l pin-t text-xl mt-4 ml-3"></i>
-                Sign out
 
+            <a class="text-white remove-text-minified  pl-20 py-5 relative mb-4"
+               href="{{ route('logout') }}"
+               onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                <i class="fas fa-lock absolute pin-l pin-t text-2xl mt-4 ml-3"></i>
+                {{ __('Logout') }}
             </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
         </li>
 
     </ul>

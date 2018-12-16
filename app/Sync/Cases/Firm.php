@@ -24,26 +24,31 @@ class Firm extends AbstractCase
     public function questions(): array
     {
         return [
-            '/Firm_Intake_05/id/fesoid' => [
+            'fesoid' => [
                 'name' => 'fesoid',
                 'type' => 'text'
             ],
-            '/Firm_Intake_05/id/fidmeth' => [
+            'fidmeth' => [
                 'name' => 'fidmeth',
                 'type' => 'text'
             ],
-            '/Firm_Intake_05/id/rname' => [
+            'rname' => [
                 'name' => 'rname',
                 'type' => 'text'
             ],
-            '/Firm_Intake_05/id/fgps' => [
+            '/fgps' => [
                 'name' => 'fgps',
                 'type' => 'text'
             ],
-            '/Firm_Intake_05/id/fdate' => [
+            'fdate' => [
                 'name' => 'fdate',
                 'type' => 'date'
             ],
         ];
+    }
+
+    public function formId()
+    {
+        return '9367515ab3ef207b9935b1318495c2aba5f5a92e';
     }
 }

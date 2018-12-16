@@ -61,7 +61,7 @@ class StructureFactory
         foreach ($this->caseTypes as $class) {
             if (is_null($case) || $this->getTypeFromClass($class) === $case) {
                 $object = app($class);
-                $this->generate($modules->get($object->id()),$object);
+                $this->generate($modules->get($object->id()), $object);
             }
         }
     }
@@ -72,13 +72,15 @@ class StructureFactory
      * @param array $data
      * @param AbstractCase $case
      */
-    protected function generate(array $data, AbstractCase $case){
+    protected function generate(array $data, AbstractCase $case)
+    {
 
-        $questionObjects = $this->getCaseQuestions($data,$case);
+        $questionObjects = $this->getCaseQuestions($data, $case);
+
 
         $model = $case->model();
 
-        $caseQuestions = array_pluck($questionObjects,'case_question');
+        $caseQuestions = array_pluck($questionObjects, 'case_question');
 
         $this->schema->generate((new $model)->getTable(), $caseQuestions);
 
@@ -92,16 +94,18 @@ class StructureFactory
      * @param $case
      * @return array
      */
-    protected function getCaseQuestions(array $data, AbstractCase $case) : array
+    protected function getCaseQuestions(array $data, AbstractCase $case): array
     {
         $questionObjects = [];
 
         foreach ($data['forms'] as $form) {
-            foreach ($form['questions'] as $question) {
-                if (isset($case->questions()[$question['hashtagValue']])) {
-                    $question['case_question'] = $case->questions()[$question['hashtagValue']];
 
-                    $questionObjects[] = $question;
+            if ($this->isWhiteListedForm($form['unique_id'], $case->formId())) {
+                foreach ($form['questions'] as $question) {
+                    if (isset($case->questions()[base_commcare_field_name($question['hashtagValue'])])) {
+                        $question['case_question'] = $case->questions()[base_commcare_field_name($question['hashtagValue'])];
+                        $questionObjects[] = $question;
+                    }
                 }
             }
 
@@ -111,7 +115,28 @@ class StructureFactory
             ]);
         }
 
-        return $questionObjects;
+        return collect($questionObjects)->keyBy(function($question){
+            return $question['case_question']['name'];
+        })->values()->toArray();
+    }
+
+    /**
+     * Check if  the developer allowed to pull questions from this form base on "unique_id" from structure response
+     *
+     * @param $formId
+     * @param $caseFormId
+     * @return bool
+     */
+    protected function isWhiteListedForm($formId, $caseFormId)
+    {
+        if (!$caseFormId) {
+            return true;
+        }
+        if (!is_array($caseFormId) && $formId === $caseFormId) {
+            return true;
+        }
+
+        return is_array($caseFormId) && in_array($formId, $caseFormId);
     }
 }
 

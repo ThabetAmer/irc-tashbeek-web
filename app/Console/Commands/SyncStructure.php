@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Sync\FullStructureFactory;
 use App\Sync\StructureFactory;
 use Illuminate\Console\Command;
 
@@ -39,11 +40,12 @@ class SyncStructure extends Command
     public function handle()
     {
         try{
-            dd(
-                $this->option('all')
-            );
-            if($this->option('all'))
-            app(StructureFactory::class)->make($this->argument('caseType'));
+
+            if($this->option('all')){
+                app(FullStructureFactory::class)->make($this->argument('caseType'));
+            }else{
+                app(StructureFactory::class)->make($this->argument('caseType'));
+            }
 
             $this->info("Sync [" . $this->argument('caseType') . "] structure completed.");
         }catch(\Throwable $e){

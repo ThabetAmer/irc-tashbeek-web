@@ -15,12 +15,14 @@ class PropertiesMetaData
     {
         foreach ($questions as $question) {
 
-            $keys = ['commcare_id' => $question['hashtagValue']];
+            $baseCommcareFieldName = base_commcare_field_name($question['hashtagValue']);
+
+            $keys = ['commcare_id' => $baseCommcareFieldName];
 
             $values = [
                 'case_type' => $caseType,
                 'attributes' => $this->getAttributes($question),
-                'has_filter' => $caseQuestions[$question['hashtagValue']]['has_filter'] ?? false
+                'has_filter' => $caseQuestions[$baseCommcareFieldName]['has_filter'] ?? false
             ];
 
             $property = PropertyMetaDataModel::query()->updateOrCreate($keys, $values);

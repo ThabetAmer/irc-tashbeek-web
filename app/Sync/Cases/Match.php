@@ -22,15 +22,15 @@ class Match extends AbstractCase
     public function questions(): array
     {
         return  [
-            '/JS_Application_01/eso_id' => [
+            'eso_id' => [
                 'name' => 'eso_id',
                 'type' => 'text'
             ],
-            '/JS_Application_01/eso_id/beneficiary_id_uuid' => [
+            'beneficiary_id_uuid' => [
                 'name' => 'beneficiary_id_uuid',
                 'type' => 'text'
             ],
-            '/JS_Application_01/js/application_method' => [
+            'application_method' => [
                 'name' => 'application_method',
                 'type' => 'text'
             ],

@@ -21,22 +21,10 @@ class FullStructureFactory extends StructureFactory
         $questionObjects = [];
 
         foreach ($data['forms'] as $form) {
-            foreach ($form['questions'] as $question) {
-                if(isset($case->questions()[$question['hashtagValue']])){
-                    $question['case_question'] = $case->questions()[$question['hashtagValue']];
-                }else{
-                    $columnName = explode('/',$question['hashtagValue']);
-                    $columnName = end($columnName);
-                    $question['case_question'] = [
-                        'name' => $columnName,
-                        'type' => 'string'
-                    ];
+            if ($this->isWhiteListedForm($form['unique_id'], $case->formId())) {
+                foreach ($form['questions'] as $question) {
+                    $questionObjects[] = $this->getCaseQuestion($question,$case);
                 }
-                if($question['case_question']['name'] === 'id'){
-                    $question['case_question']['name'] = 'case_id';
-                }
-
-                $questionObjects[] = $question;
             }
 
             Form::create([
@@ -45,7 +33,28 @@ class FullStructureFactory extends StructureFactory
             ]);
         }
 
-        return $questionObjects;
+        return collect($questionObjects)->keyBy(function($question){
+            return $question['case_question']['name'];
+        })->values()->toArray();
+    }
+
+    protected function getCaseQuestion($question, $case)
+    {
+        if (isset($case->questions()[$question['hashtagValue']])) {
+            $question['case_question'] = $case->questions()[$question['hashtagValue']];
+        } else {
+            $columnName = explode('/', $question['hashtagValue']);
+            $columnName = end($columnName);
+            $question['case_question'] = [
+                'name' => $columnName,
+                // (string) will exceed the row size limit on large columns
+                'type' => 'text'
+            ];
+        }
+        if ($question['case_question']['name'] === 'id') {
+            $question['case_question']['name'] = 'case_id';
+        }
+        return $question;
     }
 }
 

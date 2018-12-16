@@ -42,4 +42,12 @@ abstract class AbstractCase
     {
         return $this->model;
     }
+
+    /**
+     * Fetch only one form data
+     */
+    public function formId()
+    {
+        return null;
+    }
 }

@@ -3,7 +3,7 @@
     -->
     <div :class="panelStyle">
         <div
-                v-if="hasTitle"
+                v-if="title"
                 class="text-black text-left font-bold text-xl mb-3"
         >
             {{title}}
@@ -29,7 +29,7 @@
             },
             title:{
                 type:String,
-                default:""
+                default:null
             }
         },
         mixins: [panelStyle]

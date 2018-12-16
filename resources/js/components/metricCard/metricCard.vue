@@ -12,13 +12,13 @@
                         text-left border-solid
                         font-bold border-b-4
                         text-2xl">
-               {{count}}
+               {{value}}
            </div>
 
            <div class="text text-black
                         text-left font-bold
-                        text-lg mt-2 uppercase">
-               {{text}}
+                        text-md mt-2 uppercase">
+               {{label}}
            </div>
        </panel>
     </div>
@@ -40,11 +40,11 @@
                 type:String,
                 default:""
             },
-            count:{
+            value:{
                 type:[String,Number],
                 default:0
             },
-            text:{
+            label:{
                 type:String,
                 default:""
             }

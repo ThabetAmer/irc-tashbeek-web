@@ -13,7 +13,7 @@
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    {{--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">--}}
     <link rel="stylesheet" href="{{asset('./css/app.css')}}">
     <!-- Styles -->
     <style>
@@ -69,18 +69,44 @@
         }
     </style>
 </head>
-<body class="bg-grey-lighter">
+<body class="bg-grey-light">
 <div class="wrapper bg-grey-lighter">
-    @include('master.sidebar')
 
-    <div class="content p-10 container" id="content">
+    @if(Route::currentRouteName() != 'login')
+        @include('master.sidebar')
+    @endif
+
+    <div class="content p-10 container mx-auto px-16" id="content">
         @yield('content')
     </div>
 </div>
 </body>
 </html>
-<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-{{--<script src="{{ asset('js/dashboard.js') }}" type="text/javascript"></script>--}}
-<script src="{{ asset('js/firmProfile.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/seekerProfile.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/firms.js') }}" type="text/javascript"></script>
+
+<script type="text/javascript">
+    window.appURL = '{{ url('/') }}';
+
+</script>
+
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('minified');
+        });
+
+
+    });
+</script>
+
+{{--<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>--}}
+
+@section('script')
+
+@show
+
+{{--<script src="{{ asset('js/seekerProfile.js') }}" type="text/javascript"></script>--}}

@@ -1,29 +1,29 @@
 <template>
-    <div class="row">
-        <div class="col-md-4">
+    <div class="flex">
+        <div class="w-1/3 px-2">
             <panel
                     customClass=""
                     :hasTitle="hasTitle"
-                    title="Sara Hourani">
-                <div class="firm-id uppercase text-green text-left font-bold -mt-4 mb-4">
+                    title="Shams El Balad">
+                <div class="firm-id uppercase text-green text-left font-bold mt-4 mb-4">
                     ID 56544156
                 </div>
-                <ul class="firm-info list-reset text-left pr-8">
-                    <li class=" border-b border-grey-light py-3 pl-16  hd:text-lg xl:text-md text-black relative">
+                <ul class="firm-info list-reset text-left pr-8 mb-4">
+                    <li class=" border-b border-grey-light py-5 pl-16  hd:text-lg xl:text-md text-black relative">
                         Restaurant
                         <i class="fas fa-store absolute pin-l pin-t text-grey-darkest text-2xl mt-3 ml-1"></i>
                     </li>
-                    <li class=" border-b border-grey-light py-3 pl-16 hd:text-lg xl:text-md text-black relative">
+                    <li class=" border-b border-grey-light py-5 pl-16 hd:text-lg xl:text-md text-black relative">
                         Located in Amman
                         <i class="fas fa-map-marker-alt absolute pin-l pin-t text-grey-darkest text-2xl mt-3 ml-1 "></i>
 
                     </li>
-                    <li class=" border-b border-grey-light py-3 pl-16 hd:text-lg xl:text-md text-black relative">
+                    <li class=" border-b border-grey-light py-5 pl-16 hd:text-lg xl:text-md text-black relative">
                         +123 456 789 234
                         <i class="fas fa-phone absolute pin-l pin-t text-grey-darkest text-2xl mt-3 ml-1 "></i>
 
                     </li>
-                    <li class=" border-b border-grey-light py-3 pl-16 hd:text-lg xl:text-md text-black relative">
+                    <li class=" border-b border-grey-light py-5 pl-16 hd:text-lg xl:text-md text-black relative">
                         Looking for waiters
                         <i class="fas fa-briefcase absolute pin-l pin-t text-grey-darkest text-2xl mt-3 ml-1"></i>
 
@@ -32,42 +32,48 @@
                 </ul>
 
 
-
-                <div class="stared-note uppercase text-green text-left font-bold mt-4 mb-4">
+                <div class="stared-note uppercase text-green text-left font-bold mt-6 -mb-2">
                     Starred Note
                 </div>
                 <notebox
                         :showStar="showStar"
                         :showCreatorDetails="showStar"
-                        custom-class="border-none p-0"
+                        custom-class="border-none pl-0 "
                 ></notebox>
             </panel>
         </div>
-        <div class="col-md-8">
+        <div class="w-2/3 px-2">
 
             <panel
                     :has-title="hasTitle"
                     title="Job openings">
-                <ul class="nav nav-tabs border-0 custom-navs mb-4">
-                    <li class="">
-                        <a data-toggle="tab" class="nav-link active border-0
-                                            rounded-full
-                                            text-grey-dark text-base font-semibold "
-                           href="#current">Current</a>
+                <ul class="list-reset flex border-0 custom-navs mb-4">
+                    <li class="flex-inline mr-2">
+                        <button @click="changeViewType('current')"
+                                :class="{active:viewType =='current'}"
+                                class="nav-link border-0
+                                 rounded-full py-2 px-4
+                                 text-grey-dark text-base font-semibold "
+                        >Current
+                        </button>
                     </li>
-                    <li class="">
-                        <a data-toggle="tab" class="nav-link border-0
-                                                text-grey-dark text-base font-semibold"
-                           href="#matches">Matches</a>
+                    <li class=" flex-inline mr-2">
+                        <button @click="changeViewType('matches')"
+                                :class="{active:viewType =='matches'}"
+                                class="nav-link border-0 py-2 px-4
+                                text-grey-dark text-base font-semibold"
+                        >Matches
+                        </button>
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div id="current" class="tab-pane fade in active show">
+                    <div id="current" v-if="viewType =='current'"
+                         class="tab-pane fade in active show">
                         <jobOpening></jobOpening>
                         <jobOpening></jobOpening>
                     </div>
 
-                    <div id="matches" class="tab-pane fade in">
+                    <div id="matches" v-if="viewType =='matches'" class="tab-pane fade in">
                         <datatable
                                 :hasPagination="filters"
                                 :hasFilters="filters"
@@ -125,9 +131,10 @@
         props: {},
         data() {
             return {
+                viewType: 'current',
                 hasTitle: true,
-                showStar:false,
-                filters:false,
+                showStar: false,
+                filters: false,
             }
         },
         created() {
@@ -137,6 +144,9 @@
 
         },
         methods: {
+            changeViewType(type) {
+                this.viewType = type;
+            },
             btnClick() {
 
             }

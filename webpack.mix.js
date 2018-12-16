@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 const tailwindcss = require('tailwindcss');
 
 mix
+    .js('resources/js/builder/app.js', 'public/js/builder.js')
     .js('resources/js/dashboard/app.js', 'public/js/dashboard.js')
     .js('resources/js/firm-profile/app.js','public/js/firmProfile.js')
     .js('resources/js/seeker-profile/app.js','public/js/seekerProfile.js')

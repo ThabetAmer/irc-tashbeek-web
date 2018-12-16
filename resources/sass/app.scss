@@ -1,19 +1,14 @@
-
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
+//@import url('https://fonts.googleapis.com/css?family=Nunito');
+//// Variables
 @import 'variables';
 @import 'vue_modal';
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
-
+//
+//
 @import "~tailwindcss/components.css";
 @import "~tailwindcss/utilities.css";
 @import "~tailwindcss/preflight.css";
-
+@import '~fullcalendar/dist/fullcalendar.css';
 
 .navbar-laravel {
   background-color: #fff;
@@ -21,25 +16,23 @@
 
 }
 
-.content{
+.content {
   width: 100%;
 }
 
+.multiselect__element {
+  color: black !important;
 
-.multiselect__element{
-  color:black !important;
-
-  span{
-    color:black !important;
+  span {
+    color: black !important;
   }
 }
 
-body{
+body {
   //background-color: #F0F0F0 !important;
 }
 
-
-pre{
+pre {
   display: block;
   padding: 9.5px;
   margin: 0 0 10px;
@@ -53,27 +46,27 @@ pre{
   border-radius: 4px;
 }
 
-.note-select{
+.note-select {
 
-  .multiselect__placeholder{
+  .multiselect__placeholder {
     font-weight: 700;
     color: #8795a1;
   }
-  .multiselect__content,.multiselect__input,.multiselect__single{
+  .multiselect__content, .multiselect__input, .multiselect__single {
     background-color: #f1f5f8;
   }
-  .multiselect__tags{
+  .multiselect__tags {
     border: none;
     background-color: #f1f5f8;
   }
 
 }
 
-.height-align{
+.height-align {
   height: 42px;
 }
 
-body{
+body {
   font-family: 'Work Sans', sans-serif;
 }
 
@@ -88,11 +81,7 @@ body{
   align-items: stretch;
 }
 
-
 //@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
-
-
 
 #sidebar {
   /* don't forget to add all the previously mentioned styles here too */
@@ -121,6 +110,7 @@ body{
   font-size: 1.1em;
   display: block;
 }
+
 #sidebar ul li a:hover {
   //color: #7386D5;
   //background: #fff;
@@ -136,27 +126,26 @@ body{
   border-bottom-right-radius: 9999px;
   border-top-right-radius: 9999px;
 }
+
 //ul ul a {
 //  font-size: 0.9em !important;
 //  padding-left: 30px !important;
 //  background: #6d7fcc;
 //}
 
-
-.custom-navs{
-  a.active{
-    color:#1F9D55 !important;
-    background: rgba(92,182,87, 0.15) !important;
+.custom-navs {
+  button.active {
+    color: #1F9D55 !important;
+    background: rgba(92, 182, 87, 0.15) !important;
     border-radius: 9999px !important;
   }
 
-
 }
-
 
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: transparent;
 }
+
 .table-striped tbody tr:nth-of-type(even) {
   background-color: rgba(0, 0, 0, .05);
 }
@@ -170,8 +159,6 @@ body{
   margin-left: -250px;
 }
 
-
-
 a[data-toggle="collapse"] {
   position: relative;
 }
@@ -183,8 +170,6 @@ a[data-toggle="collapse"] {
   right: 20px;
   transform: translateY(-50%);
 }
-
-
 
 @media only screen and (min-width: 768px) {
   #sidebar {
@@ -201,8 +186,7 @@ a[data-toggle="collapse"] {
 
 }
 
-
-@media only screen and  (min-width: 1350px) {
+@media only screen and (min-width: 1350px) {
   #sidebar {
     margin-left: -0px;
   }
@@ -217,7 +201,7 @@ a[data-toggle="collapse"] {
 
 }
 
-@media only screen and  (min-width: 1500px) {
+@media only screen and (min-width: 1500px) {
   #sidebar {
     margin-left: 0px;
   }
@@ -232,19 +216,294 @@ a[data-toggle="collapse"] {
 
 }
 
-
-.fade{
+.fade {
   transition: opacity .15s linear;
 }
-
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+{
   opacity: 0;
 }
 
-.minHeight900{
+.min-h-900 {
   min-height: 900px !important;
+}
+.min-h-900{
+  max-height: 900px !important;
+}
+
+#calendar {
+
+  .fc-day-top {
+    text-align: center;
+    padding: 0 9%;
+    background: transparent !important;
+
+    .fc-day-number {
+      padding: 9px;
+      background: transparent;
+      border-radius: 50%;
+      height: 16px;
+      width: 16px;
+      /* padding: 0 10px; */
+      color: black;
+      font-weight: 600;
+    }
+  }
+
+  .fc-day-top.fc-today {
+    .fc-day-number {
+      background-color: rgba(92, 182, 87, 0.15);
+    }
+  }
+  .alert-info {
+    background: transparent !important;
+  }
+  .fc-content-skeleton {
+    .fc-today {
+      .fc-day-number {
+
+      }
+    }
+  }
+  .fc-more-cell {
+    position: absolute;
+    background: #5CB657;
+    border-radius: 50%;
+    padding: 0px;
+    height: 20px;
+    top: -8px;
+    margin-left: 42px;
+    padding-top: 3px;
+    color: white;
+    font-weight: 500;
+    opacity: 0.8;
+  }
+  .fc-body .fc-row {
+    min-height: 25px;
+  }
+
+  .fc td, .fc th {
+    border-style: none !important;
+  }
+  .fc-day-header {
+    border-color: transparent !important;
+  }
+
+  .table-bordered {
+    border-color: transparent !important;
+
+  }
+  .fc-toolbar {
+    .fc-left {
+      h2 {
+        color: #1f9d55;
+        font-size: 16px;
+        font-weight: 700;
+      }
+    }
+  }
+  .fc-day-top {
+    text-align: center;
+  }
+  .fc-day-number {
+    width: 100%;
+  }
+  .fc-day {
+    padding-bottom: 10px;
+  }
+
+  .fc-right {
+    button {
+      color: #666666;
+      background: transparent;
+      border: none;
+      span {
+        font-size: 18px;
+      }
+    }
+  }
+  .fc-view-container {
+    * {
+      border-color: transparent !important;
+    }
+  }
+}
+
+#sidebar{
+  a{
+    text-decoration: none !important;
+  }
+}
+#sidebar.minified {
+  padding-left: .5rem !important;
+  padding-right: .5rem !important;
+  width: 80px !important;
+  min-width: 80px;
+  .hide-min {
+    display: none;
+  }
+
+  #sidebarCollapse {
+    margin-right: 30px !important;
+  }
+  .user-section {
+    min-height: 50px;
+    //*:not(img){
+    //  display: none;
+    //}
+
+    img {
+      margin-left: 10px !important;
+    }
+  }
+  .sidebar-header {
+    padding: 0.6rem !important;
+  }
+  .remove-text-minified {
+    padding-left: 0 !important;
+    font-size: 0px !important;
+    min-height: 57px !important;
+  }
+
+  li{
+    i{
+      margin-top: 15px;
+    }
+  }
+}
+
+#calendarTab {
+  .selected-day {
+    position: relative;
+    min-height: 250px;
+
+    .selected-day-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+button:focus {
+  outline: none;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+  box-shadow: none;
+}
+
+.min-h-700{
+  min-height: 700px;
+}
+
+.max-h-700{
+  max-height: 700px;
+}
+
+
+/**
+ * Like, basically PERFECT scrollbars
+ */
+
+/*
+   It's pure CSS.
+   Since a quick google search will confirm people going crazy about Mac OS Lion scrollbars...
+   this has no fade-out effect.
+
+   In Mac OS Lion, the lowest common denominator is always showing scrollbars by a setting.
+   So, this fits that lowest common denominator.
+
+   Facebook, lifehacker, and Google have all basically taken this approach. Of course Google uses incredibly ugly square scrollbars, but so be it.
+   Also, in regards to the fade in/out effect, this may just be one reason why soo many people outraged (and still hide) the ticker.
+
+   Ending note: I recommend this for non-lion users. As a lion user, I prefer my fading out scrollbars. If you sniff a UA of mac os lion, don't add this css.
+*/
+
+
+/* Turn on custom 8px wide scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* 1px wider than Lion. */
+  /* This is more usable for users trying to click it. */
+  background-color: rgba(0,0,0,0);
+  -webkit-border-radius: 100px;
+}
+/* hover effect for both scrollbar area, and scrollbar 'thumb' */
+::-webkit-scrollbar:hover {
+  background-color: rgba(0, 0, 0, 0.09);
+}
+
+/* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+::-webkit-scrollbar-thumb:vertical {
+  /* This is the EXACT color of Mac OS scrollbars.
+     Yes, I pulled out digital color meter */
+  background: rgba(0,0,0,0.2);
+  -webkit-border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:vertical:active {
+  background:  #D8D8D8; /* Some darker color when you click it */
+  -webkit-border-radius: 100px;
+}
+
+//background: linear-gradient(45deg, white, silver);
+//min-height: 100%;
+
+
+table.scrollable-fixed-header {
+  width: 100%;
+
+  thead, tbody, tr, td, th { display: block; }
+
+  tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+  }
+  thead th {
+    height: 30px;
+
+    /*text-align: left;*/
+  }
+
+  tbody {
+    height: 130px;
+    overflow-y: auto;
+  }
+
+  thead {
+    /* fallback */
+  }
+
+
+  tbody td, thead th {
+    width: 19.2%;
+    float: left;
+  }
+}
+
+.min-h-630{
+  min-height: 630px;
+}
+.max-h-630{
+  max-height: 630px;
+}
+
+.max-h-750{
+  max-height: 750px;
+}
+
+.min-h-750{
+  min-height: 750px;
+}
+
+.fc-more-popover{
+  background: white;
+  border-radius: 5px;
 }

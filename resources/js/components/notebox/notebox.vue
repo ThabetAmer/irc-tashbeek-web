@@ -1,8 +1,9 @@
 <template>
     <!--
     -->
-    <div :class="`${customClass}`+' notebox p-8 text-left  border-solid  border-grey relative mb-3'">
-        <button v-if="showStar" class="absolute pin-t pin-r text-xl hover:text-2xl p-2 font-bold text-green-dark">
+    <div :class="'notebox p-8 text-left  border-solid  border-grey-light relative mb-3 '+' '+`${customClass}`">
+        <button v-if="showStar" @click="noteStarClicked"
+                class="absolute pin-t pin-r text-xl hover:text-2xl p-2 font-bold text-green-dark">
             <i class="far fa-star"></i>
         </button>
         <div class=" text-left text-black font-bold">
@@ -31,20 +32,21 @@
                 @close="showFullNote = false"
         >
 
-            <div slot="header">
-                <div class="text-xl text-black font-bold">
+            <div slot="header" class="mb-6">
+                <div class="text-xl mb-1 text-black font-bold">
                     Note from {{author}}
                 </div>
-                <div class="text-grey text-sm -mb-1">
+                <div class="text-grey text-sm mb-1">
                     {{date}}
                 </div>
-                <button v-if="showStar" class="absolute pin-t pin-r text-xl hover:text-2xl px-3 py-4 font-bold text-green-dark">
+                <button v-if="showStar" @click="noteStarClicked"
+                        class="absolute pin-t pin-r text-xl hover:text-2xl px-3 py-4 font-bold text-green-dark">
                     <i class="far fa-star"></i>
                 </button>
             </div>
 
-            <div slot="body" class="row">
-                <div class="text-black font-bold text-base pl-3">
+            <div slot="body" class="">
+                <div class="text-black font-bold text-base">
                     {{body}}
                 </div>
             </div>
@@ -64,9 +66,13 @@
          * all props have their needed types
          * and are passed using the mixin
          */
-        components:{modal},
+        components: {modal},
         props: {
-            showModal:false,
+            showModal: false,
+            id: {
+                type: Number,
+                default: 0
+            },
             date: {
                 type: String,
                 default: 'Wednesday 12 November'
@@ -96,13 +102,21 @@
                 default: 'border'
             }
         },
-        data(){
-            return{
-                showFullNote:false,
+        data() {
+            return {
+                showFullNote: false,
             }
         },
-        methods:{
-            showFullNoteModal(){
+        methods: {
+            noteStarClicked() {
+                this.$emit('noteStarred', {
+                    id: this.id,
+                    body:this.body,
+                    date:this.date,
+                    author:this.author
+                })
+            },
+            showFullNoteModal() {
                 this.showFullNote = true;
             }
         },

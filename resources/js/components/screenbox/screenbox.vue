@@ -1,16 +1,16 @@
 <template>
     <!--
     -->
-    <div :class="`${customClass}`+' notebox p-8 text-left  border-solid  border-grey relative mb-3'">
+    <div :class="' notebox p-8 text-left  border-solid  border-grey-light relative mb-3 '+' '+`${customClass}`">
 
-        <div class=" text-grey-dark text-sm -mb-1">
+        <div class=" text-grey-dark text-sm mb-1">
             WEDNESDAY 12 NOVEMBER
         </div>
 
         <div class="mb-4 text-lg text-black font-bold ">
             Candidate screened for a job ID 0109 with Souktel Inc.
         </div>
-        <div class="  text-black font-bold">
+        <div class=" text-md text-black font-semibold">
             Lorem Ipsum is simply dummy text of the printing
             and typesetting industry. Lorem Ipsum has been the industry's
             standard dummy text ever since the 1500s, when an unknown printer

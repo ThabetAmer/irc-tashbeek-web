@@ -20,7 +20,7 @@ class CreatePropertiesOptionsTable extends Migration
 
             $table->unsignedInteger('property_meta_data_id')->index();
 
-            $table->string('commcare_id', 255)->index();
+            $table->string('commcare_id')->index();
 
             $table->json('name');
 

@@ -4,7 +4,7 @@
     <modal
             v-if="showModal"
             @close="closeModal">
-        <div slot="header" class="relative w-full text-left">
+        <div slot="header" class="relative w-full text-left mb-8">
             <h3>Add Note</h3>
             <btn
 
@@ -46,6 +46,7 @@
 
 <script>
 
+
     import modal from './modal'
     import btn from '../button/button'
     import customSelect from '../select/select'
@@ -79,12 +80,25 @@
         created() {
             this.show = this.showModal;
         },
+        watch: {
+            showModal: function () {
+                this.$set(this, 'value', '');
+                this.$set(this, 'noteText', '');
+            }
+        },
+        mounted() {
+        },
         methods: {
-            closeModal(){
+            closeModal() {
                 this.$emit('close');
+                // this.$destroy();
+
             },
             addNote() {
                 console.log('clicked on add note');
+                this.$emit('note-added', this.noteText);
+                this.$emit('close');
+
             },
             handleSelect(selected) {
                 console.log('selected is ', selected);

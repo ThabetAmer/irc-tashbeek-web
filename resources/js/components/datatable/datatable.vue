@@ -5,17 +5,23 @@
         <filters
                 v-if="hasFilters"
         ></filters>
-        <table class="w-full text-left table-striped mb-8">
+        <table :class="[`w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']">
             <thead>
             <tr class="font-bold text-green-dark">
-                <th class="pb-2" v-for="head in header">{{head}}</th>
+                <th class="pb-2 pl-1" v-for="head in header">{{head['translations']['en']}}</th>
+                <th class="pb-2 px-4 pl-1"></th>
             </tr>
             </thead>
 
             <tbody>
             <tr v-for="row in rows" class="font-bold text-black  border-grey-light border-b-2">
 
-                <td class="py-4" v-for="data in filterRow(row)">{{data}}</td>
+                <td class="py-4 pl-2" v-for="data in filterRow(row)">{{data}}</td>
+                <td class="py-4 px-4 pl-2">
+                    <button class="flex-1 text-xl  text-green-dark">
+                        <i class="far fa-file-alt"></i>
+                    </button>
+                </td>
             </tr>
             </tbody>
 
@@ -50,10 +56,10 @@
             filterRow(row) {
                 let _self = this;
                 let newRow = {};
-                _.map(Object.keys(row),function (rData) {
+                _.map(Object.keys(row), function (rData) {
                     _.each(_self.header, function (head) {
-                        if(head == rData ){
-                            newRow[head] = row[head]
+                        if (head.name == rData) {
+                            newRow[head.name] = row[head.name]
                         }
                     })
                 });
@@ -62,6 +68,10 @@
         },
         filters: {},
         props: {
+            fixedHeader:{
+                type: [Boolean, String],
+                default: false
+            },
             hasPagination: {
                 type: [Boolean, String],
                 default: true
@@ -70,35 +80,64 @@
                 type: [Boolean, String],
                 default: true
             },
+            striped: {
+                type: [Boolean, String],
+                default: true
+            },
             header: {
                 type: [String, Array],
-                default: () => ['name', 'old']
+                default: () => [
+                    {
+                        name: 'test',
+                        translations: {
+                            en: 'test'
+                        }
+                    },
+                    {
+                        name: 'old',
+                        translations: {
+                            en: 'Old'
+                        }
+                    },
+                    {
+                        name: 'id',
+                        translations: {
+                            en: 'ID'
+                        }
+                    },
+                    {
+                        name: 'name',
+                        translations: {
+                            en: 'Name'
+                        }
+                    }
+                ]
             },
             rows: {
                 type: [String, Array],
                 default: () => [
                     {
                         id: 1,
-                        name: 'Ahmad',
-                        test: 'ali',
+                        name: 'Boutros Baqaeen',
+                        test: 'Monthy follow-up',
                         old: 'Old'
                     },
                     {
                         id: 1,
-                        name: 'Ahmad',
-                        test: 'ali',
+                        name: 'Boutros Baqaeen',
+                        test: 'Monthy follow-up',
                         old: 'Old'
                     },
                     {
                         id: 1,
-                        name: 'Ahmad',
-                        test: 'ali',
+                        name: 'Boutros Baqaeen',
+                        test: 'Monthy follow-up',
                         old: 'Old'
                     },
                     {
                         id: 1,
-                        name: 'Ahmad',
-                        test: 'ali',
+                        name: 'Boutros Baqaeen',
+                        test: 'Monthy follow-up',
                         old: 'Old'
                     }
                 ]

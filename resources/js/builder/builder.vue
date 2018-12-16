@@ -55,16 +55,16 @@
                 <div class="col-md-3">
                     <metricCard
                             :icon-class="'fas fa-calendar-alt'"
-                            :count="'11'"
-                            :text="'Pending Follow Ups'"
+                            :value="'11'"
+                            :label="'Pending Follow Ups'"
                     ></metricCard>
                 </div>
 
                 <div class="col-md-3">
                     <metricCard
                             :icon-class="'fas fa-briefcase'"
-                            :count="'11'"
-                            :text="'Firm Intakes'"
+                            :value="'11'"
+                            :label="'Firm Intakes'"
                     ></metricCard>
                 </div>
 
@@ -72,8 +72,8 @@
                 <div class="col-md-3">
                     <metricCard
                             :icon-class="'fas fa-plus'"
-                            :count="'11'"
-                            :text="'Current Jobs'"
+                            :value="'11'"
+                            :label="'Current Jobs'"
                     ></metricCard>
                 </div>
 

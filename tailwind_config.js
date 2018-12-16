@@ -172,7 +172,7 @@ module.exports = {
     'lg': '992px',
     'xl': '1200px',
     'hd': '1366px',
-    'fhd': '1500px',
+    // 'fhd': '1500px',
   },
 
 

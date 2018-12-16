@@ -28,10 +28,10 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import dashboard from "./dashboard.vue";
+import Builder from "./builder.vue";
 
 
 const app = new Vue({
-    el: '#dashboard',
-    render: h => h(dashboard),
+    el: '#builder',
+    render: h => h(Builder),
 });

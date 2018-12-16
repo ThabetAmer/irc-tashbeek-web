@@ -19,47 +19,47 @@ $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
 
-@import '~bootstrap/scss/bootstrap';
+//@import '~bootstrap/scss/bootstrap';
 
 
 
-$vue-multiselect-padding-x : $custom-select-padding-x !default;
-$vue-multiselect-padding-y : $custom-select-padding-y !default;
-$vue-multiselect-min-height : $custom-select-height !default;
-$vue-multiselect-border-radius : $border-radius !default;
-$vue-multiselect-border-color : $custom-select-border-color !default;
-$vue-multiselect-border-width : 1px !default;
-$vue-multiselect-disabled-opacity : $btn-disabled-opacity !default;
-$vue-multiselect-placeholder-color : $text-muted !default;
-$vue-multiselect-bg : $custom-select-bg !default;
-$vue-multiselect-color : $custom-select-color !default;
-$vue-multiselect-disabled-bg : $custom-select-disabled-bg !default;
-$vue-multiselect-disabled-color : $custom-select-disabled-color !default;
-
-$vue-multiselect-option-selected-bg : #f3f3f3 !default;
-$vue-multiselect-option-selected-color : $body-color !default;
-$vue-multiselect-option-highlight-color : #fff !default;
-$vue-multiselect-option-highlight-bg : theme-color("primary") !default;
-$vue-multiselect-option-selected-highlight-color : #fff !default;
-$vue-multiselect-option-selected-highlight-bg : theme-color("secondary") !default;
-
-$vue-multiselect-tag-color : $dark !default;
-$vue-multiselect-tag-bg : $light !default;
-$vue-multiselect-tag-font-size : $badge-font-size !default;
-$vue-multiselect-tag-font-weight : normal !default;
-$vue-multiselect-tag-icon-size : 1.7rem !default;
-$vue-multiselect-tag-icon-color : $vue-multiselect-tag-color !default;
-$vue-multiselect-tag-icon-color-hover : white !default;
-$vue-multiselect-tag-icon-bg-hover : $danger !default;
-$vue-multiselect-tag-padding-x : .4rem !default;
-$vue-multiselect-tag-padding-y : .25rem !default;
-$vue-multiselect-tag-border-radius : $badge-border-radius !default;
-
-$vue-multiselect-arrow-color : $custom-select-color !default;
-$vue-multiselect-arrow-size : 5px !default;
-$vue-multiselect-arrow-padding : 8px !default;
-
-$vue-multiselect-spinner-size : 16px !default;
-$vue-multiselect-spinner-thickness : 2px !default;
-$vue-multiselect-spinner-margin : -$vue-multiselect-spinner-size/2 !default;
-$vue-multiselect-spinner-color : $dark !default;
+//$vue-multiselect-padding-x : $custom-select-padding-x !default;
+//$vue-multiselect-padding-y : $custom-select-padding-y !default;
+//$vue-multiselect-min-height : $custom-select-height !default;
+//$vue-multiselect-border-radius : $border-radius !default;
+//$vue-multiselect-border-color : $custom-select-border-color !default;
+//$vue-multiselect-border-width : 1px !default;
+//$vue-multiselect-disabled-opacity : $btn-disabled-opacity !default;
+//$vue-multiselect-placeholder-color : $text-muted !default;
+//$vue-multiselect-bg : $custom-select-bg !default;
+//$vue-multiselect-color : $custom-select-color !default;
+//$vue-multiselect-disabled-bg : $custom-select-disabled-bg !default;
+//$vue-multiselect-disabled-color : $custom-select-disabled-color !default;
+//
+//$vue-multiselect-option-selected-bg : #f3f3f3 !default;
+//$vue-multiselect-option-selected-color : $body-color !default;
+//$vue-multiselect-option-highlight-color : #fff !default;
+//$vue-multiselect-option-highlight-bg : theme-color("primary") !default;
+//$vue-multiselect-option-selected-highlight-color : #fff !default;
+//$vue-multiselect-option-selected-highlight-bg : theme-color("secondary") !default;
+//
+//$vue-multiselect-tag-color : $dark !default;
+//$vue-multiselect-tag-bg : $light !default;
+//$vue-multiselect-tag-font-size : $badge-font-size !default;
+//$vue-multiselect-tag-font-weight : normal !default;
+//$vue-multiselect-tag-icon-size : 1.7rem !default;
+//$vue-multiselect-tag-icon-color : $vue-multiselect-tag-color !default;
+//$vue-multiselect-tag-icon-color-hover : white !default;
+//$vue-multiselect-tag-icon-bg-hover : $danger !default;
+//$vue-multiselect-tag-padding-x : .4rem !default;
+//$vue-multiselect-tag-padding-y : .25rem !default;
+//$vue-multiselect-tag-border-radius : $badge-border-radius !default;
+//
+//$vue-multiselect-arrow-color : $custom-select-color !default;
+//$vue-multiselect-arrow-size : 5px !default;
+//$vue-multiselect-arrow-padding : 8px !default;
+//
+//$vue-multiselect-spinner-size : 16px !default;
+//$vue-multiselect-spinner-thickness : 2px !default;
+//$vue-multiselect-spinner-margin : -$vue-multiselect-spinner-size/2 !default;
+//$vue-multiselect-spinner-color : $dark !default;

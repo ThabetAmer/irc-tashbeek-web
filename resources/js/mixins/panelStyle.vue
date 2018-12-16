@@ -14,7 +14,7 @@
         computed: {
             panelStyle() {
                 return classNames([
-                    'bg-white rounded-lg border px-4 py-6 border-black border-solid mb-3 relative',this.customClass]);
+                    'bg-white rounded-lg  px-6 py-6 border border-solid mb-3 relative',this.customClass]);
             }
         },
     }

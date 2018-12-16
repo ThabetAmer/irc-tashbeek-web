@@ -1,23 +1,15 @@
 @extends('master.master')
-
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Dashboard</div>
-
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        You are logged in!
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="" id="dashboard">
+        <dashboard></dashboard>
     </div>
+@endsection
+
+
+
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+{{--<script src="{{ asset('js/app.js') }}" type="text/javascript"></script>--}}
+
+@section('script')
+    <script src="{{ asset('js/dashboard.js') }}" type="text/javascript"></script>
 @endsection

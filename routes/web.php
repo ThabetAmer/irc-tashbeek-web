@@ -11,8 +11,15 @@
 |
 */
 
+
 Route::get('/', function () {
-    return redirect()->route('login');
+//    return redirect()->route('login');
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+//    return redirect()->route('login');
+    return view('dashboard');
 });
 
 Auth::routes();
@@ -27,7 +34,7 @@ Route::get('/dashboard', function (){
 
 
 Route::get('/profile', function () {
-    return view('profile');
+    return view('firmProfile');
 });
 
 Route::get('/seeker', function () {

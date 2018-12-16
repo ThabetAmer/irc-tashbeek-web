@@ -2,6 +2,8 @@
     <div>
         <panel>
             <datatable
+                    :header="headers"
+                    :rows="rows"
                     :has-pagination="hasPagination"
                     :has-filters="hasFilter"
             >
@@ -30,6 +32,8 @@
     import datatable from '../components/datatable/datatable'
     // import addNoteModal from '../components/modal/addNoteModal'
 
+    import firmsAPI from '../API/firms'
+
     export default {
         components: {
             btn, AnchorLink,
@@ -40,11 +44,22 @@
         props: {},
         data() {
             return {
-                hasFilter:true,
-                hasPagination:true
+                hasFilter: true,
+                hasPagination: true,
+                rows:[],
+                headers:[]
             }
         },
         created() {
+            firmsAPI.getFirms()
+                .then(resp => {
+                    console.log(' resp is ', resp);
+                    this.rows = resp.data;
+                    this.headers= resp.headers;
+
+                }).catch(error => {
+                console.log('Error : ', error);
+            });
         },
         computed: {},
         mounted() {

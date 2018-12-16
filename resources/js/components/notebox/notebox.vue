@@ -1,60 +1,76 @@
 <template>
-    <!--
+  <!--
     -->
-    <div :class="'notebox p-8 text-left  border-solid  border-grey-light relative mb-3 '+' '+`${customClass}`">
-        <button v-if="showStar" @click="noteStarClicked"
-                class="absolute pin-t pin-r text-xl hover:text-2xl p-2 font-bold text-green-dark">
-            <i class="far fa-star"></i>
-        </button>
-        <div class=" text-left text-black font-bold">
-            {{body}}
-        </div>
-
-        <div class="flex mt-4">
-            <div class="flex-1" v-if="showCreatorDetails">
-                <div class="text-black font-bold ">From {{author}}</div>
-                <div class="uppercase">{{date}}</div>
-            </div>
-
-            <div class="flex-1 text-right pt-4">
-                <button @click="showFullNoteModal" class="uppercase text-green-dark font-bold ml-2">
-                    View More
-                    <i class="fas fa-arrow-right"></i>
-                </button>
-
-            </div>
-
-        </div>
-
-        <modal
-                width="30%"
-                v-if="showFullNote"
-                @close="showFullNote = false"
-        >
-
-            <div slot="header" class="mb-6">
-                <div class="text-xl mb-1 text-black font-bold">
-                    Note from {{author}}
-                </div>
-                <div class="text-grey text-sm mb-1">
-                    {{date}}
-                </div>
-                <button v-if="showStar" @click="noteStarClicked"
-                        class="absolute pin-t pin-r text-xl hover:text-2xl px-3 py-4 font-bold text-green-dark">
-                    <i class="far fa-star"></i>
-                </button>
-            </div>
-
-            <div slot="body" class="">
-                <div class="text-black font-bold text-base">
-                    {{body}}
-                </div>
-            </div>
-
-
-        </modal>
+  <div :class="'notebox p-8 text-left  border-solid  border-grey-light relative mb-3 '+' '+`${customClass}`">
+    <button
+      v-if="showStar"
+      class="absolute pin-t pin-r text-xl hover:text-2xl p-2 font-bold text-green-dark"
+      @click="noteStarClicked"
+    >
+      <i class="far fa-star" />
+    </button>
+    <div class=" text-left text-black font-bold">
+      {{ body }}
     </div>
 
+    <div class="flex mt-4">
+      <div
+        v-if="showCreatorDetails"
+        class="flex-1"
+      >
+        <div class="text-black font-bold ">
+          From {{ author }}
+        </div>
+        <div class="uppercase">
+          {{ date }}
+        </div>
+      </div>
+
+      <div class="flex-1 text-right pt-4">
+        <button
+          class="uppercase text-green-dark font-bold ml-2"
+          @click="showFullNoteModal"
+        >
+          View More
+          <i class="fas fa-arrow-right" />
+        </button>
+      </div>
+    </div>
+
+    <Modal
+      v-if="showFullNote"
+      width="30%"
+      @close="showFullNote = false"
+    >
+      <div
+        slot="header"
+        class="mb-6"
+      >
+        <div class="text-xl mb-1 text-black font-bold">
+          Note from {{ author }}
+        </div>
+        <div class="text-grey text-sm mb-1">
+          {{ date }}
+        </div>
+        <button
+          v-if="showStar"
+          class="absolute pin-t pin-r text-xl hover:text-2xl px-3 py-4 font-bold text-green-dark"
+          @click="noteStarClicked"
+        >
+          <i class="far fa-star" />
+        </button>
+      </div>
+
+      <div
+        slot="body"
+        class=""
+      >
+        <div class="text-black font-bold text-base">
+          {{ body }}
+        </div>
+      </div>
+    </Modal>
+  </div>
 </template>
 
 
@@ -67,6 +83,7 @@
          * and are passed using the mixin
          */
         components: {modal},
+        mixins: [],
         props: {
             showModal: false,
             id: {
@@ -119,8 +136,7 @@
             showFullNoteModal() {
                 this.showFullNote = true;
             }
-        },
-        mixins: []
+        }
     }
 </script>
 

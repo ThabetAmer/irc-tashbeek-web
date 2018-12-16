@@ -1,46 +1,47 @@
 <template>
-    <!--
+  <!--
     -->
-    <modal
-            v-if="showModal"
-            @close="closeModal">
-        <div slot="header" class="relative w-full text-left mb-8">
-            <h3>Add Note</h3>
-            <btn
+  <Modal
+    v-if="showModal"
+    @close="closeModal"
+  >
+    <div
+      slot="header"
+      class="relative w-full text-left mb-8"
+    >
+      <h3>Add Note</h3>
+      <Btn
 
-                    :theme="'success'"
-                    :btnClass="'mb-2 absolute pin-t pin-r rounded-full uppercase'"
-                    @btn-click="addNote">
-                <template slot="text">
-                    Add Note
-                </template>
-            </btn>
-        </div>
-
-
-        <div slot="body">
-
-            <customSelect
-                    :label="'name'"
-                    :options="SelectOptions"
-                    track-by="name"
-                    v-model="value"
-                    @select="handleSelect"
-                    placeholder="Type of follow-up"
-                    customClass="w-1/2 bg-grey-lighter note-select"
-            ></customSelect>
-
-            <textarea rows="4" placeholder="Write note here..."
-                      v-model="noteText"
-                      class="w-full mt-2 bg-grey-lighter rounded p-2">
-
-            </textarea>
+        :theme="'success'"
+        :btn-class="'mb-2 absolute pin-t pin-r rounded-full uppercase'"
+        @btn-click="addNote"
+      >
+        <template slot="text">
+          Add Note
+        </template>
+      </Btn>
+    </div>
 
 
-        </div>
+    <div slot="body">
+      <CustomSelect
+        v-model="value"
+        :label="'name'"
+        :options="SelectOptions"
+        track-by="name"
+        placeholder="Type of follow-up"
+        custom-class="w-1/2 bg-grey-lighter note-select"
+        @select="handleSelect"
+      />
 
-    </modal>
-
+      <textarea
+        v-model="noteText"
+        rows="4"
+        placeholder="Write note here..."
+        class="w-full mt-2 bg-grey-lighter rounded p-2"
+      />
+    </div>
+  </Modal>
 </template>
 
 
@@ -53,6 +54,8 @@
     import customInput from '../input/input'
 
     export default {
+        components: {modal, btn, customSelect, customInput},
+        mixins: [],
         /**
          * all props have their needed types
          * and are passed using the mixin
@@ -77,14 +80,14 @@
                 ],
             }
         },
-        created() {
-            this.show = this.showModal;
-        },
         watch: {
             showModal: function () {
                 this.$set(this, 'value', '');
                 this.$set(this, 'noteText', '');
             }
+        },
+        created() {
+            this.show = this.showModal;
         },
         mounted() {
         },
@@ -104,9 +107,7 @@
                 console.log('selected is ', selected);
                 this.value = selected;
             },
-        },
-        mixins: [],
-        components: {modal, btn, customSelect, customInput}
+        }
     }
 </script>
 

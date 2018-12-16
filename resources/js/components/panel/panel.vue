@@ -1,16 +1,15 @@
 <template>
-    <!--
+  <!--
     -->
-    <div :class="panelStyle">
-        <div
-                v-if="title"
-                class="text-black text-left font-bold text-xl mb-3"
-        >
-            {{title}}
-        </div>
-        <slot></slot>
+  <div :class="panelStyle">
+    <div
+      v-if="title"
+      class="text-black text-left font-bold text-xl mb-3"
+    >
+      {{ title }}
     </div>
-
+    <slot />
+  </div>
 </template>
 
 
@@ -18,6 +17,7 @@
 
     import panelStyle from '../../mixins/panelStyle'
     export default {
+        mixins: [panelStyle],
         /**
          * all props have their needed types
          * and are passed using the mixin
@@ -31,8 +31,7 @@
                 type:String,
                 default:null
             }
-        },
-        mixins: [panelStyle]
+        }
     }
 </script>
 

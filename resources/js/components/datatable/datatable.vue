@@ -1,41 +1,50 @@
 <template>
-    <!--
+  <!--
     -->
-    <div class="">
-        <filters
-                v-if="hasFilters"
-        ></filters>
-        <table :class="[`w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']">
-            <thead>
-            <tr class="font-bold text-green-dark">
-                <th class="pb-2 pl-1" v-for="head in header">{{head['translations']['en']}}</th>
-                <th class="pb-2 px-4 pl-1"></th>
-            </tr>
-            </thead>
+  <div class="">
+    <Filters
+      v-if="hasFilters"
+    />
+    <table :class="[`w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']">
+      <thead>
+        <tr class="font-bold text-green-dark">
+          <th
+            v-for="head in header"
+            class="pb-2 pl-1"
+          >
+            {{ head['translations']['en'] }}
+          </th>
+          <th class="pb-2 px-4 pl-1" />
+        </tr>
+      </thead>
 
-            <tbody>
-            <tr v-for="row in rows" class="font-bold text-black  border-grey-light border-b-2">
-
-                <td class="py-4 pl-2" v-for="data in filterRow(row)">{{data}}</td>
-                <td class="py-4 px-4 pl-2">
-                    <button class="flex-1 text-xl  text-green-dark">
-                        <i class="far fa-file-alt"></i>
-                    </button>
-                </td>
-            </tr>
-            </tbody>
-
-        </table>
-        <pagination
-                v-if="hasPagination"
-                totalPages="4"
-                total="4"
-                perPage="10"
-                currentPage="1"
-        ></pagination>
-
-    </div>
-
+      <tbody>
+        <tr
+          v-for="row in rows"
+          class="font-bold text-black  border-grey-light border-b-2"
+        >
+          <td
+            v-for="data in filterRow(row)"
+            class="py-4 pl-2"
+          >
+            {{ data }}
+          </td>
+          <td class="py-4 px-4 pl-2">
+            <button class="flex-1 text-xl  text-green-dark">
+              <i class="far fa-file-alt" />
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <Pagination
+      v-if="hasPagination"
+      total-pages="4"
+      total="4"
+      per-page="10"
+      current-page="1"
+    />
+  </div>
 </template>
 
 
@@ -52,21 +61,8 @@
          * and are passed using the mixin
          */
         components: {filters, pagination},
-        methods: {
-            filterRow(row) {
-                let _self = this;
-                let newRow = {};
-                _.map(Object.keys(row), function (rData) {
-                    _.each(_self.header, function (head) {
-                        if (head.name == rData) {
-                            newRow[head.name] = row[head.name]
-                        }
-                    })
-                });
-                return newRow;
-            }
-        },
         filters: {},
+        mixins: [],
         props: {
             fixedHeader:{
                 type: [Boolean, String],
@@ -143,7 +139,20 @@
                 ]
             }
         },
-        mixins: []
+        methods: {
+            filterRow(row) {
+                let _self = this;
+                let newRow = {};
+                _.map(Object.keys(row), function (rData) {
+                    _.each(_self.header, function (head) {
+                        if (head.name == rData) {
+                            newRow[head.name] = row[head.name]
+                        }
+                    })
+                });
+                return newRow;
+            }
+        }
     }
 </script>
 

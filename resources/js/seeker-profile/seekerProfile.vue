@@ -1,172 +1,196 @@
 <template>
-    <div class="flex">
-        <div class="w-1/3 px-2">
-            <panel
-                    customClass="min-h-900 "
-                    :hasTitle="hasTitle"
-                    title="Sara Hourani">
-                <div class="firm-id uppercase text-green text-left font-bold mt-4 mb-4">
-                    ID 456465456
-                </div>
-
-                <ul class="firm-info list-reset text-left pr-8">
-                    <li class=" border-b border-grey-light py-5 pl-16  hd:text-md xl:text-md text-black relative">
-                        Syrian female • 25 years old
-                        <i class="fas fa-store absolute pin-l pin-t text-grey-darkest text-2xl mt-4 ml-1"></i>
-                    </li>
-                    <li class=" border-b border-grey-light py-5 pl-16 hd:text-md xl:text-md text-black relative">
-                        Living in Irbid
-                        <i class="fas fa-map-marker-alt absolute pin-l pin-t text-grey-darkest text-2xl mt-4 ml-1 "></i>
-
-                    </li>
-                    <li class=" border-b border-grey-light py-5 pl-16 hd:text-md xl:text-md text-black relative">
-                        Willing to work in QIZ
-                        <i class="fas fa-map-pin absolute pin-l pin-t text-grey-darkest text-2xl mt-4 ml-1 "></i>
-
-                    </li>
-                    <li class=" border-b border-grey-light py-5 pl-16 hd:text-md xl:text-md text-black relative">
-                        +123 456 789 234
-                        <i class="fas fa-phone absolute pin-l pin-t text-grey-darkest text-2xl mt-4 ml-1 "></i>
-
-                    </li>
-                    <li class=" border-b border-grey-light py-5 pl-16 hd:text-md xl:text-md text-black relative">
-                        Baking • Photoshop • Carpentry
-                        <i class="fas fa-gem absolute pin-l pin-t text-grey-darkest text-2xl mt-4 ml-1"></i>
-
-                    </li>
-                </ul>
-
-
-                <div class="stared-note uppercase text-green text-left font-bold mt-10 mb-4">
-                    Starred Note
-                </div>
-                <notebox
-                        :body="starredNote.body"
-                        :date="starredNote.date"
-                        :author="starredNote.author"
-                        :showStar="showStar"
-                        :showCreatorDetails="showStar"
-                        custom-class="border-none pl-0"
-                ></notebox>
-
-            </panel>
+  <div class="flex">
+    <div class="w-1/3 px-2">
+      <Panel
+        custom-class="min-h-900 "
+        :has-title="hasTitle"
+        title="Sara Hourani"
+      >
+        <div class="firm-id uppercase text-green text-left font-bold mt-4 mb-4">
+          ID 456465456
         </div>
-        <div class="w-2/3 px-2">
 
-            <panel
-                    customClass="min-h-900 max-h-900 overflow-y-auto"
-                    :has-title="hasTitle"
-                    title="Job openings">
-                <ul class="flex list-reset border-0 custom-navs mb-4">
-                    <li class="flex-inline mr-2" @click="changeJobOpeningview('all')">
-                        <button
-                                :class="{active: jobOpeningView=='all'}"
-                                class="nav-link  border-0 py-2 px-4
+        <ul class="firm-info list-reset text-left pr-8">
+          <li class=" border-b border-grey-light py-5 pl-16  hd:text-md xl:text-md text-black relative">
+            Syrian female • 25 years old
+            <i class="fas fa-store absolute pin-l pin-t text-grey-darkest text-2xl mt-4 ml-1" />
+          </li>
+          <li class=" border-b border-grey-light py-5 pl-16 hd:text-md xl:text-md text-black relative">
+            Living in Irbid
+            <i class="fas fa-map-marker-alt absolute pin-l pin-t text-grey-darkest text-2xl mt-4 ml-1 " />
+          </li>
+          <li class=" border-b border-grey-light py-5 pl-16 hd:text-md xl:text-md text-black relative">
+            Willing to work in QIZ
+            <i class="fas fa-map-pin absolute pin-l pin-t text-grey-darkest text-2xl mt-4 ml-1 " />
+          </li>
+          <li class=" border-b border-grey-light py-5 pl-16 hd:text-md xl:text-md text-black relative">
+            +123 456 789 234
+            <i class="fas fa-phone absolute pin-l pin-t text-grey-darkest text-2xl mt-4 ml-1 " />
+          </li>
+          <li class=" border-b border-grey-light py-5 pl-16 hd:text-md xl:text-md text-black relative">
+            Baking • Photoshop • Carpentry
+            <i class="fas fa-gem absolute pin-l pin-t text-grey-darkest text-2xl mt-4 ml-1" />
+          </li>
+        </ul>
+
+
+        <div class="stared-note uppercase text-green text-left font-bold mt-10 mb-4">
+          Starred Note
+        </div>
+        <Notebox
+          :body="starredNote.body"
+          :date="starredNote.date"
+          :author="starredNote.author"
+          :show-star="showStar"
+          :show-creator-details="showStar"
+          custom-class="border-none pl-0"
+        />
+      </Panel>
+    </div>
+    <div class="w-2/3 px-2">
+      <Panel
+        custom-class="min-h-900 max-h-900 overflow-y-auto"
+        :has-title="hasTitle"
+        title="Job openings"
+      >
+        <ul class="flex list-reset border-0 custom-navs mb-4">
+          <li
+            class="flex-inline mr-2"
+            @click="changeJobOpeningview('all')"
+          >
+            <button
+              :class="{active: jobOpeningView=='all'}"
+              class="nav-link  border-0 py-2 px-4
                                  rounded-full  no-underline
-                                 text-grey-dark text-base font-semibold ">
-                            All
-                        </button>
-                    </li>
-                    <li class="flex-inline mr-2" @click="changeJobOpeningview('screening')">
-                        <button
-                                :class="{active: jobOpeningView=='screening'}"
-                                class="nav-link border-0 no-underline py-2 px-4
+                                 text-grey-dark text-base font-semibold "
+            >
+              All
+            </button>
+          </li>
+          <li
+            class="flex-inline mr-2"
+            @click="changeJobOpeningview('screening')"
+          >
+            <button
+              :class="{active: jobOpeningView=='screening'}"
+              class="nav-link border-0 no-underline py-2 px-4
                                                 text-grey-dark text-base font-semibold"
-                        >Screening
-                        </button>
-                    </li>
+            >
+              Screening
+            </button>
+          </li>
 
 
-                    <li class="flex-inline mr-2" @click="changeJobOpeningview('matched')">
-                        <button
-                                :class="{active: jobOpeningView=='matched'}"
-                                class="nav-link border-0 no-underline  py-2 px-4
+          <li
+            class="flex-inline mr-2"
+            @click="changeJobOpeningview('matched')"
+          >
+            <button
+              :class="{active: jobOpeningView=='matched'}"
+              class="nav-link border-0 no-underline  py-2 px-4
                                                 text-grey-dark text-base font-semibold"
-                        >Matched
-                        </button>
-                    </li>
+            >
+              Matched
+            </button>
+          </li>
 
-                    <li class="flex-inline mr-2" @click="changeJobOpeningview('candidate')">
-                        <button
-                                :class="{active: jobOpeningView=='candidate'}"
-                                class="nav-link border-0 no-underline  py-2 px-4
+          <li
+            class="flex-inline mr-2"
+            @click="changeJobOpeningview('candidate')"
+          >
+            <button
+              :class="{active: jobOpeningView=='candidate'}"
+              class="nav-link border-0 no-underline  py-2 px-4
                                                 text-grey-dark text-base font-semibold"
-                        >Candidate
-                        </button>
-                    </li>
+            >
+              Candidate
+            </button>
+          </li>
 
-                    <li class="flex-inline mr-2" @click="changeJobOpeningview('notes')">
-                        <button
-                                :class="{active: jobOpeningView=='notes'}"
-                                class="nav-link border-0 no-underline  py-2 px-4
+          <li
+            class="flex-inline mr-2"
+            @click="changeJobOpeningview('notes')"
+          >
+            <button
+              :class="{active: jobOpeningView=='notes'}"
+              class="nav-link border-0 no-underline  py-2 px-4
                         text-grey-dark text-base font-semibold"
-                        >Notes
-                        </button>
-                    </li>
-                    <li v-if="showAddNote" class="absolute mr-4 pin-r">
-                        <btn
-                                @btn-click="addNoteClick"
-                                :theme="'success'"
-                                :btnClass="'mb-2 text-sm fade in show'">
-                            <template slot="text">
-                                Add Note
-                            </template>
-                        </btn>
-                    </li>
+            >
+              Notes
+            </button>
+          </li>
+          <li
+            v-if="showAddNote"
+            class="absolute mr-4 pin-r"
+          >
+            <Btn
+              :theme="'success'"
+              :btn-class="'mb-2 text-sm fade in show'"
+              @btn-click="addNoteClick"
+            >
+              <template slot="text">
+                Add Note
+              </template>
+            </Btn>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div
+            v-if="jobOpeningView=='all'"
+            class=""
+          >
+            <Screenbox />
+            <Screenbox />
+          </div>
 
+          <div
+            v-if="jobOpeningView=='screening'"
+            class=""
+          >
+            <Screenbox />
+          </div>
 
-                </ul>
-                <div class="tab-content">
-                    <div v-if="jobOpeningView=='all'" class="">
-                        <screenbox></screenbox>
-                        <screenbox></screenbox>
+          <div
+            v-if="jobOpeningView=='matched'"
+            class=""
+          >
+            <Screenbox />
+            <Screenbox />
+          </div>
 
-                    </div>
+          <div
+            v-if="jobOpeningView=='candidate'"
+            class=""
+          >
+            <Screenbox />
+          </div>
 
-                    <div v-if="jobOpeningView=='screening'" class="">
-                        <screenbox></screenbox>
-                    </div>
+          <div
+            v-if="jobOpeningView=='notes'"
+            class=""
+          >
+            <Notebox
 
-                    <div v-if="jobOpeningView=='matched'" class="">
-                        <screenbox></screenbox>
-                        <screenbox></screenbox>
-
-                    </div>
-
-                    <div v-if="jobOpeningView=='candidate'" class="">
-                        <screenbox></screenbox>
-
-                    </div>
-
-                    <div v-if="jobOpeningView=='notes'" class="">
-                        <notebox
-
-                                v-for="note in notes"
-                                :key="note.id"
-                                :id="note.id"
-                                :date="note.date"
-                                :author="note.author"
-                                :body="note.body"
-                                @noteStarred="changeStarredNote"
-                        ></notebox>
-                        <!--<notebox></notebox>-->
-                    </div>
-                </div>
-
-            </panel>
+              v-for="note in notes"
+              :id="note.id"
+              :key="note.id"
+              :date="note.date"
+              :author="note.author"
+              :body="note.body"
+              @noteStarred="changeStarredNote"
+            />
+            <!--<notebox></notebox>-->
+          </div>
         </div>
-
-        <addNoteModal
-                @note-added="addNoteToList"
-                @close="closeModalNote"
-                :show-modal="showAddModalNote"
-        >
-
-        </addNoteModal>
-
-
+      </Panel>
     </div>
 
+    <AddNoteModal
+      :show-modal="showAddModalNote"
+      @note-added="addNoteToList"
+      @close="closeModalNote"
+    />
+  </div>
 </template>
 
 

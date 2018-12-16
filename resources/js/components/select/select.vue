@@ -1,5 +1,5 @@
 <template>
-    <!--
+  <!--
    Select with search that takes props
    options can be array of values or array
    of objects. multiple is either true or false
@@ -11,16 +11,17 @@
    @input and @select are events that emit the
    select object/s
    -->
-    <multiselect :class="selectStyle"
-                 :options="options"
-                 :value="value"
-                 :multiple="multiple"
-                 :track-by="trackBy"
-                 :label="label"
-                 :placeholder="placeholder"
-                 @input="handleInput"
-                 @select="handleSelect">
-    </multiselect>
+  <Multiselect
+    :class="selectStyle"
+    :options="options"
+    :value="value"
+    :multiple="multiple"
+    :track-by="trackBy"
+    :label="label"
+    :placeholder="placeholder"
+    @input="handleInput"
+    @select="handleSelect"
+  />
 </template>
 
 <script>
@@ -28,6 +29,7 @@
     import classNames from 'classnames'
 
     export default {
+        components: {Multiselect},
         /**
          * all props have their needed types
          * and they also have their default
@@ -61,6 +63,12 @@
                 default:''
             }
         },
+        computed:{
+          selectStyle(){
+              return classNames([
+                  'multiselect-field',this.customClass]);
+          }
+        },
         methods: {
             handleInput(value, id) {
                 this.$emit('input', value);
@@ -68,14 +76,7 @@
             handleSelect(selectedOption) {
                 this.$emit('select', selectedOption);
             }
-        },
-        computed:{
-          selectStyle(){
-              return classNames([
-                  'multiselect-field',this.customClass]);
-          }
-        },
-        components: {Multiselect}
+        }
     }
 </script>
 

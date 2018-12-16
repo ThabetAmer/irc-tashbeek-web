@@ -1,5 +1,5 @@
 <template>
-    <!--
+  <!--
         button uses btnStyle to get primary class
         and theme class and size class and custom
         btn-class passed as prop.
@@ -8,15 +8,17 @@
         The slot is the btn text
     -->
 
-    <button :class="btnStyle"
-            :disabled="disabled"
-            @blur="$emit('btn-blur')"
-            @click="$emit('btn-click')"
-            @focus="$emit('btn-focus')"
-    >
-        <slot name="text">button</slot>
-    </button>
-
+  <button
+    :class="btnStyle"
+    :disabled="disabled"
+    @blur="$emit('btn-blur')"
+    @click="$emit('btn-click')"
+    @focus="$emit('btn-focus')"
+  >
+    <slot name="text">
+      button
+    </slot>
+  </button>
 </template>
 
 

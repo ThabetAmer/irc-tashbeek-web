@@ -1,24 +1,25 @@
 <template>
-    <!--
+  <!--
     checkbox that binds checked to the
     passed prop of value
     the type is checkbox. change and input
     are both handled.
     -->
-    <div>
-        <label class="form-check-label">
-            <input
-                    :id="checkId"
-                    :value="value"
-                    type="checkbox"
-                    :checked="checked"
-                    :class="checkboxClass"
-                    @input="$emit('input', $event.target.checked)"
-                    @change="$emit('change', $event.target.checked)">
+  <div>
+    <label class="form-check-label">
+      <input
+        :id="checkId"
+        :value="value"
+        type="checkbox"
+        :checked="checked"
+        :class="checkboxClass"
+        @input="$emit('input', $event.target.checked)"
+        @change="$emit('change', $event.target.checked)"
+      >
 
-            {{label}}
-        </label>
-    </div>
+      {{ label }}
+    </label>
+  </div>
 </template>
 <script>
     import classNames from "classnames"

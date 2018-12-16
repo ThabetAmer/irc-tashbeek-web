@@ -1,33 +1,40 @@
 <template>
-    <!--
+  <!--
 
     -->
-    <div class="google-map-container">
-        <gmap-map
-                ref="googlemap"
-                :options="options"
-                :center="center"
-                :zoom="7">
-            <gmap-marker v-for="marker in markers"
-                         :key="marker.center.lng + `-` +marker.center.lat"
-                         :position="marker.center"
-                         :clickable="true"
-                         :draggable="marker.draggable"
-                         :icon="getIconColor(marker)"
-                         @dragend="markerDragged"
-            ></gmap-marker>
-        </gmap-map>
+  <div class="google-map-container">
+    <GmapMap
+      ref="googlemap"
+      :options="options"
+      :center="center"
+      :zoom="7"
+    >
+      <GmapMarker
+        v-for="marker in markers"
+        :key="marker.center.lng + `-` +marker.center.lat"
+        :position="marker.center"
+        :clickable="true"
+        :draggable="marker.draggable"
+        :icon="getIconColor(marker)"
+        @dragend="markerDragged"
+      />
+    </GmapMap>
 
-        <div class="google-map-legend">
-            <div v-for="type in types" class="legend-item">
-                <img :src="type.color" alt="">
-                <p :title="type.name">{{type.name}}</p>
-            </div>
-        </div>
-
+    <div class="google-map-legend">
+      <div
+        v-for="type in types"
+        class="legend-item"
+      >
+        <img
+          :src="type.color"
+          alt=""
+        >
+        <p :title="type.name">
+          {{ type.name }}
+        </p>
+      </div>
     </div>
-
-
+  </div>
 </template>
 
 <style>
@@ -49,10 +56,21 @@
         }
     });
     export default {
+        mixins: [mapMixin],
         /**
          *
          */
         props: {},
+        data() {
+            return {
+                icons: {},
+                iconBase: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|',
+                types: {}
+            }
+        },
+        created() {
+            this.fillUniqueTypes();
+        },
         methods: {
             getIconColor(marker) {
                 return this.types[marker.type].color;
@@ -75,18 +93,7 @@
                 })
             }
 
-        },
-        created() {
-            this.fillUniqueTypes();
-        },
-        data() {
-            return {
-                icons: {},
-                iconBase: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|',
-                types: {}
-            }
-        },
-        mixins: [mapMixin]
+        }
     }
 </script>
 

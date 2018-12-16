@@ -1,5 +1,5 @@
 <template>
-    <!--
+  <!--
     input field that takes props from the user
     sets these props as shown below
     the type of input 'email, text, number'
@@ -11,24 +11,27 @@
     and it is parsed and added to 'form-control '
     -->
 
-    <input :type="type"
-           :name="name"
-           :value="value"
-           :readonly="readOnly"
-           :disabled="disabled"
-           :maxlength="maxLength"
-           :placeholder="placeholder"
-           :class="computedInputClass"
-           @blur="$emit('blur',$event)"
-           @focus="$emit('focus',$event)"
-           @change="$emit('change',$event)"
-           @input="$emit('input',$event.target.value)">
+  <input
+    :type="type"
+    :name="name"
+    :value="value"
+    :readonly="readOnly"
+    :disabled="disabled"
+    :maxlength="maxLength"
+    :placeholder="placeholder"
+    :class="computedInputClass"
+    @blur="$emit('blur',$event)"
+    @focus="$emit('focus',$event)"
+    @change="$emit('change',$event)"
+    @input="$emit('input',$event.target.value)"
+  >
 </template>
 
 
 <script>
     import  InputStyleMixin from  "../../mixins/InputStyle"
     export default {
+        mixins:[InputStyleMixin],
         /**
          * all props have their needed types
          * and they also have their default
@@ -65,8 +68,7 @@
                 type: Boolean,
                 default: false
             }
-        },
-        mixins:[InputStyleMixin]
+        }
     }
 </script>
 

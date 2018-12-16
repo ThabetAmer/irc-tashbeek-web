@@ -16,7 +16,7 @@
     <ul class="list-unstyled components list-reset">
 
         <li class="uppercase active text-white ">
-            <a href="/dashboard" class="text-white remove-text-minified  pl-20 py-5 relative mb-3">
+            <a href="/dashboard" class="text-white text-sm remove-text-minified  pl-20 py-5 relative mb-3">
                 <i class="fas fa-chart-line absolute pin-l pin-t text-2xl mt-4 ml-3"></i>
                 Dashboard
 
@@ -24,32 +24,32 @@
         </li>
 
         <li class="uppercase  text-white ">
-            <a href="/seeker" class="text-white remove-text-minified  pl-20 py-5 relative mb-3">
-                <i class="fas fa-users absolute pin-l pin-t text-2xl mt-4 ml-3"></i>
+            <a href="/seeker" class="text-white text-sm remove-text-minified  pl-20 py-5 relative mb-3">
+                <i class="fas fa-users absolute pin-l pin-t text-xl mt-4 ml-3"></i>
                 All job seekers
 
             </a>
         </li>
 
         <li class="uppercase  text-white">
-            <a href="" class="text-white remove-text-minified  pl-20 py-5 relative mb-3">
-                <i class="fas fa-briefcase absolute pin-l pin-t text-2xl mt-4 ml-3"></i>
+            <a href="" class="text-white text-sm remove-text-minified  pl-20 py-5 relative mb-3">
+                <i class="fas fa-briefcase absolute pin-l pin-t text-xl mt-4 ml-3"></i>
                 Jobs
 
             </a>
         </li>
 
         <li class="uppercase  text-white">
-            <a href="" class="text-white remove-text-minified  pl-20 py-5 relative mb-3">
-                <i class="fas fa-store absolute pin-l pin-t text-2xl mt-4 ml-3"></i>
+            <a href="" class="text-white text-sm remove-text-minified  pl-20 py-5 relative mb-3">
+                <i class="fas fa-store absolute pin-l pin-t text-xl mt-4 ml-3"></i>
                 Employers
 
             </a>
         </li>
 
         <li class="uppercase  text-white">
-            <a href="" class="text-white remove-text-minified  pl-20 py-5 relative mb-4">
-                <i class="fas fa-lock absolute pin-l pin-t text-2xl mt-4 ml-3"></i>
+            <a href="" class="text-white text-sm remove-text-minified  pl-20 py-5 relative mb-4">
+                <i class="fas fa-lock absolute pin-l pin-t text-xl mt-4 ml-3"></i>
                 Sign out
 
             </a>
@@ -61,5 +61,4 @@
 
 @section('script')
 
-    </script>
 @endsection

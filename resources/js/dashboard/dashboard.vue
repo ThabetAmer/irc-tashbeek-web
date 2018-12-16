@@ -267,7 +267,7 @@
                     eventLimit: true,
                     fixedWeekCount: false,
                     aspectRatio: 1.3,
-                    contentHeight: 220,
+                    contentHeight: 240,
                     defaultView: 'month',
                     header: {
                         left: 'title',

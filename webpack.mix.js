@@ -20,3 +20,17 @@ mix
     tailwindcss('./tailwind_config.js'),
   ]
 });
+
+if (process.env.NODE_ENV === 'development') {
+  mix.webpackConfig({
+    module: {
+      rules: [
+        {
+          test: /\\.(js|vue)$/,
+          exclude: /node_modules/,
+          loader: 'eslint-loader',
+        },
+      ],
+    },
+  });
+}

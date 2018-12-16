@@ -23,7 +23,8 @@ class StructureRequestTest extends TestCase
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Authorization' => "ApiKEY " . config("irc.commcare_api_key")
-            ]
+            ],
+            ['verify' => false]
         ])->andReturn($responseMock);
 
         $responseMock->shouldReceive('getBody')->andReturn($streamMock);

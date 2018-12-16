@@ -78,9 +78,11 @@ class StructureFactory
 
         $model = $case->model();
 
-        $this->schema->generate((new $model)->getTable(), $case->questions());
+        $caseQuestions = array_pluck($questionObjects,'case_question');
 
-        $this->propertiesMetaData->insert($questionObjects, $case->caseType(), $case->questions());
+        $this->schema->generate((new $model)->getTable(), $caseQuestions);
+
+        $this->propertiesMetaData->insert($questionObjects, $case->caseType(), $caseQuestions);
     }
 
     /**
@@ -97,6 +99,8 @@ class StructureFactory
         foreach ($data['forms'] as $form) {
             foreach ($form['questions'] as $question) {
                 if (isset($case->questions()[$question['hashtagValue']])) {
+                    $question['case_question'] = $case->questions()[$question['hashtagValue']];
+
                     $questionObjects[] = $question;
                 }
             }

@@ -113,18 +113,18 @@
             >
                 <div class="days-container">
                     <div v-for="day in recentActivity" class="">
-                        <div class="text-left text-green-dark font-bold text-sm mt-4 mb-2">
+                        <div class="text-left text-green-dark font-bold text-xs mt-4 mb-2">
                             {{day.date}}
                         </div>
                         <ul class="list-reset">
                             <li v-for="event in day.events"
-                                class="relative text-black border-grey-lighter border-solid
-                            border-b-2 font-semibold text-md  py-5 pl-4">
-                                {{event.label}}
+                                class="relative text-left text-black border-grey-lighter border-solid
+                            border-b-2 font-semibold text-md  py-5 flex items-center ">
                                 <component v-bind:is="event.component"
-                                           :customClass="event.iconClass+' text-grey-darkest text-2xl absolute pin-l'"
+                                           :customClass="event.iconClass+' text-grey-darker text-1xl mr-2'"
                                 >
                                 </component>
+                                <span class="text-sm">{{event.label}}</span>
                             </li>
                         </ul>
                     </div>

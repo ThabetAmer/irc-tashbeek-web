@@ -151,31 +151,17 @@
 
 
 <script>
-    import Vue from 'vue';
-    import btn from '../components/button/button'
-    import AnchorLink from '../components/link/link'
-    import CustomSelect from '../components/select/select'
-    import modal from '../components/modal/modal'
-    import addNoteModal from '../components/modal/addNoteModal'
-    import buttonGroup from '../components/buttonGroup/buttonGroup'
-    import checkbox from '../components/checkbox/checkbox'
-    import checkboxGroup from '../components/checkboxGroup/checkbox-group'
-    import panel from '../components/panel/panel'
-    import metricCard from '../components/metricCard/metricCard'
-    import notebox from '../components/notebox/notebox'
-    import jobOpening from '../components/jobOpening/jobOpening'
+    import Panel from '../components/Panel/Panel'
+    import MetricCard from '../components/MetricCard/MetricCard'
     import datatable from '../components/datatable/datatable'
     import icon from '../components/icon/icon'
     import moment from 'moment';
     import {FullCalendar} from 'vue-full-calendar'
-    // Vue.use(FullCalendar);
 
+    console.log(' Panel ',Panel);
     export default {
         components: {
-            btn, AnchorLink, icon,
-            CustomSelect, modal, buttonGroup,
-            checkbox, checkboxGroup, panel, metricCard,
-            addNoteModal, notebox, jobOpening, datatable, FullCalendar
+             icon, Panel, MetricCard, datatable, FullCalendar
         },
         filters: {},
         props: {},
@@ -280,7 +266,7 @@
                     eventLimit: true,
                     fixedWeekCount: false,
                     aspectRatio: 1.3,
-                    contentHeight: 220,
+                    contentHeight: 250,
                     defaultView: 'month',
                     header: {
                         left: 'title',

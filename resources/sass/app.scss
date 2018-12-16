@@ -3,6 +3,7 @@
 //// Variables
 @import 'variables';
 @import 'vue_modal';
+@import 'sidebar';
 //
 //
 @import "~tailwindcss/components.css";
@@ -83,55 +84,6 @@ body {
 
 //@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
-#sidebar {
-  /* don't forget to add all the previously mentioned styles here too */
-  background: rgba(64, 94, 128, 1);
-  color: #fff;
-  transition: all 0.3s;
-}
-
-#sidebar .sidebar-header {
-  padding: 20px;
-  background: rgba(64, 94, 128, 1);
-}
-
-#sidebar ul.components {
-  padding: 20px 0;
-  //border-bottom: 1px solid #47748b;
-}
-
-#sidebar ul p {
-  color: #fff;
-  padding: 10px;
-}
-
-#sidebar ul li a {
-  //padding: 10px;
-  //font-size: 1.1em;
-  //display: block;
-}
-
-#sidebar ul li a:hover {
-  //color: #7386D5;
-  //background: #fff;
-  text-decoration: none;
-
-}
-
-#sidebar ul li.active > a, a[aria-expanded="true"] {
-  //color: #fff;
-  //background: #6d7fcc;
-  text-decoration: none;
-  background: rgba(255, 255, 255, 0.15);
-  border-bottom-right-radius: 9999px;
-  border-top-right-radius: 9999px;
-}
-
-//ul ul a {
-//  font-size: 0.9em !important;
-//  padding-left: 30px !important;
-//  background: #6d7fcc;
-//}
 
 .custom-navs {
   button.active {
@@ -171,50 +123,7 @@ a[data-toggle="collapse"] {
   transform: translateY(-50%);
 }
 
-@media only screen and (min-width: 768px) {
-  #sidebar {
-    margin-left: 0px;
-  }
-  #sidebar.active {
-    margin-left: 0;
-  }
-  #sidebar {
-    min-width: 300px;
-    max-width: 300px;
-    min-height: 100vh;
-  }
 
-}
-
-@media only screen and (min-width: 1350px) {
-  #sidebar {
-    margin-left: -0px;
-  }
-  #sidebar.active {
-    margin-left: 0;
-  }
-  #sidebar {
-    min-width: 300px;
-    max-width: 300px;
-    min-height: 100vh;
-  }
-
-}
-
-@media only screen and (min-width: 1500px) {
-  #sidebar {
-    margin-left: 0px;
-  }
-  #sidebar.active {
-    margin-left: 0;
-  }
-  #sidebar {
-    min-width: 350px;
-    max-width: 350px;
-    min-height: 100vh;
-  }
-
-}
 
 .fade {
   transition: opacity .15s linear;
@@ -334,48 +243,6 @@ a[data-toggle="collapse"] {
   }
 }
 
-#sidebar{
-  a{
-    text-decoration: none !important;
-  }
-}
-#sidebar.minified {
-  padding-left: .5rem !important;
-  padding-right: .5rem !important;
-  width: 80px !important;
-  min-width: 80px;
-  .hide-min {
-    display: none;
-  }
-
-  #sidebarCollapse {
-    margin-right: 30px !important;
-  }
-  .user-section {
-    min-height: 50px;
-    //*:not(img){
-    //  display: none;
-    //}
-
-    img {
-      margin-left: 10px !important;
-    }
-  }
-  .sidebar-header {
-    padding: 0.6rem !important;
-  }
-  .remove-text-minified {
-    padding-left: 0 !important;
-    font-size: 0px !important;
-    min-height: 57px !important;
-  }
-
-  li{
-    i{
-      margin-top: 15px;
-    }
-  }
-}
 
 #calendarTab {
   .selected-day {

@@ -30,11 +30,11 @@
 
 
 <script>
-    import panel from '../panel/panel'
+    import Panel from '../Panel/Panel'
     import classNames from "classnames"
 
     export default {
-        components:{panel},
+        components:{Panel},
         /**
          * all props have their needed types
          * and are passed using the mixin

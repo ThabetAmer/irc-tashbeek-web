@@ -121,8 +121,8 @@
     import buttonGroup from '../components/buttonGroup/buttonGroup'
     import checkbox from '../components/checkbox/checkbox'
     import checkboxGroup from '../components/checkboxGroup/checkbox-group'
-    import panel from '../components/panel/panel'
-    import metricCard from '../components/metricCard/metricCard'
+    import Panel from '../components/Panel/Panel'
+    import MetricCard from '../components/MetricCard/MetricCard'
     import notebox from '../components/notebox/notebox'
     import jobOpening from '../components/jobOpening/jobOpening'
     import datatable from '../components/datatable/datatable'
@@ -131,7 +131,7 @@
         components: {
             btn, AnchorLink,
             CustomSelect, modal, buttonGroup,
-            checkbox, checkboxGroup, panel, metricCard,
+            checkbox, checkboxGroup, Panel, MetricCard,
             addNoteModal, notebox, jobOpening, datatable
         },
         filters: {},

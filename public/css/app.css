@@ -35658,6 +35658,131 @@ be a descendant of the grid when it is being dragged.
           transform: scale(1.1);
 }
 
+#sidebar {
+  /* don't forget to add all the previously mentioned styles here too */
+  background: #405e80;
+  color: #fff;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+  background: #405e80;
+}
+
+#sidebar ul.components {
+  padding: 20px 0;
+}
+
+#sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
+
+#sidebar ul li a:hover {
+  text-decoration: none;
+}
+
+#sidebar ul li.active > a,
+a[aria-expanded="true"] {
+  text-decoration: none;
+  background: rgba(255, 255, 255, .15);
+  border-bottom-right-radius: 9999px;
+  border-top-right-radius: 9999px;
+}
+
+#sidebar ul li:hover {
+  background: rgba(255, 255, 255, .05);
+  border-bottom-right-radius: 9999px;
+  border-top-right-radius: 9999px;
+}
+
+@media only screen and (min-width: 768px) {
+  #sidebar {
+    margin-left: 0px;
+  }
+
+  #sidebar.active {
+    margin-left: 0;
+  }
+
+  #sidebar {
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 100vh;
+  }
+}
+
+@media only screen and (min-width: 1350px) {
+  #sidebar {
+    margin-left: -0px;
+  }
+
+  #sidebar.active {
+    margin-left: 0;
+  }
+
+  #sidebar {
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 100vh;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  #sidebar {
+    margin-left: 0px;
+  }
+
+  #sidebar.active {
+    margin-left: 0;
+  }
+
+  #sidebar {
+    min-width: 350px;
+    max-width: 350px;
+    min-height: 100vh;
+  }
+}
+
+#sidebar a {
+  text-decoration: none !important;
+}
+
+#sidebar.minified {
+  padding-left: .5rem !important;
+  padding-right: .5rem !important;
+  width: 80px !important;
+  min-width: 80px;
+}
+
+#sidebar.minified .hide-min {
+  display: none;
+}
+
+#sidebar.minified #sidebarCollapse {
+  margin-right: 30px !important;
+}
+
+#sidebar.minified .user-section {
+  min-height: 50px;
+}
+
+#sidebar.minified .user-section img {
+  margin-left: 10px !important;
+}
+
+#sidebar.minified .sidebar-header {
+  padding: .6rem !important;
+}
+
+#sidebar.minified .remove-text-minified {
+  padding-left: 0 !important;
+  font-size: 0px !important;
+  min-height: 57px !important;
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
@@ -35733,40 +35858,6 @@ body {
           align-items: stretch;
 }
 
-#sidebar {
-  /* don't forget to add all the previously mentioned styles here too */
-  background: #405e80;
-  color: #fff;
-  -webkit-transition: all .3s;
-  transition: all .3s;
-}
-
-#sidebar .sidebar-header {
-  padding: 20px;
-  background: #405e80;
-}
-
-#sidebar ul.components {
-  padding: 20px 0;
-}
-
-#sidebar ul p {
-  color: #fff;
-  padding: 10px;
-}
-
-#sidebar ul li a:hover {
-  text-decoration: none;
-}
-
-#sidebar ul li.active > a,
-a[aria-expanded="true"] {
-  text-decoration: none;
-  background: rgba(255, 255, 255, .15);
-  border-bottom-right-radius: 9999px;
-  border-top-right-radius: 9999px;
-}
-
 .custom-navs button.active {
   color: #1f9d55 !important;
   background: rgba(92, 182, 87, .15) !important;
@@ -35796,54 +35887,6 @@ a[data-toggle="collapse"] {
   right: 20px;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-}
-
-@media only screen and (min-width: 768px) {
-  #sidebar {
-    margin-left: 0px;
-  }
-
-  #sidebar.active {
-    margin-left: 0;
-  }
-
-  #sidebar {
-    min-width: 300px;
-    max-width: 300px;
-    min-height: 100vh;
-  }
-}
-
-@media only screen and (min-width: 1350px) {
-  #sidebar {
-    margin-left: -0px;
-  }
-
-  #sidebar.active {
-    margin-left: 0;
-  }
-
-  #sidebar {
-    min-width: 300px;
-    max-width: 300px;
-    min-height: 100vh;
-  }
-}
-
-@media only screen and (min-width: 1500px) {
-  #sidebar {
-    margin-left: 0px;
-  }
-
-  #sidebar.active {
-    margin-left: 0;
-  }
-
-  #sidebar {
-    min-width: 350px;
-    max-width: 350px;
-    min-height: 100vh;
-  }
 }
 
 .fade {
@@ -35956,47 +35999,6 @@ a[data-toggle="collapse"] {
 
 #calendar .fc-view-container * {
   border-color: transparent !important;
-}
-
-#sidebar a {
-  text-decoration: none !important;
-}
-
-#sidebar.minified {
-  padding-left: .5rem !important;
-  padding-right: .5rem !important;
-  width: 80px !important;
-  min-width: 80px;
-}
-
-#sidebar.minified .hide-min {
-  display: none;
-}
-
-#sidebar.minified #sidebarCollapse {
-  margin-right: 30px !important;
-}
-
-#sidebar.minified .user-section {
-  min-height: 50px;
-}
-
-#sidebar.minified .user-section img {
-  margin-left: 10px !important;
-}
-
-#sidebar.minified .sidebar-header {
-  padding: .6rem !important;
-}
-
-#sidebar.minified .remove-text-minified {
-  padding-left: 0 !important;
-  font-size: 0px !important;
-  min-height: 57px !important;
-}
-
-#sidebar.minified li i {
-  margin-top: 15px;
 }
 
 #calendarTab .selected-day {

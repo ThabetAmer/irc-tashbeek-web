@@ -120,6 +120,10 @@ class FormDataFactory
     }
 
 
+    /**
+     * @return null|string
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
     protected function lastFetchDate()
     {
         $disk = Storage::disk('local');
@@ -130,6 +134,9 @@ class FormDataFactory
         return $lastFetchDate;
     }
 
+    /**
+     * @param null $date
+     */
     protected function saveLastFetchDate($date = null)
     {
         $disk = Storage::disk('local');

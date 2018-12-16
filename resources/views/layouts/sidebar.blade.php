@@ -16,44 +16,59 @@
     <ul class="list-unstyled components list-reset">
 
         <li class="uppercase active text-white ">
-            <a href="/dashboard" class="text-white remove-text-minified  pl-20 py-5 relative mb-3">
-                <i class="fas fa-chart-line absolute pin-l pin-t text-2xl mt-4 ml-3"></i>
-                Dashboard
+            <a href="/dashboard" class="text-white flex items-center  text-sm remove-text-minified py-5 relative mb-3">
+                <i class="fas  fa-chart-line min-w-30 text-2xl mr-10 ml-3"></i>
+                <span>
+                    Dashboard
+                </span>
 
             </a>
         </li>
 
         <li class="uppercase  text-white ">
-            <a href="/job-seekers" class="text-white remove-text-minified  pl-20 py-5 relative mb-3">
-                <i class="fas fa-users absolute pin-l pin-t text-2xl mt-4 ml-3"></i>
-                All job seekers
+            <a href="/job-seekers"
+               class="text-white flex items-center  text-sm remove-text-minified py-5 relative mb-3">
+                <i class="fas fa-users min-w-30  text-2xl mr-10 ml-3"></i>
+
+                <span>
+                    All job seekers
+                </span>
 
             </a>
         </li>
 
         <li class="uppercase  text-white">
-            <a href="" class="text-white remove-text-minified  pl-20 py-5 relative mb-3">
-                <i class="fas fa-briefcase absolute pin-l pin-t text-2xl mt-4 ml-3"></i>
-                Jobs
+            <a href="" class="text-white flex items-center  text-sm remove-text-minified py-5 relative mb-3">
+                <i class="fas fa-briefcase min-w-30  pin-l pin-t text-xl mr-10 ml-3"></i>
+                <span>
+                    Jobs
+                </span>
 
             </a>
         </li>
 
         <li class="uppercase  text-white">
-            <a href="" class="text-white remove-text-minified  pl-20 py-5 relative mb-3">
-                <i class="fas fa-store absolute pin-l pin-t text-2xl mt-4 ml-3"></i>
-                Employers
+            <a href="" class="text-white text-sm flex items-center remove-text-minified   py-5 relative mb-3">
+                <i class="fas fa-store min-w-30 pin-l pin-t text-xl mr-10 ml-3"></i>
+
+
+                <span>
+                    Employers
+                </span>
 
             </a>
         </li>
 
         <li class="uppercase  text-white">
 
-            <a class="text-white remove-text-minified  pl-20 py-5 relative mb-4"
+            <a class="text-white text-sm flex items-center remove-text-minified py-5 relative mb-3"
                href="{{ route('logout') }}"
                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                <i class="fas fa-lock absolute pin-l pin-t text-2xl mt-4 ml-3"></i>
-                {{ __('Logout') }}
+                <i class="fas min-w-30 fa-lock  pin-l pin-t text-2xl mr-10 ml-3"></i>
+
+                <span>
+                    {{ __('Logout') }}
+                </span>
             </a>
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -66,5 +81,5 @@
 
 
 @section('script')
-    </script>
+
 @endsection

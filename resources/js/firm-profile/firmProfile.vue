@@ -10,21 +10,21 @@
           ID 56544156
         </div>
         <ul class="firm-info list-reset text-left pr-8 mb-4">
-          <li class=" border-b border-grey-light py-5 pl-16  hd:text-lg xl:text-md text-black relative">
-            Restaurant
-            <i class="fas fa-store absolute pin-l pin-t text-grey-darkest text-2xl mt-3 ml-1" />
+          <li class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black ">
+            <i class="fas fa-store   text-grey-darker text-xl min-w-30 mr-3 ml-1" />
+            <span>Restaurant</span>
           </li>
-          <li class=" border-b border-grey-light py-5 pl-16 hd:text-lg xl:text-md text-black relative">
-            Located in Amman
-            <i class="fas fa-map-marker-alt absolute pin-l pin-t text-grey-darkest text-2xl mt-3 ml-1 " />
+          <li class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black ">
+            <i class="fas fa-map-marker-alt text-grey-darker text-xl min-w-30 mr-3 ml-1" />
+            <span>Located in Amman</span>
           </li>
-          <li class=" border-b border-grey-light py-5 pl-16 hd:text-lg xl:text-md text-black relative">
-            +123 456 789 234
-            <i class="fas fa-phone absolute pin-l pin-t text-grey-darkest text-2xl mt-3 ml-1 " />
+          <li class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black ">
+            <i class="fas fa-phone text-grey-darker text-xl min-w-30 mr-3 ml-1" />
+            <span> +123 456 789 234</span>
           </li>
-          <li class=" border-b border-grey-light py-5 pl-16 hd:text-lg xl:text-md text-black relative">
-            Looking for waiters
-            <i class="fas fa-briefcase absolute pin-l pin-t text-grey-darkest text-2xl mt-3 ml-1" />
+          <li class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black ">
+            <i class="fas fa-briefcase text-grey-darker text-xl min-w-30 mr-3 ml-1" />
+            <span>Looking for waiters</span>
           </li>
         </ul>
 
@@ -113,51 +113,51 @@
 
 
 <script>
-    import btn from '../components/button/button'
-    import AnchorLink from '../components/link/link'
-    import CustomSelect from '../components/select/select'
-    import modal from '../components/modal/modal'
-    import addNoteModal from '../components/modal/addNoteModal'
-    import buttonGroup from '../components/buttonGroup/buttonGroup'
-    import checkbox from '../components/checkbox/checkbox'
-    import checkboxGroup from '../components/checkboxGroup/checkbox-group'
-    import panel from '../components/panel/panel'
-    import metricCard from '../components/metricCard/metricCard'
-    import notebox from '../components/notebox/notebox'
-    import jobOpening from '../components/jobOpening/jobOpening'
-    import datatable from '../components/datatable/datatable'
+  import Btn from '../components/button/button'
+  import AnchorLink from '../components/link/link'
+  import CustomSelect from '../components/select/select'
+  import Modal from '../components/modal/modal'
+  import AddNoteModal from '../components/modal/addNoteModal'
+  import ButtonGroup from '../components/buttonGroup/buttonGroup'
+  import Checkbox from '../components/checkbox/checkbox'
+  import CheckboxGroup from '../components/checkboxGroup/checkbox-group'
+  import Panel from '../components/Panel/Panel'
+  import MetricCard from '../components/MetricCard/MetricCard'
+  import Notebox from '../components/notebox/notebox'
+  import JobOpening from '../components/jobOpening/jobOpening'
+  import Datatable from '../components/datatable/datatable'
 
-    export default {
-        components: {
-            btn, AnchorLink,
-            CustomSelect, modal, buttonGroup,
-            checkbox, checkboxGroup, panel, metricCard,
-            addNoteModal, notebox, jobOpening, datatable
-        },
-        filters: {},
-        props: {},
-        data() {
-            return {
-                viewType: 'current',
-                hasTitle: true,
-                showStar: false,
-                filters: false,
-            }
-        },
-        computed: {},
-        watch: {},
-        created() {
-        },
-        mounted() {
+  export default {
+    components: {
+      Btn, AnchorLink,
+      CustomSelect, Modal, ButtonGroup,
+      Checkbox, CheckboxGroup, Panel, MetricCard,
+      AddNoteModal, Notebox, JobOpening, Datatable
+    },
+    filters: {},
+    props: {},
+    data() {
+      return {
+        viewType: 'current',
+        hasTitle: true,
+        showStar: false,
+        filters: false,
+      }
+    },
+    computed: {},
+    watch: {},
+    created() {
+    },
+    mounted() {
 
-        },
-        methods: {
-            changeViewType(type) {
-                this.viewType = type;
-            },
-            btnClick() {
+    },
+    methods: {
+      changeViewType(type) {
+        this.viewType = type;
+      },
+      btnClick() {
 
-            }
-        }
+      }
     }
+  }
 </script>

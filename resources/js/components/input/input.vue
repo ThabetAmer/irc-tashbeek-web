@@ -39,7 +39,8 @@
          */
         props: {
             value: {
-                type: [String, Number,Boolean]
+                type: [String, Number,Boolean],
+                default:''
             },
             size: {
                 type: String,
@@ -55,6 +56,7 @@
             },
             name: {
                 type: String,
+                default:''
             },
             readOnly: {
                 type: Boolean,

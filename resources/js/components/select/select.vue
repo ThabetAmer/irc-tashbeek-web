@@ -37,14 +37,16 @@
          */
         props: {
             label: {
-                type: String
+                type: String,
+                default:''
             },
             value: {
-                type: [String, Number, Object, Array]
+                type: [String, Number, Object, Array],
+                default:null
             },
             options: {
                 type: Array,
-                default: []
+                default: function () { return [] }
             },
             multiple: {
                 type: Boolean,

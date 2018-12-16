@@ -1,20 +1,20 @@
 <template>
-    <!--
+  <!--
         checkbox group which uses the
         original checkbox component
         which returns an array that has the
         selected objects
     -->
-    <div>
-        <checkbox-field
-                :key="checkbox.value"
-                :label="checkbox.label"
-                :check-id="checkbox.value"
-                v-for="checkbox in checkboxes"
-                :checked="checkedField(checkbox)"
-                @change="checkboxChange(checkbox,$event)">
-        </checkbox-field>
-    </div>
+  <div>
+    <CheckboxField
+      v-for="checkbox in checkboxes"
+      :key="checkbox.value"
+      :label="checkbox.label"
+      :check-id="checkbox.value"
+      :checked="checkedField(checkbox)"
+      @change="checkboxChange(checkbox,$event)"
+    />
+  </div>
 </template>
 
 
@@ -22,6 +22,9 @@
     import checkboxField from "../checkbox/checkbox";
 
     export default {
+        components: {
+            checkboxField
+        },
         /**
          * the only passed prop to the froup
          * is the array of checkbox objects
@@ -35,6 +38,16 @@
         props: {
             checkboxes: [Array, Object]
         },
+        data() {
+            return {
+                checkboxValue: [],
+            }
+        },
+        watch: {
+            checkboxValue: function (newValue, oldValue) {
+                this.$emit('change', this.checkboxValue);
+            }
+        },
         methods: {
             checkedField(option) {
                 return this.checkboxValue.findIndex(item => item.value === option.value) !== -1
@@ -47,19 +60,6 @@
                 else {
                     this.checkboxValue.splice(index, 1)
                 }
-            }
-        },
-        data() {
-            return {
-                checkboxValue: [],
-            }
-        },
-        components: {
-            checkboxField
-        },
-        watch: {
-            checkboxValue: function (newValue, oldValue) {
-                this.$emit('change', this.checkboxValue);
             }
         }
 

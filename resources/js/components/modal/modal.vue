@@ -1,48 +1,52 @@
 <template>
-    <!--
+  <!--
 
     -->
-    <transition name="modal">
-        <div class="modal-mask">
-            <div class="modal-wrapper">
-                <div class="modal-container pl-12 relative rounded"
-                     :style="{width:width}"
-                >
-                    <a
-                            href="javascript:void(0)"
-                            @click="$emit('close')">
-                        <i class="fas fa-times
+  <Transition name="modal">
+    <div class="modal-mask">
+      <div class="modal-wrapper">
+        <div
+          class="modal-container pl-12 relative rounded"
+          :style="{width:width}"
+        >
+          <a
+            href="javascript:void(0)"
+            @click="$emit('close')"
+          >
+            <i
+              class="fas fa-times
                         absolute text-grey-dark
-                        text-3xl mt-4 ml-4 pin-t pin-l"></i>
-                    </a>
-                    <div class="modal-header text-black font-bold border-none
-                                ">
-                        <slot name="header">
-                            default header
-                        </slot>
-                    </div>
+                        text-3xl mt-4 ml-4 pin-t pin-l"
+            />
+          </a>
+          <div
+            class="modal-header text-black font-bold border-none
+                                "
+          >
+            <slot name="header">
+              default header
+            </slot>
+          </div>
 
-                    <div class="modal-body">
-                        <slot name="body">
-                            default body
-                        </slot>
-                    </div>
+          <div class="modal-body">
+            <slot name="body">
+              default body
+            </slot>
+          </div>
 
-                    <div class="modal-footer">
-                        <slot name="footer">
-
-                        </slot>
-                    </div>
-                </div>
-            </div>
+          <div class="modal-footer">
+            <slot name="footer" />
+          </div>
         </div>
-    </transition>
-
+      </div>
+    </div>
+  </Transition>
 </template>
 
 
 <script>
     export default {
+        mixins: [],
         /**
          * all props have their needed types
          * and are passed using the mixin
@@ -52,8 +56,7 @@
                 type:String,
                 default:"40%"
             }
-        },
-        mixins: []
+        }
     }
 </script>
 

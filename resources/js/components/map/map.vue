@@ -1,15 +1,13 @@
 <template>
-    <!--
+  <!--
 
     -->
-    <google-map
-            :options="options"
-            :center="center"
-            :markers="markers"
-            :clustersEnabled="clustersEnabled"
-    >
-    </google-map>
-
+  <GoogleMap
+    :options="options"
+    :center="center"
+    :markers="markers"
+    :clusters-enabled="clustersEnabled"
+  />
 </template>
 
 
@@ -18,16 +16,16 @@
     import mapMixin from "../../mixins/mapMixin"
 
     export default {
+        components: {
+            googleMap
+        },
+        mixins: [mapMixin],
         /**
          *
          */
         props: {},
-        components: {
-            googleMap
-        },
         methods: {
-        },
-        mixins: [mapMixin]
+        }
     }
 </script>
 

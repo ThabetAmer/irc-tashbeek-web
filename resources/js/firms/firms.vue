@@ -1,17 +1,14 @@
 <template>
-    <div>
-        <panel>
-            <datatable
-                    :header="headers"
-                    :rows="rows"
-                    :has-pagination="hasPagination"
-                    :has-filters="hasFilter"
-            >
-
-            </datatable>
-        </panel>
-    </div>
-
+  <div>
+    <Panel>
+      <Datatable
+        :header="headers"
+        :rows="rows"
+        :has-pagination="hasPagination"
+        :has-filters="hasFilter"
+      />
+    </Panel>
+  </div>
 </template>
 
 
@@ -41,6 +38,7 @@
       checkbox, checkboxGroup, panel, metricCard,
       addNoteModal, notebox, jobOpening, datatable, screenbox
     },
+    filters: {},
     props: {},
     data() {
       return {
@@ -50,6 +48,8 @@
         headers: []
       }
     },
+    computed: {},
+    watch: {},
     created() {
       firmsAPI.getFirms()
         .then(resp => {
@@ -61,12 +61,9 @@
         console.log('Error : ', error);
       });
     },
-    computed: {},
     mounted() {
 
     },
-    methods: {},
-    filters: {},
-    watch: {}
+    methods: {}
   }
 </script>

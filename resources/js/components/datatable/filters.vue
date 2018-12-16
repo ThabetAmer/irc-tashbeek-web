@@ -1,30 +1,28 @@
 <template>
-    <!--
+  <!--
     -->
-    <div class="flex flex-wrap mb-8">
-        <template v-for="filter in filters">
-            <customInput input-class="height-align
+  <div class="flex flex-wrap mb-8">
+    <template v-for="filter in filters">
+      <CustomInput
+        v-if="filter.type === 'string'"
+        input-class="height-align
                                     mb-2 mr-2 p-2 text-grey-darkest font-bold
                                     w-1/5 bg-grey-lighter rounded"
-                         :value="textValue"
-                         :placeholder="filter.name"
-                         v-if="filter.type === 'string'">
+        :value="textValue"
+        :placeholder="filter.name"
+      />
 
-            </customInput>
-
-            <customSelect
-                    :label="'name'"
-                    track-by="name"
-                    :options="filter.options"
-                    v-model="value"
-                    @select="handleSelect"
-                    customClass="mb-2 note-select mr-2 w-1/5" v-if="filter.type === 'select'">
-
-            </customSelect>
-
-        </template>
-    </div>
-
+      <CustomSelect
+        v-if="filter.type === 'select'"
+        v-model="value"
+        :label="'name'"
+        track-by="name"
+        :options="filter.options"
+        custom-class="mb-2 note-select mr-2 w-1/5"
+        @select="handleSelect"
+      />
+    </template>
+  </div>
 </template>
 
 
@@ -39,6 +37,7 @@
          * and are passed using the mixin
          */
         components: {customInput, customSelect},
+        mixins: [],
         props: {
             filters: {
                 type: [Object, Array],
@@ -91,8 +90,7 @@
             handleSelect(select) {
                 this.value = select;
             }
-        },
-        mixins: []
+        }
     }
 </script>
 

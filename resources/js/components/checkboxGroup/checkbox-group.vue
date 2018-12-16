@@ -19,51 +19,57 @@
 
 
 <script>
-    import checkboxField from "../checkbox/checkbox";
+  import checkboxField from "../checkbox/checkbox";
 
-    export default {
-        components: {
-            checkboxField
+  export default {
+    components: {
+      checkboxField
+    },
+    /**
+     * the only passed prop to the froup
+     * is the array of checkbox objects
+     * each of these objects will contain
+     * value and label. Label is to display lable
+     * and value is a unique value for the checkbox
+     *
+     * The only data is the checkboxValue which
+     * has an array of all the checked OBJECTS.
+     */
+    props: {
+      checkboxes: {
+        type: [Array, Object],
+        default: () => []
+      }
+    },
+    data() {
+      return {
+        checkboxValue: {
+          type: Array,
+          default: () => []
         },
-        /**
-         * the only passed prop to the froup
-         * is the array of checkbox objects
-         * each of these objects will contain
-         * value and label. Label is to display lable
-         * and value is a unique value for the checkbox
-         *
-         * The only data is the checkboxValue which
-         * has an array of all the checked OBJECTS.
-         */
-        props: {
-            checkboxes: [Array, Object]
-        },
-        data() {
-            return {
-                checkboxValue: [],
-            }
-        },
-        watch: {
-            checkboxValue: function (newValue, oldValue) {
-                this.$emit('change', this.checkboxValue);
-            }
-        },
-        methods: {
-            checkedField(option) {
-                return this.checkboxValue.findIndex(item => item.value === option.value) !== -1
-            },
-            checkboxChange(option, value) {
-                const index = this.checkboxValue.findIndex(item => item.value === option.value)
-                if (value) {
-                    this.checkboxValue.push(option)
-                }
-                else {
-                    this.checkboxValue.splice(index, 1)
-                }
-            }
+      }
+    },
+    watch: {
+      checkboxValue: function (newValue, oldValue) {
+        this.$emit('change', this.checkboxValue);
+      }
+    },
+    methods: {
+      checkedField(option) {
+        return this.checkboxValue.findIndex(item => item.value === option.value) !== -1
+      },
+      checkboxChange(option, value) {
+        const index = this.checkboxValue.findIndex(item => item.value === option.value)
+        if (value) {
+          this.checkboxValue.push(option)
         }
-
+        else {
+          this.checkboxValue.splice(index, 1)
+        }
+      }
     }
+
+  }
 </script>
 
 <style lang="scss">

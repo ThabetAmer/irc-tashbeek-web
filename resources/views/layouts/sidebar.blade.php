@@ -17,7 +17,7 @@
 
         <li class="uppercase active text-white ">
             <a href="/dashboard" class="text-white flex items-center  text-sm remove-text-minified py-5 relative mb-3">
-                <i class="fas fa-chart-line text-2xl mr-10 ml-3"></i>
+                <i class="fas  fa-chart-line min-w-30 text-2xl mr-10 ml-3"></i>
                 <span>
                     Dashboard
                 </span>
@@ -28,7 +28,7 @@
         <li class="uppercase  text-white ">
             <a href="/job-seekers"
                class="text-white flex items-center  text-sm remove-text-minified py-5 relative mb-3">
-                <i class="fas fa-users  text-2xl mr-10 ml-3"></i>
+                <i class="fas fa-users min-w-30  text-2xl mr-10 ml-3"></i>
 
                 <span>
                     All job seekers
@@ -39,7 +39,7 @@
 
         <li class="uppercase  text-white">
             <a href="" class="text-white flex items-center  text-sm remove-text-minified py-5 relative mb-3">
-                <i class="fas fa-briefcase  pin-l pin-t text-xl mr-10 ml-3"></i>
+                <i class="fas fa-briefcase min-w-30  pin-l pin-t text-xl mr-10 ml-3"></i>
                 <span>
                     Jobs
                 </span>
@@ -49,7 +49,7 @@
 
         <li class="uppercase  text-white">
             <a href="" class="text-white text-sm flex items-center remove-text-minified   py-5 relative mb-3">
-                <i class="fas fa-store  pin-l pin-t text-xl mr-10 ml-3"></i>
+                <i class="fas fa-store min-w-30 pin-l pin-t text-xl mr-10 ml-3"></i>
 
 
                 <span>
@@ -64,7 +64,7 @@
             <a class="text-white text-sm flex items-center remove-text-minified py-5 relative mb-3"
                href="{{ route('logout') }}"
                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                <i class="fas fa-lock  pin-l pin-t text-2xl mr-10 ml-3"></i>
+                <i class="fas min-w-30 fa-lock  pin-l pin-t text-2xl mr-10 ml-3"></i>
 
                 <span>
                     {{ __('Logout') }}

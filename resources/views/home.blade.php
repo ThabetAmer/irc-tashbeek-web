@@ -7,5 +7,4 @@
 
 
 @section('script')
-    <script src="{{ asset('js/dashboard.js') }}" type="text/javascript"></script>
 @endsection

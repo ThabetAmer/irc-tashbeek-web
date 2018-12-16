@@ -10,26 +10,26 @@
           ID 456465456
         </div>
 
-        <ul class="firm-info list-reset text-left pr-8">
-          <li class=" border-b border-grey-light py-5 pl-16  hd:text-md xl:text-md text-black relative">
-            Syrian female • 25 years old
-            <i class="fas fa-store absolute pin-l pin-t text-grey-darkest text-2xl mt-4 ml-1" />
+        <ul class="firm-info list-reset text-left pr-6">
+          <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
+            <i class="min-w-20 fas fa-store text-grey-darker mr-4 text-lg" />
+            <span>Syrian female • 25 years old</span>
           </li>
-          <li class=" border-b border-grey-light py-5 pl-16 hd:text-md xl:text-md text-black relative">
-            Living in Irbid
-            <i class="fas fa-map-marker-alt absolute pin-l pin-t text-grey-darkest text-2xl mt-4 ml-1 " />
+          <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
+            <i class="min-w-20 fas fa-map-marker-alt text-grey-darker mr-4 text-lg " />
+            <span>Living in Irbid</span>
           </li>
-          <li class=" border-b border-grey-light py-5 pl-16 hd:text-md xl:text-md text-black relative">
-            Willing to work in QIZ
-            <i class="fas fa-map-pin absolute pin-l pin-t text-grey-darkest text-2xl mt-4 ml-1 " />
+          <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
+            <i class="min-w-20 fas fa-map-pin text-grey-darker mr-4 text-lg " />
+            <span>Willing to work in QIZ</span>
           </li>
-          <li class=" border-b border-grey-light py-5 pl-16 hd:text-md xl:text-md text-black relative">
-            +123 456 789 234
-            <i class="fas fa-phone absolute pin-l pin-t text-grey-darkest text-2xl mt-4 ml-1 " />
+          <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
+            <i class="min-w-20 fas fa-phone text-grey-darker mr-4 text-lg  " />
+            <span> +123 456 789 234</span>
           </li>
-          <li class=" border-b border-grey-light py-5 pl-16 hd:text-md xl:text-md text-black relative">
-            Baking • Photoshop • Carpentry
-            <i class="fas fa-gem absolute pin-l pin-t text-grey-darkest text-2xl mt-4 ml-1" />
+          <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
+            <i class="min-w-20 fas fa-gem text-grey-darker mr-4 text-lg " />
+            <span>Baking • Photoshop • Carpentry</span>
           </li>
         </ul>
 
@@ -55,26 +55,26 @@
       >
         <ul class="flex list-reset border-0 custom-navs mb-4">
           <li
-            class="flex-inline mr-2"
+            class="flex-inline mr-1"
             @click="changeJobOpeningview('all')"
           >
             <button
               :class="{active: jobOpeningView=='all'}"
               class="nav-link  border-0 py-2 px-4
                                  rounded-full  no-underline
-                                 text-grey-dark text-base font-semibold "
+                                 text-grey-dark text-sm font-semibold "
             >
               All
             </button>
           </li>
           <li
-            class="flex-inline mr-2"
+            class="flex-inline mr-1"
             @click="changeJobOpeningview('screening')"
           >
             <button
               :class="{active: jobOpeningView=='screening'}"
               class="nav-link border-0 no-underline py-2 px-4
-                                                text-grey-dark text-base font-semibold"
+                                                text-grey-dark text-sm font-semibold"
             >
               Screening
             </button>
@@ -82,39 +82,39 @@
 
 
           <li
-            class="flex-inline mr-2"
+            class="flex-inline mr-1"
             @click="changeJobOpeningview('matched')"
           >
             <button
               :class="{active: jobOpeningView=='matched'}"
               class="nav-link border-0 no-underline  py-2 px-4
-                                                text-grey-dark text-base font-semibold"
+                                                text-grey-dark text-sm font-semibold"
             >
               Matched
             </button>
           </li>
 
           <li
-            class="flex-inline mr-2"
+            class="flex-inline mr-1"
             @click="changeJobOpeningview('candidate')"
           >
             <button
               :class="{active: jobOpeningView=='candidate'}"
               class="nav-link border-0 no-underline  py-2 px-4
-                                                text-grey-dark text-base font-semibold"
+                                                text-grey-dark text-sm font-semibold"
             >
               Candidate
             </button>
           </li>
 
           <li
-            class="flex-inline mr-2"
+            class="flex-inline mr-1"
             @click="changeJobOpeningview('notes')"
           >
             <button
               :class="{active: jobOpeningView=='notes'}"
               class="nav-link border-0 no-underline  py-2 px-4
-                        text-grey-dark text-base font-semibold"
+                        text-grey-dark text-sm font-semibold"
             >
               Notes
             </button>
@@ -195,28 +195,28 @@
 
 
 <script>
-  import btn from '../components/button/button'
+  import Btn from '../components/button/button'
   import AnchorLink from '../components/link/link'
   import CustomSelect from '../components/select/select'
-  import modal from '../components/modal/modal'
-  import addNoteModal from '../components/modal/addNoteModal'
+  import Modal from '../components/modal/modal'
+  import AddNoteModal from '../components/modal/addNoteModal'
   import buttonGroup from '../components/buttonGroup/buttonGroup'
-  import checkbox from '../components/checkbox/checkbox'
-  import checkboxGroup from '../components/checkboxGroup/checkbox-group'
+  import Checkbox from '../components/checkbox/checkbox'
+  import CheckboxGroup from '../components/checkboxGroup/checkbox-group'
   import Panel from '../components/Panel/Panel'
   import MetricCard from '../components/MetricCard/MetricCard'
-  import notebox from '../components/notebox/notebox'
-  import screenbox from '../components/screenbox/screenbox'
-  import jobOpening from '../components/jobOpening/jobOpening'
-  import datatable from '../components/datatable/datatable'
+  import Notebox from '../components/notebox/notebox'
+  import Screenbox from '../components/screenbox/screenbox'
+  import JobOpening from '../components/jobOpening/jobOpening'
+  import Datatable from '../components/datatable/datatable'
   // import addNoteModal from '../components/modal/addNoteModal'
 
   export default {
     components: {
-      btn, AnchorLink,
-      CustomSelect, modal, buttonGroup,
-      checkbox, checkboxGroup, Panel, MetricCard,
-      addNoteModal, notebox, jobOpening, datatable, screenbox
+      Btn, AnchorLink,
+      CustomSelect, Modal, buttonGroup,
+      Checkbox, CheckboxGroup, Panel, MetricCard,
+      AddNoteModal, Notebox, JobOpening, Datatable, Screenbox
     },
     props: {},
     data() {

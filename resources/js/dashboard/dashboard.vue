@@ -122,6 +122,7 @@
         <div class="days-container">
           <div
             v-for="day in recentActivity"
+            :key="day.date"
             class=""
           >
             <div class="text-left text-green-dark font-bold text-xs mt-4 mb-2">
@@ -130,6 +131,7 @@
             <ul class="list-reset">
               <li
                 v-for="event in day.events"
+                :key="event.label"
                 class="relative text-left text-black border-grey-lighter border-solid
                             border-b-2 font-semibold text-md  py-5 flex items-center "
               >

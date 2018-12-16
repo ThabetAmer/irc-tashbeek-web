@@ -10,7 +10,8 @@
     export default{
         props: {
             inputClass: {
-                type: [String, Array, Object]
+                type: [String, Array, Object],
+                default:''
             }
         },
         computed: {

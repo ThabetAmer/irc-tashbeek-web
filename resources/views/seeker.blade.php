@@ -1,12 +1,11 @@
-@extends('master.master')
+@extends('layouts.layout')
 @section('content')
     <div class="" id="seekerProfile">
-        <seeker></seeker>
+        <seeker-profile></seeker-profile>
     </div>
 @endsection
 
 
 
 @section('script')
-    <script src="{{ asset('js/seekerProfile.js') }}" type="text/javascript"></script>
 @endsection

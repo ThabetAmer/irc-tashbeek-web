@@ -30,21 +30,24 @@
          */
         props: {
             label: {
-                type: String,
-                default: "Default Checkbox"
+              type: String,
+              default: "Default Checkbox"
             },
             checked: {
-                type: Boolean,
-                default: false
+              type: Boolean,
+              default: false
             },
             checkId: {
-                type: [String, Number]
+              type: [String, Number],
+              default:''
             },
             inputClass: {
-                type: [String, Array, Object]
+              type: [String, Array, Object],
+              default:''
             },
             value: {
-                type: [String, Boolean],
+              type: [String, Boolean],
+              default:''
             }
         },
         computed: {

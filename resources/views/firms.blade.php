@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('layouts.layout')
 @section('content')
     <div class="" id="all-firms">
         <firms></firms>
@@ -11,5 +11,4 @@
 {{--<script src="{{ asset('js/app.js') }}" type="text/javascript"></script>--}}
 
 @section('script')
-    <script src="{{ asset('js/firms.js') }}" type="text/javascript"></script>
 @endsection

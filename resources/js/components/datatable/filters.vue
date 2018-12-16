@@ -5,15 +5,17 @@
     <template v-for="filter in filters">
       <CustomInput
         v-if="filter.type === 'string'"
+        :key="filter.name+'-'+filter.type"
         input-class="height-align
-                                    mb-2 mr-2 p-2 text-grey-darkest font-bold
-                                    w-1/5 bg-grey-lighter rounded"
+        mb-2 mr-2 p-2 text-grey-darkest font-bold
+        w-1/5 bg-grey-lighter rounded"
         :value="textValue"
         :placeholder="filter.name"
       />
 
       <CustomSelect
         v-if="filter.type === 'select'"
+        :key="filter.name+'-'+filter.type"
         v-model="value"
         :label="'name'"
         track-by="name"
@@ -28,15 +30,15 @@
 
 <script>
 
-    import customInput from '../input/input'
-    import customSelect from '../select/select'
+    import CustomInput from '../input/input'
+    import CustomSelect from '../select/select'
 
     export default {
         /**
          * all props have their needed types
          * and are passed using the mixin
          */
-        components: {customInput, customSelect},
+        components: {CustomInput, CustomSelect},
         mixins: [],
         props: {
             filters: {

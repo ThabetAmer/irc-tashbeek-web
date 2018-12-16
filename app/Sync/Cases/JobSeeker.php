@@ -25,11 +25,13 @@ class JobSeeker extends AbstractCase
         return [
             '/JS_Training_01/tn/tn5' => [
                 'name' => 'tn5',
-                'type' => 'text'
+                'type' => 'text',
+                'has_filter' => true,
             ],
             '/JS_Training_01/tn/tnstart' => [
                 'name' => 'tnstart',
-                'type' => 'date'
+                'type' => 'date',
+                'has_filter' => true,
             ],
             '/JS_Training_01/tn/tn6_other' => [
                 'name' => 'tn6_other',

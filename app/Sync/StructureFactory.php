@@ -80,7 +80,7 @@ class StructureFactory
 
         $this->schema->generate((new $model)->getTable(), $case->questions());
 
-        $this->propertiesMetaData->insert($questionObjects, $case->caseType());
+        $this->propertiesMetaData->insert($questionObjects, $case->caseType(), $case->questions());
     }
 
     /**

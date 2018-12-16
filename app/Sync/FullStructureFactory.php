@@ -40,13 +40,14 @@ class FullStructureFactory extends StructureFactory
 
     protected function getCaseQuestion($question, $case)
     {
-        if (isset($case->questions()[$question['hashtagValue']])) {
-            $question['case_question'] = $case->questions()[$question['hashtagValue']];
+
+        $commcareFieldName = base_commcare_field_name($question['hashtagValue']);
+
+        if (isset($case->questions()[$commcareFieldName])) {
+            $question['case_question'] = $case->questions()[$commcareFieldName];
         } else {
-            $columnName = explode('/', $question['hashtagValue']);
-            $columnName = end($columnName);
             $question['case_question'] = [
-                'name' => $columnName,
+                'name' => $commcareFieldName,
                 // (string) will exceed the row size limit on large columns
                 'type' => 'text'
             ];

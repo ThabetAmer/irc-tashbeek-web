@@ -26,9 +26,10 @@ if (process.env.NODE_ENV === 'development') {
     module: {
       rules: [
         {
-          test: /\\.(js|vue)$/,
-          exclude: /node_modules/,
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
           loader: 'eslint-loader',
+          exclude: /node_modules/
         },
       ],
     },

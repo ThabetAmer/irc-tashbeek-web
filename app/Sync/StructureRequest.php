@@ -1,5 +1,7 @@
 <?php namespace App\Sync;
 
+use GuzzleHttp\Client;
+
 class StructureRequest
 {
     /**
@@ -26,11 +28,14 @@ class StructureRequest
      */
     public function getModules()
     {
+//        $this->client= new Client(['verify' => false]);
+
         $response = $this->client->get($this->url, [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Authorization' => "ApiKEY " . config('irc.commcare_api_key')
-            ]
+            ],
+            ['verify' => false]
         ]);
 
         $responseContents = $response->getBody()->getContents();

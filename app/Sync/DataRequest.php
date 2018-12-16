@@ -1,5 +1,7 @@
 <?php namespace App\Sync;
 
+use GuzzleHttp\Client;
+
 class DataRequest
 {
     /**
@@ -39,6 +41,7 @@ class DataRequest
 
         $url = $this->url . '?' . $this->buildParamsHttpQuery($params);
 
+//        $this->client= new Client(['verify' => false]);
 
         $response = $this->client->get($url, [
             'headers' => [

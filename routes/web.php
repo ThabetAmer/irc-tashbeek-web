@@ -11,11 +11,36 @@
 |
 */
 
+
 Route::get('/', function () {
-    return redirect()->route('login');
+//    return redirect()->route('login');
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+//    return redirect()->route('login');
+    return view('dashboard');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('index/{case_type}', 'ResponseApiController@index');
+
+Route::get('/dashboard', function (){
+    return view('dashboard');
+});
+
+
+
+Route::get('/profile', function () {
+    return view('firmProfile');
+});
+
+Route::get('/seeker', function () {
+    return view('seeker');
+});
+
+Route::get('/firms', function () {
+    return view('firms');
+});

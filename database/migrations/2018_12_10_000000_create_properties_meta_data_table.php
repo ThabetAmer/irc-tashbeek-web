@@ -20,7 +20,7 @@ class CreatePropertiesMetaDataTable extends Migration
 
             $table->string('case_type', 20)->index();
 
-            $table->string('commcare_id', 255)->index();
+            $table->string('commcare_id')->index();
 
             $table->json('attributes')->nullable();
 

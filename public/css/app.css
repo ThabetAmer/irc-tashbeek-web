@@ -35755,11 +35755,6 @@ body {
   padding: 10px;
 }
 
-#sidebar ul li a {
-  font-size: 1.1em;
-  display: block;
-}
-
 #sidebar ul li a:hover {
   text-decoration: none;
 }
@@ -36006,7 +36001,7 @@ a[data-toggle="collapse"] {
 
 #calendarTab .selected-day {
   position: relative;
-  min-height: 250px;
+  min-height: 200px;
 }
 
 #calendarTab .selected-day .selected-day-content {

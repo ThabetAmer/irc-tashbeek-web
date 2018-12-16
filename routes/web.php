@@ -21,7 +21,7 @@ Route::group(['middleware' => ['web','auth']],function(){
 //
 Route::get('/dashboard', function () {
 //    return redirect()->route('login');
-    return view('dashboard');
+    return view('home');
 });
 
 
@@ -29,7 +29,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('index/{case_type}', 'ResponseApiController@index');
 
 Route::get('/dashboard', function (){
-    return view('dashboard');
+    return view('home');
 });
 
 

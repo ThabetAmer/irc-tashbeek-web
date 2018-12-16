@@ -108,7 +108,7 @@ body {
 #sidebar ul li a {
   //padding: 10px;
   //font-size: 1.1em;
-  display: block;
+  //display: block;
 }
 
 #sidebar ul li a:hover {
@@ -380,7 +380,7 @@ a[data-toggle="collapse"] {
 #calendarTab {
   .selected-day {
     position: relative;
-    min-height: 250px;
+    min-height: 200px;
 
     .selected-day-content {
       position: absolute;

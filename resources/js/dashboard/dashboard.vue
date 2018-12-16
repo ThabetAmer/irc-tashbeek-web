@@ -113,7 +113,7 @@
             >
                 <div class="days-container">
                     <div v-for="day in recentActivity" class="">
-                        <div class="text-left text-green-dark font-bold text-xs mt-4 mb-2">
+                        <div class="text-left text-green-dark font-bold text-xs mt-6 -mb-2">
                             {{day.date}}
                         </div>
                         <ul class="list-reset">
@@ -267,7 +267,7 @@
                     eventLimit: true,
                     fixedWeekCount: false,
                     aspectRatio: 1.3,
-                    contentHeight: 240,
+                    contentHeight: 250,
                     defaultView: 'month',
                     header: {
                         left: 'title',

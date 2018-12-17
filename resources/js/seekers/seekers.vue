@@ -15,9 +15,6 @@
   import Datatable from '../components/datatable/datatable'
   import Panel from '../components/Panel/Panel'
 
-
-  import firmsAPI from '../API/firms'
-
   export default {
     components: {Panel, Datatable},
     filters: {},

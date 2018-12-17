@@ -44,14 +44,15 @@
       }
     },
     mounted() {
+      const queryStringObject = queryStringToParams();
       this.loadData({
-        filters: queryStringToParams('filters'),
-        page: queryStringToParams('page')
+        page: queryStringObject.page,
+        filters: queryStringObject.filters,
       });
     },
     methods: {
       loadData({filters = {}, page = null} = {}) {
-        console.log(page)
+        filters = filters && typeof filters === "object" ? filters : {}
         const params = {
           filters: {
             ...filters,
@@ -59,7 +60,6 @@
           },
           page: !isNaN(parseInt(page, 10)) ? page : this.pagination.currentPage
         }
-
         return getListing(this.type, params)
           .then(({data}) => {
 
@@ -102,7 +102,7 @@
               encodeURIComponent(k) + "=" + encodeURIComponent(v));
           }
         }
-        return str.join("&");
+        return str.filter(string => string && String(string) !== "" ).join("&");
       },
     }
   }

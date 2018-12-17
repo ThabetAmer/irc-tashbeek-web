@@ -7,12 +7,12 @@ export default {
   },
   methods: {
     userFiltersToParams() {
-      return this.userFilters.reduce((acc,filter) => {
-        if(filter.filterValue || filter.filterValue === ""){
+      return this.userFilters.reduce((acc, filter) => {
+        if (filter.filterValue || filter.filterValue === "") {
           acc[filter.name] = filter.filterValue
         }
         return acc
-      },{})
+      }, {})
     },
     filterSelect({name}) {
       const filterIndex = this.filters.findIndex(filter => filter.name === name)
@@ -43,14 +43,14 @@ export default {
       })
 
       this.filterTimeout = setTimeout(() => {
-        if(loadData && typeof loadData === 'function'){
-          loadData()
+        if (loadData && typeof loadData === 'function') {
+          loadData({page: 1})
         }
       }, 600)
     },
-    initialUserFilters(filtersList, filtersObject){
-      if(Object.keys(filtersObject).length === 0){
-        return filtersList.slice(0,3)
+    initialUserFilters(filtersList, filtersObject) {
+      if (Object.keys(filtersObject).length === 0) {
+        return filtersList.slice(0, 3)
       }
       const userFilters = filtersList.filter(filter => {
         const filterValue = filtersObject[filter.name];
@@ -62,10 +62,10 @@ export default {
         }
       })
 
-      if(userFilters.length > 0){
+      if (userFilters.length > 0) {
         return userFilters
       }
-      return filtersList.slice(0,3)
+      return filtersList.slice(0, 3)
     },
   },
 }

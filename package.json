@@ -30,6 +30,7 @@
     },
     "dependencies": {
         "moment": "^2.23.0",
+        "qs": "^6.6.0",
         "underscore": "^1.9.1",
         "vue-full-calendar": "^2.7.0",
         "vue-multiselect": "^2.1.3"

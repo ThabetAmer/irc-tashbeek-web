@@ -8,6 +8,7 @@
         mb-2 mr-2 p-2 text-grey-darkest font-bold
         w-1/7 bg-grey-lighter rounded"
         :placeholder="filter.label"
+        :value="filter.filterValue"
         @input="handleTextInput(filter.name,$event)"
       />
       <CustomSelect
@@ -15,6 +16,7 @@
         :key="filter.name+'-'+filter.type"
         label="label"
         track-by="value"
+        :value="getOptionValue(filter)"
         :options="filter.options"
         :placeholder="filter.label"
         custom-class="mb-2 note-select mr-2 w-1/7"
@@ -64,6 +66,21 @@
         this.$emit('filterSelect', {
           name: select.name
         })
+      },
+      getOptionValue(filter){
+        if(!filter.filterValue){
+          return undefined
+        }
+
+        const optionIndex = filter.options.findIndex(option => option.value === filter.filterValue)
+
+        if(optionIndex === -1){
+          return undefined
+        }
+
+        return {
+          ...filter.options[optionIndex]
+        }
       }
     }
   }

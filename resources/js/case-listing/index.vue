@@ -7,7 +7,7 @@
         :pagination="pagination"
         :filters="filters"
         :user-filters="userFilters"
-        @filter="filterChange"
+        @filter="filterChange($event, loadData)"
         @filterSelect="filterSelect"
       />
     </Panel>
@@ -18,9 +18,12 @@
   import Datatable from '../components/datatable/datatable'
   import Panel from '../components/Panel/Panel'
   import {get as getListing} from '../API/caseListing'
+  import FiltersProvider from "../mixins/FiltersProvider";
+  import {queryStringToParams} from '../helpers/query-string'
 
   export default {
     components: {Panel, Datatable},
+    mixins: [FiltersProvider],
     props: {
       type: {
         type: String,
@@ -31,8 +34,6 @@
       return {
         rows: [],
         headers: [],
-        filters: [],
-        userFilters: [],
         pagination: {
           total: 0,
           lastPage: 1,
@@ -41,48 +42,30 @@
         },
       }
     },
-    computed: {},
-    watch: {},
     mounted() {
-      this.loadData();
+      this.loadData({
+        filters: queryStringToParams('filters'),
+      });
     },
     methods: {
-      filterChange(event) {
-        if(this.filterTimeout){
-          clearTimeout(this.filterTimeout)
+      loadData({filters = {},} = {}) {
+        const params = {
+          filters: {
+            ...filters,
+            ...this.userFiltersToParams()
+          }
         }
-        this.filterTimeout = setTimeout(() => {
-          this.filters = this.filters.map(filter => {
-            if (filter.name === event.name) {
-              return {
-                ...filter,
-                filterValue: event.value
-              }
-            }
-            return filter
-          })
-        },600)
-      },
-      filterSelect({name}) {
-        const filterIndex = this.filters.findIndex(filter => filter.name === name)
-        const userFilterIndex = this.userFilters.findIndex(filter => filter.name === name)
 
-        if (userFilterIndex === -1) {
-          this.userFilters.push({
-            ...this.filters[filterIndex]
-          })
-        } else {
-          this.userFilters.splice(userFilterIndex, 1)
-        }
-      },
-      loadData(){
-        return getListing(this.type)
+        return getListing(this.type, params)
           .then(({data}) => {
+
+            this.changeUrlUsingParams(params);
+
             this.rows = data.data;
             this.headers = data.headers;
             this.filters = data.filters;
             if (this.userFilters.length === 0) {
-              this.userFilters = data.filters.slice(0, 3);
+              this.userFilters = this.initialUserFilters(data.filters.slice(0, 3), filters);
             }
             this.pagination = {
               total: data.meta.total,
@@ -93,7 +76,30 @@
           }).catch(error => {
             console.log('Error : ', error);
           });
-      }
+      },
+      changeUrlUsingParams(params) {
+
+        let queryString = this.makeQueryString(params);
+
+        queryString = queryString !== '' ? '?' + queryString : '';
+
+        const url = window.location.protocol + "//" + window.location.host + window.location.pathname + queryString;
+
+        history.pushState({}, document.title, url);
+      },
+      makeQueryString(obj, prefix) {
+        const str = [];
+        for (let p in obj) {
+          if (obj.hasOwnProperty(p)) {
+            let k = prefix ? prefix + "[" + p + "]" : p;
+            let v = obj[p];
+            str.push((v !== null && typeof v === "object") ?
+              this.makeQueryString(v, k) :
+              encodeURIComponent(k) + "=" + encodeURIComponent(v));
+          }
+        }
+        return str.join("&");
+      },
     }
   }
 </script>

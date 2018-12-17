@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
-    <div class="" id="all-firms">
-        <firms></firms>
+    <div class="" id="all-seekers">
+        <seekers></seekers>
     </div>
 @endsection
 

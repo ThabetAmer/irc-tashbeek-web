@@ -14,9 +14,9 @@
             @click="$emit('close')"
           >
             <i
-              class="fas fa-times
+              class="icon-X_x40_2xpng_2
                         absolute text-grey-dark
-                        text-3xl mt-4 ml-4 pin-t pin-l"
+                        text-xl mt-6 ml-4 pin-t pin-l"
             />
           </a>
           <div

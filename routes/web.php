@@ -34,14 +34,18 @@ Route::get('/dashboard', function (){
 
 
 
-Route::get('/profile', function () {
+Route::get('/firm', function () {
     return view('firmProfile');
 });
 
 Route::get('/seeker', function () {
-    return view('seeker');
+    return view('seekerProfile');
 });
 
-Route::get('/firms', function () {
-    return view('firms');
+Route::get('/allSeekers', function () {
+    return view('allSeekers');
+});
+
+Route::get('/allFirms', function () {
+    return view('allFirms');
 });

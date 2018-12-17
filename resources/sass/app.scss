@@ -20,7 +20,9 @@
 .content {
   width: 100%;
 }
-
+.multiselect__input{
+  max-width: 100% !important;
+}
 .multiselect__element {
   color: black !important;
 

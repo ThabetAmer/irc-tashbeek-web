@@ -12,23 +12,23 @@
 
         <ul class="firm-info list-reset text-left pr-6">
           <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
-            <i class="min-w-20 fas fa-store text-grey-darker mr-4 text-lg" />
+            <i class="min-w-20 icon-User_Female_x40_2xpng_2 text-grey-darker mr-4 text-lg" />
             <span>Syrian female • 25 years old</span>
           </li>
           <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
-            <i class="min-w-20 fas fa-map-marker-alt text-grey-darker mr-4 text-lg " />
+            <i class="min-w-20 icon-Location_Pin_1_1 text-grey-darker mr-4 text-lg " />
             <span>Living in Irbid</span>
           </li>
           <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
-            <i class="min-w-20 fas fa-map-pin text-grey-darker mr-4 text-lg " />
+            <i class="min-w-20 icon-Location_Pin_3_1 text-grey-darker mr-4 text-lg " />
             <span>Willing to work in QIZ</span>
           </li>
           <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
-            <i class="min-w-20 fas fa-phone text-grey-darker mr-4 text-lg  " />
+            <i class="min-w-20 icon-Phone_1_x40_2xpng_2 text-grey-darker mr-4 text-lg  " />
             <span> +123 456 789 234</span>
           </li>
           <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
-            <i class="min-w-20 fas fa-gem text-grey-darker mr-4 text-lg " />
+            <i class="min-w-20 icon-Diamond_x40_2xpng_2 text-grey-darker mr-4 text-lg " />
             <span>Baking • Photoshop • Carpentry</span>
           </li>
         </ul>

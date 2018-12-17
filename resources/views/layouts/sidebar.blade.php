@@ -1,6 +1,6 @@
 <nav id="sidebar" class="px-4 py-4 relative">
     <button type="button" id="sidebarCollapse" class="mt-2 mr-3 text-white text-2xl  absolute pin-t pin-r mt-4 mr-4">
-        <i class="fas fa-align-left"></i>
+        <i class="icon-List_1_x40_2xpng_2"></i>
     </button>
 
     <div class="sidebar-header mb-16 text-center mt-10">
@@ -17,7 +17,7 @@
 
         <li class="uppercase active text-white ">
             <a href="/dashboard" class="text-white flex items-center  text-sm remove-text-minified py-5 relative mb-3">
-                <i class="fas  fa-chart-line min-w-30 text-2xl mr-10 ml-3"></i>
+                <i class="icon-Presentation_3_1 min-w-30 text-2xl mr-10 ml-3"></i>
                 <span>
                     Dashboard
                 </span>
@@ -28,7 +28,7 @@
         <li class="uppercase  text-white ">
             <a href="/job-seekers"
                class="text-white flex items-center  text-sm remove-text-minified py-5 relative mb-3">
-                <i class="fas fa-users min-w-30  text-2xl mr-10 ml-3"></i>
+                <i class="icon-Users_2_x40_2xpng_2 min-w-30  text-2xl mr-10 ml-3"></i>
 
                 <span>
                     All job seekers
@@ -39,7 +39,7 @@
 
         <li class="uppercase  text-white">
             <a href="" class="text-white flex items-center  text-sm remove-text-minified py-5 relative mb-3">
-                <i class="fas fa-briefcase min-w-30  pin-l pin-t text-xl mr-10 ml-3"></i>
+                <i class="icon-Briefcase_x40_2xpng_2 min-w-30  pin-l pin-t text-xl mr-10 ml-3"></i>
                 <span>
                     Jobs
                 </span>
@@ -49,7 +49,7 @@
 
         <li class="uppercase  text-white">
             <a href="" class="text-white text-sm flex items-center remove-text-minified   py-5 relative mb-3">
-                <i class="fas fa-store min-w-30 pin-l pin-t text-xl mr-10 ml-3"></i>
+                <i class="icon-Storefront_x40_2xpng_2 min-w-30 pin-l pin-t text-xl mr-10 ml-3"></i>
 
 
                 <span>
@@ -64,7 +64,7 @@
             <a class="text-white text-sm flex items-center remove-text-minified py-5 relative mb-3"
                href="{{ route('logout') }}"
                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                <i class="fas min-w-30 fa-lock  pin-l pin-t text-2xl mr-10 ml-3"></i>
+                <i class=" min-w-30 icon-Lock_x40_2xpng_2  pin-l pin-t text-2xl mr-10 ml-3"></i>
 
                 <span>
                     {{ __('Logout') }}

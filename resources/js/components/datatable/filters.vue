@@ -8,7 +8,7 @@
         :key="filter.name+'-'+filter.type"
         input-class="height-align
         mb-2 mr-2 p-2 text-grey-darkest font-bold
-        w-1/5 bg-grey-lighter rounded"
+        w-1/7 bg-grey-lighter rounded"
         :value="textValue"
         :placeholder="filter.name"
       />
@@ -20,7 +20,7 @@
         :label="'name'"
         track-by="name"
         :options="filter.options"
-        custom-class="mb-2 note-select mr-2 w-1/5"
+        custom-class="mb-2 note-select mr-2 w-1/7"
         @select="handleSelect"
       />
     </template>

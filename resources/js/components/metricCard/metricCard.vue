@@ -20,7 +20,7 @@
       <div
         class="text text-black
                         text-left font-bold
-                        text-md mt-2 uppercase"
+                        text-sm mt-2 uppercase"
       >
         {{ label }}
       </div>

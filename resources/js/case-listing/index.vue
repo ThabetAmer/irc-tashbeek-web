@@ -4,8 +4,8 @@
       <Datatable
         :header="headers"
         :rows="rows"
-        :has-pagination="hasPagination"
-        :has-filters="hasFilter"
+        :pagination="pagination"
+        :filters="filters"
       />
     </Panel>
   </div>
@@ -16,6 +16,7 @@
   import Datatable from '../components/datatable/datatable'
   import Panel from '../components/Panel/Panel'
   import {get as getListing} from '../API/caseListing'
+
   export default {
     components: {Panel, Datatable},
     props: {
@@ -26,10 +27,15 @@
     },
     data() {
       return {
-        hasFilter: true,
-        hasPagination: true,
         rows: [],
-        headers: []
+        headers: [],
+        filters: [],
+        pagination: {
+          total: 0,
+          lastPage: 1,
+          perPage: 15,
+          currentPage: 1
+        },
       }
     },
     computed: {},
@@ -39,7 +45,13 @@
         .then(resp => {
           this.rows = resp.data;
           this.headers = resp.headers;
-          console.log(resp)
+          this.filters = resp.filters;
+          this.pagination = {
+            total: resp.meta.total,
+            lastPage: resp.meta.last_page,
+            perPage: resp.meta.per_page,
+            currentPage: resp.meta.current_page
+          };
         }).catch(error => {
         console.log('Error : ', error);
       });

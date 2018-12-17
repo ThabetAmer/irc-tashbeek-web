@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <Filters v-if="hasFilters" />
+    <Filters v-if="filters.length > 0" />
     <table :class="[`w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']">
       <thead>
         <tr class="font-bold text-green-dark">
@@ -37,11 +37,11 @@
       </tbody>
     </table>
     <Pagination
-      v-if="hasPagination"
-      :total-pages="4"
-      :total="4"
-      :per-page="10"
-      :current-page="1"
+      v-if="pagination.lastPage > 1"
+      :total-pages="pagination.lastPage"
+      :total="pagination.total"
+      :per-page="pagination.perPage"
+      :current-page="pagination.currentPage"
     />
   </div>
 </template>
@@ -67,13 +67,18 @@
         type: [Boolean, String],
         default: false
       },
-      hasPagination: {
-        type: [Boolean, String],
-        default: true
+      pagination: {
+        type: Object,
+        default: () => ({
+          lastPage:1,
+          perPage:15,
+          total:0,
+          currentPage:1
+        })
       },
-      hasFilters: {
-        type: [Boolean, String],
-        default: true
+      filters: {
+        type: Array,
+        default: () => ([])
       },
       striped: {
         type: [Boolean, String],

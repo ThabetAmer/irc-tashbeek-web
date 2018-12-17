@@ -1,6 +1,9 @@
 <template>
   <div class="">
-    <Filters v-if="filters.length > 0" />
+    <Filters
+      v-if="filters.length > 0"
+      :filters="filters"
+    />
     <table :class="[`w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']">
       <thead>
         <tr class="font-bold text-green-dark">
@@ -70,10 +73,10 @@
       pagination: {
         type: Object,
         default: () => ({
-          lastPage:1,
-          perPage:15,
-          total:0,
-          currentPage:1
+          lastPage: 1,
+          perPage: 15,
+          total: 0,
+          currentPage: 1
         })
       },
       filters: {

@@ -52,7 +52,6 @@
           clearTimeout(this.filterTimeout)
         }
         this.filterTimeout = setTimeout(() => {
-          console.log("set filter ...")
           this.filters = this.filters.map(filter => {
             if (filter.name === event.name) {
               return {
@@ -78,18 +77,18 @@
       },
       loadData(){
         return getListing(this.type)
-          .then(resp => {
-            this.rows = resp.data;
-            this.headers = resp.headers;
-            this.filters = resp.filters;
+          .then(({data}) => {
+            this.rows = data.data;
+            this.headers = data.headers;
+            this.filters = data.filters;
             if (this.userFilters.length === 0) {
-              this.userFilters = resp.filters.slice(0, 3);
+              this.userFilters = data.filters.slice(0, 3);
             }
             this.pagination = {
-              total: resp.meta.total,
-              lastPage: resp.meta.last_page,
-              perPage: resp.meta.per_page,
-              currentPage: resp.meta.current_page
+              total: data.meta.total,
+              lastPage: data.meta.last_page,
+              perPage: data.meta.per_page,
+              currentPage: data.meta.current_page
             };
           }).catch(error => {
             console.log('Error : ', error);

@@ -22,7 +22,10 @@
     :placeholder="placeholder"
     @input="handleInput"
     @select="handleSelect"
-  />
+  >
+    <slot name="customTemplate">
+    </slot>
+  </Multiselect>
 </template>
 
 <script>

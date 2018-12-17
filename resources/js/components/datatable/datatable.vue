@@ -3,7 +3,9 @@
     <Filters
       v-if="filters.length > 0"
       :filters="filters"
+      :user-filters="userFilters"
       @change="$emit('filter',$event)"
+      @filterSelect="$emit('filterSelect',$event)"
     />
     <table :class="[`w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']">
       <thead>
@@ -56,6 +58,7 @@
   import Filters from './filters';
   import Pagination from './pagination';
   import _ from 'underscore';
+  import HasFilters from "../../mixins/HasFilters";
 
   Vue.use(_);
   export default {
@@ -65,10 +68,10 @@
      */
     components: {Filters, Pagination},
     filters: {},
-    mixins: [],
+    mixins: [HasFilters],
     props: {
       fixedHeader: {
-        type: [Boolean, String],
+        type: Boolean,
         default: false
       },
       pagination: {
@@ -80,12 +83,8 @@
           currentPage: 1
         })
       },
-      filters: {
-        type: Array,
-        default: () => ([])
-      },
       striped: {
-        type: [Boolean, String],
+        type: Boolean,
         default: true
       },
       header: {
@@ -93,33 +92,8 @@
         default: () => []
       },
       rows: {
-        type: [String, Array],
-        default: () => [
-          {
-            id: 1,
-            name: 'Boutros Baqaeen',
-            test: 'Monthy follow-up',
-            old: 'Old'
-          },
-          {
-            id: 1,
-            name: 'Boutros Baqaeen',
-            test: 'Monthy follow-up',
-            old: 'Old'
-          },
-          {
-            id: 1,
-            name: 'Boutros Baqaeen',
-            test: 'Monthy follow-up',
-            old: 'Old'
-          },
-          {
-            id: 1,
-            name: 'Boutros Baqaeen',
-            test: 'Monthy follow-up',
-            old: 'Old'
-          }
-        ]
+        type: Array,
+        default: () => []
       }
     },
     methods: {

@@ -380,3 +380,16 @@ table.scrollable-fixed-header {
 .wrapper{
   min-height: 100vh;
 }
+
+.filter-selector{
+  .multiselect__tags,.multiselect__select,.multiselect__input{
+    background: transparent !important;
+  }
+  .multiselect__tag{
+    display: none;
+  }
+
+  .multiselect__input{
+    width: 95% !important;
+  }
+}

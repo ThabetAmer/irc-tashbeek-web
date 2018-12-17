@@ -128,7 +128,7 @@
             :key="day.date"
             class=""
           >
-            <div class="text-left text-green-dark font-bold text-xs mt-4 mb-2">
+            <div class="text-left text-green-dark font-bold text-xs mt-8 -mb-1">
               {{ day.date }}
             </div>
             <ul class="list-reset">
@@ -164,7 +164,6 @@
   import moment from 'moment';
   import {FullCalendar} from 'vue-full-calendar'
 
-  console.log(' Panel ', Panel);
   export default {
     components: {
       icon, Panel, MetricCard, Datatable, FullCalendar

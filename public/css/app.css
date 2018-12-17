@@ -36363,3 +36363,17 @@ table.scrollable-fixed-header thead th {
 .wrapper {
   min-height: 100vh;
 }
+
+.filter-selector .multiselect__tags,
+.filter-selector .multiselect__select,
+.filter-selector .multiselect__input {
+  background: transparent !important;
+}
+
+.filter-selector .multiselect__tag {
+  display: none;
+}
+
+.filter-selector .multiselect__input {
+  width: 95% !important;
+}

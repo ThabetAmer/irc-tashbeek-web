@@ -6,12 +6,13 @@
         :rows="rows"
         :pagination="pagination"
         :filters="filters"
+        :user-filters="userFilters"
         @filter="filterChange"
+        @filterSelect="filterSelect"
       />
     </Panel>
   </div>
 </template>
-
 
 <script>
   import Datatable from '../components/datatable/datatable'
@@ -31,6 +32,7 @@
         rows: [],
         headers: [],
         filters: [],
+        userFilters:[],
         pagination: {
           total: 0,
           lastPage: 1,
@@ -67,6 +69,13 @@
             }
           }
           return filter
+        })
+      },
+      filterSelect({name}){
+        const filterIndex = this.filters.findIndex(filter => filter.name === name)
+
+        this.userFilters.push({
+          ...this.filters[filterIndex]
         })
       }
     }

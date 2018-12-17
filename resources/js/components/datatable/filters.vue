@@ -1,31 +1,35 @@
 <template>
-  <!--
-    -->
   <div class="flex flex-wrap mb-8">
-    <template v-for="filter in filters">
+    <template v-for="filter in userFilters">
       <CustomInput
         v-if="filter.type === 'text'"
         :key="filter.name+'-'+filter.type"
         input-class="height-align
         mb-2 mr-2 p-2 text-grey-darkest font-bold
         w-1/7 bg-grey-lighter rounded"
-        :value="textValue"
         :placeholder="filter.label"
         @input="handleTextInput(filter.name,$event)"
       />
-
       <CustomSelect
         v-if="filter.type === 'select'"
         :key="filter.name+'-'+filter.type"
-        v-model="value"
         :label="'label'"
         track-by="value"
         :options="filter.options"
         :placeholder="filter.label"
         custom-class="mb-2 note-select mr-2 w-1/7"
-        @select="handleSelect(filter.name,$event)"
+        @select="handleSelect(filter.name, $event)"
       />
     </template>
+    <CustomSelect
+      :label="'name'"
+      track-by="name"
+      :options="filters"
+      placeholder="More"
+      :multiple="true"
+      custom-class="mb-2 note-select mr-2 w-1/7 filter-selector"
+      @select="handleFilterSelect"
+    />
   </div>
 </template>
 
@@ -34,6 +38,7 @@
 
   import CustomInput from '../input/input'
   import CustomSelect from '../select/select'
+  import HasFilters from "../../mixins/HasFilters";
 
   export default {
     /**
@@ -41,20 +46,7 @@
      * and are passed using the mixin
      */
     components: {CustomInput, CustomSelect},
-    mixins: [],
-    props: {
-      filters: {
-        type: Array,
-        default: () => []
-      }
-    },
-    data() {
-      return {
-        textValue: '',
-        value: ''
-      }
-
-    },
+    mixins: [HasFilters],
     methods: {
       handleSelect(name, selected) {
         this.$emit('change', {
@@ -66,6 +58,11 @@
         this.$emit('change', {
           name,
           value
+        })
+      },
+      handleFilterSelect(select) {
+        this.$emit('filterSelect', {
+          name: select.name
         })
       }
     }

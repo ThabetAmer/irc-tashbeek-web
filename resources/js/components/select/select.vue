@@ -26,61 +26,63 @@
 </template>
 
 <script>
-    import Multiselect from 'vue-multiselect'
-    import classNames from 'classnames'
+  import Multiselect from 'vue-multiselect'
+  import classNames from 'classnames'
 
-    export default {
-        components: {Multiselect},
-        /**
-         * all props have their needed types
-         * and they also have their default
-         * non-effecting values/default values
-         */
-        props: {
-            label: {
-                type: String,
-                default:''
-            },
-            value: {
-                type: [String, Number, Object, Array],
-                default:null
-            },
-            options: {
-                type: Array,
-                default: function () { return [] }
-            },
-            multiple: {
-                type: Boolean,
-                default: false
-            },
-            placeholder: {
-                type: String,
-                default: 'select'
-            },
-            trackBy: {
-                type: String,
-                default: "name"
-            },
-            customClass:{
-                type:String,
-                default:''
-            }
-        },
-        computed:{
-          selectStyle(){
-              return classNames([
-                  'multiselect-field',this.customClass]);
-          }
-        },
-        methods: {
-            handleInput(value, id) {
-                this.$emit('input', value);
-            },
-            handleSelect(selectedOption) {
-                this.$emit('select', selectedOption);
-            }
+  export default {
+    components: {Multiselect},
+    /**
+     * all props have their needed types
+     * and they also have their default
+     * non-effecting values/default values
+     */
+    props: {
+      label: {
+        type: String,
+        default: ''
+      },
+      value: {
+        type: [String, Number, Object, Array],
+        default: null
+      },
+      options: {
+        type: Array,
+        default: function () {
+          return []
         }
+      },
+      multiple: {
+        type: [Boolean, String],
+        default: false
+      },
+      placeholder: {
+        type: String,
+        default: 'select'
+      },
+      trackBy: {
+        type: String,
+        default: "name"
+      },
+      customClass: {
+        type: String,
+        default: ''
+      }
+    },
+    computed: {
+      selectStyle() {
+        return classNames([
+          'multiselect-field', this.customClass]);
+      }
+    },
+    methods: {
+      handleInput(value, id) {
+        this.$emit('input', value);
+      },
+      handleSelect(selectedOption) {
+        this.$emit('select', selectedOption);
+      }
     }
+  }
 </script>
 
 <style lang="scss">

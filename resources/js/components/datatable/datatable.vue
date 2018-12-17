@@ -1,6 +1,12 @@
 <template>
   <div class="">
-    <Filters v-if="hasFilters" />
+    <Filters
+      v-if="filters.length > 0"
+      :filters="filters"
+      :user-filters="userFilters"
+      @change="$emit('filter',$event)"
+      @filterSelect="$emit('filterSelect',$event)"
+    />
     <table :class="[`w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']">
       <thead>
         <tr class="font-bold text-green-dark">
@@ -37,11 +43,11 @@
       </tbody>
     </table>
     <Pagination
-      v-if="hasPagination"
-      :total-pages="4"
-      :total="4"
-      :per-page="10"
-      :current-page="1"
+      v-if="pagination.lastPage > 1"
+      :total-pages="pagination.lastPage"
+      :total="pagination.total"
+      :per-page="pagination.perPage"
+      :current-page="pagination.currentPage"
     />
   </div>
 </template>
@@ -52,6 +58,7 @@
   import Filters from './filters';
   import Pagination from './pagination';
   import _ from 'underscore';
+  import HasFilters from "../../mixins/HasFilters";
 
   Vue.use(_);
   export default {
@@ -61,81 +68,32 @@
      */
     components: {Filters, Pagination},
     filters: {},
-    mixins: [],
+    mixins: [HasFilters],
     props: {
       fixedHeader: {
-        type: [Boolean, String],
+        type: Boolean,
         default: false
       },
-      hasPagination: {
-        type: [Boolean, String],
-        default: true
-      },
-      hasFilters: {
-        type: [Boolean, String],
-        default: true
+      pagination: {
+        type: Object,
+        default: () => ({
+          lastPage: 1,
+          perPage: 15,
+          total: 0,
+          currentPage: 1
+        })
       },
       striped: {
-        type: [Boolean, String],
+        type: Boolean,
         default: true
       },
       header: {
-        type: [String, Array],
-        default: () => [
-          {
-            name: 'test',
-            translations: {
-              en: 'test'
-            }
-          },
-          {
-            name: 'old',
-            translations: {
-              en: 'Old'
-            }
-          },
-          {
-            name: 'id',
-            translations: {
-              en: 'ID'
-            }
-          },
-          {
-            name: 'name',
-            translations: {
-              en: 'Name'
-            }
-          }
-        ]
+        type: Array,
+        default: () => []
       },
       rows: {
-        type: [String, Array],
-        default: () => [
-          {
-            id: 1,
-            name: 'Boutros Baqaeen',
-            test: 'Monthy follow-up',
-            old: 'Old'
-          },
-          {
-            id: 1,
-            name: 'Boutros Baqaeen',
-            test: 'Monthy follow-up',
-            old: 'Old'
-          },
-          {
-            id: 1,
-            name: 'Boutros Baqaeen',
-            test: 'Monthy follow-up',
-            old: 'Old'
-          },
-          {
-            id: 1,
-            name: 'Boutros Baqaeen',
-            test: 'Monthy follow-up',
-            old: 'Old'
-          }
-        ]
+        type: Array,
+        default: () => []
       }
     },
     methods: {

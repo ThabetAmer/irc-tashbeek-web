@@ -164,7 +164,6 @@
   import moment from 'moment';
   import {FullCalendar} from 'vue-full-calendar'
 
-  console.log(' Panel ', Panel);
   export default {
     components: {
       icon, Panel, MetricCard, Datatable, FullCalendar

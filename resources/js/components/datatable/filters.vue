@@ -1,39 +1,34 @@
 <template>
-  <!--
-    -->
   <div class="flex flex-wrap mb-8">
-    <template v-for="filter in getSelectedFilters">
+    <template v-for="filter in userFilters">
       <CustomInput
-        v-if="filter.type === 'string'"
+        v-if="filter.type === 'text'"
         :key="filter.name+'-'+filter.type"
         input-class="height-align
         mb-2 mr-2 p-2 text-grey-darkest font-bold
         w-1/7 bg-grey-lighter rounded"
-        :value="textValue"
-        :placeholder="filter.name"
+        :placeholder="filter.label"
+        @input="handleTextInput(filter.name,$event)"
       />
-
       <CustomSelect
         v-if="filter.type === 'select'"
         :key="filter.name+'-'+filter.type"
-        v-model="value"
-        :label="'name'"
-        track-by="name"
-        :placeholder="filter.name"
+        label="label"
+        track-by="value"
         :options="filter.options"
+        :placeholder="filter.label"
         custom-class="mb-2 note-select mr-2 w-1/7"
-        @select="handleSelect"
+        @select="handleSelect(filter.name, $event)"
       />
     </template>
     <CustomSelect
-      v-model="usedFilters"
-      :label="'name'"
+      label="label"
       track-by="name"
       :options="filters"
-      placeholder="more"
-      :multiple="`true`"
+      placeholder="More"
+      :multiple="true"
       custom-class="mb-2 note-select mr-2 w-1/7 filter-selector"
-      @select="handleSelect"
+      @select="handleFilterSelect"
     />
   </div>
 </template>
@@ -43,6 +38,7 @@
 
   import CustomInput from '../input/input'
   import CustomSelect from '../select/select'
+  import HasFilters from "../../mixins/HasFilters";
 
   export default {
     /**
@@ -50,70 +46,24 @@
      * and are passed using the mixin
      */
     components: {CustomInput, CustomSelect},
-    mixins: [],
-    props: {
-      filters: {
-        type: [Object, Array],
-        default: () => [
-          {
-            name: 'location',
-            type: 'string'
-          },
-          {
-            name: 'Nationality',
-            type: 'string'
-          },
-          {
-            name: 'job type',
-            type: 'string'
-          },
-          {
-            name: 'gender',
-            type: 'select',
-            options: [
-              {name: 'male', language: 'male'},
-              {name: 'female', language: 'female'},
-            ],
-          }
-        ]
-      }
-    },
-    data() {
-      return {
-        textValue: '',
-        value: '',
-        usedFilters: [
-          {
-            name: 'gender',
-            type: 'select',
-            options: [
-              {name: 'male', language: 'male'},
-              {name: 'female', language: 'female'},
-            ],
-          }
-        ]
-
-      }
-
-    },
-    computed: {
-      getSelectedFilters() {
-        let _self = this;
-        if (this.filters) {
-          return _self.filters.filter(function (filter) {
-            return _self.usedFilters.find(x => x.name === filter.name);
-          })
-        }
-        return [];
-      }
-    },
+    mixins: [HasFilters],
     methods: {
-      handleSelect(select) {
-        this.value = select;
+      handleSelect(name, selected) {
+        this.$emit('change', {
+          name,
+          value: selected.value
+        })
       },
-      handleSelectMul(selected) {
-        console.log('selected is ', selected);
-        // this.value = selected;
+      handleTextInput(name, value) {
+        this.$emit('change', {
+          name,
+          value
+        })
+      },
+      handleFilterSelect(select) {
+        this.$emit('filterSelect', {
+          name: select.name
+        })
       }
     }
   }

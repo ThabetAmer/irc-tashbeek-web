@@ -43,7 +43,6 @@ class CaseDataResource extends ResourceCollection
             ->ofType($this->caseType)
             ->get();
 
-
         $headers = [];
         $filters = [];
         foreach ($properties as $property) {
@@ -53,13 +52,12 @@ class CaseDataResource extends ResourceCollection
                 'name' => end($commcareId),
             ];
 
-            if ($property->has_filter) {
-                $filters[] = [
-                    'name' => end($commcareId),
-                    'type' => strtolower($property->attributes['type']) ?? 'text',
-                    'options' => PropertyOptionsResource::collection(collect($property->attributes['options'] ?? [])),
-                ];
-            }
+            $filters[] = [
+                'name' => end($commcareId),
+                'label' => $property->attributes['translations'][\App::getLocale()] ?? $property->attributes['translations']['en'],
+                'type' => strtolower($property->attributes['type']) ?? 'text',
+                'options' => PropertyOptionsResource::collection(collect($property->attributes['options'] ?? [])),
+            ];
         }
         return [
             'headers' => $headers,

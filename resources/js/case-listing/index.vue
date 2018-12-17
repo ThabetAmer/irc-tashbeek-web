@@ -44,33 +44,25 @@
     computed: {},
     watch: {},
     mounted() {
-      getListing(this.type)
-        .then(resp => {
-          this.rows = resp.data;
-          this.headers = resp.headers;
-          this.filters = resp.filters;
-          this.userFilters = resp.filters.slice(0, 3);
-          this.pagination = {
-            total: resp.meta.total,
-            lastPage: resp.meta.last_page,
-            perPage: resp.meta.per_page,
-            currentPage: resp.meta.current_page
-          };
-        }).catch(error => {
-        console.log('Error : ', error);
-      });
+      this.loadData();
     },
     methods: {
       filterChange(event) {
-        this.filters = this.filters.map(filter => {
-          if (filter.name === event.name) {
-            return {
-              ...filter,
-              filterValue: event.value
+        if(this.filterTimeout){
+          clearTimeout(this.filterTimeout)
+        }
+        this.filterTimeout = setTimeout(() => {
+          console.log("set filter ...")
+          this.filters = this.filters.map(filter => {
+            if (filter.name === event.name) {
+              return {
+                ...filter,
+                filterValue: event.value
+              }
             }
-          }
-          return filter
-        })
+            return filter
+          })
+        },600)
       },
       filterSelect({name}) {
         const filterIndex = this.filters.findIndex(filter => filter.name === name)
@@ -83,6 +75,25 @@
         } else {
           this.userFilters.splice(userFilterIndex, 1)
         }
+      },
+      loadData(){
+        return getListing(this.type)
+          .then(resp => {
+            this.rows = resp.data;
+            this.headers = resp.headers;
+            this.filters = resp.filters;
+            if (this.userFilters.length === 0) {
+              this.userFilters = resp.filters.slice(0, 3);
+            }
+            this.pagination = {
+              total: resp.meta.total,
+              lastPage: resp.meta.last_page,
+              perPage: resp.meta.per_page,
+              currentPage: resp.meta.current_page
+            };
+          }).catch(error => {
+            console.log('Error : ', error);
+          });
       }
     }
   }

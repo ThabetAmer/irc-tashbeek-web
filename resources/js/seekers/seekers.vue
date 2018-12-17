@@ -123,15 +123,6 @@
     computed: {},
     watch: {},
     created() {
-      firmsAPI.getFirms()
-          .then(resp => {
-            // console.log(' resp is ', resp);
-            // this.rows = resp.data;
-            // this.headers = resp.headers;
-
-          }).catch(error => {
-        console.log('Error : ', error);
-      });
     },
     mounted() {
 

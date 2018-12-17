@@ -2,7 +2,7 @@
   <!--
     -->
   <div class="flex flex-wrap mb-8">
-    <template v-for="filter in filters">
+    <template v-for="filter in getSelectedFilters">
       <CustomInput
         v-if="filter.type === 'string'"
         :key="filter.name+'-'+filter.type"
@@ -19,81 +19,104 @@
         v-model="value"
         :label="'name'"
         track-by="name"
+        :placeholder="filter.name"
         :options="filter.options"
         custom-class="mb-2 note-select mr-2 w-1/7"
         @select="handleSelect"
       />
     </template>
+    <CustomSelect
+      v-model="usedFilters"
+      :label="'name'"
+      track-by="name"
+      :options="filters"
+      placeholder="more"
+      :multiple="`true`"
+      custom-class="mb-2 note-select mr-2 w-1/7 filter-selector"
+      @select="handleSelect"
+    />
   </div>
 </template>
 
 
 <script>
 
-    import CustomInput from '../input/input'
-    import CustomSelect from '../select/select'
+  import CustomInput from '../input/input'
+  import CustomSelect from '../select/select'
 
-    export default {
-        /**
-         * all props have their needed types
-         * and are passed using the mixin
-         */
-        components: {CustomInput, CustomSelect},
-        mixins: [],
-        props: {
-            filters: {
-                type: [Object, Array],
-                default: () => [
-                    {
-                        name: 'location',
-                        type: 'string'
-                    },
-                    {
-                        name: 'Name',
-                        type: 'string'
-                    },
-                    {
-                        name: 'Language2',
-                        type: 'select',
-                        options: [
-                            {name: 'Vue.js', language: 'JavaScript'},
-                            {name: 'Rails', language: 'Ruby'},
-                            {name: 'Sinatra', language: 'Ruby'},
-                            {name: 'Laravel', language: 'PHP'},
-                            {name: 'Phoenix', language: 'Elixir'}
-                        ],
-                    },
-                    {
-                        name: 'job type',
-                        type: 'string'
-                    },
-                    {
-                        name: 'Language',
-                        type: 'select',
-                        options: [
-                            {name: 'Vue.js', language: 'JavaScript'},
-                            {name: 'Rails', language: 'Ruby'},
-                            {name: 'Sinatra', language: 'Ruby'},
-                            {name: 'Laravel', language: 'PHP'},
-                            {name: 'Phoenix', language: 'Elixir'}
-                        ],
-                    }
-                ]
-            }
-        },
-        data() {
-            return{
-                textValue: '',
-                value: ''
-            }
+  export default {
+    /**
+     * all props have their needed types
+     * and are passed using the mixin
+     */
+    components: {CustomInput, CustomSelect},
+    mixins: [],
+    props: {
+      filters: {
+        type: [Object, Array],
+        default: () => [
+          {
+            name: 'location',
+            type: 'string'
+          },
+          {
+            name: 'Nationality',
+            type: 'string'
+          },
+          {
+            name: 'job type',
+            type: 'string'
+          },
+          {
+            name: 'gender',
+            type: 'select',
+            options: [
+              {name: 'male', language: 'male'},
+              {name: 'female', language: 'female'},
+            ],
+          }
+        ]
+      }
+    },
+    data() {
+      return {
+        textValue: '',
+        value: '',
+        usedFilters: [
+          {
+            name: 'gender',
+            type: 'select',
+            options: [
+              {name: 'male', language: 'male'},
+              {name: 'female', language: 'female'},
+            ],
+          }
+        ]
 
-        },
-        methods: {
-            handleSelect(select) {
-                this.value = select;
-            }
+      }
+
+    },
+    computed: {
+      getSelectedFilters() {
+        let _self = this;
+        if (this.filters) {
+          return _self.filters.filter(function (filter) {
+            return _self.usedFilters.find(x => x.name === filter.name);
+          })
         }
+        return [];
+      }
+    },
+    methods: {
+      handleSelect(select) {
+        this.value = select;
+      },
+      handleSelectMul(selected) {
+        console.log('selected is ', selected);
+        // this.value = selected;
+      }
     }
+  }
 </script>
 
 <style lang="scss">

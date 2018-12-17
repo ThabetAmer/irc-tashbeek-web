@@ -15,6 +15,7 @@
     :class="selectStyle"
     :options="options"
     :value="value"
+    select-label=""
     :multiple="multiple"
     :track-by="trackBy"
     :label="label"

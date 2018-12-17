@@ -16,6 +16,7 @@
 
     {{--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">--}}
     <link rel="stylesheet" href="{{asset('./css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('./css/style.css')}}">
     <!-- Styles -->
     <style>
         html, body {

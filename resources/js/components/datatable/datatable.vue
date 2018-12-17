@@ -11,7 +11,7 @@
           <th
             v-for="head in header"
             :key="head.name"
-            class="pb-2 pl-1"
+            class="pb-2 pl-1 text-xs"
           >
             {{ head['translations']['en'] }}
           </th>
@@ -28,13 +28,13 @@
           <td
             v-for="data in filterRow(row)"
             :key="data"
-            class="py-4 pl-2"
+            class="py-4 pl-2 text-sm"
           >
             {{ data }}
           </td>
           <td class="py-4 px-4 pl-2">
             <button class="flex-1 text-xl  text-green-dark">
-              <i class="far fa-file-alt" />
+              <i class="icon-Page_1_x40_2xpng_2" />
             </button>
           </td>
         </tr>

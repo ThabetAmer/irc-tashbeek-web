@@ -7,7 +7,7 @@
       class="absolute pin-t pin-r text-xl hover:text-2xl p-2 font-bold text-green-dark"
       @click="noteStarClicked"
     >
-      <i class="far fa-star" />
+      <i class="icon-Star_x40_2xpng_2" />
     </button>
     <div class=" text-left text-black font-bold">
       {{ body }}
@@ -32,7 +32,7 @@
           @click="showFullNoteModal"
         >
           View More
-          <i class="fas fa-arrow-right" />
+          <i class=" align-text-bottom icon-Right_Arrow_1_1 text-xl" />
         </button>
       </div>
     </div>
@@ -57,7 +57,7 @@
           class="absolute pin-t pin-r text-xl hover:text-2xl px-3 py-4 font-bold text-green-dark"
           @click="noteStarClicked"
         >
-          <i class="far fa-star" />
+          <i class="icon-Star_x40_2xpng_2" />
         </button>
       </div>
 

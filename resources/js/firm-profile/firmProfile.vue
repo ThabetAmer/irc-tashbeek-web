@@ -11,19 +11,19 @@
         </div>
         <ul class="firm-info list-reset text-left pr-8 mb-4">
           <li class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black ">
-            <i class="fas fa-store   text-grey-darker text-xl min-w-30 mr-3 ml-1" />
+            <i class="icon-Storefront_x40_2xpng_2   text-grey-darker text-xl min-w-30 mr-3 ml-1" />
             <span>Restaurant</span>
           </li>
           <li class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black ">
-            <i class="fas fa-map-marker-alt text-grey-darker text-xl min-w-30 mr-3 ml-1" />
+            <i class="icon-Location_Pin_1_1 text-grey-darker text-xl min-w-30 mr-3 ml-1" />
             <span>Located in Amman</span>
           </li>
           <li class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black ">
-            <i class="fas fa-phone text-grey-darker text-xl min-w-30 mr-3 ml-1" />
+            <i class="icon-Phone_1_x40_2xpng_2 text-grey-darker text-xl min-w-30 mr-3 ml-1" />
             <span> +123 456 789 234</span>
           </li>
           <li class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black ">
-            <i class="fas fa-briefcase text-grey-darker text-xl min-w-30 mr-3 ml-1" />
+            <i class="icon-Briefcase_x40_2xpng_2 text-grey-darker text-xl min-w-30 mr-3 ml-1" />
             <span>Looking for waiters</span>
           </li>
         </ul>

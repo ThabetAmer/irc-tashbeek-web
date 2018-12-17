@@ -1,10 +1,6 @@
 <template>
-  <!--
-    -->
   <div class="">
-    <Filters
-      v-if="hasFilters"
-    />
+    <Filters v-if="hasFilters" />
     <table :class="[`w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']">
       <thead>
         <tr class="font-bold text-green-dark">
@@ -42,10 +38,10 @@
     </table>
     <Pagination
       v-if="hasPagination"
-      total-pages="4"
-      total="4"
-      per-page="10"
-      current-page="1"
+      :total-pages="4"
+      :total="4"
+      :per-page="10"
+      :current-page="1"
     />
   </div>
 </template>

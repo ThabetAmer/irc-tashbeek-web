@@ -3,6 +3,7 @@
     <Filters
       v-if="filters.length > 0"
       :filters="filters"
+      @change="$emit('filter',$event)"
     />
     <table :class="[`w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']">
       <thead>
@@ -88,33 +89,8 @@
         default: true
       },
       header: {
-        type: [String, Array],
-        default: () => [
-          {
-            name: 'test',
-            translations: {
-              en: 'test'
-            }
-          },
-          {
-            name: 'old',
-            translations: {
-              en: 'Old'
-            }
-          },
-          {
-            name: 'id',
-            translations: {
-              en: 'ID'
-            }
-          },
-          {
-            name: 'name',
-            translations: {
-              en: 'Name'
-            }
-          }
-        ]
+        type: Array,
+        default: () => []
       },
       rows: {
         type: [String, Array],

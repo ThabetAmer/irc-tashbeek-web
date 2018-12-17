@@ -29,49 +29,50 @@
 
 
 <script>
-    import  InputStyleMixin from  "../../mixins/InputStyle"
-    export default {
-        mixins:[InputStyleMixin],
-        /**
-         * all props have their needed types
-         * and they also have their default
-         * non-effecting values
-         */
-        props: {
-            value: {
-                type: [String, Number,Boolean],
-                default:''
-            },
-            size: {
-                type: String,
-                default: ''
-            },
-            type: {
-                type: String,
-                default: 'text'
-            },
-            placeholder: {
-                type: String,
-                default: 'Insert Text'
-            },
-            name: {
-                type: String,
-                default:''
-            },
-            readOnly: {
-                type: Boolean,
-                default: false
-            },
-            maxLength: {
-                type: Number,
-                default: 100
-            },
-            disabled: {
-                type: Boolean,
-                default: false
-            }
-        }
+  import InputStyleMixin from "../../mixins/InputStyle"
+
+  export default {
+    mixins: [InputStyleMixin],
+    /**
+     * all props have their needed types
+     * and they also have their default
+     * non-effecting values
+     */
+    props: {
+      value: {
+        type: [String, Number, Boolean],
+        default: ''
+      },
+      size: {
+        type: String,
+        default: ''
+      },
+      type: {
+        type: String,
+        default: 'text'
+      },
+      placeholder: {
+        type: String,
+        default: 'Insert Text'
+      },
+      name: {
+        type: String,
+        default: ''
+      },
+      readOnly: {
+        type: Boolean,
+        default: false
+      },
+      maxLength: {
+        type: Number,
+        default: 100
+      },
+      disabled: {
+        type: Boolean,
+        default: false
+      }
     }
+  }
 </script>
 
 <style lang="scss">

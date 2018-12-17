@@ -11,6 +11,7 @@
         w-1/7 bg-grey-lighter rounded"
         :value="textValue"
         :placeholder="filter.label"
+        @input="handleTextInput(filter.name,$event)"
       />
 
       <CustomSelect
@@ -22,7 +23,7 @@
         :options="filter.options"
         :placeholder="filter.label"
         custom-class="mb-2 note-select mr-2 w-1/7"
-        @select="handleSelect"
+        @select="handleSelect(filter.name,$event)"
       />
     </template>
   </div>
@@ -55,8 +56,17 @@
 
     },
     methods: {
-      handleSelect(select) {
-        this.value = select;
+      handleSelect(name, selected) {
+        this.$emit('change', {
+          name,
+          value: selected.value
+        })
+      },
+      handleTextInput(name, value) {
+        this.$emit('change', {
+          name,
+          value
+        })
       }
     }
   }

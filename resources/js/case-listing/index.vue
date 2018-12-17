@@ -6,6 +6,7 @@
         :rows="rows"
         :pagination="pagination"
         :filters="filters"
+        @filter="filterChange"
       />
     </Panel>
   </div>
@@ -56,6 +57,18 @@
         console.log('Error : ', error);
       });
     },
-    methods: {}
+    methods: {
+      filterChange(event) {
+        this.filters = this.filters.map(filter => {
+          if (filter.name === event.name) {
+            return {
+              ...filter,
+              filterValue: event.value
+            }
+          }
+          return filter
+        })
+      }
+    }
   }
 </script>

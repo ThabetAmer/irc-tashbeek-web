@@ -1,16 +1,6 @@
 <template>
   <div class="flex flex-wrap mb-8">
     <template v-for="filter in userFilters">
-      <CustomInput
-        v-if="filter.type === 'text'"
-        :key="filter.name+'-'+filter.type"
-        input-class="height-align
-        mb-2 mr-2 p-2 text-grey-darkest font-bold
-        w-1/7 bg-grey-lighter rounded"
-        :placeholder="filter.label"
-        :value="filter.filterValue"
-        @input="handleTextInput(filter.name,$event)"
-      />
       <CustomSelect
         v-if="filter.type === 'select'"
         :key="filter.name+'-'+filter.type"
@@ -21,6 +11,16 @@
         :placeholder="filter.label"
         custom-class="mb-2 note-select mr-2 w-1/7"
         @select="handleSelect(filter.name, $event)"
+      />
+      <CustomInput
+        v-else
+        :key="filter.name+'-'+filter.type"
+        input-class="height-align
+        mb-2 mr-2 p-2 text-grey-darkest font-bold
+        w-1/7 bg-grey-lighter rounded"
+        :placeholder="filter.label"
+        :value="filter.filterValue"
+        @input="handleTextInput(filter.name,$event)"
       />
     </template>
     <CustomSelect

@@ -71,7 +71,7 @@
     </style>
 </head>
 <body class="bg-grey-light">
-<div class="wrapper bg-grey-lighter">
+<div class="wrapper bg-grey-lighter ">
 
     @if(auth()->check())
         @include('layouts.sidebar')

@@ -55,13 +55,10 @@
 
 
 <script>
-  import Vue from 'vue'
   import Filters from './filters';
   import Pagination from './pagination';
-  import _ from 'underscore';
   import HasFilters from "../../mixins/HasFilters";
 
-  Vue.use(_);
   export default {
     /**
      * all props have their needed types
@@ -97,20 +94,6 @@
         default: () => []
       }
     },
-    methods: {
-      filterRow(row) {
-        let _self = this;
-        let newRow = {};
-        _.map(Object.keys(row), function (rData) {
-          _.each(_self.header, function (head) {
-            if (head.name == rData) {
-              newRow[head.name] = row[head.name]
-            }
-          })
-        });
-        return newRow;
-      }
-    }
   }
 </script>
 

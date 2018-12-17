@@ -23,6 +23,7 @@
     <div class="google-map-legend">
       <div
         v-for="type in types"
+        :key="`${type.name}-${type.color}`"
         class="legend-item"
       >
         <img

@@ -153,7 +153,7 @@
         this.$emit('pagechanged', this.totalPages);
       },
       isPageActive(page) {
-        return this.currentPage == page;
+        return this.currentPage === page;
       },
     }
   };

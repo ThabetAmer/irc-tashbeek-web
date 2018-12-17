@@ -35,7 +35,6 @@
   </div>
 </template>
 
-
 <script>
 
   import CustomInput from '../input/input'

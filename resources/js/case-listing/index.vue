@@ -7,6 +7,7 @@
         :pagination="pagination"
         :filters="filters"
         :user-filters="userFilters"
+        @pagechanged="loadData({page: $event})"
         @filter="filterChange($event, loadData)"
         @filterSelect="filterSelect"
       />
@@ -45,15 +46,18 @@
     mounted() {
       this.loadData({
         filters: queryStringToParams('filters'),
+        page: queryStringToParams('page')
       });
     },
     methods: {
-      loadData({filters = {},} = {}) {
+      loadData({filters = {}, page = null} = {}) {
+        console.log(page)
         const params = {
           filters: {
             ...filters,
             ...this.userFiltersToParams()
-          }
+          },
+          page: !isNaN(parseInt(page, 10)) ? page : this.pagination.currentPage
         }
 
         return getListing(this.type, params)

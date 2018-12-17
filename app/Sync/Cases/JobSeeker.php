@@ -23,11 +23,16 @@ class JobSeeker extends AbstractCase
     public function questions(): array
     {
         return [
-            'eso_id' => [
-                'name' => 'eso_id',
-                'type' => 'text',
-                'has_filter' => true,
+
+            'first_name' => [
+                'name' => 'first_name',
+                'type' => 'string'
             ],
+            'last_name' => [
+                'name' => 'last_name',
+                'type' => 'string'
+            ],
+
             'city' => [
                 'name' => 'city',
                 'type' => 'string',
@@ -36,7 +41,16 @@ class JobSeeker extends AbstractCase
             'district' => [
                 'name' => 'district',
                 'type' => 'string'
-            ]
+            ],
+            'eso_id' => [
+                'name' => 'eso_id',
+                'type' => 'text',
+                'has_filter' => true,
+            ],
+            'gps' => [
+                'name' => 'gps',
+                'type' => 'string'
+            ],
         ];
     }
 

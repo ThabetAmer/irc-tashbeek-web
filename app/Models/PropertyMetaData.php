@@ -13,7 +13,7 @@ class PropertyMetaData extends Model
         'commcare_id',
         'case_type',
         'attributes',
-        'has_filter'
+        'order'
     ];
 
     protected $casts = [

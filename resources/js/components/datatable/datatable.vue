@@ -28,11 +28,11 @@
           class="font-bold text-black  border-grey-light border-b-2"
         >
           <td
-            v-for="data in filterRow(row)"
-            :key="data"
+            v-for="head in header"
+            :key="head.name"
             class="py-4 pl-2 text-sm"
           >
-            {{ data }}
+            {{ row[head.name] }}
           </td>
           <td class="py-4 px-4 pl-2">
             <button class="flex-1 text-xl  text-green-dark">

@@ -45,7 +45,7 @@ class JobSeekerStructureTest extends TestCase
 
         $properties = PropertyMetaData::all();
 
-        $this->assertCount(3, $properties);
+        $this->assertCount(6, $properties);
 
         $this->assertEquals('eso_id', $properties->get(0)->commcare_id);
 

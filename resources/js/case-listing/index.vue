@@ -32,7 +32,7 @@
         rows: [],
         headers: [],
         filters: [],
-        userFilters:[],
+        userFilters: [],
         pagination: {
           total: 0,
           lastPage: 1,
@@ -49,6 +49,7 @@
           this.rows = resp.data;
           this.headers = resp.headers;
           this.filters = resp.filters;
+          this.userFilters = resp.filters.slice(0, 3);
           this.pagination = {
             total: resp.meta.total,
             lastPage: resp.meta.last_page,
@@ -71,12 +72,17 @@
           return filter
         })
       },
-      filterSelect({name}){
+      filterSelect({name}) {
         const filterIndex = this.filters.findIndex(filter => filter.name === name)
+        const userFilterIndex = this.userFilters.findIndex(filter => filter.name === name)
 
-        this.userFilters.push({
-          ...this.filters[filterIndex]
-        })
+        if (userFilterIndex === -1) {
+          this.userFilters.push({
+            ...this.filters[filterIndex]
+          })
+        } else {
+          this.userFilters.splice(userFilterIndex, 1)
+        }
       }
     }
   }

@@ -13,7 +13,7 @@
       <CustomSelect
         v-if="filter.type === 'select'"
         :key="filter.name+'-'+filter.type"
-        :label="'label'"
+        label="label"
         track-by="value"
         :options="filter.options"
         :placeholder="filter.label"
@@ -22,7 +22,7 @@
       />
     </template>
     <CustomSelect
-      :label="'name'"
+      label="label"
       track-by="name"
       :options="filters"
       placeholder="More"

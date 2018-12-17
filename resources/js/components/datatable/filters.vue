@@ -53,7 +53,7 @@
                         type: 'string'
                     },
                     {
-                        name: 'select',
+                        name: 'Language2',
                         type: 'select',
                         options: [
                             {name: 'Vue.js', language: 'JavaScript'},
@@ -68,7 +68,7 @@
                         type: 'string'
                     },
                     {
-                        name: 'select',
+                        name: 'Language',
                         type: 'select',
                         options: [
                             {name: 'Vue.js', language: 'JavaScript'},

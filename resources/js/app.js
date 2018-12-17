@@ -21,7 +21,7 @@ window.Vue = require('vue');
 Vue.component('Builder', require('./builder/builder'));
 Vue.component('Dashboard', require('./dashboard/dashboard'));
 Vue.component('FirmProfile', require('./firm-profile/firmProfile'));
-Vue.component('Firms', require('./firms/firms'));
+Vue.component('CaseListing', require('./case-listing/index'));
 Vue.component('Seekers', require('./seekers/seekers'));
 Vue.component('SeekerProfile', require('./seeker-profile/seekerProfile'));
 

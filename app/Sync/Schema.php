@@ -19,9 +19,9 @@ class Schema
             }
 
             foreach ($fields as $field) {
-                $field = $table->{$field['type']}($field['name'])->nullable();
+                $column = $table->{$field['type']}($field['name'])->nullable();
                 if ($method === 'table' && LaravelSchema::hasColumn($table->getTable(), $field['name'])) {
-                    $field->change();
+                    $column->change();
                 }
             }
 

@@ -15,14 +15,15 @@
 <script>
   import Datatable from '../components/datatable/datatable'
   import Panel from '../components/Panel/Panel'
-
-
-  import firmsAPI from '../API/firms'
-
+  import {get as getListing} from '../API/caseListing'
   export default {
     components: {Panel, Datatable},
-    filters: {},
-    props: {},
+    props: {
+      type: {
+        type: String,
+        required: true
+      }
+    },
     data() {
       return {
         hasFilter: true,
@@ -33,19 +34,15 @@
     },
     computed: {},
     watch: {},
-    created() {
-      firmsAPI.getFirms()
-          .then(resp => {
-            console.log(' resp is ', resp);
-            this.rows = resp.data;
-            this.headers = resp.headers;
-
-          }).catch(error => {
+    mounted() {
+      getListing(this.type)
+        .then(resp => {
+          this.rows = resp.data;
+          this.headers = resp.headers;
+          console.log(resp)
+        }).catch(error => {
         console.log('Error : ', error);
       });
-    },
-    mounted() {
-
     },
     methods: {}
   }

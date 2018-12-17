@@ -36,5 +36,12 @@ if (!function_exists('get_case_type_model')) {
 }
 
 
+if(!function_exists('base_commcare_field_name')){
+    function base_commcare_field_name($field){
+        $field = explode('/',$field);
+        return end($field);
+    }
+}
+
 
 

@@ -23,20 +23,25 @@ class JobSeeker extends AbstractCase
     public function questions(): array
     {
         return [
-            '/JS_Training_01/tn/tn5' => [
-                'name' => 'tn5',
+            'eso_id' => [
+                'name' => 'eso_id',
                 'type' => 'text',
                 'has_filter' => true,
             ],
-            '/JS_Training_01/tn/tnstart' => [
-                'name' => 'tnstart',
-                'type' => 'date',
+            'city' => [
+                'name' => 'city',
+                'type' => 'string',
                 'has_filter' => true,
             ],
-            '/JS_Training_01/tn/tn6_other' => [
-                'name' => 'tn6_other',
-                'type' => 'text'
+            'district' => [
+                'name' => 'district',
+                'type' => 'string'
             ]
         ];
+    }
+
+    public function formId()
+    {
+        return '37f43427d24bd6a294fdd4bf7e3c45fdace489a1';
     }
 }

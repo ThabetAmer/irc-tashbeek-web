@@ -32,4 +32,10 @@ class PropertyMetaData extends Model
     }
 
 
+    public function columnName()
+    {
+        $column = explode('/',$this->commcare_id);
+        return end($column);
+    }
+
 }

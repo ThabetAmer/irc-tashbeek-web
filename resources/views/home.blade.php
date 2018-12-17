@@ -4,7 +4,3 @@
         <dashboard></dashboard>
     </div>
 @endsection
-
-
-@section('script')
-@endsection

@@ -153,7 +153,6 @@
         this.$emit('pagechanged', this.totalPages);
       },
       isPageActive(page) {
-        console.log(' page is ', page, ' curr is ', this.currentPage);
         return this.currentPage == page;
       },
     }

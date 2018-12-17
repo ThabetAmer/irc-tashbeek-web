@@ -28,6 +28,17 @@ abstract class TestCase extends BaseTestCase
         app()->instance(StructureRequest::class, $requestMock);
     }
 
+    protected function mockFullStructureRequest()
+    {
+        $requestMock = \Mockery::mock(StructureRequest::class);
+
+        $structure = json_decode(file_get_contents(base_path('tests/Fixtures/full_structure.json')),true)['modules'];
+
+        $requestMock->shouldReceive('getModules')->andReturn($structure);
+
+        app()->instance(StructureRequest::class, $requestMock);
+    }
+
 
     protected function mockDataRequest(){
 

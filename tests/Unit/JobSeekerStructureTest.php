@@ -27,15 +27,15 @@ class JobSeekerStructureTest extends TestCase
         $this->createSchema();
 
         $this->assertTrue(
-            Schema::hasColumn(app(\App\Models\JobSeeker::class)->getTable(), 'tn5')
+            Schema::hasColumn(app(\App\Models\JobSeeker::class)->getTable(), 'eso_id')
         );
 
         $this->assertTrue(
-            Schema::hasColumn(app(\App\Models\JobSeeker::class)->getTable(), 'tnstart')
+            Schema::hasColumn(app(\App\Models\JobSeeker::class)->getTable(), 'city')
         );
 
         $this->assertTrue(
-            Schema::hasColumn(app(\App\Models\JobSeeker::class)->getTable(), 'tn6_other')
+            Schema::hasColumn(app(\App\Models\JobSeeker::class)->getTable(), 'district')
         );
     }
 
@@ -47,11 +47,11 @@ class JobSeekerStructureTest extends TestCase
 
         $this->assertCount(3, $properties);
 
-        $this->assertEquals('/JS_Training_01/tn/tn5', $properties->get(0)->commcare_id);
+        $this->assertEquals('eso_id', $properties->get(0)->commcare_id);
 
-        $this->assertEquals('/JS_Training_01/tn/tn6_other', $properties->get(1)->commcare_id);
+        $this->assertEquals('city', $properties->get(1)->commcare_id);
 
-        $this->assertEquals('/JS_Training_01/tn/tnstart', $properties->get(2)->commcare_id);
+        $this->assertEquals('district', $properties->get(2)->commcare_id);
     }
 
     public function test_it_creates_property_options_data()
@@ -60,23 +60,15 @@ class JobSeekerStructureTest extends TestCase
 
         $propertiesOptions = PropertyOption::all();
 
-        $this->assertCount(8, $propertiesOptions);
+        $this->assertCount(4, $propertiesOptions);
 
-        $this->assertEquals('cooking', $propertiesOptions->get(0)->commcare_id);
+        $this->assertEquals('mafraq', $propertiesOptions->get(0)->commcare_id);
 
-        $this->assertEquals('sewing', $propertiesOptions->get(1)->commcare_id);
+        $this->assertEquals('amman', $propertiesOptions->get(1)->commcare_id);
 
-        $this->assertEquals('construction', $propertiesOptions->get(2)->commcare_id);
+        $this->assertEquals('irbid', $propertiesOptions->get(2)->commcare_id);
 
-        $this->assertEquals('production', $propertiesOptions->get(3)->commcare_id);
-
-        $this->assertEquals('farming', $propertiesOptions->get(4)->commcare_id);
-
-        $this->assertEquals('business', $propertiesOptions->get(5)->commcare_id);
-
-        $this->assertEquals('finance_accounting', $propertiesOptions->get(6)->commcare_id);
-
-        $this->assertEquals('other', $propertiesOptions->get(7)->commcare_id);
+        $this->assertEquals('zarqa', $propertiesOptions->get(3)->commcare_id);
 
     }
     

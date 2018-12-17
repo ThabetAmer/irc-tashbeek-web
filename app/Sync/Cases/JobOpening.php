@@ -23,15 +23,15 @@ class JobOpening extends AbstractCase
     public function questions(): array
     {
         return [
-            '#form/date_required' => [
+            'date_required' => [
                 'name' => 'date_required',
                 'type' => 'date'
             ],
-            '#form/job_id' => [
+            'job_id' => [
                 'name' => 'job_id',
                 'type' => 'text'
             ],
-            '#form/why_close_job_opening' => [
+            'why_close_job_opening' => [
                 'name' => 'why_close_job_opening',
                 'type' => 'text'
             ],

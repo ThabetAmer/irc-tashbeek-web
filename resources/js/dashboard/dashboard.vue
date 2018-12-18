@@ -157,7 +157,7 @@
 
 <script>
 
-  import Panel from '../components/Panel/Panel'
+  import Panel from '../components/panel/panel'
   import MetricCard from '../components/MetricCard/MetricCard'
   import Datatable from '../components/datatable/datatable'
   import moment from 'moment';

@@ -331,7 +331,7 @@
     import buttonGroup from '../components/buttonGroup/buttonGroup'
     import checkbox from '../components/checkbox/checkbox'
     import checkboxGroup from '../components/checkboxGroup/checkbox-group'
-    import Panel from '../components/Panel/Panel'
+    import Panel from '../components/panel/panel'
     import MetricCard from '../components/MetricCard/MetricCard'
     import notebox from '../components/notebox/notebox'
     import jobOpening from '../components/jobOpening/jobOpening'

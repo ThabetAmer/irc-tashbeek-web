@@ -19,7 +19,7 @@
 
 <script>
   import Datatable from '../components/datatable/datatable'
-  import Panel from '../components/Panel/Panel'
+  import Panel from '../components/panel/panel'
   import {get as getListing} from '../API/caseListing'
   import FiltersProvider from "../mixins/FiltersProvider";
   import queryString from '../helpers/query-string'

@@ -30,7 +30,7 @@
 
 
 <script>
-    import Panel from '../Panel/Panel'
+    import Panel from '../panel/panel'
     import classNames from "classnames"
 
     export default {

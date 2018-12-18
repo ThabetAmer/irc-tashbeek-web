@@ -13,7 +13,7 @@
 
 <script>
   import Datatable from '../components/datatable/datatable'
-  import Panel from '../components/Panel/Panel'
+  import Panel from '../components/panel/panel'
 
   export default {
     components: {Panel, Datatable},

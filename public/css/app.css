@@ -2584,6 +2584,10 @@
   height: 12rem;
 }
 
+.h-50 {
+  height: 50px;
+}
+
 .h-64 {
   height: 16rem;
 }
@@ -3122,6 +3126,10 @@
 
 .max-w-24 {
   max-width: 24rem;
+}
+
+.max-w-100 {
+  max-width: 100px;
 }
 
 .max-w-xs {
@@ -5561,6 +5569,10 @@
 
 .w-48 {
   width: 12rem;
+}
+
+.w-50 {
+  width: 50px;
 }
 
 .w-64 {
@@ -8209,6 +8221,10 @@
     height: 12rem;
   }
 
+  .sm\:h-50 {
+    height: 50px;
+  }
+
   .sm\:h-64 {
     height: 16rem;
   }
@@ -8747,6 +8763,10 @@
 
   .sm\:max-w-24 {
     max-width: 24rem;
+  }
+
+  .sm\:max-w-100 {
+    max-width: 100px;
   }
 
   .sm\:max-w-xs {
@@ -11170,6 +11190,10 @@
 
   .sm\:w-48 {
     width: 12rem;
+  }
+
+  .sm\:w-50 {
+    width: 50px;
   }
 
   .sm\:w-64 {
@@ -13819,6 +13843,10 @@
     height: 12rem;
   }
 
+  .md\:h-50 {
+    height: 50px;
+  }
+
   .md\:h-64 {
     height: 16rem;
   }
@@ -14357,6 +14385,10 @@
 
   .md\:max-w-24 {
     max-width: 24rem;
+  }
+
+  .md\:max-w-100 {
+    max-width: 100px;
   }
 
   .md\:max-w-xs {
@@ -16780,6 +16812,10 @@
 
   .md\:w-48 {
     width: 12rem;
+  }
+
+  .md\:w-50 {
+    width: 50px;
   }
 
   .md\:w-64 {
@@ -19429,6 +19465,10 @@
     height: 12rem;
   }
 
+  .lg\:h-50 {
+    height: 50px;
+  }
+
   .lg\:h-64 {
     height: 16rem;
   }
@@ -19967,6 +20007,10 @@
 
   .lg\:max-w-24 {
     max-width: 24rem;
+  }
+
+  .lg\:max-w-100 {
+    max-width: 100px;
   }
 
   .lg\:max-w-xs {
@@ -22390,6 +22434,10 @@
 
   .lg\:w-48 {
     width: 12rem;
+  }
+
+  .lg\:w-50 {
+    width: 50px;
   }
 
   .lg\:w-64 {
@@ -25039,6 +25087,10 @@
     height: 12rem;
   }
 
+  .xl\:h-50 {
+    height: 50px;
+  }
+
   .xl\:h-64 {
     height: 16rem;
   }
@@ -25577,6 +25629,10 @@
 
   .xl\:max-w-24 {
     max-width: 24rem;
+  }
+
+  .xl\:max-w-100 {
+    max-width: 100px;
   }
 
   .xl\:max-w-xs {
@@ -28000,6 +28056,10 @@
 
   .xl\:w-48 {
     width: 12rem;
+  }
+
+  .xl\:w-50 {
+    width: 50px;
   }
 
   .xl\:w-64 {
@@ -30649,6 +30709,10 @@
     height: 12rem;
   }
 
+  .hd\:h-50 {
+    height: 50px;
+  }
+
   .hd\:h-64 {
     height: 16rem;
   }
@@ -31187,6 +31251,10 @@
 
   .hd\:max-w-24 {
     max-width: 24rem;
+  }
+
+  .hd\:max-w-100 {
+    max-width: 100px;
   }
 
   .hd\:max-w-xs {
@@ -33610,6 +33678,10 @@
 
   .hd\:w-48 {
     width: 12rem;
+  }
+
+  .hd\:w-50 {
+    width: 50px;
   }
 
   .hd\:w-64 {
@@ -36374,6 +36446,158 @@ table.scrollable-fixed-header thead th {
   display: none;
 }
 
-.filter-selector .multiselect__input {
-  width: 95% !important;
+.fc-more-cell {
+  min-width: 25px;
+  min-height: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 15px;
+  font-weight: 500 !important;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .fc-more-cell {
+    margin-left: 25px !important;
+  }
+}
+
+@media only screen and (min-width: 1350px) {
+  .fc-more-cell {
+    margin-left: 25px !important;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .fc-more-cell {
+    margin-left: 40px !important;
+  }
+}
+
+.tooltip-datatable {
+  top: 0px;
+  color: white;
+  background: #22292f;
+  border-radius: 5px;
+  padding: 3px;
+  margin-top: -30px;
+  max-width: 250px;
+  z-index: 100 !important;
+}
+
+.multiselect__element label {
+  max-width: 100% !important;
+  display: block;
+  padding: 10px;
+  min-height: 40px !important;
+  /* for the latest browsers which support min-height */
+}
+
+.filter-selector .multiselect__option {
+  padding: 0;
+}
+
+.multiselect--active {
+  background: #505f79 !important;
+  border-radius: 5px;
+}
+
+.multiselect--active .multiselect__tags {
+  background: #505f79 !important;
+  border-radius: 5px;
+}
+
+.multiselect--active .multiselect__input {
+  background: #505f79;
+}
+
+.filter-selector.multiselect--active,
+.multiselect--active {
+  background: #505f79;
+  border-radius: 5px;
+  max-height: 40px;
+}
+
+.filter-selector.multiselect--active .multiselect__content-wrapper,
+.multiselect--active .multiselect__content-wrapper {
+  margin-top: 10px;
+  background: white;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 4px 8px -2px rgba(9, 30, 66, .25), 0 0 1px rgba(9, 30, 66, .31);
+          box-shadow: 0 4px 8px -2px rgba(9, 30, 66, .25), 0 0 1px rgba(9, 30, 66, .31);
+}
+
+.filter-selector.multiselect--active .multiselect__content,
+.multiselect--active .multiselect__content {
+  background: white;
+  border-radius: 5px;
+}
+
+.filter-selector.multiselect--active .multiselect__placeholder,
+.filter-selector.multiselect--active .multiselect__input,
+.filter-selector.multiselect--active .multiselect__input::-webkit-input-placeholder,
+.multiselect--active .multiselect__placeholder,
+.multiselect--active .multiselect__input,
+.multiselect--active .multiselect__input::-webkit-input-placeholder {
+  color: white;
+}
+
+.filter-selector.multiselect--active .multiselect__placeholder,
+.filter-selector.multiselect--active .multiselect__input,
+.filter-selector.multiselect--active .multiselect__input::-ms-input-placeholder,
+.multiselect--active .multiselect__placeholder,
+.multiselect--active .multiselect__input,
+.multiselect--active .multiselect__input::-ms-input-placeholder {
+  color: white;
+}
+
+.filter-selector.multiselect--active .multiselect__placeholder,
+.filter-selector.multiselect--active .multiselect__input,
+.filter-selector.multiselect--active .multiselect__input::placeholder,
+.multiselect--active .multiselect__placeholder,
+.multiselect--active .multiselect__input,
+.multiselect--active .multiselect__input::placeholder {
+  color: white;
+}
+
+.multiselect__option--highlight {
+  background: #f1f5f8;
+}
+
+.multiselect__tags {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-height: 40px !important;
+}
+
+.filter-selector .multiselect__element {
+  max-width: 160px;
+}
+
+.filter-selector .multiselect__element .multiselect__option {
+  max-width: 100%;
+}
+
+.filter-selector .multiselect__element .multiselect__option label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.multiselect__content-wrapper .multiselect__content {
+  width: 100%;
+  max-width: 100%;
+}
+
+.multiselect__content-wrapper .multiselect__content span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

@@ -12,12 +12,10 @@
    select object/s
    -->
   <Multiselect
-    v-tooltip="{content:placeholder,classes:['tooltip-datatable']}"
     :class="selectStyle"
     :options="options"
     :value="value"
     select-label=""
-    deselect-label=""
     :multiple="multiple"
     :track-by="trackBy"
     :label="label"
@@ -26,20 +24,25 @@
     @select="handleSelect"
   >
     <template
+      slot="singleLabel"
+      slot-scope="{option}"
+    >
+      {{ option.label }}
+    </template>
+    <template
       slot="option"
       slot-scope="{option}"
     >
-      <span
-        v-if="option.label.length > 13"
+      <label
         v-tooltip="{content:option.label,classes:['tooltip-datatable']}"
       >
+        <input
+          type="checkbox"
+          class="mr-1"
+          @click="handleSelect(option)"
+        >
         {{ option.label }}
-      </span>
-      <span
-        v-else
-      >
-        {{ option.label }}
-      </span>
+      </label>
     </template>
   </Multiselect>
 </template>

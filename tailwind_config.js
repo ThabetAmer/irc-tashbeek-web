@@ -501,6 +501,7 @@ module.exports = {
     '5/6': '83.33333%',
     'full': '100%',
     'screen': '100vw',
+    '50': '50px'
   },
 
 
@@ -538,6 +539,7 @@ module.exports = {
     '64': '16rem',
     'full': '100%',
     'screen': '100vh',
+    '50': '50px'
   },
 
 
@@ -612,6 +614,7 @@ module.exports = {
     '5xl': '100rem',
     '24': '24rem',
     'full': '100%',
+    '100': '100px',
   },
 
 

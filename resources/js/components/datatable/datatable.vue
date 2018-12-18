@@ -13,11 +13,19 @@
           <th
             v-for="head in header"
             :key="head.name"
-            class="pb-2 pl-1 text-xs"
+            class="pb-2 pl-1 text-xs max-w-100 truncate"
           >
-            {{ head['translations']['en'] }}
+            <span
+              v-if="head['translations']['en'].length > 14"
+              v-tooltip="{content:head['translations']['en'],classes:['tooltip-datatable']}"
+            >
+              {{ head['translations']['en'] }}
+            </span>
+            <span v-else>
+              {{ head['translations']['en'] }}
+            </span>
           </th>
-          <th class="pb-2 px-4 pl-1" />
+          <th class="pb-2 px-4 pl-1 max-w-100 truncate" />
         </tr>
       </thead>
 
@@ -32,7 +40,15 @@
             :key="head.name"
             class="py-4 pl-2 text-sm"
           >
-            {{ row[head.name] }}
+            <Component
+              :is="row[head.name].component"
+              v-if="row[head.name]&& row[head.name].component"
+              :icon-class="row[head.name].component.iconClass"
+              :text="row[head.name].component.text"
+            />
+            <span v-else>
+              {{ row[head.name] }}
+            </span>
           </td>
           <td class="py-4 px-4 pl-2">
             <button class="flex-1 text-xl  text-green-dark">
@@ -58,13 +74,15 @@
   import Filters from './filters';
   import Pagination from './pagination';
   import HasFilters from "../../mixins/HasFilters";
+  import Popper from 'vue-popperjs';
+  import VTooltip from 'v-tooltip'
 
   export default {
     /**
      * all props have their needed types
      * and are passed using the mixin
      */
-    components: {Filters, Pagination},
+    components: {Filters, Pagination,Popper},
     filters: {},
     mixins: [HasFilters],
     props: {

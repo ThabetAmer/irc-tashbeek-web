@@ -78,7 +78,7 @@
         @include('layouts.sidebar')
     @endif
 
-    <div class="content p-10 container mx-auto px-16" id="app">
+    <div class="content p-10 container mx-auto px-16 {{!auth()->check()? ' flex items-center' :''}}" id="app">
         @yield('content')
     </div>
 </div>

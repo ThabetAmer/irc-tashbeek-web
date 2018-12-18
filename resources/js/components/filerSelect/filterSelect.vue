@@ -16,14 +16,33 @@
     :options="options"
     :value="value"
     select-label=""
-    deselect-label=""
     :multiple="multiple"
     :track-by="trackBy"
     :label="label"
     :placeholder="placeholder"
     @input="handleInput"
     @select="handleSelect"
-  />
+  >
+    <template
+      slot="singleLabel"
+      slot-scope="{option}"
+    >
+      {{ option.label }}
+    </template>
+    <template
+      slot="option"
+      slot-scope="{option}"
+    >
+      <label>
+        <input
+          type="checkbox"
+          class="mr-1"
+          @click="handleSelect(option)"
+        >
+        {{ option.label }}
+      </label>
+    </template>
+  </Multiselect>
 </template>
 
 <script>

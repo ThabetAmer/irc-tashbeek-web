@@ -23,7 +23,7 @@
         @input="handleTextInput(filter.name,$event)"
       />
     </template>
-    <CustomSelect
+    <FilterSelect
       label="label"
       track-by="name"
       :options="filters"
@@ -39,6 +39,7 @@
 
   import CustomInput from '../input/input'
   import CustomSelect from '../select/select'
+  import FilterSelect from '../filerSelect/filterSelect'
   import HasFilters from "../../mixins/HasFilters";
 
   export default {
@@ -46,7 +47,7 @@
      * all props have their needed types
      * and are passed using the mixin
      */
-    components: {CustomInput, CustomSelect},
+    components: {CustomInput, CustomSelect,FilterSelect},
     mixins: [HasFilters],
     methods: {
       handleSelect(name, selected) {

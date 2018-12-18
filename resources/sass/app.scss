@@ -423,12 +423,64 @@ table.scrollable-fixed-header {
   }
 }
 
-
-.tooltip-datatable{
+.tooltip-datatable {
   top: 0px;
   color: white;
   background: #22292F;
   border-radius: 5px;
   padding: 3px;
   margin-top: -30px;
+}
+
+.multiselect__element {
+  label {
+    max-width: 100% !important;
+    display: block;
+    padding: 10px;
+    min-height: 40px !important; /* for the latest browsers which support min-height */
+  }
+}
+
+.filter-selector {
+  .multiselect__option {
+    padding: 0;
+  }
+}
+
+.multiselect--active {
+  background: #505f79 !important;
+  border-radius: 5px;
+  .multiselect__tags {
+    background: #505f79 !important;
+    border-radius: 5px;
+
+  }
+
+  .multiselect__input{
+    background: #505f79  }
+}
+
+.filter-selector.multiselect--active, .multiselect--active {
+  background: #505f79;
+  border-radius: 5px;
+  max-height: 40px;
+
+  .multiselect__content-wrapper {
+    margin-top: 10px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px -2px rgba(9, 30, 66, .25), 0 0 1px rgba(9, 30, 66, .31);
+  }
+  .multiselect__content {
+    background: white;
+    border-radius: 5px;
+
+  }
+  .multiselect__placeholder, .multiselect__input, .multiselect__input::placeholder {
+    color: white;
+  }
+}
+
+.multiselect__option--highlight {
+  background: #F1F5F8;
 }

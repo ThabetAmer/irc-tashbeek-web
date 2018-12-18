@@ -36488,3 +36488,82 @@ table.scrollable-fixed-header thead th {
   padding: 3px;
   margin-top: -30px;
 }
+
+.multiselect__element label {
+  max-width: 100% !important;
+  display: block;
+  padding: 10px;
+  min-height: 40px !important;
+  /* for the latest browsers which support min-height */
+}
+
+.filter-selector .multiselect__option {
+  padding: 0;
+}
+
+.multiselect--active {
+  background: #505f79 !important;
+  border-radius: 5px;
+}
+
+.multiselect--active .multiselect__tags {
+  background: #505f79 !important;
+  border-radius: 5px;
+}
+
+.multiselect--active .multiselect__input {
+  background: #505f79;
+}
+
+.filter-selector.multiselect--active,
+.multiselect--active {
+  background: #505f79;
+  border-radius: 5px;
+  max-height: 40px;
+}
+
+.filter-selector.multiselect--active .multiselect__content-wrapper,
+.multiselect--active .multiselect__content-wrapper {
+  margin-top: 10px;
+  background: white;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 4px 8px -2px rgba(9, 30, 66, .25), 0 0 1px rgba(9, 30, 66, .31);
+          box-shadow: 0 4px 8px -2px rgba(9, 30, 66, .25), 0 0 1px rgba(9, 30, 66, .31);
+}
+
+.filter-selector.multiselect--active .multiselect__content,
+.multiselect--active .multiselect__content {
+  background: white;
+  border-radius: 5px;
+}
+
+.filter-selector.multiselect--active .multiselect__placeholder,
+.filter-selector.multiselect--active .multiselect__input,
+.filter-selector.multiselect--active .multiselect__input::-webkit-input-placeholder,
+.multiselect--active .multiselect__placeholder,
+.multiselect--active .multiselect__input,
+.multiselect--active .multiselect__input::-webkit-input-placeholder {
+  color: white;
+}
+
+.filter-selector.multiselect--active .multiselect__placeholder,
+.filter-selector.multiselect--active .multiselect__input,
+.filter-selector.multiselect--active .multiselect__input::-ms-input-placeholder,
+.multiselect--active .multiselect__placeholder,
+.multiselect--active .multiselect__input,
+.multiselect--active .multiselect__input::-ms-input-placeholder {
+  color: white;
+}
+
+.filter-selector.multiselect--active .multiselect__placeholder,
+.filter-selector.multiselect--active .multiselect__input,
+.filter-selector.multiselect--active .multiselect__input::placeholder,
+.multiselect--active .multiselect__placeholder,
+.multiselect--active .multiselect__input,
+.multiselect--active .multiselect__input::placeholder {
+  color: white;
+}
+
+.multiselect__option--highlight {
+  background: #f1f5f8;
+}

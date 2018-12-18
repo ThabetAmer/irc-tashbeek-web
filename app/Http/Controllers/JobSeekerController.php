@@ -17,4 +17,9 @@ class JobSeekerController extends Controller
     {
         return view('job-seeker.index');
     }
+
+    public function show(JobSeeker $jobSeeker)
+    {
+        return view('job-seeker.show',compact('jobSeeker'));
+    }
 }

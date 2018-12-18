@@ -23,7 +23,10 @@ class JobSeeker extends AbstractCase
     public function questions(): array
     {
         return [
-
+            'id' => [
+                'name' => 'job_seeker_id',
+                'type' => 'string'
+            ],
             'first_name' => [
                 'name' => 'first_name',
                 'type' => 'string'
@@ -40,6 +43,22 @@ class JobSeeker extends AbstractCase
             ],
             'district' => [
                 'name' => 'district',
+                'type' => 'string'
+            ],
+            'nationality' => [
+                'name' => 'nationality',
+                'type' => 'string'
+            ],
+            'age' => [
+                'name' => 'age',
+                'type' => 'string'
+            ],
+            'will_work_qiz' => [
+                'name' => 'will_work_qiz',
+                'type' => 'string'
+            ],
+            'referral_phone' => [
+                'name' => 'referral_phone',
                 'type' => 'string'
             ],
             'eso_id' => [

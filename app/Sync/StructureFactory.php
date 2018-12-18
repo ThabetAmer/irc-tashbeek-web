@@ -116,7 +116,7 @@ class StructureFactory
         }
 
         $questionObjects = collect($questionObjects)->keyBy(function($question){
-            return $question['case_question']['name'];
+            return base_commcare_field_name($question['hashtagValue']);
         });
 
         // sort questions
@@ -124,6 +124,7 @@ class StructureFactory
         foreach($case->questions() as $name => $question){
             array_push($questions,$questionObjects->get($name));
         }
+
         return $questions;
     }
 

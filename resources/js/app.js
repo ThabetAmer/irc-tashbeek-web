@@ -24,6 +24,7 @@ Vue.component('FirmProfile', require('./firm-profile/firmProfile'));
 Vue.component('CaseListing', require('./case-listing/index'));
 Vue.component('Seekers', require('./seekers/seekers'));
 Vue.component('SeekerProfile', require('./seeker-profile/seekerProfile'));
+Vue.component('JobSeeker', require('./seeker-profile/seekerProfile'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

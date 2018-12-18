@@ -36,7 +36,7 @@ class Firm extends AbstractCase
                 'name' => 'rname',
                 'type' => 'text'
             ],
-            '/fgps' => [
+            'fgps' => [
                 'name' => 'fgps',
                 'type' => 'text'
             ],

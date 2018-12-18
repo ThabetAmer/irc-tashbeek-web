@@ -4,10 +4,12 @@
       <Panel
         custom-class="min-h-900 "
         :has-title="hasTitle"
-        title="Sara Hourani"
+        :title="`${jobSeeker.first_name} ${jobSeeker.last_name}`"
       >
-        <div class="firm-id uppercase text-green text-left font-bold mt-4 mb-4">
-          ID 456465456
+        <div class="firm-id uppercase text-green text-left font-bold mt-4 mb-4 flex items-center">
+          ID <span class="truncate max-w-2xl pl-2">
+            {{ jobSeeker.commcare_id }}
+          </span>
         </div>
 
         <ul class="firm-info list-reset text-left pr-6">
@@ -218,7 +220,12 @@
       Checkbox, CheckboxGroup, Panel, MetricCard,
       AddNoteModal, Notebox, JobOpening, Datatable, Screenbox
     },
-    props: {},
+    props: {
+      jobSeeker: {
+        type: Object,
+        required: true
+      }
+    },
     data() {
       return {
         jobOpeningView: 'all',

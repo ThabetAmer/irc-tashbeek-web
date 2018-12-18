@@ -11,17 +11,23 @@
             {{ jobSeeker.commcare_id }}
           </span>
         </div>
-
         <ul class="firm-info list-reset text-left pr-6">
           <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
             <i class="min-w-20 icon-User_Female_x40_2xpng_2 text-grey-darker mr-4 text-lg" />
-            <span>Syrian female • 25 years old</span>
+            <span>{{ jobSeeker.nationality }} female • {{ jobSeeker.age }} years old</span>
           </li>
           <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
             <i class="min-w-20 icon-Location_Pin_1_1 text-grey-darker mr-4 text-lg " />
-            <span>Living in Irbid</span>
+            <span>
+              Living in {{ jobSeeker.city }}<span v-if="jobSeeker.district !== ''">
+                , {{ jobSeeker.district }}
+              </span>
+            </span>
           </li>
-          <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
+          <li
+            v-if="jobSeeker.will_work_qiz === '1'"
+            class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black "
+          >
             <i class="min-w-20 icon-Location_Pin_3_1 text-grey-darker mr-4 text-lg " />
             <span>Willing to work in QIZ</span>
           </li>

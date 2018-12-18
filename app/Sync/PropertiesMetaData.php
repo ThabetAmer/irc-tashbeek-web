@@ -22,6 +22,7 @@ class PropertiesMetaData
             $keys = ['commcare_id' => $baseCommcareFieldName];
 
             $values = [
+                'column_name' => $question['case_question']['name'],
                 'case_type' => $caseType,
                 'attributes' => $this->getAttributes($question),
                 'has_filter' => $caseQuestions[$baseCommcareFieldName]['has_filter'] ?? false,

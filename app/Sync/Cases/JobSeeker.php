@@ -23,10 +23,6 @@ class JobSeeker extends AbstractCase
     public function questions(): array
     {
         return [
-            'id' => [
-                'name' => 'job_seeker_id',
-                'type' => 'string'
-            ],
             'first_name' => [
                 'name' => 'first_name',
                 'type' => 'string'
@@ -57,8 +53,8 @@ class JobSeeker extends AbstractCase
                 'name' => 'will_work_qiz',
                 'type' => 'string'
             ],
-            'referral_phone' => [
-                'name' => 'referral_phone',
+            'mobile_num' => [
+                'name' => 'mobile_num',
                 'type' => 'string'
             ],
             'eso_id' => [

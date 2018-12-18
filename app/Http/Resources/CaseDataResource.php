@@ -47,14 +47,13 @@ class CaseDataResource extends ResourceCollection
         $headers = [];
         $filters = [];
         foreach ($properties as $property) {
-            $commcareId = explode('/', $property->commcare_id);
             $headers[] = [
                 'translations' => $property->attributes['translations'],
-                'name' => end($commcareId),
+                'name' => $property->column_name,
             ];
 
             $filters[] = [
-                'name' => end($commcareId),
+                'name' => $property->column_name,
                 'label' => $property->attributes['translations'][\App::getLocale()] ?? $property->attributes['translations']['en'],
                 'type' => strtolower($property->attributes['type']) ?? 'text',
                 'options' => PropertyOptionsResource::collection(collect($property->attributes['options'] ?? [])),

@@ -26,6 +26,11 @@ class CaseFilter implements FilterInterface
         $this->request = $request;
     }
 
+    /**
+     * Apply filter
+     *
+     * @param Builder $builder
+     */
     public function apply(Builder $builder)
     {
         /**
@@ -37,23 +42,40 @@ class CaseFilter implements FilterInterface
 
         $filters = array_only($this->filters(), $properties->pluck('column_name')->toArray());
 
-        foreach ($filters as $name => $value) {
-            $filterType = studly_case(array_get($properties->get($name)->attributes, 'type'));
-            $searchMethod = "search$filterType";
-
-            if(!method_exists($this,$searchMethod)){
-                $searchMethod = "searchStrict";
-            }
-
-            $this->$searchMethod($builder,$name,$value);
-        }
+        $this->runFilters($builder, $filters, $properties);
     }
 
-    protected function filters()
+    /**
+     * Get filters provided by user
+     *
+     * @return array
+     */
+    protected function filters(): array
     {
         $filters = $this->request->input('filters', []);
 
         return is_array($filters) ? $filters : [];
+    }
+
+    /**
+     * Apply filter queries
+     *
+     * @param $builder
+     * @param $filters
+     * @param $properties
+     */
+    private function runFilters($builder, $filters, $properties)
+    {
+        foreach ($filters as $name => $value) {
+            $filterType = studly_case(array_get($properties->get($name)->attributes, 'type'));
+            $searchMethod = "search$filterType";
+
+            if (!method_exists($this, $searchMethod)) {
+                $searchMethod = "searchStrict";
+            }
+
+            $this->$searchMethod($builder, $name, $value);
+        }
     }
 
     /**

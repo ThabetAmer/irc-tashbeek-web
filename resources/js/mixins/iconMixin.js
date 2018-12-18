@@ -9,7 +9,7 @@ export default {
       type: String,
       default: ''
     },
-    label: {
+    text: {
       type: String,
       default: ''
     }

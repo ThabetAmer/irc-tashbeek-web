@@ -36,7 +36,7 @@
               :is="row[head.name].component"
               v-if="row[head.name]&& row[head.name].component"
               :icon-class="row[head.name].component.iconClass"
-              :label="row[head.name].component.label"
+              :text="row[head.name].component.text"
             />
             <span v-else>
               {{ row[head.name] }}

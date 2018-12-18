@@ -25,7 +25,6 @@ Vue.component('CaseListing', require('./case-listing/index'));
 Vue.component('Seekers', require('./seekers/seekers'));
 Vue.component('SeekerProfile', require('./seeker-profile/seekerProfile'));
 Vue.component('icon', require('./components/icon/icon'));
-Vue.component('iconText', require('./components/iconText/iconText'));
 
 
 /**

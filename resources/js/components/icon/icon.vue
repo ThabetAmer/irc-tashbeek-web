@@ -1,11 +1,21 @@
 <template>
-  <i :class="iconClass" />
+  <div class="flex items-center">
+    <i
+      :class="iconClass"
+    />
+    <span
+      v-if="text"
+    >
+      {{ text }}
+    </span>
+  </div>
 </template>
 
 
 <script>
 
   import iconMixin from "../../mixins/iconMixin";
+
   export default {
     mixins: [iconMixin],
     /**

@@ -36446,10 +36446,6 @@ table.scrollable-fixed-header thead th {
   display: none;
 }
 
-.filter-selector .multiselect__input {
-  width: 95% !important;
-}
-
 .fc-more-cell {
   min-width: 25px;
   min-height: 25px;

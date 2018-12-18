@@ -11,9 +11,9 @@
   <button
     :class="btnStyle"
     :disabled="disabled"
-    @blur="$emit('btn-blur')"
-    @click="$emit('btn-click')"
-    @focus="$emit('btn-focus')"
+    @blur="$emit('blur')"
+    @click="$emit('click')"
+    @focus="$emit('focus')"
   >
     <slot name="text">
       button

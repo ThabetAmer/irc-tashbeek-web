@@ -28,11 +28,11 @@
           class="font-bold text-black  border-grey-light border-b-2"
         >
           <td
-            v-for="data in filterRow(row)"
-            :key="data"
+            v-for="head in header"
+            :key="head.name"
             class="py-4 pl-2 text-sm"
           >
-            {{ data }}
+            {{ row[head.name] }}
           </td>
           <td class="py-4 px-4 pl-2">
             <button class="flex-1 text-xl  text-green-dark">
@@ -48,19 +48,17 @@
       :total="pagination.total"
       :per-page="pagination.perPage"
       :current-page="pagination.currentPage"
+      @pagechanged="$emit('pagechanged', $event)"
     />
   </div>
 </template>
 
 
 <script>
-  import Vue from 'vue'
   import Filters from './filters';
   import Pagination from './pagination';
-  import _ from 'underscore';
   import HasFilters from "../../mixins/HasFilters";
 
-  Vue.use(_);
   export default {
     /**
      * all props have their needed types
@@ -96,20 +94,6 @@
         default: () => []
       }
     },
-    methods: {
-      filterRow(row) {
-        let _self = this;
-        let newRow = {};
-        _.map(Object.keys(row), function (rData) {
-          _.each(_self.header, function (head) {
-            if (head.name == rData) {
-              newRow[head.name] = row[head.name]
-            }
-          })
-        });
-        return newRow;
-      }
-    }
   }
 </script>
 

@@ -6,6 +6,7 @@ use App\Sync\Cases\Firm;
 use App\Sync\Cases\Match;
 use App\Sync\Cases\JobSeeker;
 use App\Sync\Cases\JobOpening;
+use Illuminate\Support\Facades\Storage;
 
 class StructureFactory
 {
@@ -77,7 +78,6 @@ class StructureFactory
 
         $questionObjects = $this->getCaseQuestions($data, $case);
 
-
         $model = $case->model();
 
         $caseQuestions = array_pluck($questionObjects, 'case_question');
@@ -115,9 +115,16 @@ class StructureFactory
             ]);
         }
 
-        return collect($questionObjects)->keyBy(function($question){
+        $questionObjects = collect($questionObjects)->keyBy(function($question){
             return $question['case_question']['name'];
-        })->values()->toArray();
+        });
+
+        // sort questions
+        $questions = [];
+        foreach($case->questions() as $name => $question){
+            array_push($questions,$questionObjects->get($name));
+        }
+        return $questions;
     }
 
     /**

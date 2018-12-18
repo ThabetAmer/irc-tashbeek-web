@@ -41,6 +41,7 @@ class CaseDataResource extends ResourceCollection
     {
         $properties = PropertyMetaData::query()
             ->ofType($this->caseType)
+            ->orderBy('order')
             ->get();
 
         $headers = [];

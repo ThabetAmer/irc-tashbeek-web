@@ -1,0 +1,71 @@
+export default {
+  data() {
+    return {
+      filters: [],
+      userFilters: [],
+    }
+  },
+  methods: {
+    userFiltersToParams() {
+      return this.userFilters.reduce((acc, filter) => {
+        if (filter.filterValue || filter.filterValue === "") {
+          acc[filter.name] = filter.filterValue
+        }
+        return acc
+      }, {})
+    },
+    filterSelect({name}) {
+      const filterIndex = this.filters.findIndex(filter => filter.name === name)
+      const userFilterIndex = this.userFilters.findIndex(filter => filter.name === name)
+
+      if (userFilterIndex === -1) {
+        this.userFilters.push({
+          ...this.filters[filterIndex]
+        })
+      } else {
+        this.userFilters.splice(userFilterIndex, 1)
+      }
+    },
+    filterChange(event, loadData) {
+
+      if (this.filterTimeout) {
+        clearTimeout(this.filterTimeout)
+      }
+
+      this.userFilters = this.userFilters.map(filter => {
+        if (filter.name === event.name) {
+          return {
+            ...filter,
+            filterValue: event.value
+          }
+        }
+        return filter
+      })
+
+      this.filterTimeout = setTimeout(() => {
+        if (loadData && typeof loadData === 'function') {
+          loadData({page: 1})
+        }
+      }, 600)
+    },
+    initialUserFilters(filtersList, filtersObject) {
+      if (Object.keys(filtersObject).length === 0) {
+        return filtersList.slice(0, 3)
+      }
+      const userFilters = filtersList.filter(filter => {
+        const filterValue = filtersObject[filter.name];
+        return typeof filterValue !== "undefined"
+      }).map(filter => {
+        return {
+          ...filter,
+          filterValue: filtersObject[filter.name]
+        }
+      })
+
+      if (userFilters.length > 0) {
+        return userFilters
+      }
+      return filtersList.slice(0, 3)
+    },
+  },
+}

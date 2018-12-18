@@ -13,6 +13,8 @@ class PropertiesMetaData
 {
     public function insert($questions, $caseType, $caseQuestions)
     {
+        $order = 1;
+
         foreach ($questions as $question) {
 
             $baseCommcareFieldName = base_commcare_field_name($question['hashtagValue']);
@@ -22,12 +24,15 @@ class PropertiesMetaData
             $values = [
                 'case_type' => $caseType,
                 'attributes' => $this->getAttributes($question),
-                'has_filter' => $caseQuestions[$baseCommcareFieldName]['has_filter'] ?? false
+                'has_filter' => $caseQuestions[$baseCommcareFieldName]['has_filter'] ?? false,
+                'order' => $order
             ];
 
             $property = PropertyMetaDataModel::query()->updateOrCreate($keys, $values);
 
             $this->insertOptions($property, $question);
+
+            $order++;
         }
     }
 

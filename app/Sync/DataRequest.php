@@ -41,7 +41,7 @@ class DataRequest
 
         $url = $this->url . '?' . $this->buildParamsHttpQuery($params);
 
-//        $this->client= new Client(['verify' => false]);
+        $this->client= new Client(['verify' => false]);
 
         $response = $this->client->get($url, [
             'headers' => [

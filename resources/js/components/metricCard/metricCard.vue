@@ -3,7 +3,7 @@
     -->
   <div class="">
     <Panel custom-class="relative px-3 py-4">
-      <div class="absolute p-2 pin-t pin-r rounded-tr-lg bg-grey-lighter">
+      <div class="absolute flex items-center justify-center w-50 h-50 flex p-2 pin-t pin-r rounded-tr-lg bg-grey-lighter">
         <i :class="iconClasses" />
       </div>
       <div
@@ -55,7 +55,7 @@
         },
         computed:{
             iconClasses(){
-                return classNames([this.iconClass,'text-3xl',
+                return classNames([this.iconClass,'text-2xl',
                     'text-green-dark' ]);
             }
         }

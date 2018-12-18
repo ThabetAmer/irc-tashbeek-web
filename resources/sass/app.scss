@@ -20,9 +20,11 @@
 .content {
   width: 100%;
 }
-.multiselect__input{
+
+.multiselect__input {
   max-width: 100% !important;
 }
+
 .multiselect__element {
   color: black !important;
 
@@ -86,7 +88,6 @@ body {
 
 //@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
-
 .custom-navs {
   button.active {
     color: #1F9D55 !important;
@@ -125,8 +126,6 @@ a[data-toggle="collapse"] {
   transform: translateY(-50%);
 }
 
-
-
 .fade {
   transition: opacity .15s linear;
 }
@@ -143,7 +142,8 @@ a[data-toggle="collapse"] {
 .min-h-900 {
   min-height: 900px !important;
 }
-.min-h-900{
+
+.min-h-900 {
   max-height: 900px !important;
 }
 
@@ -245,7 +245,6 @@ a[data-toggle="collapse"] {
   }
 }
 
-
 #calendarTab {
   .selected-day {
     position: relative;
@@ -268,14 +267,13 @@ button:focus {
   box-shadow: none;
 }
 
-.min-h-700{
+.min-h-700 {
   min-height: 700px;
 }
 
-.max-h-700{
+.max-h-700 {
   max-height: 700px;
 }
-
 
 /**
  * Like, basically PERFECT scrollbars
@@ -295,14 +293,14 @@ button:focus {
    Ending note: I recommend this for non-lion users. As a lion user, I prefer my fading out scrollbars. If you sniff a UA of mac os lion, don't add this css.
 */
 
-
 /* Turn on custom 8px wide scrollbar */
 ::-webkit-scrollbar {
   width: 8px; /* 1px wider than Lion. */
   /* This is more usable for users trying to click it. */
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   -webkit-border-radius: 100px;
 }
+
 /* hover effect for both scrollbar area, and scrollbar 'thumb' */
 ::-webkit-scrollbar:hover {
   background-color: rgba(0, 0, 0, 0.09);
@@ -312,22 +310,24 @@ button:focus {
 ::-webkit-scrollbar-thumb:vertical {
   /* This is the EXACT color of Mac OS scrollbars.
      Yes, I pulled out digital color meter */
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
   -webkit-border-radius: 100px;
 }
+
 ::-webkit-scrollbar-thumb:vertical:active {
-  background:  #D8D8D8; /* Some darker color when you click it */
+  background: #D8D8D8; /* Some darker color when you click it */
   -webkit-border-radius: 100px;
 }
 
 //background: linear-gradient(45deg, white, silver);
 //min-height: 100%;
 
-
 table.scrollable-fixed-header {
   width: 100%;
 
-  thead, tbody, tr, td, th { display: block; }
+  thead, tbody, tr, td, th {
+    display: block;
+  }
 
   tr:after {
     content: ' ';
@@ -350,46 +350,56 @@ table.scrollable-fixed-header {
     /* fallback */
   }
 
-
   tbody td, thead th {
     width: 19.2%;
     float: left;
   }
 }
 
-.min-h-630{
+.min-h-630 {
   min-height: 630px;
 }
-.max-h-630{
+
+.max-h-630 {
   max-height: 630px;
 }
 
-.max-h-750{
+.max-h-750 {
   max-height: 750px;
 }
 
-.min-h-750{
+.min-h-750 {
   min-height: 750px;
 }
 
-.fc-more-popover{
+.fc-more-popover {
   background: white;
   border-radius: 5px;
 }
 
-.wrapper{
+.wrapper {
   min-height: 100vh;
 }
 
-.filter-selector{
-  .multiselect__tags,.multiselect__select,.multiselect__input{
+.filter-selector {
+  .multiselect__tags, .multiselect__select, .multiselect__input {
     background: transparent !important;
   }
-  .multiselect__tag{
+  .multiselect__tag {
     display: none;
   }
 
-  .multiselect__input{
+  .multiselect__input {
     width: 95% !important;
   }
+}
+
+.fc-more-cell {
+  min-width: 25px;
+  min-height: 25px;
+  display: flex;
+  font-size: 15px;
+  font-weight: 500 !important;
+  justify-content: center;
+  align-items: center;
 }

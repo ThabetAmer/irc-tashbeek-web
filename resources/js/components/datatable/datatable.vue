@@ -32,7 +32,15 @@
             :key="head.name"
             class="py-4 pl-2 text-sm"
           >
-            {{ row[head.name] }}
+            <Component
+              :is="row[head.name].component"
+              v-if="row[head.name]&& row[head.name].component"
+              :icon-class="row[head.name].component.iconClass"
+              :label="row[head.name].component.label"
+            />
+            <span v-else>
+              {{ row[head.name] }}
+            </span>
           </td>
           <td class="py-4 px-4 pl-2">
             <button class="flex-1 text-xl  text-green-dark">

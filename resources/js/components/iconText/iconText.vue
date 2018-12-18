@@ -1,5 +1,8 @@
 <template>
-  <i :class="iconClass" />
+  <div class="flex items-center">
+    <i :class="iconClass" />
+    <span> test </span>
+  </div>
 </template>
 
 

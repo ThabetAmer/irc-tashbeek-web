@@ -39,7 +39,7 @@
                 <button
                   data-toggle="tab"
                   class="nav-link border-0
-                                            rounded-full p-3
+                                            rounded-full p-3 h-50 w-50
                                             text-grey-dark text-2xl font-semibold"
                   :class="{active: viewType == 'calendar'}"
                 >
@@ -52,7 +52,7 @@
               >
                 <button
                   data-toggle="tab"
-                  class="nav-link border-0 p-3 text-grey-dark text-2xl font-semibold"
+                  class="nav-link border-0 p-3  h-50 w-50 text-grey-dark text-2xl font-semibold"
                   :class="{active: viewType != 'calendar'}"
                 >
                   <i
@@ -91,7 +91,7 @@
                       custom-class="bg-transparent border-transparent border-0"
                     >
                       <Datatable
-                        fixed-header="true"
+                        :fixed-header="true"
                         :has-pagination="hasFilters"
                         :has-filters="hasFilters"
                         :striped="hasFilters"
@@ -107,7 +107,7 @@
                 class="tab-pane fade in"
               >
                 <Datatable
-                  fixed-header="true"
+                  :fixed-header="true"
                   :has-filters="hasFilters"
                   :has-pagination="hasFilters"
                 />
@@ -140,7 +140,7 @@
               >
                 <Component
                   :is="event.component"
-                  :custom-class="event.iconClass+' text-grey-darker text-1xl mr-2'"
+                  :icon-class="event.iconClass+' text-grey-darker text-1xl mr-2'"
                 />
                 <span class="text-sm">
                   {{ event.label }}
@@ -160,13 +160,12 @@
   import Panel from '../components/Panel/Panel'
   import MetricCard from '../components/MetricCard/MetricCard'
   import Datatable from '../components/datatable/datatable'
-  import icon from '../components/icon/icon'
   import moment from 'moment';
   import {FullCalendar} from 'vue-full-calendar'
 
   export default {
     components: {
-      icon, Panel, MetricCard, Datatable, FullCalendar
+      Panel, MetricCard, Datatable, FullCalendar
     },
     filters: {},
     props: {},
@@ -235,7 +234,7 @@
             ]
           },
           {
-            date: 'Wednesday 16 November',
+            date: 'Wednesday 17 November',
             events: [
               {
                 label: 'Monthy follow-up • Ismael Ghassan',
@@ -324,9 +323,9 @@
     methods: {
       clickCal() {
         this.viewType = 'calendar';
-        console.log('view type is ', this.viewType, ' cal is ', this.$refs.fullCalendar);
+        // console.log('view type is ', this.viewType, ' cal is ', this.$refs.fullCalendar);
         // this.$re
-        this.$refs.fullCalendar.$forceUpdate();
+        // this.$refs.fullCalendar.$forceUpdate();
 
       },
       dayClicked: function (date, jsEvent, view) {

@@ -23,8 +23,7 @@
     @input="handleInput"
     @select="handleSelect"
   >
-    <slot name="customTemplate">
-    </slot>
+    <slot name="customTemplate" />
   </Multiselect>
 </template>
 

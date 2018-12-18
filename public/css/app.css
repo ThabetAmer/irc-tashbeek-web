@@ -36479,3 +36479,12 @@ table.scrollable-fixed-header thead th {
     margin-left: 40px !important;
   }
 }
+
+.tooltip-datatable {
+  top: 0px;
+  color: white;
+  background: #22292f;
+  border-radius: 5px;
+  padding: 3px;
+  margin-top: -30px;
+}

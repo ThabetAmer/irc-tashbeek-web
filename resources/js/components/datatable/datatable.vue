@@ -13,10 +13,14 @@
           <th
             v-for="head in header"
             :key="head.name"
-            :title="head['translations']['en']"
             class="pb-2 pl-1 text-xs max-w-100 truncate"
           >
-            {{ head['translations']['en'] }}
+            <span
+              v-tooltip="{content:head['translations']['en'],classes:['tooltip-datatable']}"
+              :title="head['translations']['en']"
+            >
+              {{ head['translations']['en'] }}
+            </span>
           </th>
           <th class="pb-2 px-4 pl-1 max-w-100 truncate" />
         </tr>
@@ -68,7 +72,10 @@
   import Pagination from './pagination';
   import HasFilters from "../../mixins/HasFilters";
   import Popper from 'vue-popperjs';
+  import Vue from 'vue'
+  import VTooltip from 'v-tooltip'
 
+  Vue.use(VTooltip)
   export default {
     /**
      * all props have their needed types

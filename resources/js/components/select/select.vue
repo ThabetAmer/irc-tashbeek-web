@@ -24,7 +24,24 @@
     :placeholder="placeholder"
     @input="handleInput"
     @select="handleSelect"
-  />
+  >
+    <template
+      slot="option"
+      slot-scope="{option}"
+    >
+      <span
+        v-if="option.label.length > 13"
+        v-tooltip="{content:option.label,classes:['tooltip-datatable']}"
+      >
+        {{ option.label }}
+      </span>
+      <span
+        v-else
+      >
+        {{ option.label }}
+      </span>
+    </template>
+  </Multiselect>
 </template>
 
 <script>

@@ -36488,6 +36488,7 @@ table.scrollable-fixed-header thead th {
   padding: 3px;
   margin-top: -30px;
   max-width: 250px;
+  z-index: 100 !important;
 }
 
 .multiselect__element label {
@@ -36574,4 +36575,29 @@ table.scrollable-fixed-header thead th {
   text-overflow: ellipsis;
   white-space: nowrap;
   max-height: 40px !important;
+}
+
+.filter-selector .multiselect__element {
+  max-width: 160px;
+}
+
+.filter-selector .multiselect__element .multiselect__option {
+  max-width: 100%;
+}
+
+.filter-selector .multiselect__element .multiselect__option label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.multiselect__content-wrapper .multiselect__content {
+  width: 100%;
+  max-width: 100%;
+}
+
+.multiselect__content-wrapper .multiselect__content span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

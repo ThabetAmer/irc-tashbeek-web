@@ -48,7 +48,10 @@
               :text="row[head.name].component.text"
             />
             <span v-if="head.clickable_from">
-              <a :href="row[head.clickable_from]" class="text-blue-dark no-underline hover:underline ">
+              <a
+                :href="row[head.clickable_from]"
+                class="text-blue-dark no-underline hover:underline "
+              >
                 {{ row[head.name] }}
               </a>
             </span>

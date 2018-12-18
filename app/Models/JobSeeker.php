@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobSeeker extends Model implements SyncableInterface
 {
-    use MorphToForm, Routable;
+    use MorphToForm, Routable, HasFilter;
 
     protected $appends = [
       'details_url'

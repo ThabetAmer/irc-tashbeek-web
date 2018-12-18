@@ -22,7 +22,7 @@
   import Panel from '../components/Panel/Panel'
   import {get as getListing} from '../API/caseListing'
   import FiltersProvider from "../mixins/FiltersProvider";
-  import {queryStringToParams} from '../helpers/query-string'
+  import queryString from '../helpers/query-string'
 
   export default {
     components: {Panel, Datatable},
@@ -46,7 +46,7 @@
       }
     },
     mounted() {
-      const queryStringObject = queryStringToParams();
+      const queryStringObject = queryString.parse();
       this.loadData({
         page: queryStringObject.page,
         filters: queryStringObject.filters,
@@ -85,26 +85,13 @@
       },
       changeUrlUsingParams(params) {
 
-        let queryString = this.makeQueryString(params);
+        let serializedQueryString = queryString.serialize(params);
 
-        queryString = queryString !== '' ? '?' + queryString : '';
+        serializedQueryString = serializedQueryString !== '' ? '?' + serializedQueryString : '';
 
-        const url = window.location.protocol + "//" + window.location.host + window.location.pathname + queryString;
+        const url = window.location.protocol + "//" + window.location.host + window.location.pathname + serializedQueryString;
 
         history.pushState({}, document.title, url);
-      },
-      makeQueryString(obj, prefix) {
-        const str = [];
-        for (let p in obj) {
-          if (obj.hasOwnProperty(p)) {
-            let k = prefix ? prefix + "[" + p + "]" : p;
-            let v = obj[p];
-            str.push((v !== null && typeof v === "object") ?
-              this.makeQueryString(v, k) :
-              encodeURIComponent(k) + "=" + encodeURIComponent(v));
-          }
-        }
-        return str.filter(string => string && String(string) !== "" ).join("&");
       },
     }
   }

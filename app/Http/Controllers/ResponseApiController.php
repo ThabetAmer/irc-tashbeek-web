@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Firm;
-use App\Http\Controllers\Controller;
+use App\Http\Filters\CaseFilter;
 use App\Http\Resources\CaseDataResource;
-use Illuminate\Http\Request;
 
 class ResponseApiController extends Controller
 {
@@ -15,10 +13,14 @@ class ResponseApiController extends Controller
      * @param $caseType
      * @return CaseDataResource
      */
-    public function index($caseType)
+    public function index($caseType, CaseFilter $caseFilter)
     {
-        $model = get_case_type_model($caseType);
+        $query = get_case_type_model($caseType)->query();
 
-        return new CaseDataResource($model->paginate(), $caseType);
+        $query->filter($caseFilter);
+
+        $results = $query->paginate();
+
+        return new CaseDataResource($results, $caseType);
     }
 }

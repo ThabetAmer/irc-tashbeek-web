@@ -9,7 +9,7 @@
         :value="getOptionValue(filter)"
         :options="filter.options"
         :placeholder="filter.label"
-        custom-class="mb-2 note-select mr-2 w-1/7"
+        custom-class="mb-2 note-select mr-2 w-1/7 filter-input"
         @select="handleSelect(filter.name, $event)"
       />
       <CustomInput

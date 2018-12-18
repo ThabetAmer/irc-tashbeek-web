@@ -16,9 +16,12 @@
             class="pb-2 pl-1 text-xs max-w-100 truncate"
           >
             <span
+              v-if="head['translations']['en'].length > 14"
               v-tooltip="{content:head['translations']['en'],classes:['tooltip-datatable']}"
-              :title="head['translations']['en']"
             >
+              {{ head['translations']['en'] }}
+            </span>
+            <span v-else>
               {{ head['translations']['en'] }}
             </span>
           </th>
@@ -72,10 +75,8 @@
   import Pagination from './pagination';
   import HasFilters from "../../mixins/HasFilters";
   import Popper from 'vue-popperjs';
-  import Vue from 'vue'
   import VTooltip from 'v-tooltip'
 
-  Vue.use(VTooltip)
   export default {
     /**
      * all props have their needed types

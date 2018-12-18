@@ -36487,6 +36487,7 @@ table.scrollable-fixed-header thead th {
   border-radius: 5px;
   padding: 3px;
   margin-top: -30px;
+  max-width: 250px;
 }
 
 .multiselect__element label {
@@ -36566,4 +36567,11 @@ table.scrollable-fixed-header thead th {
 
 .multiselect__option--highlight {
   background: #f1f5f8;
+}
+
+.multiselect__tags {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-height: 40px !important;
 }

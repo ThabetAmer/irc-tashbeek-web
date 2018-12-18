@@ -12,6 +12,7 @@
    select object/s
    -->
   <Multiselect
+    v-tooltip="{content:placeholder,classes:['tooltip-datatable']}"
     :class="selectStyle"
     :options="options"
     :value="value"
@@ -29,6 +30,7 @@
 <script>
   import Multiselect from 'vue-multiselect'
   import classNames from 'classnames'
+  import VTooltip from 'v-tooltip'
 
   export default {
     components: {Multiselect},

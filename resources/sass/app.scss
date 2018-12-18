@@ -430,6 +430,8 @@ table.scrollable-fixed-header {
   border-radius: 5px;
   padding: 3px;
   margin-top: -30px;
+  max-width: 250px;
+
 }
 
 .multiselect__element {
@@ -483,4 +485,11 @@ table.scrollable-fixed-header {
 
 .multiselect__option--highlight {
   background: #F1F5F8;
+}
+
+.multiselect__tags{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-height: 40px !important;
 }

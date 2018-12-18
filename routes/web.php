@@ -17,6 +17,10 @@ Route::group(['middleware' => ['web','auth']],function(){
     Route::get('/','HomeController@index');
     Route::get('/job-seekers','JobSeekerController@index');
     Route::get('/job-seekers/{jobSeeker}','JobSeekerController@show');
+
+
+    Route::get('/firms','FirmController@index');
+    Route::get('/firms/{firm}','FirmController@show');
 });
 
 //

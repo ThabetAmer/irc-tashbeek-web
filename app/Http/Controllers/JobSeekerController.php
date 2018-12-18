@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class JobSeekerController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of all Job Seekers.
      *
      * @return \Illuminate\Http\Response
      */
@@ -18,6 +18,12 @@ class JobSeekerController extends Controller
         return view('job-seeker.index');
     }
 
+    /**
+     * Display Job Seeker details page.
+     *
+     * @param JobSeeker $jobSeeker
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(JobSeeker $jobSeeker)
     {
         return view('job-seeker.show',compact('jobSeeker'));

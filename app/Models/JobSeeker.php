@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobSeeker extends Model implements SyncableInterface
 {
-    use MorphToForm;
+    use MorphToForm, Routable;
+
+    protected $appends = [
+      'details_url'
+    ];
 
     protected $guarded = ['id'];
 }

@@ -20,7 +20,7 @@
             <i class="min-w-20 icon-Location_Pin_1_1 text-grey-darker mr-4 text-lg " />
             <span>
               Living in {{ jobSeeker.city }}<span v-if="jobSeeker.district !== ''">
-                , {{ jobSeeker.district }}
+                • {{ jobSeeker.district }}
               </span>
             </span>
           </li>

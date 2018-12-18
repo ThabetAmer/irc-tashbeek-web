@@ -8,7 +8,7 @@
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "serve": "npm run watch",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "eslint": "eslint \"resources/js/**/*.{js,vue}\""
+        "eslint": "eslint \"resources/js/**/*.{js,vue}\" --fix"
     },
     "devDependencies": {
         "axios": "^0.18",

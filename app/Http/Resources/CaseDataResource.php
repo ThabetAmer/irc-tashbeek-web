@@ -59,6 +59,9 @@ class CaseDataResource extends ResourceCollection
                 'options' => PropertyOptionsResource::collection(collect($property->attributes['options'] ?? [])),
             ];
         }
+
+        $headers[0]['clickable_from'] = 'details_url';
+
         return [
             'headers' => $headers,
             'filters' => $filters

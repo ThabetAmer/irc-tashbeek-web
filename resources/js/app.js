@@ -27,6 +27,7 @@ Vue.component('SeekerProfile', require('./seeker-profile/seekerProfile'));
 Vue.component('icon', require('./components/icon/icon'));
 
 Vue.component('JobSeeker', require('./seeker-profile/seekerProfile'));
+Vue.component('Firm', require('./firm-profile/firmProfile'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

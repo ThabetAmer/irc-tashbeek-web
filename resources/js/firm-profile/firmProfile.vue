@@ -4,23 +4,34 @@
       <Panel
         custom-class=""
         :has-title="hasTitle"
-        title="Shams El Balad"
+        :title="firm.firm_name"
       >
-        <div class="firm-id uppercase text-green text-left font-bold mt-4 mb-4">
-          ID 56544156
+        <div class="firm-id uppercase text-green text-left font-bold mt-4 mb-4 flex items-center">
+          ID <span class="truncate max-w-2xl pl-2">
+            {{ firm.commcare_id }}
+          </span>
         </div>
         <ul class="firm-info list-reset text-left pr-8 mb-4">
-          <li class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black ">
+          <li
+            v-if="firm.sector"
+            class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black "
+          >
             <i class="icon-Storefront_x40_2xpng_2   text-grey-darker text-xl min-w-30 mr-3 ml-1" />
-            <span>Restaurant</span>
+            <span>{{ firm.sector }}</span>
           </li>
-          <li class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black ">
+          <li
+            v-if="firm.city"
+            class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black "
+          >
             <i class="icon-Location_Pin_1_1 text-grey-darker text-xl min-w-30 mr-3 ml-1" />
-            <span>Located in Amman</span>
+            <span>Located in {{ firm.city }}</span>
           </li>
-          <li class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black ">
+          <li
+            v-if="firm.contact_mobile"
+            class="border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black "
+          >
             <i class="icon-Phone_1_x40_2xpng_2 text-grey-darker text-xl min-w-30 mr-3 ml-1" />
-            <span> +123 456 789 234</span>
+            <span> {{ firm.contact_mobile }}</span>
           </li>
           <li class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black ">
             <i class="icon-Briefcase_x40_2xpng_2 text-grey-darker text-xl min-w-30 mr-3 ml-1" />
@@ -135,7 +146,12 @@
       AddNoteModal, Notebox, JobOpening, Datatable
     },
     filters: {},
-    props: {},
+    props: {
+      firm: {
+        type: Object,
+        required: true
+      }
+    },
     data() {
       return {
         viewType: 'current',

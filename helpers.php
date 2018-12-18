@@ -19,6 +19,7 @@ if (!function_exists('get_case_type_model')) {
     function get_case_type_model($case_type)
     {
         $class = studly_case($case_type);
+
         $class = "App\\Models\\$class";
 
         if (!class_exists($class)) {

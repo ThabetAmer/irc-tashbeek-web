@@ -24,26 +24,22 @@ class Firm extends AbstractCase
     public function questions(): array
     {
         return [
-            'fesoid' => [
-                'name' => 'fesoid',
+            'firm' => [
+                'name' => 'firm_name',
                 'type' => 'text'
             ],
-            'fidmeth' => [
-                'name' => 'fidmeth',
+            'fcity' => [
+                'name' => 'city',
                 'type' => 'text'
             ],
-            'rname' => [
-                'name' => 'rname',
+            'sect' => [
+                'name' => 'sector',
                 'type' => 'text'
             ],
-            'fgps' => [
-                'name' => 'fgps',
-                'type' => 'text'
-            ],
-            'fdate' => [
-                'name' => 'fdate',
-                'type' => 'date'
-            ],
+            'fmob' => [
+                'name' => 'contact_mobile',
+                'type' => 'string'
+            ]
         ];
     }
 

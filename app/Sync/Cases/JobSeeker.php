@@ -57,6 +57,10 @@ class JobSeeker extends AbstractCase
                 'name' => 'mobile_num',
                 'type' => 'string'
             ],
+            'gender' => [
+                'name' => 'gender',
+                'type' => 'string'
+            ],
             'eso_id' => [
                 'name' => 'eso_id',
                 'type' => 'text',

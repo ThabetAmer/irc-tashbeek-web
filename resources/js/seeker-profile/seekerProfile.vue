@@ -14,7 +14,7 @@
         <ul class="firm-info list-reset text-left pr-6">
           <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
             <i class="min-w-20 icon-User_Female_x40_2xpng_2 text-grey-darker mr-4 text-lg" />
-            <span>{{ jobSeeker.nationality }} female • {{ jobSeeker.age }} years old</span>
+            <span>{{ jobSeeker.nationality }} {{ jobSeeker.gender }} • {{ jobSeeker.age }} years old</span>
           </li>
           <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
             <i class="min-w-20 icon-Location_Pin_1_1 text-grey-darker mr-4 text-lg " />
@@ -33,11 +33,12 @@
           </li>
           <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
             <i class="min-w-20 icon-Phone_1_x40_2xpng_2 text-grey-darker mr-4 text-lg  " />
-            <span> +123 456 789 234</span>
+            <span>{{ jobSeeker.mobile_num }}</span>
           </li>
           <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
             <i class="min-w-20 icon-Diamond_x40_2xpng_2 text-grey-darker mr-4 text-lg " />
-            <span>Baking • Photoshop • Carpentry</span>
+            <span>No Relevant fields in API, need discuss</span>
+            <!--<span>Baking • Photoshop • Carpentry</span>-->
           </li>
         </ul>
 

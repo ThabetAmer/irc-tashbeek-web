@@ -13,14 +13,15 @@
           <th
             v-for="head in header"
             :key="head.name"
-            class="pb-2 pl-1 text-xs max-w-100 truncate"
+            class="pb-2 pl-2 text-xs max-w-100 "
           >
-            <span
+            <div
               v-if="head['translations']['en'].length > 14"
               v-tooltip="{content:head['translations']['en'],classes:['tooltip-datatable']}"
+              class=" max-w-100 truncate"
             >
               {{ head['translations']['en'] }}
-            </span>
+            </div>
             <span v-else>
               {{ head['translations']['en'] }}
             </span>

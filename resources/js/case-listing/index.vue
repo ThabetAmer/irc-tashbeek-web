@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Panel>
+    <Panel
+      custom-class="overflow-auto"
+    >
       <Datatable
         :header="headers"
         :rows="rows"

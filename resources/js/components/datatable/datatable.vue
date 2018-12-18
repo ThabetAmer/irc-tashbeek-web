@@ -13,11 +13,12 @@
           <th
             v-for="head in header"
             :key="head.name"
-            class="pb-2 pl-1 text-xs"
+            :title="head['translations']['en']"
+            class="pb-2 pl-1 text-xs max-w-100 truncate"
           >
             {{ head['translations']['en'] }}
           </th>
-          <th class="pb-2 px-4 pl-1" />
+          <th class="pb-2 px-4 pl-1 max-w-100 truncate" />
         </tr>
       </thead>
 
@@ -66,13 +67,14 @@
   import Filters from './filters';
   import Pagination from './pagination';
   import HasFilters from "../../mixins/HasFilters";
+  import Popper from 'vue-popperjs';
 
   export default {
     /**
      * all props have their needed types
      * and are passed using the mixin
      */
-    components: {Filters, Pagination},
+    components: {Filters, Pagination,Popper},
     filters: {},
     mixins: [HasFilters],
     props: {

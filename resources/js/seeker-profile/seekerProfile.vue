@@ -213,7 +213,7 @@
   import Checkbox from '../components/checkbox/checkbox'
   import CheckboxGroup from '../components/checkboxGroup/checkbox-group'
   import Panel from '../components/panel/panel'
-  import MetricCard from '../components/MetricCard/MetricCard'
+  import MetricCard from '../components/metricCard/metricCard'
   import Notebox from '../components/notebox/notebox'
   import Screenbox from '../components/screenbox/screenbox'
   import JobOpening from '../components/jobOpening/jobOpening'

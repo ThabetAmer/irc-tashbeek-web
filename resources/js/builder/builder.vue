@@ -332,7 +332,7 @@
     import checkbox from '../components/checkbox/checkbox'
     import checkboxGroup from '../components/checkboxGroup/checkbox-group'
     import Panel from '../components/panel/panel'
-    import MetricCard from '../components/MetricCard/MetricCard'
+    import MetricCard from '../components/metricCard/metricCard'
     import notebox from '../components/notebox/notebox'
     import jobOpening from '../components/jobOpening/jobOpening'
     import datatable from '../components/datatable/datatable'

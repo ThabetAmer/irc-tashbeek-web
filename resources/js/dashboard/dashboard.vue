@@ -158,7 +158,7 @@
 <script>
 
   import Panel from '../components/panel/panel'
-  import MetricCard from '../components/MetricCard/MetricCard'
+  import MetricCard from '../components/metricCard/metricCard'
   import Datatable from '../components/datatable/datatable'
   import moment from 'moment';
   import {FullCalendar} from 'vue-full-calendar'

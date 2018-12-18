@@ -36441,3 +36441,21 @@ table.scrollable-fixed-header thead th {
       -ms-flex-align: center;
           align-items: center;
 }
+
+@media only screen and (min-width: 768px) {
+  .fc-more-cell {
+    margin-left: 25px !important;
+  }
+}
+
+@media only screen and (min-width: 1350px) {
+  .fc-more-cell {
+    margin-left: 25px !important;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .fc-more-cell {
+    margin-left: 40px !important;
+  }
+}

@@ -22,7 +22,10 @@
             >
               {{ head['translations']['en'] }}
             </div>
-            <span v-else>
+            <span
+              v-else
+              class="truncate"
+            >
               {{ head['translations']['en'] }}
             </span>
           </th>
@@ -47,7 +50,10 @@
               :icon-class="row[head.name].component.iconClass"
               :text="row[head.name].component.text"
             />
-            <span v-if="head.clickable_from">
+            <span
+              v-if="head.clickable_from"
+              class="max-w-100 truncate block"
+            >
               <a
                 :href="row[head.clickable_from]"
                 class="text-blue-dark no-underline hover:underline "
@@ -55,6 +61,14 @@
                 {{ row[head.name] }}
               </a>
             </span>
+            <span
+              v-else-if="row[head.name]&& row[head.name].length > 10"
+              v-tooltip="{content:row[head.name],classes:['tooltip-datatable']}"
+              class="max-w-100 truncate block"
+            >
+              {{ row[head.name] }}
+            </span>
+
             <span v-else>
               {{ row[head.name] }}
             </span>

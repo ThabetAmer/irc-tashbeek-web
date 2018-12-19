@@ -1,8 +1,15 @@
 <template>
   <div
     v-tooltip="{content:'Click to Copy',classes:['tooltip-datatable']}"
+    class="truncate max-w-2xl pl-2 cursor-pointer"
     @click="doCopy"
   >
+    <input
+      ref="inputCopy"
+      v-model="toBeCopied"
+      type="text"
+      aria-hidden="true"
+    >
     <slot
       name="copyTemplate"
     />
@@ -10,15 +17,7 @@
 </template>
 <script>
   import VTooltip from 'v-tooltip'
-  import Toasted from 'vue-toasted';
-  Vue.use(Toasted,{
-    icon : 'icon-Paper_Clip_1 mr-2',
-    position:'bottom-right',
-    duration:23000,
-    iconPack:'custom-class',
-    theme:'bubble',
-    className:'clipboard-custom-class'
-  });
+
   export default {
     mixins: [],
     props: {
@@ -29,13 +28,11 @@
     },
     methods: {
       doCopy: function () {
-        var dummy = document.createElement("input");
-        document.body.appendChild(dummy);
-        dummy.setAttribute('value', this.toBeCopied);
-        dummy.select();
+        this.$refs.inputCopy.select();
         document.execCommand("copy");
-        document.body.removeChild(dummy);
-        this.$toasted.show('Copied!')
+        this.$toasted.show('Copied!',{
+          icon: 'icon-Paper_Clip_1 mr-2'
+        })
       }
     }
   }

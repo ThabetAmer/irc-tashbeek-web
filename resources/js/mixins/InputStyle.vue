@@ -16,7 +16,7 @@
         },
         computed: {
             computedInputClass() {
-                return classNames(['', this.inputClass]);
+                return classNames(['focus:outline-none focus:shadow-outline shadow', this.inputClass]);
             }
         },
     }

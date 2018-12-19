@@ -33,10 +33,31 @@ class JobOpening extends AbstractCase
                 'column_type' => 'text',
                 'alias' => 'job_title'
             ],
-            'job_description' => [
+            'vdesc' => [
                 'column_name' => 'job_description',
-                'column_type' => 'text'
+                'column_type' => 'text',
+                'alias' => 'job_description'
             ],
+            'pno' => [
+                'column_name' => 'num_vacancies',
+                'column_type' => 'text',
+                'alias' => 'num_vacancies'
+            ],
+            'coworker_nationality' => [
+                'column_name' => 'coworker_nationality',
+                'column_type' => 'text',
+                'alias' => 'coworker_nationality'
+            ],
+            'coworkers_gender' => [
+                'column_name' => 'coworker_gender',
+                'column_type' => 'text',
+                'alias' => 'coworker_gender'
+            ],
+            'manager_gender' => [
+                'column_name' => 'manager_gender',
+                'column_type' => 'text',
+                'alias' => 'manager_gender'
+            ]
         ];
     }
     public function formId()

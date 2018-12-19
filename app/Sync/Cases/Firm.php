@@ -26,16 +26,16 @@ class Firm extends AbstractCase
         return [
             'firm' => [
                 'column_name' => 'firm_name',
-                'column_type' => 'text',
+                'column_type' => 'string',
                 'alias' => 'firm_name'
             ],
             'fcity' => [
                 'column_name' => 'city',
-                'column_type' => 'text'
+                'column_type' => 'string'
             ],
             'sect' => [
                 'column_name' => 'sector',
-                'column_type' => 'text'
+                'column_type' => 'string'
             ],
             'fmob' => [
                 'column_name' => 'contact_mobile',

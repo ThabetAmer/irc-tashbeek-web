@@ -38,7 +38,7 @@
         </li>
 
         <li class="uppercase  text-white">
-            <a href="" class="text-white flex items-center  text-sm remove-text-minified py-5 relative mb-3">
+            <a href="/job-openings" class="text-white flex items-center  text-sm remove-text-minified py-5 relative mb-3">
                 <i class="icon-Briefcase_x40_2xpng_2 min-w-30  pin-l pin-t text-xl mr-10 ml-3"></i>
                 <span>
                     Jobs

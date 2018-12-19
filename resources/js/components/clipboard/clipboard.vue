@@ -1,6 +1,6 @@
 <template>
   <div
-    v-tooltip="{content:'Click to Copy',classes:['tooltip-datatable']}"
+    v-tooltip="{content:`Click to Copy ${toBeCopied}`,classes:['tooltip-datatable']}"
     class="truncate max-w-2xl pl-2 cursor-pointer"
     @click="doCopy"
   >

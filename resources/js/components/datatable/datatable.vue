@@ -52,7 +52,7 @@
             />
             <span
               v-if="head.clickable_from"
-              class="max-w-100 truncate block"
+              class="max-w-150 truncate block"
             >
               <a
                 :href="row[head.clickable_from]"

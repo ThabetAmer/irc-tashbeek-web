@@ -24,9 +24,18 @@ class Firm extends AbstractCase
     public function questions(): array
     {
         return [
-            'firm' => [
+            'fname' => [
                 'name' => 'firm_name',
-                'type' => 'text'
+                'type' => 'text',
+                'property' => [
+                    'type' => '',
+                    'translation' => [
+
+                    ],
+                    'options' => [
+
+                    ]
+                ]
             ],
             'fcity' => [
                 'name' => 'city',

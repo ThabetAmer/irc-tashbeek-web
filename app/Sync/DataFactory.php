@@ -103,10 +103,13 @@ class DataFactory
     {
         $data = [];
 
-        foreach ($caseObject->questions() as $questionIdPath => $question) {
-            $questionId = $this->fetchQuestionIdFromPath($questionIdPath);
+        foreach ($caseObject->questions() as $questionId => $question) {
 
             $value = array_get(array_get($case, 'properties'), $questionId);
+
+            if(empty($value) && isset($question['alias'])){
+                $value = array_get(array_get($case, 'properties'), $question['alias']);
+            }
 
             $data[$question['column_name']] = $value;
         }

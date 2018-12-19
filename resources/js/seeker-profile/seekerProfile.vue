@@ -43,10 +43,23 @@
             <i class="min-w-20 icon-Phone_1_x40_2xpng_2 text-grey-darker mr-4 text-lg  " />
             <span>{{ jobSeeker.mobile_num }}</span>
           </li>
-          <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
+          <li
+            v-if="jobSeeker.first_preference || jobSeeker.second_preference"
+            class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black "
+          >
             <i class="min-w-20 icon-Diamond_x40_2xpng_2 text-grey-darker mr-4 text-lg " />
-            <span>No Relevant fields in API, need discuss</span>
-            <!--<span>Baking • Photoshop • Carpentry</span>-->
+
+            <span v-if="jobSeeker.first_preference">
+              {{ jobSeeker.first_preference }}
+            </span>
+
+            <span v-if="jobSeeker.first_preference && jobSeeker.second_preference">
+              •
+            </span>
+
+            <span v-if="jobSeeker.second_preference">
+              {{ jobSeeker.second_preference }}
+            </span>
           </li>
         </ul>
 

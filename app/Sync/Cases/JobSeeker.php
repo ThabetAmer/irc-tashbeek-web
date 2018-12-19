@@ -35,7 +35,6 @@ class JobSeeker extends AbstractCase
             'city' => [
                 'column_name' => 'city',
                 'column_type' => 'string',
-                'has_filter' => true,
             ],
             'district' => [
                 'column_name' => 'district',
@@ -64,12 +63,15 @@ class JobSeeker extends AbstractCase
             'eso_id' => [
                 'column_name' => 'eso_id',
                 'column_type' => 'text',
-                'has_filter' => true,
             ],
-            'gps' => [
-                'column_name' => 'gps',
-                'column_type' => 'string'
-            ],
+//            'first_preference' => [
+//                'column_name' => 'first_preference',
+//                'column_type' => 'string'
+//            ],
+//            'second_preference' => [
+//                'column_name' => 'second_preference',
+//                'column_type' => 'string'
+//            ],
         ];
     }
 

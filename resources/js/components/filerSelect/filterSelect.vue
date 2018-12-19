@@ -13,7 +13,7 @@
    -->
   <Multiselect
     :class="selectStyle"
-    :options="options"
+    :options="filters"
     :value="value"
     select-label=""
     :multiple="multiple"
@@ -39,6 +39,7 @@
         <input
           type="checkbox"
           class="mr-1"
+          :checked="userFilters.map(filter => filter.name).indexOf(option.name) > -1"
           @click="handleSelect(option)"
         >
         {{ option.label }}
@@ -68,7 +69,13 @@
         type: [String, Number, Object, Array],
         default: null
       },
-      options: {
+      filters: {
+        type: Array,
+        default: function () {
+          return []
+        }
+      },
+      userFilters: {
         type: Array,
         default: function () {
           return []

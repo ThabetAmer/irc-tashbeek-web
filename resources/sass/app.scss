@@ -430,8 +430,9 @@ table.scrollable-fixed-header {
   border-radius: 5px;
   padding: 3px;
   margin-top: -30px;
-  max-width: 250px;
-  z-index: 100 !important;
+  max-width: 270px;
+  z-index: 10000 !important;
+  //transform: translate3d(0, 66px, 0) !important;
 
 }
 
@@ -494,6 +495,8 @@ table.scrollable-fixed-header {
   white-space: nowrap;
   max-height: 42px !important;
   min-height: 42px !important;
+
+  cursor: pointer;
 }
 
 .filter-selector{
@@ -542,4 +545,8 @@ table.scrollable-fixed-header {
   position: absolute;
   z-index: -9999;
   pointer-events: none;
+}
+
+.multiselect__option multiselect__option--selected{
+
 }

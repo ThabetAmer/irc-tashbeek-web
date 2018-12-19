@@ -12,12 +12,13 @@
    select object/s
    -->
   <Multiselect
-    v-tooltip="{content:placeholder,classes:['tooltip-datatable']}"
+    v-tooltip="{content:placeholder,placement:'top',container :'body',hideOnTargetClick :true,autoHide :true,delay:{ show: 500, hide: 100000 },classes:['tooltip-datatable']}"
     :class="selectStyle"
     :options="options"
     :value="value"
     select-label=""
     deselect-label=""
+    selected-label=""
     :multiple="multiple"
     :track-by="trackBy"
     :label="label"

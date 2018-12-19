@@ -16,6 +16,7 @@
     :options="filters"
     :value="value"
     select-label=""
+    selected-label=""
     :multiple="multiple"
     :track-by="trackBy"
     :label="label"

@@ -36511,8 +36511,8 @@ table.scrollable-fixed-header thead th {
   border-radius: 5px;
   padding: 3px;
   margin-top: -30px;
-  max-width: 250px;
-  z-index: 100 !important;
+  max-width: 270px;
+  z-index: 10000 !important;
 }
 
 .multiselect__element label {
@@ -36600,6 +36600,7 @@ table.scrollable-fixed-header thead th {
   white-space: nowrap;
   max-height: 42px !important;
   min-height: 42px !important;
+  cursor: pointer;
 }
 
 .filter-selector .multiselect__element {

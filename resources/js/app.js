@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -29,6 +28,15 @@ Vue.component('icon', require('./components/icon/icon'));
 Vue.component('JobSeeker', require('./seeker-profile/seekerProfile'));
 Vue.component('Firm', require('./firm-profile/firmProfile'));
 
+import Toasted from 'vue-toasted';
+
+Vue.use(Toasted, {
+  position: 'bottom-right',
+  duration: 3000,
+  iconPack: 'custom-class',
+  theme: 'bubble',
+  className: 'clipboard-custom-class'
+});
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -5519,6 +5519,10 @@
   white-space: nowrap;
 }
 
+.w-0 {
+  width: 0px;
+}
+
 .w-1 {
   width: .25rem;
 }
@@ -11138,6 +11142,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  .sm\:w-0 {
+    width: 0px;
   }
 
   .sm\:w-1 {
@@ -16762,6 +16770,10 @@
     white-space: nowrap;
   }
 
+  .md\:w-0 {
+    width: 0px;
+  }
+
   .md\:w-1 {
     width: .25rem;
   }
@@ -22382,6 +22394,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  .lg\:w-0 {
+    width: 0px;
   }
 
   .lg\:w-1 {
@@ -28006,6 +28022,10 @@
     white-space: nowrap;
   }
 
+  .xl\:w-0 {
+    width: 0px;
+  }
+
   .xl\:w-1 {
     width: .25rem;
   }
@@ -33628,6 +33648,10 @@
     white-space: nowrap;
   }
 
+  .hd\:w-0 {
+    width: 0px;
+  }
+
   .hd\:w-1 {
     width: .25rem;
   }
@@ -36604,11 +36628,16 @@ table.scrollable-fixed-header thead th {
 }
 
 .multiselect-field {
-  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
-          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
   border-radius: 5px;
 }
 
 .clipboard-custom-class {
   background: #405e80 !important;
+}
+
+[aria-hidden="true"] {
+  opacity: 0;
+  position: absolute;
+  z-index: -9999;
+  pointer-events: none;
 }

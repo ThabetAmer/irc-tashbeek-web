@@ -12,8 +12,8 @@ class Match extends \App\Sync\Cases\Match
     {
         return  [
             'eso_id' => [
-                'column_name' =>  'eso_id',
-                'column_type' =>  'text'
+                'column_name' =>  'job_title',
+                'column_type' =>  'text',
             ],
             'beneficiary_id_uuid' => [
                 'column_name' =>  'beneficiary_id_uuid',

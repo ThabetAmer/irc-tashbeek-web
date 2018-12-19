@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use App\Models\Form;
 use App\Models\JobSeeker;
-use App\Sync\DataFactory;
+use Tests\Fixtures\Classes\DataFactory;
 use App\Sync\FormDataFactory;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;

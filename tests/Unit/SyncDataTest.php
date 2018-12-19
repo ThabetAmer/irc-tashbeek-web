@@ -1,10 +1,8 @@
-<?php
+<?php namespace Tests\Unit;
 
-namespace Tests\Unit;
-
-use App\Models\JobSeeker;
-use App\Sync\DataFactory;
 use Tests\TestCase;
+use App\Models\JobSeeker;
+use Tests\Fixtures\Classes\DataFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SyncDataTest extends TestCase

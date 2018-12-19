@@ -4,7 +4,7 @@ namespace Tests;
 
 use App\Sync\DataRequest;
 use App\Sync\FormDataRequest;
-use App\Sync\StructureFactory;
+use Tests\Fixtures\Classes\StructureFactory;
 use App\Sync\StructureRequest;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 

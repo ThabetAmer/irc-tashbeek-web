@@ -1,11 +1,9 @@
-<?php
+<?php namespace Tests\Unit;
 
-namespace Tests\Unit;
-
-use App\Models\Form;
-use App\Sync\StructureFactory;
+use Illuminate\Support\Facades\Schema;
+use App\Models\Form;use Tests\TestCase;
+use Tests\Fixtures\Classes\StructureFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
 class SyncStructureTest extends TestCase
 {
@@ -99,5 +97,20 @@ class SyncStructureTest extends TestCase
         $form = Form::where('commcare_id','37f43427d24bd6a294fdd4bf7e3c45fdace489a1')->first();
 
         $this->assertEquals('Job-seekers Intake Form' ,$form->name['en']);
+    }
+
+    public function test_it_create_field_from_predefined_structure()
+    {
+        $this->mockStructureRequest();
+
+        $factory = app(StructureFactory::class);
+
+        $type = "firm";
+
+        $factory->make($type);
+
+        $this->assertTrue(
+            Schema::hasColumn(app(\App\Models\Firm::class)->getTable(), 'firm_name')
+        );
     }
 }

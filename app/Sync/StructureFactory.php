@@ -100,13 +100,29 @@ class StructureFactory
 
         foreach ($data['forms'] as $form) {
 
-            if ($this->isWhiteListedForm($form['unique_id'], $case->formId())) {
-                foreach ($form['questions'] as $question) {
-                    if (isset($case->questions()[base_commcare_field_name($question['hashtagValue'])])) {
-                        $question['case_question'] = $case->questions()[base_commcare_field_name($question['hashtagValue'])];
-                        $questionObjects[] = $question;
+            if (!$this->isWhiteListedForm($form['unique_id'], $case->formId())) {
+                continue;
+            }
+
+            $questions = collect($form['questions'])->keyBy(function ($question) {
+                return base_commcare_field_name($question['hashtagValue']);
+            });
+
+            foreach ($case->questions() as $name => $question) {
+                if ($questions->get($name)) {
+                    $questionObject = $questions->get($name);
+                    $questionObject['case_question'] = $question;
+                }else if(isset($question['property'])){
+                    $questionObject = $question['property'];
+                    if(!isset($questionObject['hashtagValue'])){
+                        $questionObject['hashtagValue'] = $name;
                     }
+                    $questionObject['case_question'] = $question;
+                }else{
+                    continue;
                 }
+
+                $questionObjects[] = $questionObject;
             }
 
             Form::create([
@@ -115,14 +131,14 @@ class StructureFactory
             ]);
         }
 
-        $questionObjects = collect($questionObjects)->keyBy(function($question){
+        $questionObjects = collect($questionObjects)->keyBy(function ($question) {
             return base_commcare_field_name($question['hashtagValue']);
         });
 
         // sort questions
         $questions = [];
-        foreach($case->questions() as $name => $question){
-            array_push($questions,$questionObjects->get($name));
+        foreach ($case->questions() as $name => $question) {
+            array_push($questions, $questionObjects->get($name));
         }
 
         return $questions;

@@ -14,7 +14,7 @@ class UpdatePropertiesMetaDataTableAddColumnName extends Migration
     public function up()
     {
         Schema::table('properties_meta_data', function (Blueprint $table) {
-            $table->string('column_name',40);
+            $table->string('column_name',40)->nullable();
         });
     }
 

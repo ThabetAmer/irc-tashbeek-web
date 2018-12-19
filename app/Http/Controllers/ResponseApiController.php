@@ -11,6 +11,7 @@ class ResponseApiController extends Controller
      * Display a listing of the resource.
      *
      * @param $caseType
+     * @param CaseFilter $caseFilter
      * @return CaseDataResource
      */
     public function index($caseType, CaseFilter $caseFilter)

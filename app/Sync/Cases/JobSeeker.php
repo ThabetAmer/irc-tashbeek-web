@@ -24,51 +24,51 @@ class JobSeeker extends AbstractCase
     {
         return [
             'first_name' => [
-                'name' => 'first_name',
-                'type' => 'string'
+                'column_name' => 'first_name',
+                'column_type' => 'string'
             ],
             'last_name' => [
-                'name' => 'last_name',
-                'type' => 'string'
+                'column_name' => 'last_name',
+                'column_type' => 'string'
             ],
 
             'city' => [
-                'name' => 'city',
-                'type' => 'string',
+                'column_name' => 'city',
+                'column_type' => 'string',
                 'has_filter' => true,
             ],
             'district' => [
-                'name' => 'district',
-                'type' => 'string'
+                'column_name' => 'district',
+                'column_type' => 'string'
             ],
             'nationality' => [
-                'name' => 'nationality',
-                'type' => 'string'
+                'column_name' => 'nationality',
+                'column_type' => 'string'
             ],
             'age' => [
-                'name' => 'age',
-                'type' => 'string'
+                'column_name' => 'age',
+                'column_type' => 'string'
             ],
             'will_work_qiz' => [
-                'name' => 'will_work_qiz',
-                'type' => 'string'
+                'column_name' => 'will_work_qiz',
+                'column_type' => 'string'
             ],
             'mobile_num' => [
-                'name' => 'mobile_num',
-                'type' => 'string'
+                'column_name' => 'mobile_num',
+                'column_type' => 'string'
             ],
             'gender' => [
-                'name' => 'gender',
-                'type' => 'string'
+                'column_name' => 'gender',
+                'column_type' => 'string'
             ],
             'eso_id' => [
-                'name' => 'eso_id',
-                'type' => 'text',
+                'column_name' => 'eso_id',
+                'column_type' => 'text',
                 'has_filter' => true,
             ],
             'gps' => [
-                'name' => 'gps',
-                'type' => 'string'
+                'column_name' => 'gps',
+                'column_type' => 'string'
             ],
         ];
     }

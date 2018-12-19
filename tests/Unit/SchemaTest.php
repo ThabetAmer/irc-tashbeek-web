@@ -19,8 +19,8 @@ class SchemaTest extends TestCase
 
         app(Schema::class)->generate($tableName,[
             [
-                'name' => 'first_name',
-                'type' => 'string'
+                'column_name' => 'first_name',
+                'column_type' => 'string'
             ]
         ]);
 
@@ -44,19 +44,19 @@ class SchemaTest extends TestCase
 
         app(Schema::class)->generate($tableName,[
             [
-                'name' => 'first_name',
-                'type' => 'string'
+                'column_name' => 'first_name',
+                'column_type' => 'string'
             ]
         ]);
 
         app(Schema::class)->generate($tableName,[
             [
-                'name' => 'first_name',
-                'type' => 'string'
+                'column_name' => 'first_name',
+                'column_type' => 'string'
             ],
             [
-                'name' => 'last_name',
-                'type' => 'string'
+                'column_name' => 'last_name',
+                'column_type' => 'string'
             ]
         ]);
 

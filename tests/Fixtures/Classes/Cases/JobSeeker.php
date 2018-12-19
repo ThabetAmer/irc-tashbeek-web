@@ -12,21 +12,21 @@ class JobSeeker extends \App\Sync\Cases\JobSeeker
     {
         return [
             'first_name' => [
-                'name' => 'first_name',
-                'type' => 'string'
+                'column_name' => 'first_name',
+                'column_type' =>  'string'
             ],
             'last_name' => [
-                'name' => 'last_name',
-                'type' => 'string'
+                'column_name' =>  'last_name',
+                'column_type' =>  'string'
             ],
             'city' => [
-                'name' => 'city',
-                'type' => 'string',
+                'column_name' =>  'city',
+                'column_type' =>  'string',
                 'has_filter' => true,
             ],
             'district' => [
-                'name' => 'district',
-                'type' => 'string'
+                'column_name' =>  'district',
+                'column_type' =>  'string'
             ],
         ];
     }

@@ -25,29 +25,20 @@ class Firm extends AbstractCase
     {
         return [
             'fname' => [
-                'name' => 'firm_name',
-                'type' => 'text',
-                'property' => [
-                    'type' => '',
-                    'translation' => [
-
-                    ],
-                    'options' => [
-
-                    ]
-                ]
+                'column_name' => 'firm_name',
+                'column_type' => 'text',
             ],
             'fcity' => [
-                'name' => 'city',
-                'type' => 'text'
+                'column_name' => 'city',
+                'column_type' => 'text'
             ],
             'sect' => [
-                'name' => 'sector',
-                'type' => 'text'
+                'column_name' => 'sector',
+                'column_type' => 'text'
             ],
             'fmob' => [
-                'name' => 'contact_mobile',
-                'type' => 'string'
+                'column_name' => 'contact_mobile',
+                'column_type' => 'string'
             ]
         ];
     }

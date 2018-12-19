@@ -1,14 +1,8 @@
-<?php
-/**
- * Created by Solaiman Kmail <psokmail@gmail.com>
- */
+<?php namespace App\Http\Filters;
 
-namespace App\Http\Filters;
-
-
+use Illuminate\Http\Request;
 use App\Models\PropertyMetaData;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
 
 class CaseFilter implements FilterInterface
 {
@@ -67,7 +61,9 @@ class CaseFilter implements FilterInterface
     private function runFilters($builder, $filters, $properties)
     {
         foreach ($filters as $name => $value) {
+
             $filterType = studly_case(array_get($properties->get($name)->attributes, 'type'));
+
             $searchMethod = "search$filterType";
 
             if (!method_exists($this, $searchMethod)) {
@@ -87,6 +83,10 @@ class CaseFilter implements FilterInterface
      */
     protected function searchText($builder, $name, $value)
     {
+        if(is_array($value)){
+            $value = array_flatten($value);
+            $value = reset($value);
+        }
         $builder->where($name, 'LIKE', "%$value%");
     }
 

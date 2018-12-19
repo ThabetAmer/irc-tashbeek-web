@@ -12,24 +12,24 @@ class JobOpening extends \App\Sync\Cases\JobOpening
     {
         return [
             'job_id' => [
-                'name' => 'job_id',
-                'type' => 'string'
+                'column_name' => 'job_id',
+                'column_type' => 'string'
             ],
             'vtit' => [
-                'name' => 'job_title',
-                'type' => 'text'
+                'column_name' => 'job_title',
+                'column_type' => 'text'
             ],
             'vdesc' => [
-                'name' => 'job_description',
-                'type' => 'text'
+                'column_name' => 'job_description',
+                'column_type' => 'text'
             ],
             'coworkers_gender' => [
-                'name' => 'gender',
-                'type' => 'text'
+                'column_name' => 'gender',
+                'column_type' => 'text'
             ],
             'coworker_nationality' => [
-                'name' => 'nationality',
-                'type' => 'text'
+                'column_name' => 'nationality',
+                'column_type' => 'text'
             ]
         ];
     }

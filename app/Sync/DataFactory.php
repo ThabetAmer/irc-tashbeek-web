@@ -108,7 +108,7 @@ class DataFactory
 
             $value = array_get(array_get($case, 'properties'), $questionId);
 
-            $data[$question['name']] = $value;
+            $data[$question['column_name']] = $value;
         }
 
         $data['commcare_id'] = $case['id'];

@@ -12,16 +12,16 @@ class Match extends \App\Sync\Cases\Match
     {
         return  [
             'eso_id' => [
-                'name' => 'eso_id',
-                'type' => 'text'
+                'column_name' =>  'eso_id',
+                'column_type' =>  'text'
             ],
             'beneficiary_id_uuid' => [
-                'name' => 'beneficiary_id_uuid',
-                'type' => 'text'
+                'column_name' =>  'beneficiary_id_uuid',
+                'column_type' =>  'text'
             ],
             'application_method' => [
-                'name' => 'application_method',
-                'type' => 'text'
+                'column_name' =>  'application_method',
+                'column_type' =>  'text'
             ],
         ];
     }

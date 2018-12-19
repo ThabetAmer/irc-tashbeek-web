@@ -36574,7 +36574,8 @@ table.scrollable-fixed-header thead th {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-height: 40px !important;
+  max-height: 42px !important;
+  min-height: 42px !important;
 }
 
 .filter-selector .multiselect__element {
@@ -36600,4 +36601,14 @@ table.scrollable-fixed-header thead th {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.multiselect-field {
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+  border-radius: 5px;
+}
+
+.clipboard-custom-class {
+  background: #405e80 !important;
 }

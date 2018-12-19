@@ -7,9 +7,17 @@
         :title="`${jobSeeker.first_name} ${jobSeeker.last_name}`"
       >
         <div class="firm-id uppercase text-green text-left font-bold mt-4 mb-4 flex items-center">
-          ID <span class="truncate max-w-2xl pl-2">
-            {{ jobSeeker.commcare_id }}
-          </span>
+          ID
+          <Clipboard
+            :to-be-copied="jobSeeker.commcare_id"
+          >
+            <span
+              slot="copyTemplate"
+              class="truncate max-w-2xl pl-2"
+            >
+              {{ jobSeeker.commcare_id }}
+            </span>
+          </Clipboard>
         </div>
         <ul class="firm-info list-reset text-left pr-6">
           <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
@@ -218,11 +226,12 @@
   import Screenbox from '../components/screenbox/screenbox'
   import JobOpening from '../components/jobOpening/jobOpening'
   import Datatable from '../components/datatable/datatable'
+  import Clipboard from '../components/clipboard/clipboard'
   // import addNoteModal from '../components/modal/addNoteModal'
 
   export default {
     components: {
-      Btn, AnchorLink,
+      Btn, AnchorLink,Clipboard,
       CustomSelect, Modal, buttonGroup,
       Checkbox, CheckboxGroup, Panel, MetricCard,
       AddNoteModal, Notebox, JobOpening, Datatable, Screenbox

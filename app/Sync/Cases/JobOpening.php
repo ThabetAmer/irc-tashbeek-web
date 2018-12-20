@@ -47,6 +47,17 @@ class JobOpening extends AbstractCase
                     'ara' => 'Firm name'
                 ],
             ],
+            'date_opened' => [
+                'column_name' => 'date_opened',
+                'column_type' => 'dateTime',
+                'property' => true,
+                'type' => 'text',
+                'translations' => [
+                    'en' => 'Date opened',
+                    'ara' => 'Date Opened'
+                ],
+                'valueHandler' => \App\Sync\QuestionHandler\DateHandler::class,
+            ],
             'vdesc' => [
                 'column_name' => 'job_description',
                 'column_type' => 'text',

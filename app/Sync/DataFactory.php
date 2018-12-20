@@ -98,6 +98,7 @@ class DataFactory
      * @param AbstractCase $caseObject
      * @param $case
      * @return array
+     * @throws \Exception
      */
     protected function getCaseFields(AbstractCase $caseObject, $case)
     {
@@ -112,7 +113,7 @@ class DataFactory
             }
 
             if(isset($question['valueHandler'])){
-                $value = app($question['valueHandler'])->handle($case, $question, $caseObject);
+                $value = app($question['valueHandler'])->handle($case, $questionId, $question, $caseObject);
             }
 
             $data[$question['column_name']] = $value;

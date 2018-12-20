@@ -5257,6 +5257,10 @@
   color: #ffebef;
 }
 
+.text-xxs {
+  font-size: .4rem;
+}
+
 .text-xs {
   font-size: .75rem;
 }
@@ -10884,6 +10888,10 @@
 
   .sm\:focus\:text-pink-lightest:focus {
     color: #ffebef;
+  }
+
+  .sm\:text-xxs {
+    font-size: .4rem;
   }
 
   .sm\:text-xs {
@@ -16516,6 +16524,10 @@
     color: #ffebef;
   }
 
+  .md\:text-xxs {
+    font-size: .4rem;
+  }
+
   .md\:text-xs {
     font-size: .75rem;
   }
@@ -22144,6 +22156,10 @@
 
   .lg\:focus\:text-pink-lightest:focus {
     color: #ffebef;
+  }
+
+  .lg\:text-xxs {
+    font-size: .4rem;
   }
 
   .lg\:text-xs {
@@ -27776,6 +27792,10 @@
     color: #ffebef;
   }
 
+  .xl\:text-xxs {
+    font-size: .4rem;
+  }
+
   .xl\:text-xs {
     font-size: .75rem;
   }
@@ -33406,6 +33426,10 @@
     color: #ffebef;
   }
 
+  .hd\:text-xxs {
+    font-size: .4rem;
+  }
+
   .hd\:text-xs {
     font-size: .75rem;
   }
@@ -36666,4 +36690,13 @@ table.scrollable-fixed-header thead th {
   position: absolute;
   z-index: -9999;
   pointer-events: none;
+}
+
+.clear-filter-button {
+  padding: 5px;
+  background: #c3c7cc;
+}
+
+.multiselect-with-remove .multiselect__select {
+  margin-right: 10px;
 }

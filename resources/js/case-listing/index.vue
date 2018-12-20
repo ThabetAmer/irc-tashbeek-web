@@ -36,6 +36,10 @@
     data() {
       return {
         rows: [],
+        sortig: {
+          type: 'asc',
+          columnField: 'id'
+        },
         headers: [],
         pagination: {
           total: 0,
@@ -63,25 +67,25 @@
           page: !isNaN(parseInt(page, 10)) ? page : this.pagination.currentPage
         }
         return getListing(this.type, params)
-          .then(({data}) => {
+            .then(({data}) => {
 
-            this.changeUrlUsingParams(params);
+              this.changeUrlUsingParams(params);
 
-            this.rows = data.data;
-            this.headers = data.headers;
-            this.filters = data.filters;
-            if (this.userFilters.length === 0) {
-              this.userFilters = this.initialUserFilters(data.filters.slice(0, 3), filters);
-            }
-            this.pagination = {
-              total: data.meta.total,
-              lastPage: data.meta.last_page,
-              perPage: data.meta.per_page,
-              currentPage: data.meta.current_page
-            };
-          }).catch(error => {
-            console.log('Error : ', error);
-          });
+              this.rows = data.data;
+              this.headers = data.headers;
+              this.filters = data.filters;
+              if (this.userFilters.length === 0) {
+                this.userFilters = this.initialUserFilters(data.filters.slice(0, 3), filters);
+              }
+              this.pagination = {
+                total: data.meta.total,
+                lastPage: data.meta.last_page,
+                perPage: data.meta.per_page,
+                currentPage: data.meta.current_page
+              };
+            }).catch(error => {
+              console.log('Error : ', error);
+            });
       },
       changeUrlUsingParams(params) {
 

@@ -4,5 +4,5 @@ use App\Sync\Cases\AbstractCase;
 
 interface HandlerInterface
 {
-    public function handle($caseData, $question, AbstractCase $case);
+    public function handle($caseData, $questionId, $question, AbstractCase $case);
 }

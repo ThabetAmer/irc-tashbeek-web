@@ -35,8 +35,6 @@
           >
             <span>
               Located in
-
-
                       <span v-if="firm.city">
                         {{ firm.city }}
                       </span>
@@ -64,10 +62,11 @@
           </ListItem>
 
           <ListItem
+            v-if="jobOpenings.length > 0"
             icon="icon-Briefcase_x40_2xpng_2"
           >
             <span>
-              Implement once openings linked
+              Looking for {{ jobOpenings[jobOpenings.length - 1].job_title }}
             </span>
           </ListItem>
         </ul>
@@ -117,8 +116,12 @@
             id="current"
             class="tab-pane fade in active show"
           >
-            <JobOpening />
-            <JobOpening />
+            <JobOpening
+              v-for="jobOpening in jobOpenings"
+              :key="jobOpening.id"
+              :city="firm.city || firm.district"
+              :job-opening="jobOpening"
+            />
           </div>
 
           <div
@@ -173,6 +176,8 @@
   import Clipboard from '../components/clipboard/clipboard'
   import ListItem from '../components/listItem/listItem'
 
+  import {get as getCaseListing} from '../API/caseListing'
+
   export default {
     components: {
       Btn, AnchorLink, Clipboard, ListItem,
@@ -193,14 +198,17 @@
         hasTitle: true,
         showStar: false,
         filters: false,
+        jobOpenings:[]
       }
     },
-    computed: {},
-    watch: {},
-    created() {
-    },
     mounted() {
-
+      getCaseListing('job-opening',{
+        filters:{
+          firm_id:this.firm.id
+        }
+      }).then(({data}) => {
+        this.jobOpenings = data.data
+      })
     },
     methods: {
       changeViewType(type) {

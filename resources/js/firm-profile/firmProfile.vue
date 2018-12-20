@@ -36,6 +36,11 @@
             <span>
               Located in
 
+
+                      <span v-if="firm.city">
+                        {{ firm.city }}
+                      </span>
+
                       <span
                         v-if="firm.city && firm.district"
                         class="mx-1"
@@ -43,7 +48,7 @@
                         •
                       </span>
 
-                      <span>
+                      <span v-if="firm.district">
                         {{ firm.district }}
                       </span>
             </span>

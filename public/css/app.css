@@ -37172,3 +37172,12 @@ table.scrollable-fixed-header thead th {
 .main-table th:hover i {
   display: inline-block !important;
 }
+
+.content {
+  max-width: calc(100% - 280px) !important;
+}
+
+body,
+html {
+  overflow-x: hidden;
+}

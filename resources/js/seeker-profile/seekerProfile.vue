@@ -20,59 +20,92 @@
           </Clipboard>
         </div>
         <ul class="firm-info list-reset text-left pr-6">
-          <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
-            <i class="min-w-20 icon-User_Female_x40_2xpng_2 text-grey-darker mr-4 text-lg" />
-            <span>{{ jobSeeker.nationality }} {{ jobSeeker.gender }} • {{ jobSeeker.age }} years old</span>
-          </li>
-          <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
-            <i class="min-w-20 icon-Location_Pin_1_1 text-grey-darker mr-4 text-lg " />
-            <span>
+          <ListItem
+            icon="icon-User_Female_x40_2xpng_2"
+          >
+            <div slot="item-template">
+              <span
+                v-if="jobSeeker.nationality"
+                class="mr-1"
+              >
+                {{ jobSeeker.nationality }}
+              </span>
+              <span
+                v-if="jobSeeker.gender"
+                class="mr-1"
+              >
+                {{ jobSeeker.gender }}
+              </span>
+              <span
+                v-if="jobSeeker.age"
+                class="mr-1"
+              >
+                • {{ jobSeeker.age }} years old
+              </span>
+            </div>
+          </ListItem>
+
+          <ListItem
+            icon="icon-Location_Pin_1_1"
+          >
+            <span slot="item-template">
               Living in {{ jobSeeker.city }}<span v-if="jobSeeker.district !== ''">
                 • {{ jobSeeker.district }}
               </span>
             </span>
-          </li>
-          <li
+          </ListItem>
+
+          <ListItem
             v-if="jobSeeker.will_work_qiz === '1'"
-            class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black "
+            icon="icon-Location_Pin_3_1"
           >
-            <i class="min-w-20 icon-Location_Pin_3_1 text-grey-darker mr-4 text-lg " />
-            <span>Willing to work in QIZ</span>
-          </li>
-          <li class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black ">
-            <i class="min-w-20 icon-Phone_1_x40_2xpng_2 text-grey-darker mr-4 text-lg  " />
-            <span>{{ jobSeeker.mobile_num }}</span>
-          </li>
-          <li
+            <span
+              slot="item-template"
+            >
+              Willing to work in QIZ
+            </span>
+          </ListItem>
+
+          <ListItem
+            icon="icon-Phone_1_x40_2xpng_2"
+          >
+            <span
+              slot="item-template"
+            >
+              {{ jobSeeker.mobile_num }}
+            </span>
+          </ListItem>
+
+          <ListItem
             v-if="jobSeeker.first_preference || jobSeeker.second_preference"
-            class="flex items-center border-b border-grey-light py-5 hd:text-sm xl:text-sm text-black "
+            icon="icon-Diamond_x40_2xpng_2"
           >
-            <i class="min-w-20 icon-Diamond_x40_2xpng_2 text-grey-darker mr-4 text-lg " />
+            <div>
+              <span v-if="jobSeeker.first_preference">
+                {{ jobSeeker.first_preference }}
+              </span>
 
-            <span v-if="jobSeeker.first_preference">
-              {{ jobSeeker.first_preference }}
-            </span>
+              <span v-if="jobSeeker.first_preference && jobSeeker.second_preference">
+                •
+              </span>
 
-            <span v-if="jobSeeker.first_preference && jobSeeker.second_preference">
-              •
-            </span>
-
-            <span v-if="jobSeeker.second_preference">
-              {{ jobSeeker.second_preference }}
-            </span>
-          </li>
+              <span v-if="jobSeeker.second_preference">
+                {{ jobSeeker.second_preference }}
+              </span>
+            </div>
+          </ListItem>
         </ul>
 
 
-        <div class="stared-note uppercase text-green text-left font-bold mt-10 mb-4">
+        <div class="stared-note uppercase text-green text-left font-bold mt-10 -mb-2">
           Starred Note
         </div>
         <Notebox
           :body="starredNote.body"
           :date="starredNote.date"
           :author="starredNote.author"
-          :show-star="showStar"
-          :show-creator-details="showStar"
+          :show-star="false"
+          :show-creator-details="false"
           custom-class="border-none pl-0"
         />
       </Panel>
@@ -240,11 +273,12 @@
   import JobOpening from '../components/jobOpening/jobOpening'
   import Datatable from '../components/datatable/datatable'
   import Clipboard from '../components/clipboard/clipboard'
+  import ListItem from '../components/listItem/listItem'
   // import addNoteModal from '../components/modal/addNoteModal'
 
   export default {
     components: {
-      Btn, AnchorLink,Clipboard,
+      Btn, AnchorLink,Clipboard,ListItem,
       CustomSelect, Modal, buttonGroup,
       Checkbox, CheckboxGroup, Panel, MetricCard,
       AddNoteModal, Notebox, JobOpening, Datatable, Screenbox

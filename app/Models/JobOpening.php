@@ -10,4 +10,9 @@ class JobOpening extends Model implements SyncableInterface
 
     protected $guarded = ['id'];
 
+
+    public function firm()
+    {
+        return $this->belongsTo(Firm::class);
+    }
 }

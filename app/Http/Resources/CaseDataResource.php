@@ -9,6 +9,8 @@ class CaseDataResource extends ResourceCollection
 {
     protected $caseType;
 
+    public $collects = CaseResource::class;
+
     /**
      * DataResource constructor.
      * @param $resource

@@ -23,15 +23,15 @@ export default {
           ...this.filters[filterIndex]
         })
       } else {
-          const removedFilter = this.userFilters[userFilterIndex];
+        const removedFilter = this.userFilters[userFilterIndex];
 
-          this.userFilters.splice(userFilterIndex, 1)
+        this.userFilters.splice(userFilterIndex, 1)
 
-          const filterHasValue = removedFilter.filterValue && String(removedFilter.filterValue).trim() !== '';
+        const filterHasValue = removedFilter.filterValue && String(removedFilter.filterValue).trim() !== '';
 
-          if(filterHasValue && typeof callback === 'function'){
-            callback()
-          }
+        if (filterHasValue && typeof callback === 'function') {
+          callback()
+        }
       }
     },
     filterChange(event, loadData) {

@@ -41,7 +41,7 @@ if (!function_exists('get_case_type_resource_class')) {
     {
         $class = studly_case($caseType);
 
-        $class = "App\\Http\\Resources\\CaseResources\\{$class}Resource";
+        $class = "App\\Http\\Resources\\CaseResources\\{$class}ResourceCollection";
 
         if (!class_exists($class)) {
             return false;

@@ -26,6 +26,10 @@ class JobOpening extends AbstractCase
             'job_id' => [
                 'column_name' => 'job_id',
                 'column_type' => 'string',
+                'translation' => [
+                    'en' => 'Job ID',
+                    'ara' => 'Job ID'
+                ]
             ],
             'vtit' => [
                 'column_name' => 'job_title',

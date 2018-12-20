@@ -16,6 +16,10 @@ class Firm extends Model implements SyncableInterface
 
     protected $guarded = ['id'];
 
+    public function openings()
+    {
+        return $this->hasMany(JobOpening::class);
+    }
 
     public function scopeByCommCareId(Builder $builder, $commCareId)
     {

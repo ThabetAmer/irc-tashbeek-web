@@ -85,7 +85,10 @@
                 {{ jobSeeker.first_preference }}
               </span>
 
-              <span v-if="jobSeeker.first_preference && jobSeeker.second_preference">
+              <span
+                v-if="jobSeeker.first_preference && jobSeeker.second_preference"
+                class="mx-2"
+              >
                 •
               </span>
 

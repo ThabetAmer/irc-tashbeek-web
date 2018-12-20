@@ -64,14 +64,16 @@ class JobSeeker extends AbstractCase
                 'column_name' => 'eso_id',
                 'column_type' => 'text',
             ],
-//            'first_preference' => [
-//                'column_name' => 'first_preference',
-//                'column_type' => 'string'
-//            ],
-//            'second_preference' => [
-//                'column_name' => 'second_preference',
-//                'column_type' => 'string'
-//            ],
+            'first_preference' => [
+                'column_name' => 'first_preference',
+                'column_type' => 'string',
+                'alias' => 'first_job_field_preference'
+            ],
+            'second_preference' => [
+                'column_name' => 'second_preference',
+                'column_type' => 'string',
+                'alias' => 'second_job_field_preference'
+            ],
         ];
     }
 

@@ -14,7 +14,7 @@
             v-for="head in header"
             :key="head.name"
             class="pb-2 pl-2 text-xs max-w-100 relative cursor-pointer"
-            @click="handleSort(head)"
+            @click="$emit('sort',head.name)"
           >
             <span
               v-if="head['translations']['en'].length > 14"
@@ -32,8 +32,8 @@
 
             <i
               :class="`icon-Down_Arrow_4_1 absolute pin-l pin-t -ml-1
-              ${sorting.columnField != head.name ? 'hidden':''}
-              ${sorting.columnField === head.name && sorting.type === 'asc' ? 'icon-Up_Arrow_4_1' :'icon-Down_Arrow_4_1'}`"
+              ${sorting.column != head.name ? 'hidden':''}
+              ${sorting.column === head.name && sorting.type === 'asc' ? 'icon-Up_Arrow_4_1' :'icon-Down_Arrow_4_1'}`"
             />
           </th>
           <th class="pb-2 px-4 pl-1 max-w-100 truncate" />
@@ -105,8 +105,7 @@
   import Pagination from './pagination';
   import HasFilters from "../../mixins/HasFilters";
   import Popper from 'vue-popperjs';
-  import VTooltip from 'v-tooltip'
-  import sortingMixin from "../../mixins/sortingMixin";
+  // import VTooltip from 'v-tooltip'
 
   export default {
     /**
@@ -115,7 +114,7 @@
      */
     components: {Filters, Pagination,Popper},
     filters: {},
-    mixins: [HasFilters,sortingMixin],
+    mixins: [HasFilters],
     props: {
       fixedHeader: {
         type: Boolean,

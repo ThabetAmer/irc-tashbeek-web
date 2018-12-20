@@ -97,7 +97,7 @@
         </ul>
 
 
-        <div class="stared-note uppercase text-green text-left font-bold mt-10 mb-4">
+        <div class="stared-note uppercase text-green text-left font-bold mt-10 -mb-2">
           Starred Note
         </div>
         <Notebox

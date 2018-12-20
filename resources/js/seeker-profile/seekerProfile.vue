@@ -37,10 +37,16 @@
                 {{ jobSeeker.gender }}
               </span>
               <span
+                v-if="jobSeeker.age && (jobSeeker.nationality || jobSeeker.gender) "
+                class="mx-1"
+              >
+                •
+              </span>
+              <span
                 v-if="jobSeeker.age"
                 class="mr-1"
               >
-                • {{ jobSeeker.age }} years old
+                {{ jobSeeker.age }} years old
               </span>
             </div>
           </ListItem>
@@ -49,9 +55,18 @@
             icon="icon-Location_Pin_1_1"
           >
             <span>
-              Living in {{ jobSeeker.city }}<span v-if="jobSeeker.district !== ''">
-                • {{ jobSeeker.district }}
-              </span>
+              Living in {{ jobSeeker.city }}
+
+                     <span
+                       v-if="jobSeeker.city && jobSeeker.district "
+                       class="mx-1"
+                     >
+                       •
+                     </span>
+
+                     <span v-if="jobSeeker.district !== ''">
+                       {{ jobSeeker.district }}
+                     </span>
             </span>
           </ListItem>
 
@@ -81,7 +96,7 @@
 
               <span
                 v-if="jobSeeker.first_preference && jobSeeker.second_preference"
-                class="mx-2"
+                class="mx-1"
               >
                 •
               </span>

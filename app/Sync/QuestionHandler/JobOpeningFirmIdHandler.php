@@ -24,13 +24,4 @@ class JobOpeningFirmIdHandler implements HandlerInterface
 
         return $firm->id;
     }
-
-    public function resolve($attribute, $record)
-    {
-        if(!$record->firm){
-            return null;
-        }
-
-        return $record->firm->name;
-    }
 }

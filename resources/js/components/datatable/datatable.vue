@@ -7,27 +7,34 @@
       @change="$emit('filter',$event)"
       @filterSelect="$emit('filterSelect',$event)"
     />
-    <table :class="[`w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']">
+    <table :class="[`main-table w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']">
       <thead>
-        <tr class="font-bold text-green-dark">
+        <tr class="font-bold text-green-theme">
           <th
             v-for="head in header"
             :key="head.name"
-            class="pb-2 pl-2 text-xs max-w-100 "
+            class="pb-2 pl-2 text-xs max-w-100 relative cursor-pointer"
+            @click="handleSort(head)"
           >
-            <div
+            <span
               v-if="head['translations']['en'].length > 14"
               v-tooltip="{content:head['translations']['en'],classes:['tooltip-datatable']}"
-              class=" max-w-100 truncate"
+              class=" max-w-100 truncate block"
             >
               {{ head['translations']['en'] }}
-            </div>
+            </span>
             <span
               v-else
               class="truncate"
             >
               {{ head['translations']['en'] }}
             </span>
+
+            <i
+              :class="`icon-Down_Arrow_4_1 absolute pin-l pin-t -ml-1
+              ${sorting.columnField != head.name ? 'hidden':''}
+              ${sorting.columnField === head.name && sorting.type === 'asc' ? 'icon-Up_Arrow_4_1' :'icon-Down_Arrow_4_1'}`"
+            />
           </th>
           <th class="pb-2 px-4 pl-1 max-w-100 truncate" />
         </tr>
@@ -99,6 +106,7 @@
   import HasFilters from "../../mixins/HasFilters";
   import Popper from 'vue-popperjs';
   import VTooltip from 'v-tooltip'
+  import sortingMixin from "../../mixins/sortingMixin";
 
   export default {
     /**
@@ -107,7 +115,7 @@
      */
     components: {Filters, Pagination,Popper},
     filters: {},
-    mixins: [HasFilters],
+    mixins: [HasFilters,sortingMixin],
     props: {
       fixedHeader: {
         type: Boolean,
@@ -120,6 +128,11 @@
           perPage: 15,
           total: 0,
           currentPage: 1
+        })
+      },
+      sorting:{
+        type:Object,
+        default: () => ({
         })
       },
       striped: {

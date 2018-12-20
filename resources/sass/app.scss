@@ -562,3 +562,13 @@ table.scrollable-fixed-header {
     margin-right: 10px;
   }
 }
+
+.main-table{
+  th{
+    &:hover{
+      i{
+        display: inline-block !important;
+      }
+    }
+  }
+}

@@ -11,38 +11,49 @@
    @input and @select are events that emit the
    select object/s
    -->
-  <Multiselect
-    v-tooltip="{content:placeholder,placement:'left',autoHide :true,delay:{ show: 200, hide: 500 },classes:['tooltip-datatable']}"
-    :class="selectStyle"
-    :options="options"
-    :value="value"
-    select-label=""
-    deselect-label=""
-    selected-label=""
-    :multiple="multiple"
-    :track-by="trackBy"
-    :label="label"
-    :placeholder="placeholder"
-    @input="handleInput"
-    @select="handleSelect"
-  >
-    <template
-      slot="option"
-      slot-scope="{option}"
+  <div :class="`relative ${wrapperClass}`">
+    <Multiselect
+      v-tooltip="{content:placeholder,placement:'left',autoHide :true,delay:{ show: 200, hide: 500 },classes:['tooltip-datatable']}"
+      :class="selectStyle"
+      :options="options"
+      :value="value"
+      select-label=""
+      deselect-label=""
+      selected-label=""
+      :multiple="multiple"
+      :track-by="trackBy"
+      :label="label"
+      :placeholder="placeholder"
+      @input="handleInput"
+      @select="handleSelect"
     >
-      <span
-        v-if="option.label.length > 13"
-        v-tooltip="{content:option.label,classes:['tooltip-datatable']}"
+      <template
+        slot="option"
+        slot-scope="{option}"
       >
-        {{ option.label }}
-      </span>
-      <span
-        v-else
-      >
-        {{ option.label }}
-      </span>
-    </template>
-  </Multiselect>
+        <span
+          v-if="option.label.length > 13"
+          v-tooltip="{content:option.label,classes:['tooltip-datatable']}"
+        >
+          {{ option.label }}
+        </span>
+        <span
+          v-else
+        >
+          {{ option.label }}
+        </span>
+      </template>
+    </Multiselect>
+    <button
+      v-if="hasRemove && value"
+      class="clear-filter-button  flex items-center absolute pin-r pin-t mt-3 mr-1 cursor-pointer text-white text-xxs rounded-full"
+      @click="$emit('clear')"
+    >
+      <i
+        class="icon-X_x40_2xpng_2"
+      />
+    </button>
+  </div>
 </template>
 
 <script>
@@ -85,6 +96,14 @@
         default: "name"
       },
       customClass: {
+        type: String,
+        default: ''
+      },
+      hasRemove: {
+        type: Boolean,
+        default: false
+      },
+      wrapperClass: {
         type: String,
         default: ''
       }

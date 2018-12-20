@@ -6,10 +6,13 @@
         :key="filter.name+'-'+filter.type"
         label="label"
         track-by="value"
+        :has-remove="true"
         :value="getOptionValue(filter)"
         :options="filter.options"
         :placeholder="filter.label"
-        custom-class="mb-2 note-select mr-2 w-1/7 filter-input"
+        wrapper-class="w-1/7 mr-2 h-50"
+        custom-class="mb-2 note-select filter-input multiselect-with-remove"
+        @clear="handleClear(filter.name)"
         @select="handleSelect(filter.name, $event)"
       />
       <CustomInput
@@ -17,9 +20,12 @@
         :key="filter.name+'-'+filter.type"
         input-class="height-align
         mb-2 mr-2 p-2 text-grey-darkest font-bold
-        w-1/7 bg-grey-lighter rounded"
+        w-full bg-grey-lighter rounded"
+        wrapper-class="w-1/7 mr-2 h-50"
+        :has-remove="true"
         :placeholder="filter.label"
         :value="filter.filterValue"
+        @clear="handleClear(filter.name)"
         @input="handleTextInput(filter.name,$event)"
       />
     </template>
@@ -55,6 +61,12 @@
         this.$emit('change', {
           name,
           value: selected.value
+        })
+      },
+      handleClear(name){
+        this.$emit('change', {
+          name,
+          value:null
         })
       },
       handleTextInput(name, value) {

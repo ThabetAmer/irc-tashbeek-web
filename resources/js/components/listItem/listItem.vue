@@ -3,9 +3,7 @@
     <i
       :class="`min-w-20text-grey-darker mr-4 text-lg ${icon}`"
     />
-    <slot
-      name="item-template"
-    />
+    <slot />
   </li>
 </template>
 

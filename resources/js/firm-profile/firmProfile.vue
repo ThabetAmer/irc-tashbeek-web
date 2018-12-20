@@ -24,9 +24,7 @@
             v-if="firm.sector"
             icon="icon-Storefront_x40_2xpng_2"
           >
-            <span
-              slot="item-template"
-            >
+            <span>
               {{ firm.sector }}
             </span>
           </ListItem>
@@ -35,9 +33,7 @@
             v-if="firm.city"
             icon="icon-Location_Pin_1_1"
           >
-            <span
-              slot="item-template"
-            >
+            <span>
               Located in {{ firm.city }}
             </span>
           </ListItem>
@@ -46,9 +42,7 @@
             v-if="firm.contact_mobile"
             icon="icon-Phone_1_x40_2xpng_2"
           >
-            <span
-              slot="item-template"
-            >
+            <span>
               {{ firm.contact_mobile }}
             </span>
           </ListItem>
@@ -56,9 +50,7 @@
           <ListItem
             icon="icon-Briefcase_x40_2xpng_2"
           >
-            <span
-              slot="item-template"
-            >
+            <span>
               Looking for waiters
             </span>
           </ListItem>

@@ -23,7 +23,7 @@
           <ListItem
             icon="icon-User_Female_x40_2xpng_2"
           >
-            <div slot="item-template">
+            <div>
               <span
                 v-if="jobSeeker.nationality"
                 class="mr-1"
@@ -48,7 +48,7 @@
           <ListItem
             icon="icon-Location_Pin_1_1"
           >
-            <span slot="item-template">
+            <span>
               Living in {{ jobSeeker.city }}<span v-if="jobSeeker.district !== ''">
                 • {{ jobSeeker.district }}
               </span>
@@ -59,9 +59,7 @@
             v-if="jobSeeker.will_work_qiz === '1'"
             icon="icon-Location_Pin_3_1"
           >
-            <span
-              slot="item-template"
-            >
+            <span>
               Willing to work in QIZ
             </span>
           </ListItem>
@@ -69,11 +67,7 @@
           <ListItem
             icon="icon-Phone_1_x40_2xpng_2"
           >
-            <span
-              slot="item-template"
-            >
-              {{ jobSeeker.mobile_num }}
-            </span>
+            {{ jobSeeker.mobile_num }}
           </ListItem>
 
           <ListItem

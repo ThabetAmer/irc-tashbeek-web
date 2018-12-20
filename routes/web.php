@@ -24,6 +24,8 @@ Route::group(['middleware' => ['web','auth']],function(){
 
 
     Route::get('/job-openings','JobOpeningController@index');
+
+    Route::get('api/cases/{case_type}', 'ResponseApiController@index');
 });
 
 //
@@ -34,7 +36,7 @@ Route::get('/dashboard', function () {
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('index/{case_type}', 'ResponseApiController@index');
+
 
 Route::get('/dashboard', function (){
     return view('home');

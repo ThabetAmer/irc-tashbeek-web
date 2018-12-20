@@ -35,8 +35,6 @@
           >
             <span>
               Located in
-
-
                       <span v-if="firm.city">
                         {{ firm.city }}
                       </span>
@@ -194,10 +192,6 @@
         showStar: false,
         filters: false,
       }
-    },
-    computed: {},
-    watch: {},
-    created() {
     },
     mounted() {
 

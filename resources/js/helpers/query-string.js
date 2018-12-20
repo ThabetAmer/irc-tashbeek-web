@@ -6,6 +6,8 @@ export default  {
     return key ? params[key] : params
   },
   serialize(object){
-    return queryString.stringify(object)
+    return queryString.stringify(object,{
+      skipNulls:true
+    })
   }
 }

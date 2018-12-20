@@ -13,7 +13,8 @@
         @pagechanged="loadData({page: $event})"
         @filter="filterChange($event, loadData)"
         @filterSelect="filterSelect($event, loadData)"
-        @sortChange="sortSelect(loadData)"
+        @sort="handleSort($event, loadData)"
+
       />
     </Panel>
   </div>
@@ -25,10 +26,11 @@
   import {get as getListing} from '../API/caseListing'
   import FiltersProvider from "../mixins/FiltersProvider";
   import queryString from '../helpers/query-string'
+  import sortingProvider from "../mixins/sortingProvider";
 
   export default {
     components: {Panel, Datatable},
-    mixins: [FiltersProvider],
+    mixins: [FiltersProvider, sortingProvider],
     props: {
       type: {
         type: String,
@@ -52,11 +54,13 @@
       this.loadData({
         page: queryStringObject.page,
         filters: queryStringObject.filters,
+        sorting: queryStringObject.sorting
       });
     },
     methods: {
       loadData({filters = {}, page = null, sorting = {}} = {}) {
         filters = filters && typeof filters === "object" ? filters : {}
+        sorting = sorting && typeof sorting === "object" ? sorting : {}
         const params = {
           filters: {
             ...filters,
@@ -64,6 +68,7 @@
           },
           page: !isNaN(parseInt(page, 10)) ? page : this.pagination.currentPage,
           sorting:{
+              ...this.sorting,
               ...sorting
           }
         }
@@ -75,6 +80,7 @@
               this.rows = data.data;
               this.headers = data.headers;
               this.filters = data.filters;
+              this.sorting = data.sorting;
               if (this.userFilters.length === 0) {
                 this.userFilters = this.initialUserFilters(data.filters.slice(0, 3), filters);
               }

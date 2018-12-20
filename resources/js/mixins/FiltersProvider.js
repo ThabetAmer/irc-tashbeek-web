@@ -27,7 +27,9 @@ export default {
 
           this.userFilters.splice(userFilterIndex, 1)
 
-          if(removedFilter.filterValue && String(removedFilter.filterValue).trim() !== '' && typeof callback === 'function'){
+          const filterHasValue = removedFilter.filterValue && String(removedFilter.filterValue).trim() !== '';
+
+          if(filterHasValue && typeof callback === 'function'){
             callback()
           }
       }

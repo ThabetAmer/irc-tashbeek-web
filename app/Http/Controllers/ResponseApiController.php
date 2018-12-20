@@ -22,6 +22,12 @@ class ResponseApiController extends Controller
 
         $results = $query->paginate();
 
+        $resourceClass = get_case_type_resource_class($caseType);
+
+        if($resourceClass){
+            return new $resourceClass($results, $caseType);
+        }
+
         return new CaseDataResource($results, $caseType);
     }
 }

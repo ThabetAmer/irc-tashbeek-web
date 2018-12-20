@@ -46,6 +46,7 @@ class CaseDataResource extends ResourceCollection
 
         $headers = [];
         $filters = [];
+
         foreach ($properties as $property) {
             $translations = array_get($property->attributes,'translations',[]);
 

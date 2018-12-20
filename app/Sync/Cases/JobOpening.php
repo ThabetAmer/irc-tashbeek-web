@@ -1,6 +1,5 @@
 <?php namespace App\Sync\Cases;
 
-
 class JobOpening extends AbstractCase
 {
     public $model = \App\Models\JobOpening::class;
@@ -33,6 +32,17 @@ class JobOpening extends AbstractCase
                 'column_type' => 'text',
                 'alias' => 'job_title'
             ],
+            'firm_id' => [
+                'column_name' => 'firm_id',
+                'column_type' => 'string',
+                'valueHandler' => \App\Sync\QuestionHandler\JobOpeningFirmIdHandler::class,
+                'property' => true,
+                'type' => 'select',
+                'translations' => [
+                    'en' => 'Firm name',
+                    'ara' => 'Firm name'
+                ],
+            ],
             'vdesc' => [
                 'column_name' => 'job_description',
                 'column_type' => 'text',
@@ -60,6 +70,7 @@ class JobOpening extends AbstractCase
             ]
         ];
     }
+
     public function formId()
     {
         return [

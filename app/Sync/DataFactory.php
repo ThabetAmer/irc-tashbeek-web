@@ -111,6 +111,10 @@ class DataFactory
                 $value = array_get(array_get($case, 'properties'), $question['alias']);
             }
 
+            if(isset($question['valueHandler'])){
+                $value = app($question['valueHandler'])->handle($case, $question, $caseObject);
+            }
+
             $data[$question['column_name']] = $value;
         }
 

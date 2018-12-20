@@ -30,11 +30,22 @@
           </ListItem>
 
           <ListItem
-            v-if="firm.city"
+            v-if="firm.city || firm.district"
             icon="icon-Location_Pin_1_1"
           >
             <span>
-              Located in {{ firm.city }}
+              Located in
+
+                      <span
+                        v-if="firm.city && firm.district"
+                        class="mx-1"
+                      >
+                        •
+                      </span>
+
+                      <span>
+                        {{ firm.district }}
+                      </span>
             </span>
           </ListItem>
 
@@ -51,7 +62,7 @@
             icon="icon-Briefcase_x40_2xpng_2"
           >
             <span>
-              Looking for waiters
+              Implement once openings linked
             </span>
           </ListItem>
         </ul>
@@ -159,7 +170,7 @@
 
   export default {
     components: {
-      Btn, AnchorLink,Clipboard,ListItem,
+      Btn, AnchorLink, Clipboard, ListItem,
       CustomSelect, Modal, ButtonGroup,
       Checkbox, CheckboxGroup, Panel, MetricCard,
       AddNoteModal, Notebox, JobOpening, Datatable

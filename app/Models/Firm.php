@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Builder;
+
 class Firm extends Model implements SyncableInterface
 {
     use MorphToForm, Routable, HasFilter;
@@ -13,4 +15,10 @@ class Firm extends Model implements SyncableInterface
     ];
 
     protected $guarded = ['id'];
+
+
+    public function scopeByCommCareId(Builder $builder, $commCareId)
+    {
+        $builder->where('commcare_id', $commCareId);
+    }
 }

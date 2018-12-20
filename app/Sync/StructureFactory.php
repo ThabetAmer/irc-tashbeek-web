@@ -113,15 +113,14 @@ class StructureFactory
                     $questionObject = $questions->get($name);
                     $questionObject['case_question'] = $question;
                 }else if(isset($question['property'])){
-                    $questionObject = $question['property'];
-                    if(!isset($questionObject['hashtagValue'])){
+                    $questionObject = array_only($question,['translations','type']);
+                    if(!isset($questionObject['name'])){
                         $questionObject['hashtagValue'] = $name;
                     }
                     $questionObject['case_question'] = $question;
                 }else{
                     continue;
                 }
-
                 $questionObjects[] = $questionObject;
             }
 

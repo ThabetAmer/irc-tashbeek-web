@@ -21,6 +21,9 @@ Route::group(['middleware' => ['web','auth']],function(){
 
     Route::get('/firms','FirmController@index');
     Route::get('/firms/{firm}','FirmController@show');
+
+
+    Route::get('/job-openings','JobOpeningController@index');
 });
 
 //

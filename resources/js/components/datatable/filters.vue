@@ -85,7 +85,7 @@
           return undefined
         }
 
-        const optionIndex = filter.options.findIndex(option => option.value === filter.filterValue)
+        const optionIndex = filter.options.findIndex(option => option.value == filter.filterValue )
 
         if(optionIndex === -1){
           return undefined

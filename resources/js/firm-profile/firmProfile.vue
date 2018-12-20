@@ -24,21 +24,33 @@
             v-if="firm.sector"
             icon="icon-Storefront_x40_2xpng_2"
           >
-            <span
-              slot="item-template"
-            >
+            <span>
               {{ firm.sector }}
             </span>
           </ListItem>
 
           <ListItem
-            v-if="firm.city"
+            v-if="firm.city || firm.district"
             icon="icon-Location_Pin_1_1"
           >
-            <span
-              slot="item-template"
-            >
-              Located in {{ firm.city }}
+            <span>
+              Located in
+
+
+                      <span v-if="firm.city">
+                        {{ firm.city }}
+                      </span>
+
+                      <span
+                        v-if="firm.city && firm.district"
+                        class="mx-1"
+                      >
+                        •
+                      </span>
+
+                      <span v-if="firm.district">
+                        {{ firm.district }}
+                      </span>
             </span>
           </ListItem>
 
@@ -46,9 +58,7 @@
             v-if="firm.contact_mobile"
             icon="icon-Phone_1_x40_2xpng_2"
           >
-            <span
-              slot="item-template"
-            >
+            <span>
               {{ firm.contact_mobile }}
             </span>
           </ListItem>
@@ -56,10 +66,8 @@
           <ListItem
             icon="icon-Briefcase_x40_2xpng_2"
           >
-            <span
-              slot="item-template"
-            >
-              Looking for waiters
+            <span>
+              Implement once openings linked
             </span>
           </ListItem>
         </ul>
@@ -167,7 +175,7 @@
 
   export default {
     components: {
-      Btn, AnchorLink,Clipboard,ListItem,
+      Btn, AnchorLink, Clipboard, ListItem,
       CustomSelect, Modal, ButtonGroup,
       Checkbox, CheckboxGroup, Panel, MetricCard,
       AddNoteModal, Notebox, JobOpening, Datatable

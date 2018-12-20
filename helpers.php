@@ -16,9 +16,9 @@ if (!function_exists('case_type')) {
 
 
 if (!function_exists('get_case_type_model')) {
-    function get_case_type_model($case_type)
+    function get_case_type_model($caseType)
     {
-        $class = studly_case($case_type);
+        $class = studly_case($caseType);
 
         $class = "App\\Models\\$class";
 
@@ -33,6 +33,21 @@ if (!function_exists('get_case_type_model')) {
         }
 
         return $model;
+    }
+}
+
+if (!function_exists('get_case_type_resource_class')) {
+    function get_case_type_resource_class($caseType)
+    {
+        $class = studly_case($caseType);
+
+        $class = "App\\Http\\Resources\\CaseResources\\{$class}ResourceCollection";
+
+        if (!class_exists($class)) {
+            return false;
+        }
+
+        return $class;
     }
 }
 

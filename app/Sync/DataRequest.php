@@ -59,7 +59,7 @@ class DataRequest
 
     protected function buildParamsHttpQuery($params)
     {
-        $params['limit'] = array_get($params, 'limit') ?? 4;
+        $params['limit'] = array_get($params, 'limit') ?? 80;
 
         $params['page'] = array_get($params, 'page') ?? 1;
         $page = $params['page'];

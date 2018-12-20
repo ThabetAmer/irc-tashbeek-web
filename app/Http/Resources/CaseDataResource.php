@@ -9,6 +9,8 @@ class CaseDataResource extends ResourceCollection
 {
     protected $caseType;
 
+    public $collects = CaseResource::class;
+
     /**
      * DataResource constructor.
      * @param $resource
@@ -46,15 +48,25 @@ class CaseDataResource extends ResourceCollection
 
         $headers = [];
         $filters = [];
+
         foreach ($properties as $property) {
+            $translations = array_get($property->attributes,'translations',[]);
+
+            if(!count($translations)){
+                $translations = [
+                    'en' => $property->column_name,
+                    'ara' => $property->column_name,
+                ];
+            }
+
             $headers[] = [
-                'translations' => $property->attributes['translations'],
+                'translations' => $translations,
                 'name' => $property->column_name,
             ];
 
             $filters[] = [
                 'name' => $property->column_name,
-                'label' => $property->attributes['translations'][\App::getLocale()] ?? $property->attributes['translations']['en'],
+                'label' => $translations[\App::getLocale()] ?? array_get($translations,'en', $property->column_name),
                 'type' => strtolower($property->attributes['type']) ?? 'text',
                 'options' => PropertyOptionsResource::collection(collect($property->attributes['options'] ?? [])),
             ];

@@ -56,7 +56,7 @@
               :text="row[head.name].component.text"
             />
             <span
-              v-if="head.clickable_from"
+              v-else-if="head.clickable_from && row[head.clickable_from]"
               class="max-w-150 truncate block"
             >
               <a
@@ -67,7 +67,7 @@
               </a>
             </span>
             <span
-              v-else-if="row[head.name]&& row[head.name].length > 10"
+              v-else-if="row[head.name] && row[head.name].length > 10"
               v-tooltip="{content:row[head.name],classes:['tooltip-datatable']}"
               class="max-w-100 truncate block"
             >

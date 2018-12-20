@@ -1,7 +1,7 @@
 <template>
   <div>
     <Panel
-      custom-class="overflow-auto"
+      custom-class=""
     >
       <Datatable
         :header="headers"
@@ -14,7 +14,6 @@
         @filter="filterChange($event, loadData)"
         @filterSelect="filterSelect($event, loadData)"
         @sort="handleSort($event, loadData)"
-
       />
     </Panel>
   </div>

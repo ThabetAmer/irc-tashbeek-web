@@ -7,36 +7,61 @@
         :title="firm.firm_name"
       >
         <div class="firm-id uppercase text-green text-left font-bold mt-4 mb-4 flex items-center">
-          ID <span class="truncate max-w-2xl pl-2">
-            {{ firm.commcare_id }}
-          </span>
+          ID
+          <Clipboard
+            :to-be-copied="firm.commcare_id"
+          >
+            <span
+              slot="copyTemplate"
+              class="truncate max-w-2xl pl-2"
+            >
+              {{ firm.commcare_id }}
+            </span>
+          </Clipboard>
         </div>
         <ul class="firm-info list-reset text-left pr-8 mb-4">
-          <li
+          <ListItem
             v-if="firm.sector"
-            class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black "
+            icon="icon-Storefront_x40_2xpng_2"
           >
-            <i class="icon-Storefront_x40_2xpng_2   text-grey-darker text-xl min-w-30 mr-3 ml-1" />
-            <span>{{ firm.sector }}</span>
-          </li>
-          <li
+            <span
+              slot="item-template"
+            >
+              {{ firm.sector }}
+            </span>
+          </ListItem>
+
+          <ListItem
             v-if="firm.city"
-            class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black "
+            icon="icon-Location_Pin_1_1"
           >
-            <i class="icon-Location_Pin_1_1 text-grey-darker text-xl min-w-30 mr-3 ml-1" />
-            <span>Located in {{ firm.city }}</span>
-          </li>
-          <li
+            <span
+              slot="item-template"
+            >
+              Located in {{ firm.city }}
+            </span>
+          </ListItem>
+
+          <ListItem
             v-if="firm.contact_mobile"
-            class="border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black "
+            icon="icon-Phone_1_x40_2xpng_2"
           >
-            <i class="icon-Phone_1_x40_2xpng_2 text-grey-darker text-xl min-w-30 mr-3 ml-1" />
-            <span> {{ firm.contact_mobile }}</span>
-          </li>
-          <li class=" border-b border-grey-light py-5 flex items-center hd:text-md xl:text-md text-black ">
-            <i class="icon-Briefcase_x40_2xpng_2 text-grey-darker text-xl min-w-30 mr-3 ml-1" />
-            <span>Looking for waiters</span>
-          </li>
+            <span
+              slot="item-template"
+            >
+              {{ firm.contact_mobile }}
+            </span>
+          </ListItem>
+
+          <ListItem
+            icon="icon-Briefcase_x40_2xpng_2"
+          >
+            <span
+              slot="item-template"
+            >
+              Looking for waiters
+            </span>
+          </ListItem>
         </ul>
 
 
@@ -137,10 +162,12 @@
   import Notebox from '../components/notebox/notebox'
   import JobOpening from '../components/jobOpening/jobOpening'
   import Datatable from '../components/datatable/datatable'
+  import Clipboard from '../components/clipboard/clipboard'
+  import ListItem from '../components/listItem/listItem'
 
   export default {
     components: {
-      Btn, AnchorLink,
+      Btn, AnchorLink,Clipboard,ListItem,
       CustomSelect, Modal, ButtonGroup,
       Checkbox, CheckboxGroup, Panel, MetricCard,
       AddNoteModal, Notebox, JobOpening, Datatable

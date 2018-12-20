@@ -32,8 +32,7 @@
 
             <i
               class="icon-Down_Arrow_4_1 hidden absolute pin-l pin-t -ml-2"
-            >
-            </i>
+            />
           </th>
           <th class="pb-2 px-4 pl-1 max-w-100 truncate" />
         </tr>

@@ -76,7 +76,21 @@ class CaseDataResource extends ResourceCollection
 
         return [
             'headers' => $headers,
-            'filters' => $filters
+            'filters' => $filters,
+            'sorting' => $this->getSorting($request)
+        ];
+    }
+
+    protected function getSorting($request)
+    {
+        $sorting = $request->input('sorting',[]);
+        if(!is_array($sorting)){
+            $sorting = [];
+        }
+
+        return [
+            'column' => array_get($sorting,'column'),
+            'type' => array_get($sorting,'type'),
         ];
     }
 

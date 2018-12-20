@@ -14,7 +14,6 @@
         @filter="filterChange($event, loadData)"
         @filterSelect="filterSelect($event, loadData)"
         @sort="handleSort($event, loadData)"
-
       />
     </Panel>
   </div>
@@ -68,8 +67,8 @@
           },
           page: !isNaN(parseInt(page, 10)) ? page : this.pagination.currentPage,
           sorting:{
-              ...this.sorting,
-              ...sorting
+            ...this.sorting,
+            ...sorting,
           }
         }
         return getListing(this.type, params)

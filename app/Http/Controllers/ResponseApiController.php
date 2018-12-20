@@ -20,6 +20,12 @@ class ResponseApiController extends Controller
 
         $query->filter($caseFilter);
 
+        if(request('sorting.column')){
+            // TODO move to something more reusable
+            $sortingType = request('sorting.type') === 'desc' ? 'desc':'asc';
+            $query->orderBy(request('sorting.column'),$sortingType);
+        }
+
         $results = $query->paginate();
 
         $resourceClass = get_case_type_resource_class($caseType);

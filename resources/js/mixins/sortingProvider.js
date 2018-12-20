@@ -11,7 +11,7 @@ export default {
     handleSort(column,callback) {
       this.sorting = {
         column,
-        type: this.sorting.type === 'asc' ? this.sorting.type = 'desc' : this.sorting.type = 'asc'
+        type: this.sorting.type === 'asc' ? 'desc' : 'asc'
       }
       if (callback && typeof callback === 'function') {
         callback()

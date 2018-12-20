@@ -44,6 +44,7 @@ let defaultConfig = require('tailwindcss/defaultConfig')()
 */
 
 let colors = {
+  'green-theme':'#5CB657',
   'transparent': 'transparent',
 
   'black': '#22292f',
@@ -878,7 +879,7 @@ module.exports = {
   */
 
   modules: {
-    appearance: ['responsive'],
+    appearance: ['responsive','hover'],
     backgroundAttachment: ['responsive'],
     backgroundColors: ['responsive', 'hover', 'focus'],
     backgroundPosition: ['responsive'],
@@ -890,7 +891,7 @@ module.exports = {
     borderStyle: ['responsive'],
     borderWidths: ['responsive'],
     cursor: ['responsive'],
-    display: ['responsive'],
+    display: ['responsive','hover'],
     flexbox: ['responsive'],
     float: ['responsive'],
     fonts: ['responsive'],
@@ -924,7 +925,7 @@ module.exports = {
     tracking: ['responsive'],
     userSelect: ['responsive'],
     verticalAlign: ['responsive'],
-    visibility: ['responsive'],
+    visibility: ['responsive','hover'],
     whitespace: ['responsive'],
     width: ['responsive'],
     zIndex: ['responsive'],

@@ -36,7 +36,7 @@
     data() {
       return {
         rows: [],
-        sortig: {
+        sorting: {
           type: 'asc',
           columnField: 'id'
         },

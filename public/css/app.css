@@ -42,6 +42,12 @@
           appearance: none;
 }
 
+.hover\:appearance-none:hover {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
 .bg-fixed {
   background-attachment: fixed;
 }
@@ -52,6 +58,10 @@
 
 .bg-scroll {
   background-attachment: scroll;
+}
+
+.bg-green-theme {
+  background-color: #5cb657;
 }
 
 .bg-transparent {
@@ -346,6 +356,10 @@
   background-color: #ffebef;
 }
 
+.hover\:bg-green-theme:hover {
+  background-color: #5cb657;
+}
+
 .hover\:bg-transparent:hover {
   background-color: transparent;
 }
@@ -636,6 +650,10 @@
 
 .hover\:bg-pink-lightest:hover {
   background-color: #ffebef;
+}
+
+.focus\:bg-green-theme:focus {
+  background-color: #5cb657;
 }
 
 .focus\:bg-transparent:focus {
@@ -1002,6 +1020,10 @@
   border-collapse: separate;
 }
 
+.border-green-theme {
+  border-color: #5cb657;
+}
+
 .border-transparent {
   border-color: transparent;
 }
@@ -1294,6 +1316,10 @@
   border-color: #ffebef;
 }
 
+.hover\:border-green-theme:hover {
+  border-color: #5cb657;
+}
+
 .hover\:border-transparent:hover {
   border-color: transparent;
 }
@@ -1584,6 +1610,10 @@
 
 .hover\:border-pink-lightest:hover {
   border-color: #ffebef;
+}
+
+.focus\:border-green-theme:focus {
+  border-color: #5cb657;
 }
 
 .focus\:border-transparent:focus {
@@ -2243,6 +2273,34 @@
 }
 
 .hidden {
+  display: none;
+}
+
+.hover\:block:hover {
+  display: block;
+}
+
+.hover\:inline-block:hover {
+  display: inline-block;
+}
+
+.hover\:inline:hover {
+  display: inline;
+}
+
+.hover\:table:hover {
+  display: table;
+}
+
+.hover\:table-row:hover {
+  display: table-row;
+}
+
+.hover\:table-cell:hover {
+  display: table-cell;
+}
+
+.hover\:hidden:hover {
   display: none;
 }
 
@@ -4381,6 +4439,10 @@
   text-align: justify;
 }
 
+.text-green-theme {
+  color: #5cb657;
+}
+
 .text-transparent {
   color: transparent;
 }
@@ -4673,6 +4735,10 @@
   color: #ffebef;
 }
 
+.hover\:text-green-theme:hover {
+  color: #5cb657;
+}
+
 .hover\:text-transparent:hover {
   color: transparent;
 }
@@ -4963,6 +5029,10 @@
 
 .hover\:text-pink-lightest:hover {
   color: #ffebef;
+}
+
+.focus\:text-green-theme:focus {
+  color: #5cb657;
 }
 
 .focus\:text-transparent:focus {
@@ -5493,6 +5563,14 @@
   visibility: hidden;
 }
 
+.hover\:visible:hover {
+  visibility: visible;
+}
+
+.hover\:invisible:hover {
+  visibility: hidden;
+}
+
 .whitespace-normal {
   white-space: normal;
 }
@@ -5699,6 +5777,12 @@
             appearance: none;
   }
 
+  .sm\:hover\:appearance-none:hover {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+  }
+
   .sm\:bg-fixed {
     background-attachment: fixed;
   }
@@ -5709,6 +5793,10 @@
 
   .sm\:bg-scroll {
     background-attachment: scroll;
+  }
+
+  .sm\:bg-green-theme {
+    background-color: #5cb657;
   }
 
   .sm\:bg-transparent {
@@ -6003,6 +6091,10 @@
     background-color: #ffebef;
   }
 
+  .sm\:hover\:bg-green-theme:hover {
+    background-color: #5cb657;
+  }
+
   .sm\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -6293,6 +6385,10 @@
 
   .sm\:hover\:bg-pink-lightest:hover {
     background-color: #ffebef;
+  }
+
+  .sm\:focus\:bg-green-theme:focus {
+    background-color: #5cb657;
   }
 
   .sm\:focus\:bg-transparent:focus {
@@ -6651,6 +6747,10 @@
     background-size: contain;
   }
 
+  .sm\:border-green-theme {
+    border-color: #5cb657;
+  }
+
   .sm\:border-transparent {
     border-color: transparent;
   }
@@ -6943,6 +7043,10 @@
     border-color: #ffebef;
   }
 
+  .sm\:hover\:border-green-theme:hover {
+    border-color: #5cb657;
+  }
+
   .sm\:hover\:border-transparent:hover {
     border-color: transparent;
   }
@@ -7233,6 +7337,10 @@
 
   .sm\:hover\:border-pink-lightest:hover {
     border-color: #ffebef;
+  }
+
+  .sm\:focus\:border-green-theme:focus {
+    border-color: #5cb657;
   }
 
   .sm\:focus\:border-transparent:focus {
@@ -7892,6 +8000,34 @@
   }
 
   .sm\:hidden {
+    display: none;
+  }
+
+  .sm\:hover\:block:hover {
+    display: block;
+  }
+
+  .sm\:hover\:inline-block:hover {
+    display: inline-block;
+  }
+
+  .sm\:hover\:inline:hover {
+    display: inline;
+  }
+
+  .sm\:hover\:table:hover {
+    display: table;
+  }
+
+  .sm\:hover\:table-row:hover {
+    display: table-row;
+  }
+
+  .sm\:hover\:table-cell:hover {
+    display: table-cell;
+  }
+
+  .sm\:hover\:hidden:hover {
     display: none;
   }
 
@@ -10014,6 +10150,10 @@
     text-align: justify;
   }
 
+  .sm\:text-green-theme {
+    color: #5cb657;
+  }
+
   .sm\:text-transparent {
     color: transparent;
   }
@@ -10306,6 +10446,10 @@
     color: #ffebef;
   }
 
+  .sm\:hover\:text-green-theme:hover {
+    color: #5cb657;
+  }
+
   .sm\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -10596,6 +10740,10 @@
 
   .sm\:hover\:text-pink-lightest:hover {
     color: #ffebef;
+  }
+
+  .sm\:focus\:text-green-theme:focus {
+    color: #5cb657;
   }
 
   .sm\:focus\:text-transparent:focus {
@@ -11126,6 +11274,14 @@
     visibility: hidden;
   }
 
+  .sm\:hover\:visible:hover {
+    visibility: visible;
+  }
+
+  .sm\:hover\:invisible:hover {
+    visibility: hidden;
+  }
+
   .sm\:whitespace-normal {
     white-space: normal;
   }
@@ -11333,6 +11489,12 @@
             appearance: none;
   }
 
+  .md\:hover\:appearance-none:hover {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+  }
+
   .md\:bg-fixed {
     background-attachment: fixed;
   }
@@ -11343,6 +11505,10 @@
 
   .md\:bg-scroll {
     background-attachment: scroll;
+  }
+
+  .md\:bg-green-theme {
+    background-color: #5cb657;
   }
 
   .md\:bg-transparent {
@@ -11637,6 +11803,10 @@
     background-color: #ffebef;
   }
 
+  .md\:hover\:bg-green-theme:hover {
+    background-color: #5cb657;
+  }
+
   .md\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -11927,6 +12097,10 @@
 
   .md\:hover\:bg-pink-lightest:hover {
     background-color: #ffebef;
+  }
+
+  .md\:focus\:bg-green-theme:focus {
+    background-color: #5cb657;
   }
 
   .md\:focus\:bg-transparent:focus {
@@ -12285,6 +12459,10 @@
     background-size: contain;
   }
 
+  .md\:border-green-theme {
+    border-color: #5cb657;
+  }
+
   .md\:border-transparent {
     border-color: transparent;
   }
@@ -12577,6 +12755,10 @@
     border-color: #ffebef;
   }
 
+  .md\:hover\:border-green-theme:hover {
+    border-color: #5cb657;
+  }
+
   .md\:hover\:border-transparent:hover {
     border-color: transparent;
   }
@@ -12867,6 +13049,10 @@
 
   .md\:hover\:border-pink-lightest:hover {
     border-color: #ffebef;
+  }
+
+  .md\:focus\:border-green-theme:focus {
+    border-color: #5cb657;
   }
 
   .md\:focus\:border-transparent:focus {
@@ -13526,6 +13712,34 @@
   }
 
   .md\:hidden {
+    display: none;
+  }
+
+  .md\:hover\:block:hover {
+    display: block;
+  }
+
+  .md\:hover\:inline-block:hover {
+    display: inline-block;
+  }
+
+  .md\:hover\:inline:hover {
+    display: inline;
+  }
+
+  .md\:hover\:table:hover {
+    display: table;
+  }
+
+  .md\:hover\:table-row:hover {
+    display: table-row;
+  }
+
+  .md\:hover\:table-cell:hover {
+    display: table-cell;
+  }
+
+  .md\:hover\:hidden:hover {
     display: none;
   }
 
@@ -15648,6 +15862,10 @@
     text-align: justify;
   }
 
+  .md\:text-green-theme {
+    color: #5cb657;
+  }
+
   .md\:text-transparent {
     color: transparent;
   }
@@ -15940,6 +16158,10 @@
     color: #ffebef;
   }
 
+  .md\:hover\:text-green-theme:hover {
+    color: #5cb657;
+  }
+
   .md\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -16230,6 +16452,10 @@
 
   .md\:hover\:text-pink-lightest:hover {
     color: #ffebef;
+  }
+
+  .md\:focus\:text-green-theme:focus {
+    color: #5cb657;
   }
 
   .md\:focus\:text-transparent:focus {
@@ -16760,6 +16986,14 @@
     visibility: hidden;
   }
 
+  .md\:hover\:visible:hover {
+    visibility: visible;
+  }
+
+  .md\:hover\:invisible:hover {
+    visibility: hidden;
+  }
+
   .md\:whitespace-normal {
     white-space: normal;
   }
@@ -16967,6 +17201,12 @@
             appearance: none;
   }
 
+  .lg\:hover\:appearance-none:hover {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+  }
+
   .lg\:bg-fixed {
     background-attachment: fixed;
   }
@@ -16977,6 +17217,10 @@
 
   .lg\:bg-scroll {
     background-attachment: scroll;
+  }
+
+  .lg\:bg-green-theme {
+    background-color: #5cb657;
   }
 
   .lg\:bg-transparent {
@@ -17271,6 +17515,10 @@
     background-color: #ffebef;
   }
 
+  .lg\:hover\:bg-green-theme:hover {
+    background-color: #5cb657;
+  }
+
   .lg\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -17561,6 +17809,10 @@
 
   .lg\:hover\:bg-pink-lightest:hover {
     background-color: #ffebef;
+  }
+
+  .lg\:focus\:bg-green-theme:focus {
+    background-color: #5cb657;
   }
 
   .lg\:focus\:bg-transparent:focus {
@@ -17919,6 +18171,10 @@
     background-size: contain;
   }
 
+  .lg\:border-green-theme {
+    border-color: #5cb657;
+  }
+
   .lg\:border-transparent {
     border-color: transparent;
   }
@@ -18211,6 +18467,10 @@
     border-color: #ffebef;
   }
 
+  .lg\:hover\:border-green-theme:hover {
+    border-color: #5cb657;
+  }
+
   .lg\:hover\:border-transparent:hover {
     border-color: transparent;
   }
@@ -18501,6 +18761,10 @@
 
   .lg\:hover\:border-pink-lightest:hover {
     border-color: #ffebef;
+  }
+
+  .lg\:focus\:border-green-theme:focus {
+    border-color: #5cb657;
   }
 
   .lg\:focus\:border-transparent:focus {
@@ -19160,6 +19424,34 @@
   }
 
   .lg\:hidden {
+    display: none;
+  }
+
+  .lg\:hover\:block:hover {
+    display: block;
+  }
+
+  .lg\:hover\:inline-block:hover {
+    display: inline-block;
+  }
+
+  .lg\:hover\:inline:hover {
+    display: inline;
+  }
+
+  .lg\:hover\:table:hover {
+    display: table;
+  }
+
+  .lg\:hover\:table-row:hover {
+    display: table-row;
+  }
+
+  .lg\:hover\:table-cell:hover {
+    display: table-cell;
+  }
+
+  .lg\:hover\:hidden:hover {
     display: none;
   }
 
@@ -21282,6 +21574,10 @@
     text-align: justify;
   }
 
+  .lg\:text-green-theme {
+    color: #5cb657;
+  }
+
   .lg\:text-transparent {
     color: transparent;
   }
@@ -21574,6 +21870,10 @@
     color: #ffebef;
   }
 
+  .lg\:hover\:text-green-theme:hover {
+    color: #5cb657;
+  }
+
   .lg\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -21864,6 +22164,10 @@
 
   .lg\:hover\:text-pink-lightest:hover {
     color: #ffebef;
+  }
+
+  .lg\:focus\:text-green-theme:focus {
+    color: #5cb657;
   }
 
   .lg\:focus\:text-transparent:focus {
@@ -22394,6 +22698,14 @@
     visibility: hidden;
   }
 
+  .lg\:hover\:visible:hover {
+    visibility: visible;
+  }
+
+  .lg\:hover\:invisible:hover {
+    visibility: hidden;
+  }
+
   .lg\:whitespace-normal {
     white-space: normal;
   }
@@ -22601,6 +22913,12 @@
             appearance: none;
   }
 
+  .xl\:hover\:appearance-none:hover {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+  }
+
   .xl\:bg-fixed {
     background-attachment: fixed;
   }
@@ -22611,6 +22929,10 @@
 
   .xl\:bg-scroll {
     background-attachment: scroll;
+  }
+
+  .xl\:bg-green-theme {
+    background-color: #5cb657;
   }
 
   .xl\:bg-transparent {
@@ -22905,6 +23227,10 @@
     background-color: #ffebef;
   }
 
+  .xl\:hover\:bg-green-theme:hover {
+    background-color: #5cb657;
+  }
+
   .xl\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -23195,6 +23521,10 @@
 
   .xl\:hover\:bg-pink-lightest:hover {
     background-color: #ffebef;
+  }
+
+  .xl\:focus\:bg-green-theme:focus {
+    background-color: #5cb657;
   }
 
   .xl\:focus\:bg-transparent:focus {
@@ -23553,6 +23883,10 @@
     background-size: contain;
   }
 
+  .xl\:border-green-theme {
+    border-color: #5cb657;
+  }
+
   .xl\:border-transparent {
     border-color: transparent;
   }
@@ -23845,6 +24179,10 @@
     border-color: #ffebef;
   }
 
+  .xl\:hover\:border-green-theme:hover {
+    border-color: #5cb657;
+  }
+
   .xl\:hover\:border-transparent:hover {
     border-color: transparent;
   }
@@ -24135,6 +24473,10 @@
 
   .xl\:hover\:border-pink-lightest:hover {
     border-color: #ffebef;
+  }
+
+  .xl\:focus\:border-green-theme:focus {
+    border-color: #5cb657;
   }
 
   .xl\:focus\:border-transparent:focus {
@@ -24794,6 +25136,34 @@
   }
 
   .xl\:hidden {
+    display: none;
+  }
+
+  .xl\:hover\:block:hover {
+    display: block;
+  }
+
+  .xl\:hover\:inline-block:hover {
+    display: inline-block;
+  }
+
+  .xl\:hover\:inline:hover {
+    display: inline;
+  }
+
+  .xl\:hover\:table:hover {
+    display: table;
+  }
+
+  .xl\:hover\:table-row:hover {
+    display: table-row;
+  }
+
+  .xl\:hover\:table-cell:hover {
+    display: table-cell;
+  }
+
+  .xl\:hover\:hidden:hover {
     display: none;
   }
 
@@ -26916,6 +27286,10 @@
     text-align: justify;
   }
 
+  .xl\:text-green-theme {
+    color: #5cb657;
+  }
+
   .xl\:text-transparent {
     color: transparent;
   }
@@ -27208,6 +27582,10 @@
     color: #ffebef;
   }
 
+  .xl\:hover\:text-green-theme:hover {
+    color: #5cb657;
+  }
+
   .xl\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -27498,6 +27876,10 @@
 
   .xl\:hover\:text-pink-lightest:hover {
     color: #ffebef;
+  }
+
+  .xl\:focus\:text-green-theme:focus {
+    color: #5cb657;
   }
 
   .xl\:focus\:text-transparent:focus {
@@ -28028,6 +28410,14 @@
     visibility: hidden;
   }
 
+  .xl\:hover\:visible:hover {
+    visibility: visible;
+  }
+
+  .xl\:hover\:invisible:hover {
+    visibility: hidden;
+  }
+
   .xl\:whitespace-normal {
     white-space: normal;
   }
@@ -28235,6 +28625,12 @@
             appearance: none;
   }
 
+  .hd\:hover\:appearance-none:hover {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+  }
+
   .hd\:bg-fixed {
     background-attachment: fixed;
   }
@@ -28245,6 +28641,10 @@
 
   .hd\:bg-scroll {
     background-attachment: scroll;
+  }
+
+  .hd\:bg-green-theme {
+    background-color: #5cb657;
   }
 
   .hd\:bg-transparent {
@@ -28539,6 +28939,10 @@
     background-color: #ffebef;
   }
 
+  .hd\:hover\:bg-green-theme:hover {
+    background-color: #5cb657;
+  }
+
   .hd\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -28829,6 +29233,10 @@
 
   .hd\:hover\:bg-pink-lightest:hover {
     background-color: #ffebef;
+  }
+
+  .hd\:focus\:bg-green-theme:focus {
+    background-color: #5cb657;
   }
 
   .hd\:focus\:bg-transparent:focus {
@@ -29187,6 +29595,10 @@
     background-size: contain;
   }
 
+  .hd\:border-green-theme {
+    border-color: #5cb657;
+  }
+
   .hd\:border-transparent {
     border-color: transparent;
   }
@@ -29479,6 +29891,10 @@
     border-color: #ffebef;
   }
 
+  .hd\:hover\:border-green-theme:hover {
+    border-color: #5cb657;
+  }
+
   .hd\:hover\:border-transparent:hover {
     border-color: transparent;
   }
@@ -29769,6 +30185,10 @@
 
   .hd\:hover\:border-pink-lightest:hover {
     border-color: #ffebef;
+  }
+
+  .hd\:focus\:border-green-theme:focus {
+    border-color: #5cb657;
   }
 
   .hd\:focus\:border-transparent:focus {
@@ -30428,6 +30848,34 @@
   }
 
   .hd\:hidden {
+    display: none;
+  }
+
+  .hd\:hover\:block:hover {
+    display: block;
+  }
+
+  .hd\:hover\:inline-block:hover {
+    display: inline-block;
+  }
+
+  .hd\:hover\:inline:hover {
+    display: inline;
+  }
+
+  .hd\:hover\:table:hover {
+    display: table;
+  }
+
+  .hd\:hover\:table-row:hover {
+    display: table-row;
+  }
+
+  .hd\:hover\:table-cell:hover {
+    display: table-cell;
+  }
+
+  .hd\:hover\:hidden:hover {
     display: none;
   }
 
@@ -32550,6 +32998,10 @@
     text-align: justify;
   }
 
+  .hd\:text-green-theme {
+    color: #5cb657;
+  }
+
   .hd\:text-transparent {
     color: transparent;
   }
@@ -32842,6 +33294,10 @@
     color: #ffebef;
   }
 
+  .hd\:hover\:text-green-theme:hover {
+    color: #5cb657;
+  }
+
   .hd\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -33132,6 +33588,10 @@
 
   .hd\:hover\:text-pink-lightest:hover {
     color: #ffebef;
+  }
+
+  .hd\:focus\:text-green-theme:focus {
+    color: #5cb657;
   }
 
   .hd\:focus\:text-transparent:focus {
@@ -33659,6 +34119,14 @@
   }
 
   .hd\:invisible {
+    visibility: hidden;
+  }
+
+  .hd\:hover\:visible:hover {
+    visibility: visible;
+  }
+
+  .hd\:hover\:invisible:hover {
     visibility: hidden;
   }
 
@@ -36699,4 +37167,8 @@ table.scrollable-fixed-header thead th {
 
 .multiselect-with-remove .multiselect__select {
   margin-right: 10px;
+}
+
+.main-table th:hover i {
+  display: inline-block !important;
 }

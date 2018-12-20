@@ -14,7 +14,7 @@
             v-for="head in header"
             :key="head.name"
             class="pb-2 pl-2 text-xs max-w-100 relative cursor-pointer"
-            @click="handleSort(head.name)"
+            @click="handleSort(head)"
           >
             <span
               v-if="head['translations']['en'].length > 14"
@@ -31,7 +31,9 @@
             </span>
 
             <i
-              class="icon-Down_Arrow_4_1 hidden absolute pin-l pin-t -ml-2"
+              :class="`icon-Down_Arrow_4_1 absolute pin-l pin-t -ml-1
+              ${sorting.columnField != head.name ? 'hidden':''}
+              ${sorting.columnField === head.name && sorting.type === 'asc' ? 'icon-Up_Arrow_4_1' :'icon-Down_Arrow_4_1'}`"
             />
           </th>
           <th class="pb-2 px-4 pl-1 max-w-100 truncate" />
@@ -126,6 +128,11 @@
           perPage: 15,
           total: 0,
           currentPage: 1
+        })
+      },
+      sorting:{
+        type:Object,
+        default: () => ({
         })
       },
       striped: {

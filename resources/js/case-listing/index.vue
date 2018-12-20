@@ -8,10 +8,12 @@
         :rows="rows"
         :pagination="pagination"
         :filters="filters"
+        :sorting="sorting"
         :user-filters="userFilters"
         @pagechanged="loadData({page: $event})"
         @filter="filterChange($event, loadData)"
         @filterSelect="filterSelect($event, loadData)"
+        @sortChange="sortSelect(loadData)"
       />
     </Panel>
   </div>
@@ -36,10 +38,6 @@
     data() {
       return {
         rows: [],
-        sorting: {
-          type: 'asc',
-          columnField: 'id'
-        },
         headers: [],
         pagination: {
           total: 0,
@@ -57,14 +55,17 @@
       });
     },
     methods: {
-      loadData({filters = {}, page = null} = {}) {
+      loadData({filters = {}, page = null, sorting = {}} = {}) {
         filters = filters && typeof filters === "object" ? filters : {}
         const params = {
           filters: {
             ...filters,
             ...this.userFiltersToParams()
           },
-          page: !isNaN(parseInt(page, 10)) ? page : this.pagination.currentPage
+          page: !isNaN(parseInt(page, 10)) ? page : this.pagination.currentPage,
+          sorting:{
+              ...sorting
+          }
         }
         return getListing(this.type, params)
             .then(({data}) => {

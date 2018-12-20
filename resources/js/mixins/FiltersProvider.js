@@ -3,6 +3,10 @@ export default {
     return {
       filters: [],
       userFilters: [],
+      sorting: {
+        type: 'asc',
+        columnField: 'id'
+      },
     }
   },
   methods: {
@@ -32,6 +36,11 @@ export default {
         if (filterHasValue && typeof callback === 'function') {
           callback()
         }
+      }
+    },
+    sortSelect(loadData) {
+      if (loadData && typeof loadData === 'function') {
+        loadData({sorting: this.sorting })
       }
     },
     filterChange(event, loadData) {

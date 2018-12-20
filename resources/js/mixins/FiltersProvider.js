@@ -14,7 +14,7 @@ export default {
         return acc
       }, {})
     },
-    filterSelect({name}) {
+    filterSelect({name}, callback) {
       const filterIndex = this.filters.findIndex(filter => filter.name === name)
       const userFilterIndex = this.userFilters.findIndex(filter => filter.name === name)
 
@@ -23,7 +23,13 @@ export default {
           ...this.filters[filterIndex]
         })
       } else {
-        this.userFilters.splice(userFilterIndex, 1)
+          const removedFilter = this.userFilters[userFilterIndex];
+
+          this.userFilters.splice(userFilterIndex, 1)
+
+          if(removedFilter.filterValue && String(removedFilter.filterValue).trim() !== '' && typeof callback === 'function'){
+            callback()
+          }
       }
     },
     filterChange(event, loadData) {

@@ -11,7 +11,7 @@
         :user-filters="userFilters"
         @pagechanged="loadData({page: $event})"
         @filter="filterChange($event, loadData)"
-        @filterSelect="filterSelect"
+        @filterSelect="filterSelect($event, loadData)"
       />
     </Panel>
   </div>

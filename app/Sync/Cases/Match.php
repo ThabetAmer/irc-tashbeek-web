@@ -1,5 +1,8 @@
 <?php namespace App\Sync\Cases;
 
+use App\Sync\QuestionHandler\MatchJobOpeningIdHandler;
+use App\Sync\QuestionHandler\MatchJobSeekerIdHandler;
+
 class Match extends AbstractCase
 {
     public $model = \App\Models\Match::class;
@@ -21,19 +24,28 @@ class Match extends AbstractCase
      */
     public function questions(): array
     {
-        return  [
-            'eso_id' => [
-                'column_name' => 'eso_id',
-                'column_type' => 'text'
+        return [
+            'job_opening_id' => [
+                'column_name' => 'job_opening_id',
+                'column_type' => 'text',
+                'property' => true,
+                'translations' => [
+                    'en' => 'Job Opening',
+                    'ara' => 'Job Opening'
+                ],
+                'valueHandler' => MatchJobOpeningIdHandler::class
             ],
-            'beneficiary_id_uuid' => [
-                'column_name' => 'beneficiary_id_uuid',
-                'column_type' => 'text'
+            'job_seeker_id' => [
+                'column_name' => 'job_seeker_id',
+                'column_type' => 'text',
+                'property' => true,
+                'translations' => [
+                    'en' => 'Job Seeker',
+                    'ara' => 'Job Seeker'
+                ],
+                'valueHandler' => MatchJobSeekerIdHandler::class
             ],
-            'application_method' => [
-                'column_name' => 'application_method',
-                'column_type' => 'text'
-            ],
+
         ];
     }
 

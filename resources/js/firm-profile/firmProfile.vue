@@ -35,9 +35,12 @@
           >
             <span>
               Located in
-                      <span v-if="firm.city">
+                      <a
+                        v-if="firm.city"
+                        :href="`/firms?filters[city]=${firm.city}`"
+                      >
                         {{ firm.city }}
-                      </span>
+                      </a>
 
                       <span
                         v-if="firm.city && firm.district"
@@ -46,9 +49,12 @@
                         •
                       </span>
 
-                      <span v-if="firm.district">
+                      <a
+                        v-if="firm.district"
+                        :href="`/firms?filters[district]=${firm.district}`"
+                      >
                         {{ firm.district }}
-                      </span>
+                      </a>
             </span>
           </ListItem>
 

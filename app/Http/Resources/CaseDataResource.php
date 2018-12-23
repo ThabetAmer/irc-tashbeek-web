@@ -44,9 +44,10 @@ class CaseDataResource extends ResourceCollection
         $properties = app(PropertyMetaDataRepositoryInterface::class)->typeIs($this->caseType)->keyBy('column_name');
 
         $headers = [];
+        $columns = [];
         $filters = [];
 
-        $columns = $this->getSelectedColumns($request, $properties);
+        $selectedColumns = $this->getSelectedColumns($request, $properties);
 
         foreach ($properties as $property) {
             $translations = array_get($property->attributes, 'translations', []);
@@ -58,12 +59,17 @@ class CaseDataResource extends ResourceCollection
                 ];
             }
 
-            if (in_array($property->column_name, $columns)) {
+            if (in_array($property->column_name, $selectedColumns)) {
                 $headers[] = [
                     'translations' => $translations,
                     'name' => $property->column_name,
                 ];
             }
+
+            $columns[] = [
+                'translations' => $translations,
+                'name' => $property->column_name,
+            ];
 
             $filters[] = [
                 'name' => $property->column_name,

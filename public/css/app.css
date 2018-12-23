@@ -36887,7 +36887,7 @@ button:focus {
 ::-webkit-scrollbar {
   width: 8px;
   /* 1px wider than Lion. *//* This is more usable for users trying to click it. */
-  background-color: rgba(0, 0, 0, 0);
+  background-color: #dae1e7 !important;
   -webkit-border-radius: 100px;
 }
 
@@ -37171,6 +37171,7 @@ table.scrollable-fixed-header thead th {
 
 .main-table th:hover i {
   display: inline-block !important;
+  z-index: 999999;
 }
 
 .content {

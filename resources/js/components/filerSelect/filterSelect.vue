@@ -21,7 +21,6 @@
     :track-by="trackBy"
     :label="label"
     :placeholder="placeholder"
-    @input="handleInput"
     @select="handleSelect"
   >
     <template
@@ -36,12 +35,12 @@
     >
       <label
         v-tooltip="{content:option.label,classes:['tooltip-datatable']}"
+        @click.prevent
       >
         <input
           type="checkbox"
           class="mr-1"
           :checked="userFilters.map(filter => filter.name).indexOf(option.name) > -1"
-          @click="handleSelect(option)"
         >
         {{ option.label }}
       </label>
@@ -106,9 +105,6 @@
       }
     },
     methods: {
-      handleInput(value, id) {
-        this.$emit('input', value);
-      },
       handleSelect(selectedOption) {
         this.$emit('select', selectedOption);
       }

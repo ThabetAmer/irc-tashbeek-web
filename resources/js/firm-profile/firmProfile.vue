@@ -124,11 +124,19 @@
             id="current"
             class="tab-pane fade in active show"
           >
-            <JobOpening
-              v-for="jobOpening in jobOpenings"
-              :key="jobOpening.id"
-              :city="firm.city || firm.district"
-              :job-opening="jobOpening"
+            <div
+              v-if="jobOpenings.length > 0"
+            >
+              <JobOpening
+                v-for="jobOpening in jobOpenings"
+                :key="jobOpening.id"
+                :city="firm.city || firm.district"
+                :job-opening="jobOpening"
+              />
+            </div>
+            <EmptyState
+              v-else
+              custom-class="min-h-200 text-lg"
             />
           </div>
 
@@ -183,13 +191,13 @@
   import Datatable from '../components/datatable/datatable'
   import Clipboard from '../components/clipboard/clipboard'
   import ListItem from '../components/listItem/listItem'
-
+  import EmptyState from '../components/emptyState/emptyState'
   import {get as getCaseListing} from '../API/caseListing'
 
   export default {
     components: {
       Btn, AnchorLink, Clipboard, ListItem,
-      CustomSelect, Modal, ButtonGroup,
+      CustomSelect, Modal, ButtonGroup,EmptyState,
       Checkbox, CheckboxGroup, Panel, MetricCard,
       AddNoteModal, Notebox, JobOpening, Datatable
     },
@@ -206,13 +214,13 @@
         hasTitle: true,
         showStar: false,
         filters: false,
-        jobOpenings:[]
+        jobOpenings: []
       }
     },
     mounted() {
-      getCaseListing('job-opening',{
-        filters:{
-          firm_id:this.firm.id
+      getCaseListing('job-opening', {
+        filters: {
+          firm_id: this.firm.id
         }
       }).then(({data}) => {
         this.jobOpenings = data.data

@@ -3238,6 +3238,18 @@
   min-height: 0;
 }
 
+.min-h-100 {
+  min-height: 100px;
+}
+
+.min-h-200 {
+  min-height: 200px;
+}
+
+.min-h-300 {
+  min-height: 300px;
+}
+
 .min-h-full {
   min-height: 100%;
 }
@@ -8965,6 +8977,18 @@
     min-height: 0;
   }
 
+  .sm\:min-h-100 {
+    min-height: 100px;
+  }
+
+  .sm\:min-h-200 {
+    min-height: 200px;
+  }
+
+  .sm\:min-h-300 {
+    min-height: 300px;
+  }
+
   .sm\:min-h-full {
     min-height: 100%;
   }
@@ -14675,6 +14699,18 @@
 
   .md\:min-h-0 {
     min-height: 0;
+  }
+
+  .md\:min-h-100 {
+    min-height: 100px;
+  }
+
+  .md\:min-h-200 {
+    min-height: 200px;
+  }
+
+  .md\:min-h-300 {
+    min-height: 300px;
   }
 
   .md\:min-h-full {
@@ -20389,6 +20425,18 @@
     min-height: 0;
   }
 
+  .lg\:min-h-100 {
+    min-height: 100px;
+  }
+
+  .lg\:min-h-200 {
+    min-height: 200px;
+  }
+
+  .lg\:min-h-300 {
+    min-height: 300px;
+  }
+
   .lg\:min-h-full {
     min-height: 100%;
   }
@@ -26101,6 +26149,18 @@
     min-height: 0;
   }
 
+  .xl\:min-h-100 {
+    min-height: 100px;
+  }
+
+  .xl\:min-h-200 {
+    min-height: 200px;
+  }
+
+  .xl\:min-h-300 {
+    min-height: 300px;
+  }
+
   .xl\:min-h-full {
     min-height: 100%;
   }
@@ -31811,6 +31871,18 @@
 
   .hd\:min-h-0 {
     min-height: 0;
+  }
+
+  .hd\:min-h-100 {
+    min-height: 100px;
+  }
+
+  .hd\:min-h-200 {
+    min-height: 200px;
+  }
+
+  .hd\:min-h-300 {
+    min-height: 300px;
   }
 
   .hd\:min-h-full {

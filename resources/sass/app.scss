@@ -556,29 +556,30 @@ table.scrollable-fixed-header {
   background: #c3c7cc
 }
 
-
-.multiselect-with-remove{
-  .multiselect__select{
+.multiselect-with-remove {
+  .multiselect__select {
     margin-right: 10px;
   }
 }
 
-.main-table{
-  th{
-    &:hover{
-      i{
-        display: inline-block !important;
-      }
-    }
-  }
+.main-table th:hover i {
+  display: inline-block !important;
 }
 
 //html, body { margin: 0; padding: 0; height: 100%; width: 100%;}
 
-.content{
+.content {
   max-width: calc(100% - 280px) !important;
 }
 
-body,html{
+body, html {
   overflow-x: hidden;
+}
+
+.link {
+  text-decoration: none;
+
+  &:hover{
+    text-decoration: underline;
+  }
 }

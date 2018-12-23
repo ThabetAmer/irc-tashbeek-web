@@ -19,7 +19,7 @@
             >
               <span
                 v-if="head['translations']['en'].length > 14"
-                v-tooltip="{content:head['translations']['en'],classes:['tooltip-datatable']}"
+                v-tooltip="{placement:'left',content:head['translations']['en'],classes:['tooltip-datatable']}"
                 class=" max-w-100 truncate block"
               >
                 {{ head['translations']['en'] }}
@@ -61,6 +61,7 @@
               <span
                 v-else-if="head.clickable_from && row[head.clickable_from]"
                 class="max-w-150 truncate block"
+                dir="auto"
               >
                 <a
                   :href="row[head.clickable_from]"
@@ -73,10 +74,14 @@
                 v-else-if="row[head.name] && row[head.name].length > 10"
                 v-tooltip="{content:row[head.name],classes:['tooltip-datatable']}"
                 class="max-w-100 truncate block"
+                dir="auto"
               >
                 {{ row[head.name] }}
               </span>
-              <span v-else>
+              <span
+                v-else
+                dir="auto"
+              >
                 {{ row[head.name] }}
               </span>
             </td>

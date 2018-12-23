@@ -37,6 +37,7 @@
               Located in
                       <a
                         v-if="firm.city"
+                        class="link text-blue-dark font-bold"
                         :href="`/firms?filters[city]=${firm.city}`"
                       >
                         {{ firm.city }}
@@ -44,13 +45,14 @@
 
                       <span
                         v-if="firm.city && firm.district"
-                        class="mx-1"
+                        class="mx-1 link text-blue-dark font-bold"
                       >
                         •
                       </span>
 
                       <a
                         v-if="firm.district"
+                        class="link text-blue-dark font-bold"
                         :href="`/firms?filters[district]=${firm.district}`"
                       >
                         {{ firm.district }}

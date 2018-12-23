@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Models\PropertyMetaData;
+use App\Repositories\PropertyMetaData\PropertyMetaDataRepositoryInterface;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class CaseDataResource extends ResourceCollection
@@ -41,10 +41,7 @@ class CaseDataResource extends ResourceCollection
      */
     public function with($request)
     {
-        $properties = PropertyMetaData::query()
-            ->ofType($this->caseType)
-            ->orderBy('order')
-            ->get();
+        $properties = app(PropertyMetaDataRepositoryInterface::class)->typeIs($this->caseType);
 
         $headers = [];
         $filters = [];

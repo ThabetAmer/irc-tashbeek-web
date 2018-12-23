@@ -44,7 +44,7 @@ if (!function_exists('get_case_type_resource_class')) {
         $class = "App\\Http\\Resources\\CaseResources\\{$class}ResourceCollection";
 
         if (!class_exists($class)) {
-            return false;
+            $class = "App\\Http\\Resources\\CaseDataResource";
         }
 
         return $class;

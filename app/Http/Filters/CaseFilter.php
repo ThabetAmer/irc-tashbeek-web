@@ -32,7 +32,7 @@ class CaseFilter implements FilterInterface
          */
         $caseType = case_type($builder->getModel());
 
-        $properties = PropertyMetaData::ofType($caseType)->get(['column_name', 'attributes'])->keyBy('column_name');
+        $properties = PropertyMetaData::typeIs($caseType)->get(['column_name', 'attributes'])->keyBy('column_name');
 
         $filters = array_only($this->filters(), $properties->pluck('column_name')->toArray());
 

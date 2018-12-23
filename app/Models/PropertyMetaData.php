@@ -22,9 +22,14 @@ class PropertyMetaData extends Model
         'has_filter' => 'boolean'
     ];
 
-    public function scopeOfType($query, $type)
+    public function scopeTypeIs($query, $type)
     {
         return $query->where('case_type', '=', $type);
+    }
+
+    public function scopeColumnIs($query, $columnName)
+    {
+        return $query->where('column_name', '=', $columnName);
     }
 
     public function options()

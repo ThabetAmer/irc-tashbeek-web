@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Firm extends Model implements SyncableInterface
 {
-    use MorphToForm, Routable, HasFilter;
+    use MorphToForm, Routable, HasFilter, Sortable;
 
     protected $appends = [
         'details_url'

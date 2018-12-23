@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Filters\CaseFilter;
 use App\Http\Resources\CaseDataResource;
+use App\Http\Sortable\SortableCase;
 
 class ResponseApiController extends Controller
 {
@@ -12,28 +13,21 @@ class ResponseApiController extends Controller
      *
      * @param $caseType
      * @param CaseFilter $caseFilter
+     * @param SortableCase $sortableCase
      * @return CaseDataResource
      */
-    public function index($caseType, CaseFilter $caseFilter)
+    public function index($caseType, CaseFilter $caseFilter, SortableCase $sortableCase)
     {
         $query = get_case_type_model($caseType)->query();
 
         $query->filter($caseFilter);
 
-        if(request('sorting.column')){
-            // TODO move to something more reusable
-            $sortingType = request('sorting.type') === 'desc' ? 'desc':'asc';
-            $query->orderBy(request('sorting.column'),$sortingType);
-        }
+        $query->sort($sortableCase);
 
         $results = $query->paginate();
 
         $resourceClass = get_case_type_resource_class($caseType);
 
-        if($resourceClass){
-            return new $resourceClass($results, $caseType);
-        }
-
-        return new CaseDataResource($results, $caseType);
+        return new $resourceClass($results, $caseType);
     }
 }

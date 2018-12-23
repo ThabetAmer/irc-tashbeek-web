@@ -1,10 +1,8 @@
-<?php
+<?php namespace App\Http\Resources\CaseResources;
 
-namespace App\Http\Resources\CaseResources;
+use App\Http\Resources\CaseResource;
 
-use Illuminate\Http\Resources\Json\JsonResource;
-
-class FirmResource extends JsonResource
+class FirmResource extends CaseResource
 {
     /**
      * Transform the resource into an array.

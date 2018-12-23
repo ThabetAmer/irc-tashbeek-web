@@ -2,10 +2,10 @@
 
 namespace App\Http\Resources\CaseResources;
 
+use App\Http\Resources\CaseResource;
 use Carbon\Carbon;
-use Illuminate\Http\Resources\Json\JsonResource;
 
-class JobOpeningResource extends JsonResource
+class JobOpeningResource extends CaseResource
 {
     /**
      * Transform the resource into an array.
@@ -24,6 +24,7 @@ class JobOpeningResource extends JsonResource
         }catch(\Throwable $e){
             $data['date_opened_text'] = null;
         }
+
         return $data;
     }
 }

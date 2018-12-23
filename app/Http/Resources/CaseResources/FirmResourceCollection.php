@@ -1,7 +1,6 @@
 <?php namespace App\Http\Resources\CaseResources;
 
 use App\Http\Resources\CaseDataResource;
-use App\Models\Firm;
 
 class FirmResourceCollection extends CaseDataResource
 {

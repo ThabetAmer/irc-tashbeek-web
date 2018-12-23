@@ -7,7 +7,7 @@
       @change="$emit('filter',$event)"
       @filterSelect="$emit('filterSelect',$event)"
     />
-    <div class="table-container-main overflow-auto">
+    <div class="table-container-main overflow-auto pl-2 mb-2">
       <table :class="[`main-table w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']">
         <thead>
           <tr class="font-bold text-green-theme">

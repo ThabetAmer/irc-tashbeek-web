@@ -35,7 +35,7 @@
               </span>
 
               <i
-                :class="`icon-Down_Arrow_4_1 absolute pin-l pin-t -ml-1
+                :class="`icon-Down_Arrow_4_1 absolute pin-l pin-t ml-2
                 ${sorting.column != head.name ? 'hidden':''}
                 ${sorting.column === head.name && sorting.type === 'asc' ? 'icon-Up_Arrow_4_1' :'icon-Down_Arrow_4_1'}`"
               />
@@ -75,7 +75,7 @@
               </span>
               <span
                 v-else-if="row[head.name] && row[head.name].length > 10"
-                v-tooltip="{content:row[head.name],classes:['tooltip-datatable']}"
+                v-tooltip="{placement: 'left',content:row[head.name],classes:['tooltip-datatable']}"
                 class="max-w-100 truncate block"
                 dir="auto"
               >

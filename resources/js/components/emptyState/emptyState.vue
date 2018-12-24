@@ -5,7 +5,7 @@
     <slot
       name="empty-label"
     >
-      <div class="mx-auto text-grey-dark">
+      <div class="mx-auto text-grey-dark mb-2">
         No data to be presented
       </div>
     </slot>

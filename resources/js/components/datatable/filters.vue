@@ -15,6 +15,23 @@
         @clear="handleClear(filter.name)"
         @select="handleSelect(filter.name, $event)"
       />
+      <DatePicker
+        v-else-if="filter.type === 'date'"
+        :key="filter.name+'-'+filter.type"
+        lang="en"
+        :value="filter.filterValue"
+        wrapper-class="w-1/7 mr-2 h-50"
+        input-class="height-align text-sm
+        mb-2 mr-2 p-2 text-grey-darkest font-bold
+        w-full bg-grey-lighter rounded"
+        :clear-button="true"
+        format="yyyy-MM-dd"
+        :placeholder="filter.label"
+        clear-button-icon="icon-X_x40_2xpng_2"
+        @cleared="handleClear(filter.name)"
+        @input="handleTextInput(filter.name,$event)"
+        custom-class="mb-2 note-select filter-input multiselect-with-remove"
+      />
       <CustomInput
         v-else
         :key="filter.name+'-'+filter.type"
@@ -48,15 +65,25 @@
   import CustomSelect from '../select/select'
   import FilterSelect from '../filerSelect/filterSelect'
   import HasFilters from "../../mixins/HasFilters";
+  import DatePicker from 'vuejs-datepicker'
 
   export default {
     /**
      * all props have their needed types
      * and are passed using the mixin
      */
-    components: {CustomInput, CustomSelect,FilterSelect},
+    components: {CustomInput, CustomSelect,FilterSelect,DatePicker },
     mixins: [HasFilters],
+    data(){
+      return{
+        vall:''
+      }
+    },
     methods: {
+      inputDate(eve){
+        console.log(' dd ',eve);
+        this.val = eve;
+      },
       handleSelect(name, selected) {
         this.$emit('change', {
           name,
@@ -70,6 +97,7 @@
         })
       },
       handleTextInput(name, value) {
+        console.log(' val is ', value);
         this.$emit('change', {
           name,
           value

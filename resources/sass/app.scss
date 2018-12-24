@@ -590,3 +590,25 @@ body, html {
 //.multiselect__content-wrapper{
 //  min-width: 250px;
 //}
+
+.mx-input-append{
+  display: none;
+}
+
+.vdp-datepicker{
+  .vdp-datepicker__clear-button{
+    padding: 5px;
+    background: #c3c7cc;
+    font-size: .4rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    top: 14px;
+    i{
+      font-size: .4rem;
+      color: white;
+
+    }
+  }
+}

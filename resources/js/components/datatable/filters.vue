@@ -28,9 +28,9 @@
         format="yyyy-MM-dd"
         :placeholder="filter.label"
         clear-button-icon="icon-X_x40_2xpng_2"
+        custom-class="mb-2 note-select filter-input multiselect-with-remove"
         @cleared="handleClear(filter.name)"
         @input="handleTextInput(filter.name,$event)"
-        custom-class="mb-2 note-select filter-input multiselect-with-remove"
       />
       <CustomInput
         v-else

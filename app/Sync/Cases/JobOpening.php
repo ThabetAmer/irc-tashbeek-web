@@ -51,7 +51,7 @@ class JobOpening extends AbstractCase
                 'column_name' => 'date_opened',
                 'column_type' => 'dateTime',
                 'property' => true,
-                'type' => 'text',
+                'type' => 'date',
                 'translations' => [
                     'en' => 'Date opened',
                     'ara' => 'Date Opened'

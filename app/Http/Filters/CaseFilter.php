@@ -1,5 +1,6 @@
 <?php namespace App\Http\Filters;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\PropertyMetaData;
 use Illuminate\Database\Eloquent\Builder;
@@ -93,6 +94,21 @@ class CaseFilter implements FilterInterface
         }
         $builder->where($name, 'LIKE', "%$value%");
     }
+
+    /**
+     * Search for partial text or Full text search in future.
+     *
+     * @param $builder
+     * @param $name
+     * @param $value
+     * SEHWEIL CODE // SEHWEIL CODE
+     */
+    protected function searchDate($builder, $name, $value)
+    {
+        $value = Carbon::parse($value)->format('Y-m-d H:m:s');
+        $builder->where($name, '=', $value);
+    }
+
 
     /**
      * Just search by equality or In

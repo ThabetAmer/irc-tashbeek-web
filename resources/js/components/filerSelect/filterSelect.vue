@@ -35,11 +35,12 @@
     >
       <label
         v-tooltip="{content:option.label,classes:['tooltip-datatable']}"
+        dir="auto"
         @click.prevent
       >
         <input
           type="checkbox"
-          class="mr-1"
+          class="mr-1 ml-1"
           :checked="userFilters.map(filter => filter.name).indexOf(option.name) > -1"
         >
         {{ option.label }}

@@ -17,13 +17,13 @@
             <th
               v-for="head in header"
               :key="head.name"
-              class="pb-2 pl-2 text-xs max-w-100 relative cursor-pointer"
+              class="pb-2 pl-8 text-xs max-w-100 relative cursor-pointer"
               @click="$emit('sort',head.name)"
             >
               <span
                 v-if="head['translations']['en'].length > 14"
                 v-tooltip="{placement:'left',content:head['translations']['en'],classes:['tooltip-datatable']}"
-                class=" max-w-100 truncate block"
+                class=" truncate block"
               >
                 {{ head['translations']['en'] }}
               </span>
@@ -53,7 +53,7 @@
             <td
               v-for="head in header"
               :key="head.name"
-              class="py-4 pl-2 text-sm"
+              class="py-4 pl-8 text-sm"
             >
               <Component
                 :is="row[head.name].component"

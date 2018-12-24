@@ -101,7 +101,7 @@
               :class="{active:viewType =='current'}"
               class="nav-link border-0
                                  rounded-full py-2 px-4
-                                 text-grey-dark text-base font-semibold "
+                                 text-grey-dark text-sm font-semibold "
               @click="changeViewType('current')"
             >
               Current
@@ -111,7 +111,7 @@
             <button
               :class="{active:viewType =='matches'}"
               class="nav-link border-0 py-2 px-4
-                                text-grey-dark text-base font-semibold"
+                                text-grey-dark text-sm font-semibold"
               @click="changeViewType('matches')"
             >
               Matches

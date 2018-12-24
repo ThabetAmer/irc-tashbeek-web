@@ -36,7 +36,7 @@
       :user-filters="userFilters"
       placeholder="More"
       :multiple="true"
-      custom-class="mb-2 note-select mr-2 w-1/7 filter-selector"
+      custom-class="mb-2 note-select mr-2 w-1/5 filter-selector"
       @select="handleFilterSelect"
     />
   </div>

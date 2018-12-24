@@ -9,7 +9,7 @@
     >
       <i class="icon-Star_x40_2xpng_2" />
     </button>
-    <div class=" text-left text-black font-bold">
+    <div class=" text-left text-sm text-black font-bold">
       {{ body }}
     </div>
 
@@ -28,7 +28,7 @@
 
       <div class="flex-1 text-right pt-4">
         <button
-          class="uppercase text-green-dark font-bold ml-2"
+          class="uppercase text-green-dark text-sm font-bold ml-2"
           @click="showFullNoteModal"
         >
           View More

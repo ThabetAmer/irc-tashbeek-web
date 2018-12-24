@@ -6,10 +6,10 @@
       WEDNESDAY 12 NOVEMBER
     </div>
 
-    <div class="mb-4 text-lg text-black font-bold ">
+    <div class="mb-4 text-base text-black font-bold ">
       Candidate screened for a job ID 0109 with Souktel Inc.
     </div>
-    <div class=" text-md text-black font-semibold">
+    <div class=" text-sm text-black font-semibold">
       Lorem Ipsum is simply dummy text of the printing
       and typesetting industry. Lorem Ipsum has been the industry's
       standard dummy text ever since the 1500s, when an unknown printer

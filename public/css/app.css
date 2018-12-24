@@ -3274,6 +3274,10 @@
   min-width: 30px;
 }
 
+.min-w-250 {
+  min-width: 250px;
+}
+
 .min-w-full {
   min-width: 100%;
 }
@@ -9013,6 +9017,10 @@
     min-width: 30px;
   }
 
+  .sm\:min-w-250 {
+    min-width: 250px;
+  }
+
   .sm\:min-w-full {
     min-width: 100%;
   }
@@ -14735,6 +14743,10 @@
 
   .md\:min-w-30 {
     min-width: 30px;
+  }
+
+  .md\:min-w-250 {
+    min-width: 250px;
   }
 
   .md\:min-w-full {
@@ -20461,6 +20473,10 @@
     min-width: 30px;
   }
 
+  .lg\:min-w-250 {
+    min-width: 250px;
+  }
+
   .lg\:min-w-full {
     min-width: 100%;
   }
@@ -26185,6 +26201,10 @@
     min-width: 30px;
   }
 
+  .xl\:min-w-250 {
+    min-width: 250px;
+  }
+
   .xl\:min-w-full {
     min-width: 100%;
   }
@@ -31907,6 +31927,10 @@
 
   .hd\:min-w-30 {
     min-width: 30px;
+  }
+
+  .hd\:min-w-250 {
+    min-width: 250px;
   }
 
   .hd\:min-w-full {
@@ -39014,10 +39038,6 @@ table.scrollable-fixed-header thead th {
   cursor: pointer;
 }
 
-.filter-selector .multiselect__element {
-  max-width: 160px;
-}
-
 .filter-selector .multiselect__element .multiselect__option {
   max-width: 100%;
 }
@@ -39065,11 +39085,10 @@ table.scrollable-fixed-header thead th {
 
 .main-table th:hover i {
   display: inline-block !important;
-  z-index: 999999;
 }
 
 .content {
-  max-width: calc(100% - 280px) !important;
+  max-width: calc(100% - 200px) !important;
 }
 
 body,

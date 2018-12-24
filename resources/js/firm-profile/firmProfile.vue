@@ -220,11 +220,17 @@
     mounted() {
       getCaseListing('job-opening', {
         filters: {
-          firm_id: this.firm.id
+          firm_id: this.firm.id,
+        },
+        sorting: {
+          column: 'date_opened',
+          type: 'asc',
         }
+
       }).then(({data}) => {
         this.jobOpenings = data.data
-      })
+      });
+
     },
     methods: {
       changeViewType(type) {

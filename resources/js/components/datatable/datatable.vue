@@ -7,20 +7,23 @@
       @change="$emit('filter',$event)"
       @filterSelect="$emit('filterSelect',$event)"
     />
-    <div class="table-container-main overflow-auto pl-2 mb-2">
+    <div
+      v-if="rows.length > 0"
+      class="table-container-main overflow-auto pl-2 mb-2"
+    >
       <table :class="[`main-table w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']">
         <thead>
           <tr class="font-bold text-green-theme">
             <th
               v-for="head in header"
               :key="head.name"
-              class="pb-2 pl-2 text-xs max-w-100 relative cursor-pointer"
+              class="pb-2 pl-8 text-xs max-w-100 relative cursor-pointer"
               @click="$emit('sort',head.name)"
             >
               <span
                 v-if="head['translations']['en'].length > 14"
                 v-tooltip="{placement:'left',content:head['translations']['en'],classes:['tooltip-datatable']}"
-                class=" max-w-100 truncate block"
+                class=" truncate block"
               >
                 {{ head['translations']['en'] }}
               </span>
@@ -50,7 +53,7 @@
             <td
               v-for="head in header"
               :key="head.name"
-              class="py-4 pl-2 text-sm"
+              class="py-4 pl-8 text-sm"
             >
               <Component
                 :is="row[head.name].component"
@@ -94,6 +97,11 @@
         </tbody>
       </table>
     </div>
+
+    <EmptyState
+      v-else
+      custom-class="min-h-200 text-lg"
+    />
     <Pagination
       v-if="pagination.lastPage > 1"
       :total-pages="pagination.lastPage"
@@ -109,6 +117,7 @@
 <script>
   import Filters from './filters';
   import Pagination from './pagination';
+  import EmptyState from '../emptyState/emptyState';
   import HasFilters from "../../mixins/HasFilters";
   import Popper from 'vue-popperjs';
   // import VTooltip from 'v-tooltip'
@@ -118,10 +127,14 @@
      * all props have their needed types
      * and are passed using the mixin
      */
-    components: {Filters, Pagination,Popper},
+    components: {Filters, Pagination,Popper,EmptyState},
     filters: {},
     mixins: [HasFilters],
     props: {
+      loading:{
+        type: Boolean,
+        default:false
+      },
       fixedHeader: {
         type: Boolean,
         default: false

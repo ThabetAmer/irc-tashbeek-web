@@ -8,6 +8,7 @@
         :rows="rows"
         :pagination="pagination"
         :filters="filters"
+        :loading="loading"
         :sorting="sorting"
         :user-filters="userFilters"
         @pagechanged="loadData({page: $event})"
@@ -38,6 +39,7 @@
     },
     data() {
       return {
+        loading:false,
         rows: [],
         headers: [],
         pagination: {
@@ -89,6 +91,7 @@
                 perPage: data.meta.per_page,
                 currentPage: data.meta.current_page
               };
+              this.loading = true;
             }).catch(error => {
               console.log('Error : ', error);
             });

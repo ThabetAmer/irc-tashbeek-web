@@ -6,7 +6,7 @@
       <div class="uppercase text-grey font-bold text-xs mb-2">
         Added {{ jobOpening.date_opened_text }}
       </div>
-      <div class="text-black font-bold text-lg">
+      <div class="text-black font-bold text-base ">
         Job {{ jobOpening.job_id }} - {{ jobOpening.job_title }}
       </div>
       <div class=" text-black font-bold text-sm mb-1">

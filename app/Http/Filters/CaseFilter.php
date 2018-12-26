@@ -106,6 +106,7 @@ class CaseFilter implements FilterInterface
     {
         $value = explode('T', $value)[0];
         if ($value) {
+            dd($value);
             $builder->where($name, '=', trim($value));
         }
     }

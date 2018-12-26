@@ -225,7 +225,8 @@
         sorting: {
           column: 'date_opened',
           type: 'asc',
-        }
+        },
+        paginate:false,
 
       }).then(({data}) => {
         this.jobOpenings = data.data

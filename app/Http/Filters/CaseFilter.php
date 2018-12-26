@@ -69,7 +69,7 @@ class CaseFilter implements FilterInterface
             $filterType = studly_case(array_get($properties->get($name)->attributes, 'type'));
 
             $searchMethod = "search$filterType";
-
+            dd($searchMethod);
             if (!method_exists($this, $searchMethod)) {
                 $searchMethod = "searchStrict";
             }

@@ -105,7 +105,9 @@ class CaseFilter implements FilterInterface
     protected function searchDate($builder, $name, $value)
     {
         $value = explode('T', $value)[0];
-        $builder->where($name, '=', "$value");
+        if ($value) {
+            $builder->where($name, '=', trim($value));
+        }
     }
 
 

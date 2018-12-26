@@ -8,7 +8,7 @@
     </div>
 
     <div class="user-section fhd:pl-24 hd:pl-16 pl-16 text-white mb-6 relative mb-3">
-        <div class="text-2xl fhd:text-3xl hd:text-xl text-bold mb-2 hide-min ">Admin</div>
+        <div class="text-2xl fhd:text-3xl hd:text-xl text-bold mb-2 hide-min ">Mike Nolan</div>
         <div class="text-grey-dark text-base hide-min">Location: Amman</div>
         <img class="rounded-full absolute pin-l pin-t mt-3 hd:mt-2 ml-1" src="https://picsum.photos/40/40" alt="">
     </div>

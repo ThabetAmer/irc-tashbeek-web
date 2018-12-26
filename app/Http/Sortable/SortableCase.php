@@ -22,15 +22,16 @@ class SortableCase implements SortableInterface
 
     public function handle(Builder $builder)
     {
-        $caseType = case_type($builder->getModel());
+        $model = $builder->getModel();
+
+        $caseType = case_type($model);
 
         if (!$this->request->has('sorting.column')) {
             return;
         }
 
         $columnName = $this->request->input('sorting.column');
-
-        if (PropertyMetaData::typeIs($caseType)->columnIs($columnName)->count() === 0) {
+        if (!in_array($columnName, withCount($model)) and PropertyMetaData::typeIs($caseType)->columnIs($columnName)->count() === 0) {
             return;
         }
 

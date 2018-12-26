@@ -10,6 +10,8 @@ class Firm extends Model implements SyncableInterface
 {
     use MorphToForm, Routable, HasFilter, Sortable;
 
+    public $withCount = ['openings'];
+
     protected $appends = [
         'details_url'
     ];

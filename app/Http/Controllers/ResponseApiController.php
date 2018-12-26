@@ -33,7 +33,7 @@ class ResponseApiController extends Controller
 
     public function handlePagination($query)
     {
-        if (request()->get('paginate', "true") === "false") {
+        if (request()->has('paginate') and request()->get('paginate') === "false") {
             $results = $query->get();
         } else {
             $results = $query->paginate();

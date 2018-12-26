@@ -52,12 +52,27 @@ if (!function_exists('get_case_type_resource_class')) {
 }
 
 
-if(!function_exists('base_commcare_field_name')){
-    function base_commcare_field_name($field){
-        $field = explode('/',$field);
+if (!function_exists('base_commcare_field_name')) {
+    function base_commcare_field_name($field)
+    {
+        $field = explode('/', $field);
         return end($field);
     }
 }
+
+
+if (!function_exists('withCount')) {
+    function withCount($model)
+    {
+        $withCountArray = $model->withCount ?? [];
+        return array_map(function ($value) {
+            return $value . '_count';
+        }, $withCountArray);
+    }
+}
+
+
+
 
 
 

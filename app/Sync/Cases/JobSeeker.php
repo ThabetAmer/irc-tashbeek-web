@@ -77,7 +77,13 @@ class JobSeeker extends AbstractCase
             'national_id' => [
                 'column_name' => 'national_id',
                 'column_type' => 'text',
-            ]
+            ],
+            'moi' => [
+                'column_name' => 'moi',
+                'column_type' => 'text',
+            ],
+
+
         ];
     }
 

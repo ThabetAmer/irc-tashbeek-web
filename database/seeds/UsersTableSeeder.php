@@ -24,5 +24,18 @@ class UsersTableSeeder extends Seeder
             ]);
         }
 
+        $tashbeekUser = User::query()
+            ->where('email', '=', 'admin-tashbeek@souktel.com')
+            ->first();
+
+        if (!$tashbeekUser) {
+            User::query()->insert([
+                'name' => 'Admin User',
+                'email' => 'admin-tashbeek@souktel.com',
+                'password' => bcrypt('tashbeek123!')
+            ]);
+        }
+
+
     }
 }

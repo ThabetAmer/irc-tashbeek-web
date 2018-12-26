@@ -62,7 +62,7 @@ class CaseFilter implements FilterInterface
     {
         foreach ($filters as $name => $value) {
 
-            if(trim($value) === "" || is_null($value) ){
+            if (trim($value) === "" || is_null($value)) {
                 continue;
             }
 
@@ -87,12 +87,27 @@ class CaseFilter implements FilterInterface
      */
     protected function searchText($builder, $name, $value)
     {
-        if(is_array($value)){
+        if (is_array($value)) {
             $value = array_flatten($value);
             $value = reset($value);
         }
         $builder->where($name, 'LIKE', "%$value%");
     }
+
+
+    /**
+     * Search for Date.
+     *
+     * @param $builder
+     * @param $name
+     * @param $value
+     */
+    protected function searchDate($builder, $name, $value)
+    {
+        $value = explode('T', $value)[0];
+        $builder->where($name, '=', "$value");
+    }
+
 
     /**
      * Just search by equality or In

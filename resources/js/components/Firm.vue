@@ -98,7 +98,7 @@
         <ul class="list-reset flex border-0 custom-navs mb-4">
           <li class="flex-inline mr-2">
             <button
-              :class="{active:viewType =='current'}"
+              :class="{active:viewType === 'current'}"
               class="nav-link border-0
                                  rounded-full py-2 px-4
                                  text-grey-dark text-sm font-semibold "
@@ -109,7 +109,7 @@
           </li>
           <li class=" flex-inline mr-2">
             <button
-              :class="{active:viewType =='matches'}"
+              :class="{active:viewType === 'matches'}"
               class="nav-link border-0 py-2 px-4
                                 text-grey-dark text-sm font-semibold"
               @click="changeViewType('matches')"
@@ -120,7 +120,7 @@
         </ul>
         <div class="tab-content">
           <div
-            v-if="viewType =='current'"
+            v-if="viewType === 'current'"
             id="current"
             class="tab-pane fade in active show"
           >
@@ -134,6 +134,10 @@
                 :job-opening="jobOpening"
               />
             </div>
+            <PageLoader
+              v-if="jobOpeningsLoading"
+              message="Job Openings are being fetched, please wait!"
+            />
             <EmptyState
               v-else
               custom-class="min-h-200 text-lg"
@@ -141,7 +145,7 @@
           </div>
 
           <div
-            v-if="viewType =='matches'"
+            v-if="viewType === 'matches'"
             id="matches"
             class="tab-pane fade in"
           >
@@ -191,7 +195,8 @@
         hasTitle: true,
         showStar: false,
         filters: false,
-        jobOpenings: []
+        jobOpenings: [],
+        jobOpeningsLoading: true
       }
     },
     mounted() {
@@ -203,9 +208,10 @@
           column: 'date_opened',
           type: 'asc',
         },
-        paginate:false,
+        paginate: false,
 
       }).then(({data}) => {
+        this.jobOpeningsLoading = false
         this.jobOpenings = data.data
       });
 

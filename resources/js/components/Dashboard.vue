@@ -156,16 +156,12 @@
 
 
 <script>
-
-  import Panel from '../components/panel/panel'
-  import MetricCard from '../components/metricCard/metricCard'
-  import Datatable from '../components/datatable/datatable'
   import moment from 'moment';
   import {FullCalendar} from 'vue-full-calendar'
 
   export default {
     components: {
-      Panel, MetricCard, Datatable, FullCalendar
+      FullCalendar
     },
     filters: {},
     props: {},

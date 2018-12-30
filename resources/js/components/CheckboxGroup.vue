@@ -19,12 +19,7 @@
 
 
 <script>
-  import checkboxField from "../checkbox/checkbox";
-
   export default {
-    components: {
-      checkboxField
-    },
     /**
      * the only passed prop to the froup
      * is the array of checkbox objects

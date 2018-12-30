@@ -75,14 +75,11 @@
 
 
 <script>
-    import Modal from '../modal/modal'
-
     export default {
         /**
          * all props have their needed types
          * and are passed using the mixin
          */
-        components: {Modal},
         mixins: [],
         props: {
             showModal:{

@@ -46,15 +46,8 @@
 
 
 <script>
-
-
-    import Modal from './modal'
-    import btn from '../button/button'
-    import CustomSelect from '../select/select'
-    import CustomInput from '../input/input'
-
     export default {
-        components: {Modal, btn, CustomSelect, CustomInput},
+
         mixins: [],
         /**
          * all props have their needed types

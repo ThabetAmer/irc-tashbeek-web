@@ -176,32 +176,9 @@
 
 
 <script>
-  import Btn from '../components/button/button'
-  import AnchorLink from '../components/link/link'
-  import CustomSelect from '../components/select/select'
-  import Modal from '../components/modal/modal'
-  import AddNoteModal from '../components/modal/addNoteModal'
-  import ButtonGroup from '../components/buttonGroup/buttonGroup'
-  import Checkbox from '../components/checkbox/checkbox'
-  import CheckboxGroup from '../components/checkboxGroup/checkbox-group'
-  import Panel from '../components/panel/panel'
-  import MetricCard from '../components/metricCard/metricCard'
-  import Notebox from '../components/notebox/notebox'
-  import JobOpening from '../components/jobOpening/jobOpening'
-  import Datatable from '../components/datatable/datatable'
-  import Clipboard from '../components/clipboard/clipboard'
-  import ListItem from '../components/listItem/listItem'
-  import EmptyState from '../components/emptyState/emptyState'
   import {get as getCaseListing} from '../API/caseListing'
 
   export default {
-    components: {
-      Btn, AnchorLink, Clipboard, ListItem,
-      CustomSelect, Modal, ButtonGroup,EmptyState,
-      Checkbox, CheckboxGroup, Panel, MetricCard,
-      AddNoteModal, Notebox, JobOpening, Datatable
-    },
-    filters: {},
     props: {
       firm: {
         type: Object,

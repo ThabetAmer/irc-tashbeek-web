@@ -23,7 +23,7 @@
 
 
 <script>
-    import BtnStyleMixin from "../../mixins/BtnStyle"
+    import BtnStyleMixin from "../mixins/BtnStyle"
 
     export default {
         /**

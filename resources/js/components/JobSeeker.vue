@@ -268,33 +268,9 @@
   </div>
 </template>
 
-
 <script>
-  import Btn from '../components/button/button'
-  import AnchorLink from '../components/link/link'
-  import CustomSelect from '../components/select/select'
-  import Modal from '../components/modal/modal'
-  import AddNoteModal from '../components/modal/addNoteModal'
-  import buttonGroup from '../components/buttonGroup/buttonGroup'
-  import Checkbox from '../components/checkbox/checkbox'
-  import CheckboxGroup from '../components/checkboxGroup/checkbox-group'
-  import Panel from '../components/panel/panel'
-  import MetricCard from '../components/metricCard/metricCard'
-  import Notebox from '../components/notebox/notebox'
-  import Screenbox from '../components/screenbox/screenbox'
-  import JobOpening from '../components/jobOpening/jobOpening'
-  import Datatable from '../components/datatable/datatable'
-  import Clipboard from '../components/clipboard/clipboard'
-  import ListItem from '../components/listItem/listItem'
-  // import addNoteModal from '../components/modal/addNoteModal'
 
   export default {
-    components: {
-      Btn, AnchorLink,Clipboard,ListItem,
-      CustomSelect, Modal, buttonGroup,
-      Checkbox, CheckboxGroup, Panel, MetricCard,
-      AddNoteModal, Notebox, JobOpening, Datatable, Screenbox
-    },
     props: {
       jobSeeker: {
         type: Object,

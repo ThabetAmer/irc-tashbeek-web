@@ -1,13 +1,6 @@
 import Toasted from 'vue-toasted';
 import VTooltip from 'v-tooltip'
-
-import Builder from './builder/builder'
-import Dashboard from './dashboard/dashboard'
-import FirmProfile from './firm-profile/firmProfile'
-import CaseListing from './case-listing/index'
-import Seekers from './seekers/seekers'
-import SeekerProfile from './seeker-profile/seekerProfile'
-import Icon from './components/icon/icon'
+import Popper from 'vue-popperjs';
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -35,7 +28,43 @@ Vue.use(Toasted, {
   className: 'clipboard-custom-class'
 });
 
-Vue.use(VTooltip)
+Vue.use(VTooltip);
+
+// Screens
+Vue.component('Builder',require('./components/Builder.vue').default);
+Vue.component('Dashboard',require('./components/Dashboard.vue').default);
+Vue.component('FirmProfile',require('./components/Firm.vue').default);
+Vue.component('Firm',require('./components/Firm.vue').default);
+Vue.component('CaseListing',require('./components/CaseListing.vue').default);
+Vue.component('SeekerProfile',require('./components/JobSeeker.vue'));
+Vue.component('JobSeeker',require('./components/JobSeeker.vue'));
+
+// UI components
+Vue.component('Btn',require('./components/Button.vue').default);
+Vue.component('Icon',require('./components/Icon.vue').default);
+Vue.component('Modal',require('./components/Modal.vue').default);
+Vue.component('Panel',require('./components/Panel.vue').default);
+Vue.component('Spinner',require('./components/Spinner.vue').default);
+Vue.component('Notebox',require('./components/Notebox.vue').default);
+Vue.component('Datatable',require('./components/Datatable.vue').default);
+Vue.component('CheckboxField',require('./components/Checkbox.vue').default);
+Vue.component('TextInput',require('./components/TextInput.vue').default);
+Vue.component('ButtonGroup',require('./components/ButtonGroup.vue').default);
+Vue.component('JobOpening',require('./components/JobOpening.vue').default);
+Vue.component('PageLoader',require('./components/PageLoader.vue').default);
+Vue.component('AnchorLink',require('./components/Link.vue').default);
+Vue.component('CustomSelect',require('./components/CustomSelect.vue').default);
+Vue.component('CheckboxGroup',require('./components/CheckboxGroup.vue').default);
+Vue.component('MetricCard',require('./components/MetricCard.vue').default);
+Vue.component('AddNoteModal',require('./components/AddNoteModal.vue').default);
+Vue.component('Clipboard',require('./components/Clipboard.vue').default);
+Vue.component('ListItem',require('./components/ListItem.vue').default);
+Vue.component('EmptyState',require('./components/EmptyState.vue').default);
+Vue.component('Filters',require('./components/Filters.vue').default);
+Vue.component('Pagination',require('./components/Pagination.vue').default);
+Vue.component('Popper',Popper);
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -44,15 +73,4 @@ Vue.use(VTooltip)
 
 const app = new Vue({
   el: '#app',
-  components:{
-    Builder,
-    Dashboard,
-    FirmProfile, // will Delete
-    Firm:FirmProfile,
-    CaseListing,
-    Seekers,
-    SeekerProfile, // will delete
-    JobSeeker:SeekerProfile,
-    Icon,
-  },
 });

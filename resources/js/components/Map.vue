@@ -12,8 +12,8 @@
 
 
 <script>
-    import googleMap from "./google-map/googleMap"
-    import mapMixin from "../../mixins/mapMixin"
+    import googleMap from "./googleMap"
+    import mapMixin from "../mixins/mapMixin"
 
     export default {
         components: {

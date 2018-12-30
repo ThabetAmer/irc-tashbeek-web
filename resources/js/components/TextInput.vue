@@ -41,7 +41,7 @@
 
 
 <script>
-  import InputStyleMixin from "../../mixins/InputStyle"
+  import InputStyleMixin from "../mixins/InputStyle"
 
   export default {
     mixins: [InputStyleMixin],

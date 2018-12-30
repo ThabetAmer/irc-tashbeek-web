@@ -32,7 +32,7 @@
         @cleared="handleClear(filter.name)"
         @input="handleTextInput(filter.name,$event)"
       />
-      <CustomInput
+      <TextInput
         v-else
         :key="filter.name+'-'+filter.type"
         input-class="height-align
@@ -60,11 +60,8 @@
 </template>
 
 <script>
-
-  import CustomInput from '../input/input'
-  import CustomSelect from '../select/select'
-  import FilterSelect from '../filerSelect/filterSelect'
-  import HasFilters from "../../mixins/HasFilters";
+  import FilterSelect from './filterSelect'
+  import HasFilters from "../mixins/HasFilters";
   import DatePicker from 'vuejs-datepicker'
 
   export default {
@@ -72,7 +69,7 @@
      * all props have their needed types
      * and are passed using the mixin
      */
-    components: {CustomInput, CustomSelect,FilterSelect,DatePicker },
+    components: {FilterSelect,DatePicker },
     mixins: [HasFilters],
     data(){
       return{

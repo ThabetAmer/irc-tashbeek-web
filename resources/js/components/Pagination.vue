@@ -77,11 +77,9 @@
   </ul>
 </template>
 <script>
-  import Btn from '../button/button'
 
   export default {
     name: 'Pagination',
-    components: {Btn},
     props: {
       maxVisibleButtons: {
         type: Number,

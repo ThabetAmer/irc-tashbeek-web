@@ -248,7 +248,7 @@
 
         <div class="col-md-6">
           <h3>Checkbox</h3>
-          <Checkbox
+          <CheckboxField
             :label="'Single Checkbox'"
             :value="singleCheck"
             :checked="checked"
@@ -322,92 +322,72 @@
 
 
 <script>
-    import Vue from 'vue';
-    import btn from '../components/button/button'
-    import AnchorLink from '../components/link/link'
-    import CustomSelect from '../components/select/select'
-    import modal from '../components/modal/modal'
-    import addNoteModal from '../components/modal/addNoteModal'
-    import buttonGroup from '../components/buttonGroup/buttonGroup'
-    import checkbox from '../components/checkbox/checkbox'
-    import checkboxGroup from '../components/checkboxGroup/checkbox-group'
-    import Panel from '../components/panel/panel'
-    import MetricCard from '../components/metricCard/metricCard'
-    import notebox from '../components/notebox/notebox'
-    import jobOpening from '../components/jobOpening/jobOpening'
-    import datatable from '../components/datatable/datatable'
+  import Vue from 'vue';
 
-    export default {
-        components: {
-            btn, AnchorLink,
-            CustomSelect, modal, buttonGroup,
-            checkbox, checkboxGroup, Panel, MetricCard,
-            addNoteModal, notebox, jobOpening, datatable
-        },
-        filters: {},
-        props: {},
-        data() {
-            return {
-                checkboxes: [
-                    {
-                        value: 'Ahamd',
-                        label: 'Ahmad'
-                    },
-                    {
-                        value: 'Noor',
-                        label: 'Ali'
-                    }
-                ],
-                hasTitle: true,
-                multipleCheckboxvalues: [],
-                singleCheck: 'Ahmad',
-                checked: false,
-                SelectOptions: [
-                    {name: 'Vue.js', language: 'JavaScript'},
-                    {name: 'Rails', language: 'Ruby'},
-                    {name: 'Sinatra', language: 'Ruby'},
-                    {name: 'Laravel', language: 'PHP'},
-                    {name: 'Phoenix', language: 'Elixir'}
-                ],
-                value: '',
-                showModal: false,
-                showModalNote: false,
-                mulValue: [],
-                mulProp: true,
 
-            }
-        },
-        computed: {},
-        watch: {},
-        created() {
-        },
-        mounted() {
+  export default {
+    data() {
+      return {
+        checkboxes: [
+          {
+            value: 'Ahamd',
+            label: 'Ahmad'
+          },
+          {
+            value: 'Noor',
+            label: 'Ali'
+          }
+        ],
+        hasTitle: true,
+        multipleCheckboxvalues: [],
+        singleCheck: 'Ahmad',
+        checked: false,
+        SelectOptions: [
+          {name: 'Vue.js', language: 'JavaScript'},
+          {name: 'Rails', language: 'Ruby'},
+          {name: 'Sinatra', language: 'Ruby'},
+          {name: 'Laravel', language: 'PHP'},
+          {name: 'Phoenix', language: 'Elixir'}
+        ],
+        value: '',
+        showModal: false,
+        showModalNote: false,
+        mulValue: [],
+        mulProp: true,
 
-        },
-        methods: {
-            multipleChanged(values) {
-                console.log('multiple change is ', values);
-                this.multipleCheckboxvalues = values;
-            },
-            checkboxChange(change) {
-                console.log('change is ', change);
-                this.checked = change;
-            },
-            btnClickNote() {
-                this.showModalNote = true;
-            },
-            btnClick() {
-                console.log(' btn has been clicked');
-                this.showModal = true;
-            },
-            handleSelect(selected) {
-                console.log('selected is ', selected);
-                this.value = selected;
-            },
-            handleSelectMul(selected) {
-                console.log('selected is ', selected);
-                // this.value = selected;
-            }
-        }
+      }
+    },
+    computed: {},
+    watch: {},
+    created() {
+    },
+    mounted() {
+
+    },
+    methods: {
+      multipleChanged(values) {
+        console.log('multiple change is ', values);
+        this.multipleCheckboxvalues = values;
+      },
+      checkboxChange(change) {
+        console.log('change is ', change);
+        this.checked = change;
+      },
+      btnClickNote() {
+        this.showModalNote = true;
+      },
+      btnClick() {
+        console.log(' btn has been clicked');
+        this.showModal = true;
+      },
+      handleSelect(selected) {
+        console.log('selected is ', selected);
+        this.value = selected;
+      },
+      handleSelectMul(selected) {
+        console.log('selected is ', selected);
+        // this.value = selected;
+      }
     }
+  }
 </script>

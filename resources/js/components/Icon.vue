@@ -14,7 +14,7 @@
 
 <script>
 
-  import iconMixin from "../../mixins/iconMixin";
+  import iconMixin from "../mixins/iconMixin";
 
   export default {
     mixins: [iconMixin],

@@ -1,12 +1,5 @@
 <template>
   <div class="">
-    <Filters
-      v-if="filters.length > 0"
-      :filters="filters"
-      :user-filters="userFilters"
-      @change="$emit('filter',$event)"
-      @filterSelect="$emit('filterSelect',$event)"
-    />
     <div
       v-if="rows.length > 0"
       class="table-container-main overflow-auto pl-2 mb-2"
@@ -115,20 +108,12 @@
 
 
 <script>
-  import Filters from './filters';
-  import Pagination from './pagination';
-  import EmptyState from '../emptyState/emptyState';
-  import HasFilters from "../../mixins/HasFilters";
-  import Popper from 'vue-popperjs';
 
   export default {
     /**
      * all props have their needed types
      * and are passed using the mixin
      */
-    components: {Filters, Pagination,Popper,EmptyState},
-    filters: {},
-    mixins: [HasFilters],
     props: {
       loading:{
         type: Boolean,

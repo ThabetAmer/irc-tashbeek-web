@@ -12,30 +12,27 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $mlUser = User::query()
-            ->where('email', '=', 'ml@tashbeek.org')
-            ->first();
+        $this->createUser([
+            'name' => 'ML User',
+            'email' => 'ml@tashbeek.org',
+            'password' => bcrypt('irc123!')
+        ]);
 
-        if (!$mlUser) {
-            User::query()->insert([
-                'name' => 'ML User',
-                'email' => 'ml@tashbeek.org',
-                'password' => bcrypt('irc123!')
-            ]);
+        $this->createUser([
+            'name' => 'Admin User',
+            'email' => 'admin-tashbeek@souktel.com',
+            'password' => bcrypt('tashbeek123!')
+        ]);
+    }
+
+    protected function createUser(array $user ){
+
+        $tashbeekUser = User::where('email', $user['email'])->first();
+
+        if ($tashbeekUser) {
+            return ;
         }
 
-        $tashbeekUser = User::query()
-            ->where('email', '=', 'admin-tashbeek@souktel.com')
-            ->first();
-
-        if (!$tashbeekUser) {
-            User::query()->insert([
-                'name' => 'Admin User',
-                'email' => 'admin-tashbeek@souktel.com',
-                'password' => bcrypt('tashbeek123!')
-            ]);
-        }
-
-
+        User::query()->insert($user);
     }
 }

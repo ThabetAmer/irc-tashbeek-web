@@ -346,9 +346,8 @@
     },
     methods: {
       changeJobOpeningview(view) {
-        console.log(' view is ', view);
         this.jobOpeningView = view;
-        if (view == 'notes') {
+        if (view === 'notes') {
           this.showAddNote = true;
         }
       },
@@ -360,7 +359,6 @@
 
       },
       addNoteToList(noteText) {
-        console.log(' added note is ', noteText);
         this.notes.push({
           id: 3,
           body: noteText,

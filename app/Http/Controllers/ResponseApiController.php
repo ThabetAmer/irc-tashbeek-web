@@ -26,7 +26,7 @@ class ResponseApiController extends Controller
 
         $results = $this->handlePagination($query);
 
-        $resourceClass = get_case_type_resource_class($caseType);
+        $resourceClass = case_resource_collection_class($caseType);
 
         return new $resourceClass($results, $caseType);
     }

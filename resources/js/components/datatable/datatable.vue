@@ -120,7 +120,6 @@
   import EmptyState from '../emptyState/emptyState';
   import HasFilters from "../../mixins/HasFilters";
   import Popper from 'vue-popperjs';
-  // import VTooltip from 'v-tooltip'
 
   export default {
     /**

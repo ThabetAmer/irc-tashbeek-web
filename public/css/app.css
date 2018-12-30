@@ -34883,6 +34883,12 @@ img {
   height: auto;
 }
 
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: inherit;
+  opacity: .5;
+}
+
 input::-ms-input-placeholder,
 textarea::-ms-input-placeholder {
   color: inherit;
@@ -34948,8 +34954,7 @@ body .fc {
 
 .fc button {
   /* force height to include the border and padding */
-  -webkit-box-sizing: border-box;
-     box-sizing: border-box;
+  box-sizing: border-box;
   /* dimensions */
   margin: 0;
   height: 2.1em;
@@ -35003,15 +35008,13 @@ body .fc {
 
 .fc-state-default {
   background-color: #f5f5f5;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e6e6e6));
   background-image: linear-gradient(to bottom, #fff, #e6e6e6);
   background-repeat: repeat-x;
   border-color: #e6e6e6 #e6e6e6 #bfbfbf;
   border-color: rgba(0, 0, 0, .1) rgba(0, 0, 0, .1) rgba(0, 0, 0, .25);
   color: #333;
   text-shadow: 0 1px 1px rgba(255, 255, 255, .75);
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
 }
 
 .fc-state-hover,
@@ -35026,24 +35029,21 @@ body .fc {
   color: #333;
   text-decoration: none;
   background-position: 0 -15px;
-  -webkit-transition: background-position .1s linear;
-          transition: background-position .1s linear;
+  transition: background-position .1s linear;
 }
 
 .fc-state-down,
 .fc-state-active {
   background-color: #ccc;
   background-image: none;
-  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, .15), 0 1px 2px rgba(0, 0, 0, .05);
-          box-shadow: inset 0 2px 4px rgba(0, 0, 0, .15), 0 1px 2px rgba(0, 0, 0, .05);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, .15), 0 1px 2px rgba(0, 0, 0, .05);
 }
 
 .fc-state-disabled {
   cursor: default;
   background-image: none;
   opacity: .65;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 /* Buttons Groups
@@ -35074,8 +35074,7 @@ previous button's border...
 
 .fc-popover {
   position: absolute;
-  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
-          box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
 }
 
 .fc-popover .fc-header {
@@ -35147,8 +35146,7 @@ hr.fc-divider {
 
 .fc table {
   width: 100%;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   /* fix scrollbar issue in firefox */
   table-layout: fixed;
   border-collapse: collapse;
@@ -35394,13 +35392,11 @@ temporary rendered events).
 .fc-event.fc-selected {
   z-index: 9999 !important;
   /* overcomes inline z-index */
-  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
-          box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
 }
 
 .fc-event.fc-selected.fc-dragging {
-  -webkit-box-shadow: 0 2px 7px rgba(0, 0, 0, .3);
-          box-shadow: 0 2px 7px rgba(0, 0, 0, .3);
+  box-shadow: 0 2px 7px rgba(0, 0, 0, .3);
 }
 
 /* Horizontal Events
@@ -35958,8 +35954,7 @@ NOTE: use percentage font sizes or else old IE chokes
 .fc-view-container *,
 .fc-view-container *:before,
 .fc-view-container *:after {
-  -webkit-box-sizing: content-box;
-          box-sizing: content-box;
+  box-sizing: content-box;
 }
 
 .fc-view,
@@ -38340,7 +38335,6 @@ be a descendant of the grid when it is being dragged.
   height: 100%;
   background-color: rgba(0, 0, 0, .5);
   display: table;
-  -webkit-transition: opacity .3s ease;
   transition: opacity .3s ease;
 }
 
@@ -38354,9 +38348,7 @@ be a descendant of the grid when it is being dragged.
   margin: 0px auto;
   padding: 1.5rem 4rem;
   background-color: #fff;
-  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-          box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-  -webkit-transition: all .3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;
 }
@@ -38408,7 +38400,6 @@ be a descendant of the grid when it is being dragged.
   /* don't forget to add all the previously mentioned styles here too */
   background: #405e80;
   color: #fff;
-  -webkit-transition: all .3s;
   transition: all .3s;
 }
 
@@ -38431,7 +38422,7 @@ be a descendant of the grid when it is being dragged.
 }
 
 #sidebar ul li.active > a,
-a[aria-expanded="true"] {
+a[aria-expanded=true] {
   text-decoration: none;
   background: rgba(255, 255, 255, .15);
   border-bottom-right-radius: 9999px;
@@ -38462,7 +38453,7 @@ a[aria-expanded="true"] {
 
 @media only screen and (min-width: 1350px) {
   #sidebar {
-    margin-left: -0px;
+    margin-left: 0px;
   }
 
   #sidebar.active {
@@ -38531,8 +38522,7 @@ a[aria-expanded="true"] {
 
 .navbar-laravel {
   background-color: #fff;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
 }
 
 .content {
@@ -38586,26 +38576,18 @@ pre {
 }
 
 body {
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
 }
 
 .wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
+  align-items: stretch;
 }
 
 .wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
+  align-items: stretch;
 }
 
 .custom-navs button.active {
@@ -38626,7 +38608,7 @@ body {
   margin-left: -250px;
 }
 
-a[data-toggle="collapse"] {
+a[data-toggle=collapse] {
   position: relative;
 }
 
@@ -38640,13 +38622,11 @@ a[data-toggle="collapse"] {
 }
 
 .fade {
-  -webkit-transition: opacity .15s linear;
   transition: opacity .15s linear;
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  -webkit-transition: opacity .5s;
   transition: opacity .5s;
 }
 
@@ -38770,8 +38750,7 @@ button:focus {
 
 .btn-primary:focus,
 .btn-primary.focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 .min-h-700 {
@@ -38843,7 +38822,7 @@ table.scrollable-fixed-header th {
 }
 
 table.scrollable-fixed-header tr:after {
-  content: ' ';
+  content: " ";
   display: block;
   visibility: hidden;
   clear: both;
@@ -38907,17 +38886,11 @@ table.scrollable-fixed-header thead th {
 .fc-more-cell {
   min-width: 25px;
   min-height: 25px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   font-size: 15px;
   font-weight: 500 !important;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 @media only screen and (min-width: 768px) {
@@ -38988,8 +38961,7 @@ table.scrollable-fixed-header thead th {
   margin-top: 10px;
   background: white;
   border-radius: 5px;
-  -webkit-box-shadow: 0 4px 8px -2px rgba(9, 30, 66, .25), 0 0 1px rgba(9, 30, 66, .31);
-          box-shadow: 0 4px 8px -2px rgba(9, 30, 66, .25), 0 0 1px rgba(9, 30, 66, .31);
+  box-shadow: 0 4px 8px -2px rgba(9, 30, 66, .25), 0 0 1px rgba(9, 30, 66, .31);
 }
 
 .filter-selector.multiselect--active .multiselect__content,
@@ -39004,6 +38976,15 @@ table.scrollable-fixed-header thead th {
 .multiselect--active .multiselect__placeholder,
 .multiselect--active .multiselect__input,
 .multiselect--active .multiselect__input::-webkit-input-placeholder {
+  color: white;
+}
+
+.filter-selector.multiselect--active .multiselect__placeholder,
+.filter-selector.multiselect--active .multiselect__input,
+.filter-selector.multiselect--active .multiselect__input:-ms-input-placeholder,
+.multiselect--active .multiselect__placeholder,
+.multiselect--active .multiselect__input,
+.multiselect--active .multiselect__input:-ms-input-placeholder {
   color: white;
 }
 
@@ -39067,7 +39048,7 @@ table.scrollable-fixed-header thead th {
   background: #405e80 !important;
 }
 
-[aria-hidden="true"] {
+[aria-hidden=true] {
   opacity: 0;
   position: absolute;
   z-index: -9999;

@@ -16,8 +16,6 @@
   </div>
 </template>
 <script>
-  import VTooltip from 'v-tooltip'
-
   export default {
     mixins: [],
     props: {

@@ -1,3 +1,14 @@
+import Toasted from 'vue-toasted';
+import VTooltip from 'v-tooltip'
+
+import Builder from './builder/builder'
+import Dashboard from './dashboard/dashboard'
+import FirmProfile from './firm-profile/firmProfile'
+import CaseListing from './case-listing/index'
+import Seekers from './seekers/seekers'
+import SeekerProfile from './seeker-profile/seekerProfile'
+import Icon from './components/icon/icon'
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -16,20 +27,6 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-
-Vue.component('Builder', require('./builder/builder'));
-Vue.component('Dashboard', require('./dashboard/dashboard'));
-Vue.component('FirmProfile', require('./firm-profile/firmProfile'));
-Vue.component('CaseListing', require('./case-listing/index'));
-Vue.component('Seekers', require('./seekers/seekers'));
-Vue.component('SeekerProfile', require('./seeker-profile/seekerProfile'));
-Vue.component('icon', require('./components/icon/icon'));
-
-Vue.component('JobSeeker', require('./seeker-profile/seekerProfile'));
-Vue.component('Firm', require('./firm-profile/firmProfile'));
-
-import Toasted from 'vue-toasted';
-
 Vue.use(Toasted, {
   position: 'bottom-right',
   duration: 3000,
@@ -37,6 +34,8 @@ Vue.use(Toasted, {
   theme: 'bubble',
   className: 'clipboard-custom-class'
 });
+
+Vue.use(VTooltip)
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -44,5 +43,16 @@ Vue.use(Toasted, {
  */
 
 const app = new Vue({
-  el: '#app'
+  el: '#app',
+  components:{
+    Builder,
+    Dashboard,
+    FirmProfile, // will Delete
+    Firm:FirmProfile,
+    CaseListing,
+    Seekers,
+    SeekerProfile, // will delete
+    JobSeeker:SeekerProfile,
+    Icon,
+  },
 });

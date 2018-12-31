@@ -36,8 +36,8 @@ Vue.component('Dashboard',require('./components/Dashboard.vue').default);
 Vue.component('FirmProfile',require('./components/Firm.vue').default);
 Vue.component('Firm',require('./components/Firm.vue').default);
 Vue.component('CaseListing',require('./components/CaseListing.vue').default);
-Vue.component('SeekerProfile',require('./components/JobSeeker.vue'));
-Vue.component('JobSeeker',require('./components/JobSeeker.vue'));
+Vue.component('SeekerProfile',require('./components/JobSeeker.vue').default);
+Vue.component('JobSeeker',require('./components/JobSeeker.vue').default);
 
 // UI components
 Vue.component('Btn',require('./components/Button.vue').default);
@@ -62,6 +62,7 @@ Vue.component('ListItem',require('./components/ListItem.vue').default);
 Vue.component('EmptyState',require('./components/EmptyState.vue').default);
 Vue.component('Filters',require('./components/Filters.vue').default);
 Vue.component('Pagination',require('./components/Pagination.vue').default);
+Vue.component('Screenbox',require('./components/Screenbox.vue').default);
 Vue.component('Popper',Popper);
 
 

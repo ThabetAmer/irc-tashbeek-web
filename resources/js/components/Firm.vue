@@ -135,7 +135,7 @@
               />
             </div>
             <PageLoader
-              v-if="jobOpeningsLoading"
+              v-else-if="jobOpeningsLoading"
               message="Job Openings are being fetched, please wait!"
             />
             <EmptyState

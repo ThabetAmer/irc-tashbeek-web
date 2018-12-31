@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Repositories\PropertyMetaData\PropertyMetaDataRepository;
 use App\Repositories\PropertyMetaData\PropertyMetaDataRepositoryInterface;
+use App\Repositories\PropertyOption\PropertyOptionRepository;
+use App\Repositories\PropertyOption\PropertyOptionRepositoryInterface;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -35,5 +37,6 @@ class AppServiceProvider extends ServiceProvider
     protected function bindings()
     {
         $this->app->bind(PropertyMetaDataRepositoryInterface::class, PropertyMetaDataRepository::class);
+        $this->app->bind(PropertyOptionRepositoryInterface::class, PropertyOptionRepository::class);
     }
 }

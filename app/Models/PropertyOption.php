@@ -24,4 +24,13 @@ class PropertyOption extends Model
         return $this->belongsTo(PropertyMetaData::class);
     }
 
+    public function name(){
+        $name = array_get($this->name,\App::getLocale());
+
+        if(empty($name)){
+            $name = array_get($this->name,'en');
+        }
+
+        return $name;
+    }
 }

@@ -36,8 +36,13 @@ if (!function_exists('get_case_type_model')) {
     }
 }
 
-if (!function_exists('case_resource_collection_class')) {
-    function case_resource_collection_class($caseType)
+if (!function_exists('case_resource_collection')) {
+    /**
+     * @param $caseType
+     * @param mixed ...$args
+     * @return \Illuminate\Http\Resources\Json\ResourceCollection
+     */
+    function case_resource_collection($caseType, ...$args)
     {
         $class = studly_case($caseType);
 
@@ -47,12 +52,17 @@ if (!function_exists('case_resource_collection_class')) {
             $class = "App\\Http\\Resources\\CaseDataResource";
         }
 
-        return $class;
+        return new $class(...$args);
     }
 }
 
-if (!function_exists('case_resource_class')) {
-    function case_resource_class($caseType)
+if (!function_exists('case_resource')) {
+    /**
+     * @param $caseType
+     * @param mixed ...$args
+     * @return \Illuminate\Http\Resources\Json\JsonResource
+     */
+    function case_resource($caseType, ...$args)
     {
         $class = studly_case($caseType);
 
@@ -62,7 +72,7 @@ if (!function_exists('case_resource_class')) {
             $class = "App\\Http\\Resources\\CaseResource";
         }
 
-        return $class;
+        return new $class(...$args);
     }
 }
 

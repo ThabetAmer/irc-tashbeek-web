@@ -47,7 +47,7 @@
 <script>
     import Vue from 'vue';
     import * as VueGoogleMaps from 'vue2-google-maps';
-    import mapMixin from "../mixins/mapMixin"
+    import mapMixin from "../mixins/MapMixin"
     import _ from 'underscore';
 
     Vue.use(VueGoogleMaps, {

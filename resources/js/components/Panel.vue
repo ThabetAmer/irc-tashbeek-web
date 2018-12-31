@@ -15,7 +15,7 @@
 
 <script>
 
-  import panelStyle from '../mixins/panelStyle'
+  import panelStyle from '../mixins/PanelStyle'
 
   export default {
     name: "Panel",

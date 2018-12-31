@@ -13,7 +13,7 @@
 
 <script>
     import googleMap from "./googleMap"
-    import mapMixin from "../mixins/mapMixin"
+    import mapMixin from "../mixins/MapMixin"
 
     export default {
         components: {

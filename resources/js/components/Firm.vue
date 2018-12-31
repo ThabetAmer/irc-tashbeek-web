@@ -180,7 +180,7 @@
 
 
 <script>
-  import {get as getCaseListing} from '../API/caseListing'
+  import {get as getCaseListing} from '../api/caseListing'
 
   export default {
     props: {

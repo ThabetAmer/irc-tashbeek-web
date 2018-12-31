@@ -37,7 +37,6 @@
       <Btn
         class="no-underline block  border border-grey-light rounded  px-1 py-1 mr-2"
         type="button"
-        theme=""
         :disabled="page.isDisabled"
         :btn-class="{ 'bg-grey-light hover:bg-grey-light text-green-dark active': isPageActive(page.name), 'hover:text-blue hover:bg-grey-lighter text-grey-dark':!isPageActive(page.name) }"
         :aria-label="`Go to page number ${page.name}`"

@@ -19,16 +19,14 @@
 </template>
 
 <script>
+  import PropTypes from "../helpers/PropTypes";
 
   export default {
     props:{
       size:{
         type:String,
         default:"base",
-        validator: function (value) {
-          // The value must match one of these strings
-          return ['xs', 'base', 'md','lg'].indexOf(value) !== -1
-        }
+        validator: PropTypes.oneOf(['xs', 'base', 'md','lg'])
       },
     },
     computed:{

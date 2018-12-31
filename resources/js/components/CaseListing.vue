@@ -25,9 +25,9 @@
 </template>
 
 <script>
-  import {get as getListing} from '../API/caseListing'
+  import {get as getListing} from '../api/caseListing'
   import FiltersProvider from "../mixins/FiltersProvider";
-  import queryString from '../helpers/query-string'
+  import queryString from '../helpers/QueryString'
   import sortingProvider from "../mixins/sortingProvider";
 
   export default {

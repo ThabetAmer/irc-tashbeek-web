@@ -1,10 +1,12 @@
 import classNames from "classnames"
+import PropTypes from "../helpers/PropTypes";
 
 export default {
   props: {
     theme: {
       type: String,
-      default: "default"
+      default: "default",
+      validator: PropTypes.oneOf(['default', 'primary', 'success', 'danger'])
     },
     btnClass: {
       type: [String, Object],

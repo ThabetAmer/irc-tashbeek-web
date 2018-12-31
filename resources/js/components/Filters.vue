@@ -60,7 +60,7 @@
 </template>
 
 <script>
-  import FilterSelect from './filterSelect'
+  import FilterSelect from './FilterSelect'
   import HasFilters from "../mixins/HasFilters";
   import DatePicker from 'vuejs-datepicker'
 

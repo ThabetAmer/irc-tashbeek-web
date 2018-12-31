@@ -58,6 +58,7 @@ class DataFactory
      *
      * @param AbstractCase $caseObject
      * @param $cases
+     * @throws \Exception
      */
     protected function saveItems(AbstractCase $caseObject, $cases)
     {
@@ -71,9 +72,14 @@ class DataFactory
      *
      * @param $caseObject
      * @param $case
+     * @throws \Exception
      */
     protected function saveItem($caseObject, $case)
     {
+        if($this->removeClosedCase($case, $caseObject)){
+            return ;
+        }
+
         $data = $this->getCaseFields($caseObject, $case);
 
         $caseObject->model()::updateOrCreate(array_only($data, 'commcare_id'), $data);
@@ -122,5 +128,23 @@ class DataFactory
         $data['commcare_id'] = $case['id'];
 
         return $data;
+    }
+
+    /**
+     * Remove closed case from our database
+     *
+     * @param $case
+     * @param $caseObject
+     * @return bool
+     */
+    protected function removeClosedCase($case, $caseObject)
+    {
+        if(array_get($case,'closed') === true){
+            $caseObject->model()::where('commcare_id',$case['id'])->delete();
+
+            return true;
+        }
+
+        return false;
     }
 }

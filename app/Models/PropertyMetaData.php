@@ -37,10 +37,14 @@ class PropertyMetaData extends Model
         return $this->hasMany(PropertyOption::class);
     }
 
+    public function type()
+    {
+        return strtolower(array_get($this->getAttribute('attributes'), 'type'));
+    }
 
     public function columnName()
     {
-        $column = explode('/',$this->commcare_id);
+        $column = explode('/', $this->commcare_id);
         return end($column);
     }
 

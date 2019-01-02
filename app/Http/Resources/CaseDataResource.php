@@ -91,8 +91,11 @@ class CaseDataResource extends ResourceCollection
 
     protected function getSorting($request, $properties)
     {
+        $model = get_case_type_model($this->caseType);
+
         $sorting = $request->input('sorting', []);
-        if (!is_array($sorting) || !$properties->has($request->input('sorting.column'))) {
+
+        if (!is_array($sorting) || (!in_array(array_get($sorting, 'column'), withCount($model)) and !$properties->has($request->input('sorting.column')))) {
             $sorting = [];
         }
 
@@ -122,7 +125,7 @@ class CaseDataResource extends ResourceCollection
         });
 
         if (!count($columns)) {
-            return $properties->pluck('column_name')->take(10)->toArray();
+            return $properties->pluck('column_name')->take(15)->toArray();
         }
 
         return $columns;

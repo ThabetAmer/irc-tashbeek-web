@@ -1,3 +1,7 @@
+import Toasted from 'vue-toasted';
+import VTooltip from 'v-tooltip'
+import Popper from 'vue-popperjs';
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -16,20 +20,6 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-
-Vue.component('Builder', require('./builder/builder'));
-Vue.component('Dashboard', require('./dashboard/dashboard'));
-Vue.component('FirmProfile', require('./firm-profile/firmProfile'));
-Vue.component('CaseListing', require('./case-listing/index'));
-Vue.component('Seekers', require('./seekers/seekers'));
-Vue.component('SeekerProfile', require('./seeker-profile/seekerProfile'));
-Vue.component('icon', require('./components/icon/icon'));
-
-Vue.component('JobSeeker', require('./seeker-profile/seekerProfile'));
-Vue.component('Firm', require('./firm-profile/firmProfile'));
-
-import Toasted from 'vue-toasted';
-
 Vue.use(Toasted, {
   position: 'bottom-right',
   duration: 3000,
@@ -37,6 +27,45 @@ Vue.use(Toasted, {
   theme: 'bubble',
   className: 'clipboard-custom-class'
 });
+
+Vue.use(VTooltip);
+
+// Screens
+Vue.component('Builder',require('./components/Builder.vue').default);
+Vue.component('Dashboard',require('./components/Dashboard.vue').default);
+Vue.component('FirmProfile',require('./components/Firm.vue').default);
+Vue.component('Firm',require('./components/Firm.vue').default);
+Vue.component('CaseListing',require('./components/CaseListing.vue').default);
+Vue.component('SeekerProfile',require('./components/JobSeeker.vue').default);
+Vue.component('JobSeeker',require('./components/JobSeeker.vue').default);
+
+// UI components
+Vue.component('Btn',require('./components/Button.vue').default);
+Vue.component('Icon',require('./components/Icon.vue').default);
+Vue.component('Modal',require('./components/Modal.vue').default);
+Vue.component('Panel',require('./components/Panel.vue').default);
+Vue.component('Spinner',require('./components/Spinner.vue').default);
+Vue.component('Notebox',require('./components/Notebox.vue').default);
+Vue.component('Datatable',require('./components/Datatable.vue').default);
+Vue.component('CheckboxField',require('./components/Checkbox.vue').default);
+Vue.component('TextInput',require('./components/TextInput.vue').default);
+Vue.component('ButtonGroup',require('./components/ButtonGroup.vue').default);
+Vue.component('JobOpening',require('./components/JobOpening.vue').default);
+Vue.component('PageLoader',require('./components/PageLoader.vue').default);
+Vue.component('AnchorLink',require('./components/Link.vue').default);
+Vue.component('CustomSelect',require('./components/CustomSelect.vue').default);
+Vue.component('CheckboxGroup',require('./components/CheckboxGroup.vue').default);
+Vue.component('MetricCard',require('./components/MetricCard.vue').default);
+Vue.component('AddNoteModal',require('./components/AddNoteModal.vue').default);
+Vue.component('Clipboard',require('./components/Clipboard.vue').default);
+Vue.component('ListItem',require('./components/ListItem.vue').default);
+Vue.component('EmptyState',require('./components/EmptyState.vue').default);
+Vue.component('Filters',require('./components/Filters.vue').default);
+Vue.component('Pagination',require('./components/Pagination.vue').default);
+Vue.component('Screenbox',require('./components/Screenbox.vue').default);
+Vue.component('Popper',Popper);
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -44,5 +73,5 @@ Vue.use(Toasted, {
  */
 
 const app = new Vue({
-  el: '#app'
+  el: '#app',
 });

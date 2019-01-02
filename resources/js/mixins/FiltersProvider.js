@@ -74,7 +74,7 @@ export default {
       if (userFilters.length > 0) {
         return userFilters
       }
-      return filtersList.slice(0, 3)
+      return filtersList.slice(0, )
     },
   },
 }

@@ -24,10 +24,18 @@ class ResponseApiController extends Controller
 
         $query->sort($sortableCase);
 
-        $results = $query->paginate();
+        $results = $this->handlePagination($query);
 
-        $resourceClass = get_case_type_resource_class($caseType);
+        return case_resource_collection($caseType, $results, $caseType);
+    }
 
-        return new $resourceClass($results, $caseType);
+    public function handlePagination($query)
+    {
+        if (request()->has('paginate') and request()->get('paginate') === "false") {
+            $results = $query->get();
+        } else {
+            $results = $query->paginate();
+        }
+        return $results;
     }
 }

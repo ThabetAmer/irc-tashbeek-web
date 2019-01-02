@@ -36,8 +36,13 @@ if (!function_exists('get_case_type_model')) {
     }
 }
 
-if (!function_exists('get_case_type_resource_class')) {
-    function get_case_type_resource_class($caseType)
+if (!function_exists('case_resource_collection')) {
+    /**
+     * @param $caseType
+     * @param mixed ...$args
+     * @return \Illuminate\Http\Resources\Json\ResourceCollection
+     */
+    function case_resource_collection($caseType, ...$args)
     {
         $class = studly_case($caseType);
 
@@ -47,17 +52,46 @@ if (!function_exists('get_case_type_resource_class')) {
             $class = "App\\Http\\Resources\\CaseDataResource";
         }
 
-        return $class;
+        return new $class(...$args);
+    }
+}
+
+if (!function_exists('case_resource')) {
+    /**
+     * @param $caseType
+     * @param mixed ...$args
+     * @return \Illuminate\Http\Resources\Json\JsonResource
+     */
+    function case_resource($caseType, ...$args)
+    {
+        $class = studly_case($caseType);
+
+        $class = "App\\Http\\Resources\\CaseResources\\{$class}Resource";
+
+        if (!class_exists($class)) {
+            $class = "App\\Http\\Resources\\CaseResource";
+        }
+
+        return new $class(...$args);
     }
 }
 
 
-if(!function_exists('base_commcare_field_name')){
-    function base_commcare_field_name($field){
-        $field = explode('/',$field);
+if (!function_exists('base_commcare_field_name')) {
+    function base_commcare_field_name($field)
+    {
+        $field = explode('/', $field);
         return end($field);
     }
 }
 
 
-
+if (!function_exists('withCount')) {
+    function withCount($model)
+    {
+        $withCountArray = $model->withCount ?? [];
+        return array_map(function ($value) {
+            return $value . '_count';
+        }, $withCountArray);
+    }
+}

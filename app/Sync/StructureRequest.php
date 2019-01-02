@@ -28,8 +28,6 @@ class StructureRequest
      */
     public function getModules()
     {
-        $this->client= new Client(['verify' => false]);
-
         $response = $this->client->get($this->url, [
             'headers' => [
                 'Content-Type' => 'application/json',

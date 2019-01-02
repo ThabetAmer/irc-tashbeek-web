@@ -19,9 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group(['middleware' => ['auth:api']], function () {
-    Route::put('jobs/{job}/scores', 'JobController@updateScores');
-    Route::put('config', 'JobController@setConfig');
-    Route::get('config', 'JobController@getConfig');
+
+    Route::get('cases/{caseType}', 'ResponseApiController@index');
+
+    Route::get('case-notes/{caseType}/{id}', 'CaseNotesController@index')->name('case-notes.index');
+    Route::post('case-notes/{caseType}/{id}', 'CaseNotesController@store')->name('case-notes.create');
 });
 
 

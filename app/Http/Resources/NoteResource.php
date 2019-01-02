@@ -19,7 +19,8 @@ class NoteResource extends Resource
             'note' => $this->note,
             'created_at' => $this->created_at->toDateTimeString(),
             'created_at_text' => $this->created_at->diffForHumans(),
-            'user' => $this->whenLoaded('user')
+            'user' => $this->whenLoaded('user'),
+            'type' => $this->type
         ];
     }
 }

@@ -61,6 +61,8 @@ class CaseNotesIndexTest extends TestCase
                     [
                         'id',
                         'note',
+                        'user',
+                        'type'
                     ]
                 ]
             ])

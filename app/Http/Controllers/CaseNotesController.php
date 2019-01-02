@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Resources\NoteResource;
 
 class CaseNotesController extends Controller
 {
 
+    public function index($caseType, $id)
+    {
+        $case = $this->getCaseModelOrFail($caseType);
+
+        $record = $case->query()->where('id',$id)->firstOrFail();
+
+        $results = $record->notes()->with('user')->latest()->paginate(5);
+
+        return NoteResource::collection($results);
+    }
 
     public function store($caseType, $id)
     {
@@ -14,11 +24,7 @@ class CaseNotesController extends Controller
             'note' => 'required|string|max:500'
         ]);
 
-        try{
-            $case = get_case_type_model($caseType);
-        }catch(\Throwable $e){
-            abort(404, "Cannot find this case type" );
-        }
+        $case = $this->getCaseModelOrFail($caseType);
 
         $record = $case->query()->where('id',$id)->firstOrFail();
 
@@ -28,7 +34,16 @@ class CaseNotesController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'Create',
+            'message' => 'Note has been created.',
         ], 201);
+    }
+
+    protected function getCaseModelOrFail($caseType)
+    {
+        try{
+            return get_case_type_model($caseType);
+        }catch(\Throwable $e){
+            abort(404, "Cannot find this case type" );
+        }
     }
 }

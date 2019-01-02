@@ -24,10 +24,6 @@ Route::group(['middleware' => ['web','auth']],function(){
 
 
     Route::get('/job-openings','JobOpeningController@index');
-
-    Route::get('api/cases/{caseType}', 'ResponseApiController@index');
-
-    Route::post('api/cases/{caseType}/{id}/notes', 'CaseNotesController@store')->name('case-notes.create');
 });
 
 //

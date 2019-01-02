@@ -18,6 +18,10 @@ abstract class TestCase extends BaseTestCase
 //        $this->memoryUsage();
     }
 
+    protected function loginApi($user = null){
+        $this->actingAs($user ?? factory(User::class)->create(),'api');
+    }
+
     protected function login($user = null){
         $this->actingAs($user ?? factory(User::class)->create());
     }

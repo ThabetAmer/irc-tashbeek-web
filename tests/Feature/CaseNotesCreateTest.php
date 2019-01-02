@@ -24,7 +24,7 @@ class CaseNotesCreateTest extends TestCase
 
     public function test_it_return_404_on_invalid_case_type()
     {
-        $this->login();
+        $this->loginApi();
 
         $this->json('post',route('case-notes.create', ['invalid-case-type', 1]),['note' => '12'])
             ->assertNotFound();
@@ -34,7 +34,7 @@ class CaseNotesCreateTest extends TestCase
     {
         $this->syncStructure('job-seeker');
 
-        $this->login();
+        $this->loginApi();
 
         $jobSeeker = factory(JobSeeker::class)->create();
 
@@ -47,7 +47,7 @@ class CaseNotesCreateTest extends TestCase
     {
         $this->syncStructure('job-seeker');
 
-        $this->login();
+        $this->loginApi();
 
         $jobSeeker = factory(JobSeeker::class)->create();
 
@@ -60,7 +60,7 @@ class CaseNotesCreateTest extends TestCase
     {
         $this->syncStructure('job-seeker');
 
-        $this->login();
+        $this->loginApi();
 
         $this->json('post', route('case-notes.create', ['job-seeker', 1]),['note' => '1'])
             ->assertNotFound();
@@ -91,7 +91,7 @@ class CaseNotesCreateTest extends TestCase
     {
         $this->syncStructure($caseType);
 
-        $this->login();
+        $this->loginApi();
 
         $record = factory(get_class(get_case_type_model($caseType)))->create();
 

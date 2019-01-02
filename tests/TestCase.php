@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Models\User;
 use App\Sync\DataRequest;
 use App\Sync\FormDataRequest;
 use Tests\Fixtures\Classes\StructureFactory;
@@ -15,6 +16,10 @@ abstract class TestCase extends BaseTestCase
     public function tearDown() {
         \Mockery::close();
 //        $this->memoryUsage();
+    }
+
+    protected function login($user = null){
+        $this->actingAs($user ?? factory(User::class)->create());
     }
 
     protected function mockStructureRequest()

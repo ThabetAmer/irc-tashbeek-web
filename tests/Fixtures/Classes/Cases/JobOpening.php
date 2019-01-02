@@ -30,7 +30,18 @@ class JobOpening extends \App\Sync\Cases\JobOpening
             'coworker_nationality' => [
                 'column_name' => 'nationality',
                 'column_type' => 'text'
-            ]
+            ],
+            'firm_id' => [
+                'column_name' => 'firm_id',
+                'column_type' => 'unsignedInteger',
+                'valueHandler' => \App\Sync\QuestionHandler\JobOpeningFirmIdHandler::class,
+                'property' => true,
+                'type' => 'select',
+                'translations' => [
+                    'en' => 'Firm name',
+                    'ara' => 'Firm name'
+                ],
+            ],
         ];
     }
 }

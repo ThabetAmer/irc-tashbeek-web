@@ -34,11 +34,13 @@
         <span
           v-if="option.label.length > 13"
           v-tooltip="{content:option.label,classes:['tooltip-datatable']}"
+          dir="auto"
         >
           {{ option.label }}
         </span>
         <span
           v-else
+          dir="auto"
         >
           {{ option.label }}
         </span>

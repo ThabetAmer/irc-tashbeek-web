@@ -24,8 +24,6 @@ Route::group(['middleware' => ['web','auth']],function(){
 
 
     Route::get('/job-openings','JobOpeningController@index');
-
-    Route::get('api/cases/{case_type}', 'ResponseApiController@index');
 });
 
 //

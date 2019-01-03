@@ -38,7 +38,7 @@ class JobOpening extends AbstractCase
             ],
             'firm_id' => [
                 'column_name' => 'firm_id',
-                'column_type' => 'string',
+                'column_type' => 'unsignedInteger',
                 'valueHandler' => \App\Sync\QuestionHandler\JobOpeningFirmIdHandler::class,
                 'property' => true,
                 'type' => 'select',

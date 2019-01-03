@@ -18,6 +18,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+Route::group(['middleware' => ['auth:api']], function () {
+
+    Route::get('cases/{caseType}', 'ResponseApiController@index');
+
+    Route::get('case-notes/{caseType}/{id}', 'CaseNotesController@index')->name('case-notes.index');
+    Route::post('case-notes/{caseType}/{id}', 'CaseNotesController@store')->name('case-notes.create');
+});
+
 
 Route::group([
     'prefix' => 'auth'

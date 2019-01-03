@@ -7,6 +7,10 @@
     <title>Tashbeek</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    @if(auth()->check())
+        <meta name="api-token" content="{{ auth()->user()->api_token }}">
+    @endif
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">

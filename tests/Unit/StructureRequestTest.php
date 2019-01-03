@@ -12,6 +12,7 @@ class StructureRequestTest extends TestCase
 
     public function test_it_send_modules_request()
     {
+
         $mock = \Mockery::mock(\GuzzleHttp\Client::class);
 
         $responseMock = \Mockery::mock(\GuzzleHttp\Psr7\Response::class);

@@ -9,7 +9,6 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    protected $except = ['_token', 'password_confirmation', 'profile_picture'];
 
     public function __construct()
     {
@@ -37,7 +36,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $user = app(CreateUserAction::class)->create($request->except($this->except));
+        $user = app(CreateUserAction::class)->create($request->all());
         return response()->json(['message' => 'User created successfully'], 200);
     }
 
@@ -48,7 +47,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        $user = app(UpdateUserAction::class)->update($user, $request->except($this->except));
+        $user = app(UpdateUserAction::class)->update($user, $request->all());
         return response()->json(['message' => 'User updated successfully'], 200);
     }
 

@@ -59,3 +59,5 @@ Route::get('/allSeekers', function () {
 Route::get('/allFirms', function () {
     return view('allFirms');
 });
+
+Route::resource('user', 'UserController');

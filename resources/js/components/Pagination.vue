@@ -1,79 +1,95 @@
 <template>
-  <ul
-    v-if="totalPages > 1"
-    class="flex list-reset w-auto font-sans pagination"
-  >
-    <li class="pagination-item">
-      <Btn
-        class="no-underline block hover:text-blue hover:bg-grey-lighter bg-white text-green-dark border border-grey-light rounded  px-1 py-1 mr-2"
-        type="button"
-        :disabled="isInFirstPage"
-        aria-label="Go to first page"
-        @click="onClickFirstPage"
-      >
-        <template slot="text">
-          First
-        </template>
-      </Btn>
-    </li>
-    <li class="pagination-item">
-      <Btn
-        class="no-underline block hover:text-blue hover:bg-grey-lighter  text-green-dark border border-grey-light rounded  px-1 py-1 mr-2"
-        type="button"
-        :disabled="isInFirstPage"
-        aria-label="Go to previous page"
-        @click="onClickPreviousPage"
-      >
-        <template slot="text">
-          Previous
-        </template>
-      </Btn>
-    </li>
-    <li
-      v-for="page in pages"
-      :key="page.name"
-      class="pagination-item"
+  <div>
+    <ul
+      v-if="totalPages > 1"
+      class="flex list-reset w-auto font-sans pagination"
     >
-      <Btn
-        class="no-underline block  border border-grey-light rounded  px-1 py-1 mr-2"
-        type="button"
-        :disabled="page.isDisabled"
-        :btn-class="{ 'bg-grey-light hover:bg-grey-light text-green-dark active': isPageActive(page.name), 'hover:text-blue hover:bg-grey-lighter text-grey-dark':!isPageActive(page.name) }"
-        :aria-label="`Go to page number ${page.name}`"
-        @click="onClickPage(page.name)"
+      <li class="pagination-item">
+        <Btn
+          class="no-underline block hover:text-blue hover:bg-grey-lighter bg-white text-green-dark border border-grey-light rounded  px-1 py-1 mr-2"
+          type="button"
+          :disabled="isInFirstPage"
+          aria-label="Go to first page"
+          @click="onClickFirstPage"
+        >
+          <template slot="text">
+            First
+          </template>
+        </Btn>
+      </li>
+      <li class="pagination-item">
+        <Btn
+          class="no-underline block hover:text-blue hover:bg-grey-lighter  text-green-dark border border-grey-light rounded  px-1 py-1 mr-2"
+          type="button"
+          :disabled="isInFirstPage"
+          aria-label="Go to previous page"
+          @click="onClickPreviousPage"
+        >
+          <template slot="text">
+            Previous
+          </template>
+        </Btn>
+      </li>
+      <li
+        v-for="page in pages"
+        :key="page.name"
+        class="pagination-item"
       >
-        <template slot="text">
-          {{ page.name }}
-        </template>
-      </Btn>
-    </li>
-    <li class="pagination-item">
-      <Btn
-        class="no-underline block hover:text-blue hover:bg-grey-lighter bg-white text-green-dark border border-grey-light rounded  px-1 py-1 mr-2"
-        type="button"
-        :disabled="isInLastPage"
-        aria-label="Go to next page"
-        @click="onClickNextPage"
-      >
-        <template slot="text">
-          Next
-        </template>
-      </Btn>
-    </li>
-    <li class="pagination-item">
-      <Btn
-        class="no-underline block hover:text-blue hover:bg-grey-lighter bg-white text-green-dark border border-grey-light rounded  px-1 py-1 mr-2"
-        type="button"
-        :disabled="isInLastPage"
-        aria-label="Go to last page"
-        @click="onClickLastPage"
-      >
-        <template slot="text">
-          Last
-        </template>
-      </Btn>
-    </li>
-  </ul>
+        <Btn
+          class="no-underline block  border border-grey-light rounded  px-1 py-1 mr-2"
+          type="button"
+          :disabled="page.isDisabled"
+          :btn-class="{ 'bg-grey-light hover:bg-grey-light text-green-dark active': isPageActive(page.name), 'hover:text-blue hover:bg-grey-lighter text-grey-dark':!isPageActive(page.name) }"
+          :aria-label="`Go to page number ${page.name}`"
+          @click="onClickPage(page.name)"
+        >
+          <template slot="text">
+            {{ page.name }}
+          </template>
+        </Btn>
+      </li>
+      <li class="pagination-item">
+        <Btn
+          class="no-underline block hover:text-blue hover:bg-grey-lighter bg-white text-green-dark border border-grey-light rounded  px-1 py-1 mr-2"
+          type="button"
+          :disabled="isInLastPage"
+          aria-label="Go to next page"
+          @click="onClickNextPage"
+        >
+          <template slot="text">
+            Next
+          </template>
+        </Btn>
+      </li>
+      <li class="pagination-item">
+        <Btn
+          class="no-underline block hover:text-blue hover:bg-grey-lighter bg-white text-green-dark border border-grey-light rounded  px-1 py-1 mr-2"
+          type="button"
+          :disabled="isInLastPage"
+          aria-label="Go to last page"
+          @click="onClickLastPage"
+        >
+          <template slot="text">
+            Last
+          </template>
+        </Btn>
+      </li>
+
+      <li class="ml-auto flex items-center pagination-select">
+        <div class="mr-2">Rows per page: </div>
+        <div>
+          <custom-select
+            :options="perPageOptions"
+            track-by="value"
+            placeholder="rows per page"
+            :value="perPage"
+            @select="handlePerPage($event.value)"
+          />
+        </div>
+      </li>
+    </ul>
+
+  </div>
 </template>
 <script>
 
@@ -101,6 +117,25 @@
         type: Number,
         required: true
       },
+    },
+    data() {
+      return {
+        perPageOptions: [
+          {
+            label: "15",
+            value: 15
+          },
+          {
+            label: "30",
+            value: 30
+          },
+          {
+            label: "50",
+            value: 50
+          }
+        ]
+
+      }
     },
     computed: {
       startPage() {
@@ -134,6 +169,10 @@
       },
     },
     methods: {
+      handlePerPage($event) {
+        this.$emit('perPage', $event);
+
+      },
       onClickFirstPage() {
         this.$emit('pagechanged', 1);
       },

@@ -21,6 +21,7 @@
         </div>
         <ul class="firm-info list-reset text-left pr-6">
           <ListItem
+            v-if="jobSeeker.age || jobSeeker.nationality || jobSeeker.gender"
             icon="icon-User_Female_x40_2xpng_2"
           >
             <div>
@@ -57,16 +58,16 @@
             <span>
               Living in {{ jobSeeker.city }}
 
-                     <span
-                       v-if="jobSeeker.city && jobSeeker.district "
-                       class="mx-1"
-                     >
-                       •
-                     </span>
+              <span
+                v-if="jobSeeker.city && jobSeeker.district "
+                class="mx-1"
+              >
+                •
+              </span>
 
-                     <span v-if="jobSeeker.district !== ''">
-                       {{ jobSeeker.district }}
-                     </span>
+              <span v-if="jobSeeker.district !== ''">
+                {{ jobSeeker.district }}
+              </span>
             </span>
           </ListItem>
 

@@ -102,6 +102,7 @@
       :per-page="pagination.perPage"
       :current-page="pagination.currentPage"
       @pagechanged="$emit('pagechanged', $event)"
+      @perPage="$emit('perPage', $event)"
     />
   </div>
 </template>

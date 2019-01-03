@@ -32,17 +32,24 @@
         slot-scope="{option}"
       >
         <span
-          v-if="option.label.length > 13"
+          v-if="option.label && option.label.length > 13"
           v-tooltip="{content:option.label,classes:['tooltip-datatable']}"
           dir="auto"
         >
           {{ option.label }}
         </span>
         <span
-          v-else
+          v-else-if="option.label"
           dir="auto"
         >
           {{ option.label }}
+        </span>
+
+        <span
+          v-else
+          dir="auto"
+        >
+          {{ option }}
         </span>
       </template>
     </Multiselect>

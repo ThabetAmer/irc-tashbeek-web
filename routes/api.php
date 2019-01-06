@@ -17,13 +17,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('cases/{caseType}', 'ResponseApiController@index');
 
     Route::get('case-notes/{caseType}/{id}', 'CaseNotesController@index')->name('case-notes.index');
     Route::post('case-notes/{caseType}/{id}', 'CaseNotesController@store')->name('case-notes.create');
+
+    Route::get('upcoming-followups', 'UpcomingFollowupsController@index')->name('api.upcoming-followups');
+    Route::get('upcoming-followups/counts', 'UpcomingFollowupsController@counts')->name('api.upcoming-followups.counts');
+
+
 
     Route::resource('user', 'UserController');
 
@@ -33,7 +37,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     });
 
 });
-
 
 
 Route::group([

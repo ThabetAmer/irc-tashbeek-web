@@ -28,11 +28,11 @@
 
       <div class="flex-1 text-right pt-4">
         <button
-          class="uppercase text-green-dark text-sm font-bold ml-2"
+          class="uppercase flex items-center ml-auto text-green-dark text-sm font-bold ml-2"
           @click="showFullNoteModal"
         >
           View More
-          <i class=" align-text-bottom icon-Right_Arrow_1_1 text-xl" />
+          <i class=" align-text-bottom icon-Right_Arrow_1_1 text-xl ml-2" />
         </button>
       </div>
     </div>

@@ -1,10 +1,12 @@
 <?php namespace App\Sync;
 
+use App\Models\User;
 use App\Sync\Cases\AbstractCase;
 use App\Sync\Cases\Firm;
 use App\Sync\Cases\Match;
 use App\Sync\Cases\JobOpening;
 use App\Sync\Cases\JobSeeker;
+use App\Sync\QuestionHandler\DateHandler;
 
 class DataFactory
 {
@@ -82,7 +84,9 @@ class DataFactory
 
         $data = $this->getCaseFields($caseObject, $case);
 
-        $caseObject->model()::updateOrCreate(array_only($data, 'commcare_id'), $data);
+        $model = $caseObject->model()::updateOrCreate(array_only($data, 'commcare_id'), $data);
+
+        $this->scheduleFollowups($model);
     }
 
     /**
@@ -125,7 +129,11 @@ class DataFactory
             $data[$question['column_name']] = $value;
         }
 
+        $data['opened_at'] = app(DateHandler::class)->resolve(array_get($case, 'server_date_opened'));
+
         $data['commcare_id'] = $case['id'];
+
+        $data['user_id'] = optional(User::where('commcare_id',$case['user_id'])->first())->id ;
 
         return $data;
     }
@@ -146,5 +154,30 @@ class DataFactory
         }
 
         return false;
+    }
+
+    /**
+     * Schedule
+     * @param $model
+     */
+    protected function scheduleFollowups($model)
+    {
+        if(!method_exists($model,'followups') || empty($model->opened_at)){
+            return ;
+        }
+
+        foreach(config('case.job-seeker.followup_schedule') as $key => $schedule){
+
+            $followUp = $model->followups()->where('type','scheduled')->where('followup_period',$key)->first();
+
+            if(!$followUp){
+                $model->followups()->create([
+                    'followup_date' => \Carbon\Carbon::parse($model->opened_at)->modify($schedule)->toDateTimeString(),
+                    'followup_period' => $key,
+                    'type' => 'scheduled',
+                    'user_id' => $model->user_id,
+                ]);
+            }
+        }
     }
 }

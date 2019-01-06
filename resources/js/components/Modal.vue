@@ -6,7 +6,7 @@
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div
-          class="modal-container pl-12 relative rounded"
+          :class="`modal-container pl-12 relative rounded ${customClass}` "
           :style="{width:width}"
         >
           <a
@@ -55,7 +55,16 @@
             width:{
                 type:String,
                 default:"40%"
-            }
+            },
+          customClass:{
+            type:String,
+            default:""
+          },
+          bodyClass:{
+            type:String,
+            default:""
+          }
+
         }
     }
 </script>

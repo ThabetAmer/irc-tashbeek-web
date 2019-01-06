@@ -26,7 +26,7 @@
       size:{
         type:String,
         default:"base",
-        validator: PropTypes.oneOf(['xs', 'base', 'md','lg'])
+        validator: PropTypes.oneOf(['xs','sm', 'base', 'md','lg'])
       },
     },
     computed:{

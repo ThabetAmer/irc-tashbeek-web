@@ -34,8 +34,20 @@ class ResponseApiController extends Controller
         if (request()->has('paginate') and request()->get('paginate') === "false") {
             $results = $query->get();
         } else {
-            $results = $query->paginate();
+            $results = $query->paginate($this->perPage());
         }
         return $results;
+    }
+
+    protected function perPage()
+    {
+        $perPage = request("perPage");
+        $perPagesLimit = [15,30,50];
+
+        if(!in_array($perPage, $perPagesLimit)){
+            $perPage = 15;
+        }
+
+        return $perPage;
     }
 }

@@ -5,6 +5,8 @@ namespace Tests;
 use App\Models\User;
 use App\Sync\DataRequest;
 use App\Sync\FormDataRequest;
+use App\Sync\UsersRequest;
+use App\Sync\UsersSync;
 use Tests\Fixtures\Classes\StructureFactory;
 use App\Sync\StructureRequest;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -71,6 +73,19 @@ abstract class TestCase extends BaseTestCase
         app()->instance(FormDataRequest::class, $requestMock);
     }
 
+    protected function mockUsersRequest($data = null ){
+
+        $requestMock = \Mockery::mock(UsersRequest::class);
+
+        if(!$data){
+            $data = json_decode(file_get_contents(base_path('tests/Fixtures/commcare_users.json')),true);
+        }
+
+        $requestMock->shouldReceive('data')->andReturn($data);
+
+        app()->instance(UsersRequest::class, $requestMock);
+    }
+
     public function syncStructure(string $caseType)
     {
         $this->mockStructureRequest();
@@ -78,6 +93,14 @@ abstract class TestCase extends BaseTestCase
         $factory = app(StructureFactory::class);
 
         return $factory->make($caseType);
+    }
+
+
+    public function syncUsers()
+    {
+        $this->mockUsersRequest();
+
+        app(UsersSync::class)->make();
     }
 
     function memoryUsage() {

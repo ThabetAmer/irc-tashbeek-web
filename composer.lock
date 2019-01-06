@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "3b29348499b383ea1452a097cb463c59",
@@ -2517,16 +2517,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "7.5.5",
+            "version": "7.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "a50e59d1eec7c2e161942ffd0d13860759e4760d"
+                "reference": "62f51f87f27a9a78063c6d276f568f8f8223799b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/a50e59d1eec7c2e161942ffd0d13860759e4760d",
-                "reference": "a50e59d1eec7c2e161942ffd0d13860759e4760d",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/62f51f87f27a9a78063c6d276f568f8f8223799b",
+                "reference": "62f51f87f27a9a78063c6d276f568f8f8223799b",
                 "shasum": ""
             },
             "require": {
@@ -2596,7 +2596,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2019-01-05T14:06:46+00:00"
+            "time": "2019-01-04T10:36:22+00:00"
         },
         {
             "name": "spatie/pdf-to-image",

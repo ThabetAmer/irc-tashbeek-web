@@ -4,7 +4,9 @@
       v-if="rows.length > 0"
       class="table-container-main overflow-auto pl-2 mb-2"
     >
-      <table :class="[`main-table w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']">
+      <table
+        :class="[`main-table w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']"
+      >
         <thead>
           <tr class="font-bold text-green-theme">
             <th
@@ -81,11 +83,11 @@
                 {{ row[head.name] }}
               </span>
             </td>
-            <td class="py-4 px-4 pl-2">
-              <button class="flex-1 text-xl  text-green-dark">
-                <i class="icon-Page_1_x40_2xpng_2" />
-              </button>
-            </td>
+
+            <slot
+              :row="row"
+              name="extra"
+            />
           </tr>
         </tbody>
       </table>
@@ -102,6 +104,7 @@
       :per-page="pagination.perPage"
       :current-page="pagination.currentPage"
       @pagechanged="$emit('pagechanged', $event)"
+      @perPage="$emit('perPage', $event)"
     />
   </div>
 </template>
@@ -115,9 +118,9 @@
      * and are passed using the mixin
      */
     props: {
-      loading:{
+      loading: {
         type: Boolean,
-        default:false
+        default: false
       },
       fixedHeader: {
         type: Boolean,
@@ -132,10 +135,9 @@
           currentPage: 1
         })
       },
-      sorting:{
-        type:Object,
-        default: () => ({
-        })
+      sorting: {
+        type: Object,
+        default: () => ({})
       },
       striped: {
         type: Boolean,

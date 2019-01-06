@@ -13,14 +13,37 @@
       <Datatable
         v-if="!loading"
         :header="headers"
+        :case-type="type"
         :rows="rows"
         :pagination="pagination"
         :sorting="sorting"
         @pagechanged="loadData({page: $event})"
+        @perPage="loadData({perPage: $event})"
         @sort="handleSort($event, loadData)"
-      />
+      >
+        <td
+          slot="extra"
+          slot-scope="{row}"
+        >
+          <button
+            class="flex-1 text-xl  text-green-dark"
+            @click="viewNotes(row.id)"
+          >
+            <i class="icon-Page_1_x40_2xpng_2" />
+          </button>
+        </td>
+      </Datatable>
+
       <PageLoader v-else />
     </Panel>
+
+    <ViewNoteModal
+      v-if="caseId"
+      :show-modal="showNotesModal"
+      :case-type="type"
+      :case-id="caseId"
+      @close="closeModalNote"
+    />
   </div>
 </template>
 
@@ -40,6 +63,8 @@
     },
     data() {
       return {
+        caseId:0,
+        showNotesModal: false,
         loading: false,
         rows: [],
         headers: [],
@@ -56,11 +81,12 @@
       this.loadData({
         page: queryStringObject.page,
         filters: queryStringObject.filters,
-        sorting: queryStringObject.sorting
+        sorting: queryStringObject.sorting,
+        perPage: queryStringObject.perPage
       });
     },
     methods: {
-      loadData({filters = {}, page = null, sorting = {}} = {}) {
+      loadData({filters = {}, page = null, sorting = {},perPage = 15} = {}) {
         filters = filters && typeof filters === "object" ? filters : {}
         sorting = sorting && typeof sorting === "object" ? sorting : {}
         const params = {
@@ -69,11 +95,12 @@
             ...this.userFiltersToParams()
           },
           page: !isNaN(parseInt(page, 10)) ? page : this.pagination.currentPage,
+          perPage: !isNaN(parseInt(perPage, 15)) ? perPage : this.pagination.perPage,
           sorting: {
             ...this.sorting,
             ...sorting,
           }
-        }
+        };
         this.loading = true
         return getListing(this.type, params)
           .then(({data}) => {
@@ -88,7 +115,7 @@
             this.pagination = {
               total: data.meta.total,
               lastPage: data.meta.last_page,
-              perPage: data.meta.per_page,
+              perPage: parseInt(data.meta.per_page),
               currentPage: data.meta.current_page
             };
             this.loading = false;
@@ -106,6 +133,15 @@
 
         history.pushState({}, document.title, url);
       },
+
+      viewNotes(caseId){
+        this.showNotesModal = true;
+        this.caseId = caseId;
+      },
+      closeModalNote(){
+        this.showNotesModal = false;
+
+      }
     }
   }
 </script>

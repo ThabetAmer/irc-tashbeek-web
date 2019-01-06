@@ -84,6 +84,7 @@ let colors = {
   'green-darkest': '#0f2f21',
   'green-darker': '#1a4731',
   'green-dark': '#1f9d55',
+  'green-opac': '#e8f5e7',
   'green': '#38c172',
   'green-light': '#51d88a',
   'green-lighter': '#a2f5bf',
@@ -589,6 +590,7 @@ module.exports = {
     '100': '100px',
     '200': '200px',
     '300': '300px',
+    '642': '642px',
     'full': '100%',
     'screen': '100vh',
   },
@@ -642,6 +644,8 @@ module.exports = {
 
   maxHeight: {
     'full': '100%',
+    '400': '400px',
+    '500': '500px',
     '750': '750px',
     '680': '680px',
     '700': '700px',

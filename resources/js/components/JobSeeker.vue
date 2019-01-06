@@ -21,6 +21,7 @@
         </div>
         <ul class="firm-info list-reset text-left pr-6">
           <ListItem
+            v-if="jobSeeker.age || jobSeeker.nationality || jobSeeker.gender"
             icon="icon-User_Female_x40_2xpng_2"
           >
             <div>
@@ -57,16 +58,16 @@
             <span>
               Living in {{ jobSeeker.city }}
 
-                     <span
-                       v-if="jobSeeker.city && jobSeeker.district "
-                       class="mx-1"
-                     >
-                       •
-                     </span>
+              <span
+                v-if="jobSeeker.city && jobSeeker.district "
+                class="mx-1"
+              >
+                •
+              </span>
 
-                     <span v-if="jobSeeker.district !== ''">
-                       {{ jobSeeker.district }}
-                     </span>
+              <span v-if="jobSeeker.district !== ''">
+                {{ jobSeeker.district }}
+              </span>
             </span>
           </ListItem>
 
@@ -113,12 +114,19 @@
           Starred Note
         </div>
         <Notebox
+          v-if="starredNote"
           :body="starredNote.body"
           :date="starredNote.date"
           :author="starredNote.author"
           :show-star="false"
           :show-creator-details="false"
           custom-class="border-none pl-0"
+        />
+        <EmptyState
+          v-else
+          icon="icon-Stars_x40_2xpng_2 text-5xl mt-3 block"
+          message="You haven't starred any notes!"
+          custom-class="mt-5 min-h-200 text-lg"
         />
       </Panel>
     </div>
@@ -201,7 +209,7 @@
             <Btn
               :theme="'success'"
               :btn-class="'mb-2 text-sm fade in show'"
-              @btn-click="addNoteClick"
+              @click="addNoteClick"
             >
               <template slot="text">
                 Add Note
@@ -244,15 +252,24 @@
             v-if="jobOpeningView=='notes'"
             class=""
           >
-            <Notebox
+            <div v-if="notes && notes.length > 0">
+              <Notebox
+                v-for="note in notes"
+                :id="note.id"
+                :key="note.id"
+                :date="note.created_at_text"
+                :author="note.user.name"
+                :body="note.note"
+                @noteStarred="changeStarredNote"
+              />
+            </div>
 
-              v-for="note in notes"
-              :id="note.id"
-              :key="note.id"
-              :date="note.date"
-              :author="note.author"
-              :body="note.body"
-              @noteStarred="changeStarredNote"
+
+            <EmptyState
+              v-else
+              icon="icon-Note_x40_2xpng_2 text-3xl mt-3 block"
+              message="You don't have any notes!"
+              custom-class="mt-5 min-h-200 text-lg"
             />
             <!--<notebox></notebox>-->
           </div>
@@ -269,6 +286,8 @@
 </template>
 
 <script>
+  import {get as getNotes} from '../api/noteAPI'
+  import {post as addNote} from '../api/noteAPI'
 
   export default {
     props: {
@@ -286,41 +305,22 @@
         showStar: false,
         filters: false,
         showAddModalNote: false,
-        starredNote: {
-          id: 1,
-          date: 'Wednesday 12 November',
-          author: 'Mohammad Karmi',
-          body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s\n' +
-          '            standard dummy text ever since the 1500s, when an unknown printer\n' +
-          '            took a galley of type and scrambled it to make a type specimen book.\n' +
-          '            It has survived not only five centuries, but also the leap into electronic\n' +
-          '            typesetting, remaining essentially unchanged',
-        },
-        notes: [
-          {
-            id: 1,
-            date: 'Wednesday 12 November',
-            author: 'Mohammad Karmi',
-            body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s\n' +
-            '            It has survived not only five centuries, but also the leap into electronic\n' +
-            '            typesetting, remaining essentially unchanged',
-
-          },
-          {
-            id: 2,
-            date: 'Wednesday 12 November',
-            author: 'Mohammad Karmi',
-            body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s\n' +
-            '            standard dummy text ever since the 1500s, when an unknown printer\n' +
-            '            took a galley of type and scrambled it to make a type specimen book.\n' +
-            '            It has survived not only five centuries, but also the leap into electronic\n' +
-            '            typesetting, remaining essentially unchanged',
-
-          }
-        ]
+        starredNote: null,
+        notes: []
       }
     },
+    created() {
+      this.getNotes();
+    },
     methods: {
+      getNotes() {
+        getNotes('job-seeker', this.jobSeeker.id)
+            .then(({data}) => {
+              this.notes = data.data;
+            }).catch(error => {
+          console.log('Error : ', error);
+        });
+      },
       changeJobOpeningview(view) {
         this.jobOpeningView = view;
         if (view === 'notes') {
@@ -335,13 +335,15 @@
 
       },
       addNoteToList(noteText) {
-        this.notes.push({
-          id: 3,
-          body: noteText,
-          date: 'Wednesday 12 November',
-          author: 'Mohammad Karmi'
 
-        })
+        addNote('job-seeker',this.jobSeeker.id, {note: noteText})
+            .then(resp => {
+              this.notes.push(resp.data.note);
+            }).catch(error => {
+          console.log('Error : ', error);
+        });
+
+
       },
       changeStarredNote(note) {
         this.starredNote = note;

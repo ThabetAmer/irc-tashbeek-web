@@ -7,6 +7,6 @@ export const get = (seekerId, params = {}) => {
 
 export const post = (seekerId, params = {}) => {
   console.log(' params are ', params)
-  return $httpRequester.post(`api/case-notes/job-seeker/${seekerId}/`,params)
+  return $httpRequester.post(`api/case-notes/job-seeker/${seekerId}`,params)
 }
 

@@ -300,26 +300,7 @@
           '            typesetting, remaining essentially unchanged',
         },
         notes: [
-          {
-            id: 1,
-            date: 'Wednesday 12 November',
-            author: 'Mohammad Karmi',
-            body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s\n' +
-            '            It has survived not only five centuries, but also the leap into electronic\n' +
-            '            typesetting, remaining essentially unchanged',
 
-          },
-          {
-            id: 2,
-            date: 'Wednesday 12 November',
-            author: 'Mohammad Karmi',
-            body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s\n' +
-            '            standard dummy text ever since the 1500s, when an unknown printer\n' +
-            '            took a galley of type and scrambled it to make a type specimen book.\n' +
-            '            It has survived not only five centuries, but also the leap into electronic\n' +
-            '            typesetting, remaining essentially unchanged',
-
-          }
         ]
       }
     },

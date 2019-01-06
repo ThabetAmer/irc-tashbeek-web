@@ -21,6 +21,11 @@ class DateHandler implements HandlerInterface
             $value = array_get(array_get($caseData, 'properties'), $question['alias']);
         }
 
+        return $this->resolve($value);
+    }
+
+    public function resolve($value)
+    {
         try{
             return Carbon::parse($value)->toDateTimeString();
         }catch(\Throwable $e){

@@ -32,6 +32,14 @@ class Schema
             if ($method === 'create') {
                 $table->timestamps();
             }
+
+            if($method === 'create' ||  !LaravelSchema::hasColumn($table->getTable(), 'opened_at')){
+                $table->timestamp('opened_at')->nullable();
+            }
+
+            if($method === 'user_id' ||  !LaravelSchema::hasColumn($table->getTable(), 'user_id')){
+                $table->unsignedInteger('user_id')->nullable()->default(null);
+            }
         });
     }
 }

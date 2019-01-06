@@ -9,7 +9,7 @@ trait Notable
 
     public function addNote(array $data = [])
     {
-        $this->notes()->create([
+        return $this->notes()->create([
             'note' => $data['note'],
             'user_id' => $data['user_id'] ?? auth()->id()
         ]);

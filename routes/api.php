@@ -24,6 +24,10 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('case-notes/{caseType}/{id}', 'CaseNotesController@index')->name('case-notes.index');
     Route::post('case-notes/{caseType}/{id}', 'CaseNotesController@store')->name('case-notes.create');
+
+    Route::get('upcoming-followups', 'UpcomingFollowupsController@index')->name('api.upcoming-followups');
+
+
 });
 
 

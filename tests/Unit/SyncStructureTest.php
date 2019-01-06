@@ -112,5 +112,39 @@ class SyncStructureTest extends TestCase
         $this->assertTrue(
             Schema::hasColumn(app(\App\Models\Firm::class)->getTable(), 'firm_name')
         );
+
+        $this->assertTrue(
+            Schema::hasColumn(app(\App\Models\Firm::class)->getTable(), 'commcare_id')
+        );
+    }
+
+    public function test_it_create_opened_at_column()
+    {
+        $this->mockStructureRequest();
+
+        $factory = app(StructureFactory::class);
+
+        $type = "firm";
+
+        $factory->make($type);
+
+        $this->assertTrue(
+            Schema::hasColumn(app(\App\Models\Firm::class)->getTable(), 'opened_at')
+        );
+    }
+
+    public function test_it_create_user_id_column()
+    {
+        $this->mockStructureRequest();
+
+        $factory = app(StructureFactory::class);
+
+        $type = "firm";
+
+        $factory->make($type);
+
+        $this->assertTrue(
+            Schema::hasColumn(app(\App\Models\Firm::class)->getTable(), 'user_id')
+        );
     }
 }

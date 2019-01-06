@@ -2,19 +2,20 @@
 
 namespace Tests\Unit;
 
-use App\Sync\DataRequest;
+use App\Sync\UsersRequest;
 use Tests\TestCase;
 
-class DataRequestTest extends TestCase
+class UsersSyncRequestTest extends TestCase
 {
-    public function test_it_send_request_to_pull_cases_data()
+
+    public function test_it_receives_users()
     {
         $mock = \Mockery::mock(\GuzzleHttp\Client::class);
 
         $responseMock = \Mockery::mock(\GuzzleHttp\Psr7\Response::class);
         $streamMock = \Mockery::mock(\GuzzleHttp\Psr7\Stream::class);
 
-        $url = 'https://www.commcarehq.org/a/billy-excerpt/api/v0.5/case/?type=job-seeker&limit=80&offset=0';
+        $url = 'https://www.commcarehq.org/a/billy-excerpt/api/v0.5/web-user/?limit=80&offset=0';
 
         $mock->shouldReceive('get')->with($url,[
             'headers' => [
@@ -29,9 +30,9 @@ class DataRequestTest extends TestCase
 
         app()->instance(\GuzzleHttp\Client::class,$mock);
 
-        $request = app(DataRequest::class);
+        $request = app(UsersRequest::class);
 
-        $data = $request->data('job-seeker');
+        $data = $request->data();
 
         $this->assertArrayHasKey('meta',$data);
 

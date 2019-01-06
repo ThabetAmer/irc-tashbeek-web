@@ -6,13 +6,12 @@ use App\Models\MediaTrait\MediaFunctionality;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Passport\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 
 
 class User extends Authenticatable implements HasMedia
 {
-    use Notifiable, HasApiTokens, SoftDeletes, MediaFunctionality, Notifiable;
+    use Notifiable, SoftDeletes, MediaFunctionality, Notifiable;
 
     /**
      * The attributes that are mass assignable.

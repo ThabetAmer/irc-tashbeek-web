@@ -84,10 +84,10 @@
                     custom-class="mt-5 min-h-200 text-lg"
                   />
                   <!--<div-->
-                   <!---->
-                    <!--class="selected-day-content text-grey-dark text-lg"-->
+                  <!---->
+                  <!--class="selected-day-content text-grey-dark text-lg"-->
                   <!--&gt;-->
-                    <!--No date selected-->
+                  <!--No date selected-->
                   <!--</div>-->
 
                   <div v-else>

@@ -2,7 +2,7 @@
   <div class="flex">
     <div class="w-1/3 px-2">
       <Panel
-        custom-class=""
+        custom-class="min-h-642"
         :has-title="hasTitle"
         :title="firm.firm_name"
       >
@@ -83,10 +83,22 @@
         <div class="stared-note uppercase text-green text-left font-bold mt-6 -mb-2">
           Starred Note
         </div>
+
         <Notebox
-          :show-star="showStar"
-          :show-creator-details="showStar"
-          custom-class="border-none pl-0 "
+          v-if="starredNote"
+          :body="starredNote.body"
+          :date="starredNote.date"
+          :author="starredNote.author"
+          :show-star="false"
+          :show-creator-details="false"
+          custom-class="border-none pl-0"
+        />
+
+        <EmptyState
+          v-else
+          icon="icon-Stars_x40_2xpng_2 text-5xl mt-3 block"
+          message="You haven't starred any notes!"
+          custom-class="mt-5 min-h-200 text-lg"
         />
       </Panel>
     </div>
@@ -164,23 +176,54 @@
         <Btn
           :theme="'success'"
           :btn-class="'mb-2 uppercase absolute pin-t pin-r mt-4 mr-4'"
-          @btn-click="btnClick"
+          @click="showAddModalNote = true"
         >
           <template slot="text">
             Add note
           </template>
         </Btn>
 
-        <Notebox />
+
+        <div v-if="notes && !notesLoading">
+          <Notebox
+            v-for="note in notes"
+            :id="note.id"
+            :key="note.id"
+            :date="note.created_at_text"
+            :author="note.user.name"
+            :body="note.note"
+            @noteStarred="changeStarredNote"
+          />
+        </div>
+
+        <div v-else-if="!notes && notesLoading">
+          <PageLoader
+            message="Notes are being fetched, please wait!"
+          />
+        </div>
+        <EmptyState
+          v-else
+          icon="icon-Note_x40_2xpng_2 text-3xl mt-3 block"
+          message="You don't have any notes!"
+          custom-class="mt-5 min-h-200 text-lg"
+        />
         <!--<notebox></notebox>-->
       </Panel>
     </div>
+
+    <AddNoteModal
+      :show-modal="showAddModalNote"
+      @note-added="addNoteToList"
+      @close="showAddModalNote = false;"
+    />
   </div>
 </template>
 
 
 <script>
   import {get as getCaseListing} from '../api/caseListing'
+  import {get as getNotes} from '../api/noteAPI'
+  import {post as addNote} from '../api/noteAPI'
 
   export default {
     props: {
@@ -191,12 +234,16 @@
     },
     data() {
       return {
+        notesLoading:true,
+        showAddModalNote: false,
         viewType: 'current',
         hasTitle: true,
         showStar: false,
         filters: false,
         jobOpenings: [],
-        jobOpeningsLoading: true
+        jobOpeningsLoading: true,
+        notes: null,
+        starredNote: null
       }
     },
     mounted() {
@@ -215,8 +262,29 @@
         this.jobOpenings = data.data
       });
 
+      getNotes('firm', this.firm.id)
+          .then(({data}) => {
+            this.notes = data.data;
+            this.notesLoading = false;
+          }).catch(error => {
+        console.log('Error : ', error);
+      });
+
     },
     methods: {
+      changeStarredNote(note) {
+        this.starredNote = note;
+      },
+      addNoteToList(noteText) {
+        addNote('firm', this.firm.id, {note: noteText})
+            .then(resp => {
+              this.notes.push(resp.data.note);
+            }).catch(error => {
+          console.log('Error : ', error);
+        });
+
+
+      },
       changeViewType(type) {
         this.viewType = type;
       },

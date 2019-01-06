@@ -27,7 +27,7 @@
 
         <div class="px-2 flex-grow w-full">
           <Panel
-            custom-class="min-h-630 pt-8 max-h-630"
+            custom-class="min-h-630 pt-8 max-h-630 overflow-y-auto"
             :has-title="hasTitle"
             title="Follow-ups"
           >
@@ -76,13 +76,19 @@
                   />
                 </div>
 
-                <div class="selected-day mt-4 bg-grey-lighter">
-                  <div
+                <div class="selected-day mt-4">
+                  <EmptyState
                     v-if="!daySelected"
-                    class="selected-day-content text-grey-dark text-lg"
-                  >
-                    No date selected
-                  </div>
+                    icon="icon-Calendar_1_x40_2xpng_2 text-5xl mt-3 block"
+                    message="No date selected"
+                    custom-class="mt-5 min-h-200 text-lg"
+                  />
+                  <!--<div-->
+                   <!---->
+                    <!--class="selected-day-content text-grey-dark text-lg"-->
+                  <!--&gt;-->
+                    <!--No date selected-->
+                  <!--</div>-->
 
                   <div v-else>
                     <Panel

@@ -6,7 +6,8 @@
       name="empty-label"
     >
       <div class="mx-auto text-grey-dark mb-2">
-        No data to be presented
+        {{ message }}
+        <i :class="icon" />
       </div>
     </slot>
   </div>
@@ -18,6 +19,14 @@
   export default {
     components: {},
     props: {
+      icon:{
+        type:String,
+        default:null
+      },
+      message:{
+        type:String,
+        default:'No data to be presented'
+      },
       customClass: {
         type: String,
         default: ''

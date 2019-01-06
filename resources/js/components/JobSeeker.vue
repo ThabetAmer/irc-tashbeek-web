@@ -114,12 +114,19 @@
           Starred Note
         </div>
         <Notebox
+          v-if="starredNote"
           :body="starredNote.body"
           :date="starredNote.date"
           :author="starredNote.author"
           :show-star="false"
           :show-creator-details="false"
           custom-class="border-none pl-0"
+        />
+        <EmptyState
+          v-else
+          icon="icon-Stars_x40_2xpng_2 text-5xl mt-3 block"
+          message="You haven't starred any notes!"
+          custom-class="mt-5 min-h-200 text-lg"
         />
       </Panel>
     </div>
@@ -215,30 +222,30 @@
             v-if="jobOpeningView=='all'"
             class=""
           >
-            <Screenbox/>
-            <Screenbox/>
+            <Screenbox />
+            <Screenbox />
           </div>
 
           <div
             v-if="jobOpeningView=='screening'"
             class=""
           >
-            <Screenbox/>
+            <Screenbox />
           </div>
 
           <div
             v-if="jobOpeningView=='matched'"
             class=""
           >
-            <Screenbox/>
-            <Screenbox/>
+            <Screenbox />
+            <Screenbox />
           </div>
 
           <div
             v-if="jobOpeningView=='candidate'"
             class=""
           >
-            <Screenbox/>
+            <Screenbox />
           </div>
 
           <div
@@ -250,7 +257,7 @@
               v-for="note in notes"
               :id="note.id"
               :key="note.id"
-              :date="note.created_at"
+              :date="note.created_at_text"
               :author="note.user.name"
               :body="note.note"
               @noteStarred="changeStarredNote"
@@ -289,16 +296,7 @@
         showStar: false,
         filters: false,
         showAddModalNote: false,
-        starredNote: {
-          id: 1,
-          date: 'Wednesday 12 November',
-          author: 'Mohammad Karmi',
-          body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s\n' +
-          '            standard dummy text ever since the 1500s, when an unknown printer\n' +
-          '            took a galley of type and scrambled it to make a type specimen book.\n' +
-          '            It has survived not only five centuries, but also the leap into electronic\n' +
-          '            typesetting, remaining essentially unchanged',
-        },
+        starredNote: null,
         notes: []
       }
     },
@@ -307,12 +305,9 @@
     },
     methods: {
       getNotes() {
-        getNotes(this.jobSeeker.id)
+        getNotes('job-seeker', this.jobSeeker.id)
             .then(({data}) => {
-
-              console.log(' data is ', data);
               this.notes = data.data;
-              // this.loading = false;
             }).catch(error => {
           console.log('Error : ', error);
         });
@@ -332,11 +327,9 @@
       },
       addNoteToList(noteText) {
 
-        addNote(this.jobSeeker.id, {note: noteText})
+        addNote('job-seeker',this.jobSeeker.id, {note: noteText})
             .then(resp => {
-              console.log(' postttt is ', resp);
               this.notes.push(resp.data.note);
-              // this.loading = false;
             }).catch(error => {
           console.log('Error : ', error);
         });

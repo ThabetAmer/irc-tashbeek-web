@@ -202,7 +202,7 @@
             <Btn
               :theme="'success'"
               :btn-class="'mb-2 text-sm fade in show'"
-              @btn-click="addNoteClick"
+              @click="addNoteClick"
             >
               <template slot="text">
                 Add Note
@@ -215,30 +215,30 @@
             v-if="jobOpeningView=='all'"
             class=""
           >
-            <Screenbox />
-            <Screenbox />
+            <Screenbox/>
+            <Screenbox/>
           </div>
 
           <div
             v-if="jobOpeningView=='screening'"
             class=""
           >
-            <Screenbox />
+            <Screenbox/>
           </div>
 
           <div
             v-if="jobOpeningView=='matched'"
             class=""
           >
-            <Screenbox />
-            <Screenbox />
+            <Screenbox/>
+            <Screenbox/>
           </div>
 
           <div
             v-if="jobOpeningView=='candidate'"
             class=""
           >
-            <Screenbox />
+            <Screenbox/>
           </div>
 
           <div
@@ -270,6 +270,8 @@
 </template>
 
 <script>
+  import {get as getNotes} from '../api/noteAPI'
+  import {post as addNote} from '../api/noteAPI'
 
   export default {
     props: {
@@ -342,7 +344,23 @@
           date: 'Wednesday 12 November',
           author: 'Mohammad Karmi'
 
-        })
+        });
+        addNote(this.jobSeeker.id, {note: noteText})
+            .then(resp => {
+              console.log(' postttt is ', resp);
+              // this.loading = false;
+            }).catch(error => {
+          console.log('Error : ', error);
+        });
+
+        getNotes(this.jobSeeker.id)
+            .then(({data}) => {
+
+              console.log(' data is ', data);
+              // this.loading = false;
+            }).catch(error => {
+          console.log('Error : ', error);
+        });
       },
       changeStarredNote(note) {
         this.starredNote = note;

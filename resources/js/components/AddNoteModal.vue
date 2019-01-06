@@ -14,7 +14,7 @@
 
         :theme="'success'"
         :btn-class="'mb-2 absolute pin-t pin-r rounded-full uppercase'"
-        @btn-click="addNote"
+        @click="addNote"
       >
         <template slot="text">
           Add Note

@@ -10,8 +10,8 @@
 @import "~tailwindcss/utilities.css";
 @import "~tailwindcss/preflight.css";
 @import '~fullcalendar/dist/fullcalendar.css';
-
 @import './style.css';
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -235,7 +235,8 @@ a[data-toggle="collapse"] {
       background: transparent;
       border: none;
       span {
-        font-size: 18px;
+        font-size: 23px;
+        color: #666666;
       }
     }
   }
@@ -321,16 +322,14 @@ button:focus {
 //  -webkit-border-radius: 100px;
 //}
 
-
-
 /* Let's get this party started */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   -webkit-border-radius: 10px;
   border-radius: 10px;
 }
@@ -339,12 +338,14 @@ button:focus {
 ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  background: rgba(220,220,220,0.8);
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background: rgba(220, 220, 220, 0.8);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
+
 ::-webkit-scrollbar-thumb:window-inactive {
-  background: rgba(220,220,220,0.4);
+  background: rgba(220, 220, 220, 0.4);
 }
+
 //background: linear-gradient(45deg, white, silver);
 //min-height: 100%;
 
@@ -606,7 +607,7 @@ body, html {
 .link {
   text-decoration: none;
 
-  &:hover{
+  &:hover {
     text-decoration: underline;
   }
 }
@@ -615,12 +616,12 @@ body, html {
 //  min-width: 250px;
 //}
 
-.mx-input-append{
+.mx-input-append {
   display: none;
 }
 
-.vdp-datepicker{
-  .vdp-datepicker__clear-button{
+.vdp-datepicker {
+  .vdp-datepicker__clear-button {
     padding: 5px;
     background: #c3c7cc;
     font-size: .4rem;
@@ -629,7 +630,7 @@ body, html {
     top: 0;
     right: 10px;
     top: 14px;
-    i{
+    i {
       font-size: .4rem;
       color: white;
 
@@ -637,10 +638,40 @@ body, html {
   }
 }
 
-.pagination-select .multiselect__select{
+.pagination-select .multiselect__select {
   width: 60px;
 }
 
-.pagination-select  .multiselect--active .multiselect__tags{
+.pagination-select .multiselect--active .multiselect__tags {
   width: 200px;
+}
+
+.fc-day-header {
+  span {
+    color: #D8D8D8;
+  }
+}
+
+.fc-toolbar {
+  .fc-right {
+    button[aria-label="prev"] {
+      span {
+        font-family: 'icomoon' !important;
+        &:before {
+          content: "\e993";
+        }
+      }
+
+    }
+
+    button[aria-label="next"] {
+      span {
+        font-family: 'icomoon' !important;
+        &:before {
+          content: "\e98f";
+        }
+      }
+
+    }
+  }
 }

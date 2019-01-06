@@ -3,7 +3,7 @@
     -->
   <div class="">
     <Panel custom-class="relative px-3 py-4">
-      <div class="absolute flex items-center justify-center w-50 h-50 flex p-2 pin-t pin-r rounded-tr-lg bg-grey-lighter">
+      <div class="absolute flex items-center justify-center w-50 h-50 flex p-2 pin-t pin-r rounded-tr-lg bg-green-opac">
         <i :class="iconClasses" />
       </div>
       <div

@@ -82,7 +82,10 @@
               </span>
             </td>
             <td class="py-4 px-4 pl-2">
-              <button class="flex-1 text-xl  text-green-dark">
+              <button
+                class="flex-1 text-xl  text-green-dark"
+                @click="viewNotes(row.id)"
+              >
                 <i class="icon-Page_1_x40_2xpng_2" />
               </button>
             </td>
@@ -104,18 +107,31 @@
       @pagechanged="$emit('pagechanged', $event)"
       @perPage="$emit('perPage', $event)"
     />
+
+    <ViewNoteModal
+      :show-modal="showNotesModal"
+      :case-type="caseType"
+      :case-id="caseId"
+      @close="closeModalNote"
+    />
   </div>
 </template>
 
 
 <script>
 
+  import ViewNoteModal from './ViewNotesModal'
   export default {
     /**
      * all props have their needed types
      * and are passed using the mixin
      */
+    components:{ViewNoteModal},
     props: {
+      caseType:{
+        type: String,
+        required: true
+      },
       loading:{
         type: Boolean,
         default:false
@@ -151,6 +167,22 @@
         default: () => []
       }
     },
+    data(){
+      return{
+        caseId:0,
+        showNotesModal: false,
+      }
+    },
+    methods:{
+      viewNotes(caseId){
+        this.showNotesModal = true;
+        this.caseId = caseId;
+      },
+      closeModalNote(){
+        this.showNotesModal = false;
+
+      }
+    }
   }
 </script>
 

@@ -3186,6 +3186,14 @@
   margin-left: 1px;
 }
 
+.max-h-400 {
+  max-height: 400px;
+}
+
+.max-h-500 {
+  max-height: 500px;
+}
+
 .max-h-680 {
   max-height: 680px;
 }
@@ -8969,6 +8977,14 @@
     margin-left: 1px;
   }
 
+  .sm\:max-h-400 {
+    max-height: 400px;
+  }
+
+  .sm\:max-h-500 {
+    max-height: 500px;
+  }
+
   .sm\:max-h-680 {
     max-height: 680px;
   }
@@ -14735,6 +14751,14 @@
 
   .md\:ml-px {
     margin-left: 1px;
+  }
+
+  .md\:max-h-400 {
+    max-height: 400px;
+  }
+
+  .md\:max-h-500 {
+    max-height: 500px;
   }
 
   .md\:max-h-680 {
@@ -20505,6 +20529,14 @@
     margin-left: 1px;
   }
 
+  .lg\:max-h-400 {
+    max-height: 400px;
+  }
+
+  .lg\:max-h-500 {
+    max-height: 500px;
+  }
+
   .lg\:max-h-680 {
     max-height: 680px;
   }
@@ -26273,6 +26305,14 @@
     margin-left: 1px;
   }
 
+  .xl\:max-h-400 {
+    max-height: 400px;
+  }
+
+  .xl\:max-h-500 {
+    max-height: 500px;
+  }
+
   .xl\:max-h-680 {
     max-height: 680px;
   }
@@ -32039,6 +32079,14 @@
 
   .hd\:ml-px {
     margin-left: 1px;
+  }
+
+  .hd\:max-h-400 {
+    max-height: 400px;
+  }
+
+  .hd\:max-h-500 {
+    max-height: 500px;
   }
 
   .hd\:max-h-680 {
@@ -39315,7 +39363,7 @@ table.scrollable-fixed-header thead th {
 }
 
 .content {
-  max-width: calc(100% - 200px) !important;
+  max-width: calc(100% - 250px) !important;
 }
 
 body,

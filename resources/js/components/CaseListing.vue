@@ -13,6 +13,7 @@
       <Datatable
         v-if="!loading"
         :header="headers"
+        :case-type="type"
         :rows="rows"
         :pagination="pagination"
         :sorting="sorting"

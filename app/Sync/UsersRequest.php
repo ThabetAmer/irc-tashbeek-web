@@ -1,8 +1,6 @@
 <?php namespace App\Sync;
 
-use GuzzleHttp\Client;
-
-class DataRequest
+class UsersRequest
 {
     /**
      * @var \GuzzleHttp\Client
@@ -12,7 +10,7 @@ class DataRequest
     /**
      * @var string
      */
-    protected $url = 'https://www.commcarehq.org/a/billy-excerpt/api/v0.5/case/';
+    protected $url = 'https://www.commcarehq.org/a/billy-excerpt/api/v0.5/web-user/';
 
     protected $whiteListParams = [
         'type',
@@ -35,10 +33,8 @@ class DataRequest
      * @param array $params
      * @return mixed
      */
-    public function data($caseType, array $params = [])
+    public function data(array $params = [])
     {
-        $params['type'] = $caseType;
-
         $url = $this->url . '?' . $this->buildParamsHttpQuery($params);
 
         $response = $this->client->get($url, [

@@ -45,8 +45,6 @@
 
 <script>
   import {get as getNotes} from '../api/noteAPI'
-  import Vue from 'vue'
-
   export default {
 
     mixins: [],

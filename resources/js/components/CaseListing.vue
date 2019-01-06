@@ -20,9 +20,30 @@
         @pagechanged="loadData({page: $event})"
         @perPage="loadData({perPage: $event})"
         @sort="handleSort($event, loadData)"
-      />
+      >
+        <td
+          slot="extra"
+          slot-scope="{row}"
+        >
+          <button
+            class="flex-1 text-xl  text-green-dark"
+            @click="viewNotes(row.id)"
+          >
+            <i class="icon-Page_1_x40_2xpng_2" />
+          </button>
+        </td>
+      </Datatable>
+
       <PageLoader v-else />
     </Panel>
+
+    <ViewNoteModal
+      v-if="caseId"
+      :show-modal="showNotesModal"
+      :case-type="type"
+      :case-id="caseId"
+      @close="closeModalNote"
+    />
   </div>
 </template>
 
@@ -42,6 +63,8 @@
     },
     data() {
       return {
+        caseId:0,
+        showNotesModal: false,
         loading: false,
         rows: [],
         headers: [],
@@ -110,6 +133,15 @@
 
         history.pushState({}, document.title, url);
       },
+
+      viewNotes(caseId){
+        this.showNotesModal = true;
+        this.caseId = caseId;
+      },
+      closeModalNote(){
+        this.showNotesModal = false;
+
+      }
     }
   }
 </script>

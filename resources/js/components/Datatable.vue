@@ -4,7 +4,9 @@
       v-if="rows.length > 0"
       class="table-container-main overflow-auto pl-2 mb-2"
     >
-      <table :class="[`main-table w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']">
+      <table
+        :class="[`main-table w-full text-left`,{'table-striped' : striped,'scrollable-fixed-header' : fixedHeader} ,'mb-8']"
+      >
         <thead>
           <tr class="font-bold text-green-theme">
             <th
@@ -81,14 +83,11 @@
                 {{ row[head.name] }}
               </span>
             </td>
-            <td class="py-4 px-4 pl-2">
-              <button
-                class="flex-1 text-xl  text-green-dark"
-                @click="viewNotes(row.id)"
-              >
-                <i class="icon-Page_1_x40_2xpng_2" />
-              </button>
-            </td>
+
+            <slot
+              :row="row"
+              name="extra"
+            />
           </tr>
         </tbody>
       </table>
@@ -107,34 +106,32 @@
       @pagechanged="$emit('pagechanged', $event)"
       @perPage="$emit('perPage', $event)"
     />
-
-    <ViewNoteModal
-      :show-modal="showNotesModal"
-      :case-type="caseType"
-      :case-id="caseId"
-      @close="closeModalNote"
-    />
   </div>
 </template>
 
 
 <script>
 
-  import ViewNoteModal from './ViewNotesModal'
   export default {
     /**
      * all props have their needed types
      * and are passed using the mixin
      */
-    components:{ViewNoteModal},
     props: {
-      caseType:{
-        type: String,
-        required: true
+      extraOptions: {
+        type: Object,
+        default: () => {
+          return {
+            icon: '',
+            text: 'icon-Page_1_x40_2xpng_2',
+            callback: 'view-notes'
+          }
+
+        }
       },
-      loading:{
+      loading: {
         type: Boolean,
-        default:false
+        default: false
       },
       fixedHeader: {
         type: Boolean,
@@ -149,10 +146,9 @@
           currentPage: 1
         })
       },
-      sorting:{
-        type:Object,
-        default: () => ({
-        })
+      sorting: {
+        type: Object,
+        default: () => ({})
       },
       striped: {
         type: Boolean,
@@ -167,20 +163,9 @@
         default: () => []
       }
     },
-    data(){
-      return{
-        caseId:0,
-        showNotesModal: false,
-      }
-    },
     methods:{
-      viewNotes(caseId){
-        this.showNotesModal = true;
-        this.caseId = caseId;
-      },
-      closeModalNote(){
-        this.showNotesModal = false;
-
+      extraClicked(row){
+        this.$emit(this.extraOptions.callback,row.id);
       }
     }
   }

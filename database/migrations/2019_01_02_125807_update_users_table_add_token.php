@@ -34,9 +34,13 @@ class UpdateUsersTableAddToken extends Migration
 
     protected function refreshUsersToken()
     {
-        foreach(\App\Models\User::all() as $user){
-            $user->api_token = \Illuminate\Support\Str::random(50);
-            $user->save();
+        try{
+            foreach(\App\Models\User::all() as $user){
+                $user->api_token = \Illuminate\Support\Str::random(50);
+                $user->save();
+            }
+        }catch(\Throwable $e){
+            // Deleted_at is not exists since we added it later.
         }
     }
 }

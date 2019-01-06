@@ -20,7 +20,7 @@ class NoteResource extends Resource
             'user' => $this->user,
             'type' => $this->type,
             'created_at' => $this->created_at->toDateTimeString(),
-            'created_at_text' => $this->created_at->diffForHumans(),
+            'created_at_text' => $this->created_at->format('l d F'),
         ];
     }
 }

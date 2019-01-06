@@ -26,27 +26,40 @@ class UserRequest extends FormRequest
 
         $isUpdate = $this->getMethod() == 'POST' ? false : true;
 
+        if ($this->getMethod() == 'POST' or $this->getMethod() == 'PUT') {
+            $rules = [
+                'name' => 'required|string',
+                'email' => $this->emailValidation($isUpdate),
+                'password' => $this->passwordValidation($isUpdate),
+                'profile_picture' => 'image|nullable',
+            ];
+        }
 
-
-        $rules = [
-            'name' => 'required|string',
-            'email' => $this->emailValidation($isUpdate),
-            'password' => 'required|confirmed',
-            'profile_picture' => 'image|nullable',
-        ];
-
-        return $rules;
+        return $rules ?? [];
     }
 
 
     private function emailValidation($isUpdate)
     {
-        if($isUpdate){
+        if ($isUpdate) {
             $user = $this->route('user');
-            return 'required|email|unique:users,'.$user->id;
+            return 'required|email|unique:users,email,' . $user->id;
         }
 
         return 'required|email|unique:users';
+    }
+
+    private function passwordValidation($isUpdate)
+    {
+        if ($isUpdate) {
+            if ($this->get('password', null)) {
+                return 'confirmed';
+            }
+            return '';
+        }
+
+        return 'required|confirmed';
+
     }
 
 }

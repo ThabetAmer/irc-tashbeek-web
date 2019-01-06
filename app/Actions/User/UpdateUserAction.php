@@ -17,11 +17,14 @@ class UpdateUserAction
      */
     public function update(User $user, $data)
     {
-        $user = $user->update($data);
+        $user->update($data);
         $collectionName = 'profile_picture';
         try {
-            $user->deleteFile($user->id, User::class, $collectionName);
-            $user->saveAttachments('profile_picture', $collectionName);
+            if (request()->hasFile('profile_picture')) {
+                $user->deleteFile($user->id, User::class, $collectionName);
+                $user->saveAttachments('profile_picture', $collectionName);
+            }
+
         } catch (\Exception $exception) {
 
         }

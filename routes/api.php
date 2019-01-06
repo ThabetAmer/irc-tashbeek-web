@@ -24,7 +24,16 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('case-notes/{caseType}/{id}', 'CaseNotesController@index')->name('case-notes.index');
     Route::post('case-notes/{caseType}/{id}', 'CaseNotesController@store')->name('case-notes.create');
+
+    Route::resource('user', 'UserController');
+
+    Route::group(['prefix' => 'user'], function () {
+        Route::post('{user}/activate', 'UserController@activate');
+        Route::post('{user}/deactivate', 'UserController@deactivate');
+    });
+
 });
+
 
 
 Route::group([

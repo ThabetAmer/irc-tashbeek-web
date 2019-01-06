@@ -76,7 +76,9 @@
       </li>
 
       <li class="ml-auto flex items-center pagination-select">
-        <div class="mr-2">Rows per page: </div>
+        <div class="mr-2">
+          Rows per page:
+        </div>
         <div>
           <custom-select
             :options="perPageOptions"
@@ -88,7 +90,6 @@
         </div>
       </li>
     </ul>
-
   </div>
 </template>
 <script>

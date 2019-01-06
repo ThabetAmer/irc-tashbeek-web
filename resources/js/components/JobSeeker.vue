@@ -250,9 +250,9 @@
               v-for="note in notes"
               :id="note.id"
               :key="note.id"
-              :date="note.date"
-              :author="note.author"
-              :body="note.body"
+              :date="note.created_at"
+              :author="note.user.name"
+              :body="note.note"
               @noteStarred="changeStarredNote"
             />
             <!--<notebox></notebox>-->
@@ -299,12 +299,24 @@
           '            It has survived not only five centuries, but also the leap into electronic\n' +
           '            typesetting, remaining essentially unchanged',
         },
-        notes: [
-
-        ]
+        notes: []
       }
     },
+    created() {
+      this.getNotes();
+    },
     methods: {
+      getNotes() {
+        getNotes(this.jobSeeker.id)
+            .then(({data}) => {
+
+              console.log(' data is ', data);
+              this.notes = data.data;
+              // this.loading = false;
+            }).catch(error => {
+          console.log('Error : ', error);
+        });
+      },
       changeJobOpeningview(view) {
         this.jobOpeningView = view;
         if (view === 'notes') {
@@ -319,29 +331,17 @@
 
       },
       addNoteToList(noteText) {
-        this.notes.push({
-          id: 3,
-          body: noteText,
-          date: 'Wednesday 12 November',
-          author: 'Mohammad Karmi'
 
-        });
         addNote(this.jobSeeker.id, {note: noteText})
             .then(resp => {
               console.log(' postttt is ', resp);
+              this.notes.push(resp.data.note);
               // this.loading = false;
             }).catch(error => {
           console.log('Error : ', error);
         });
 
-        getNotes(this.jobSeeker.id)
-            .then(({data}) => {
 
-              console.log(' data is ', data);
-              // this.loading = false;
-            }).catch(error => {
-          console.log('Error : ', error);
-        });
       },
       changeStarredNote(note) {
         this.starredNote = note;

@@ -17,7 +17,7 @@ class NoteResource extends Resource
         return [
             'id' => $this->id,
             'note' => $this->note,
-            'user' => $this->whenLoaded('user'),
+            'user' => $this->user,
             'type' => $this->type,
             'created_at' => $this->created_at->toDateTimeString(),
             'created_at_text' => $this->created_at->diffForHumans(),

@@ -28,13 +28,14 @@ class CaseNotesController extends Controller
 
         $record = $case->query()->where('id',$id)->firstOrFail();
 
-        $record->addNote([
+        $note = $record->addNote([
             'note' => request('note'),
             'user_id' => auth()->id()
         ]);
 
         return response()->json([
             'message' => 'Note has been created.',
+            'note' => new NoteResource($note)
         ], 201);
     }
 

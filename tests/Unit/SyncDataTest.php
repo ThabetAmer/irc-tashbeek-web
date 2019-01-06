@@ -79,6 +79,33 @@ class SyncDataTest extends TestCase
 
     }
 
+
+    public function test_it_will_not_duplicated_followups()
+    {
+        // replace schedule to prevent test fail on changing the config
+        config(['case.job-seeker.followup_schedule' => [
+            '1_month' => '+1 Month',
+            '6_weeks' => '+6 Weeks',
+            '3_months' => '+3 Month',
+            '6_months' => '+6 Months'
+        ]]);
+
+        $this->syncUsers();
+
+        $this->syncCaseData('job-seeker');
+
+        $jobSeeker = JobSeeker::first();
+
+        $this->assertCount(count(config('case.job-seeker.followup_schedule')), $jobSeeker->followups);
+
+        $this->syncCaseData('job-seeker');
+
+        $jobSeeker = JobSeeker::first();
+
+        $this->assertCount(count(config('case.job-seeker.followup_schedule')), $jobSeeker->followups);
+
+    }
+
     protected function syncCaseData($type)
     {
 

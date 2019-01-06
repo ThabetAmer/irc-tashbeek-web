@@ -27,4 +27,9 @@ class Firm extends Model implements SyncableInterface
     {
         $builder->where('commcare_id', $commCareId);
     }
+
+    public function displayName()
+    {
+        return $this->job_title;
+    }
 }

@@ -24,4 +24,9 @@ class JobSeeker extends Model implements SyncableInterface
     {
         $builder->where('commcare_id', $commCareId);
     }
+
+    public function displayName()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 }

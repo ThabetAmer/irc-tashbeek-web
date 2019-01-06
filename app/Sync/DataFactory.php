@@ -167,12 +167,17 @@ class DataFactory
         }
 
         foreach(config('case.job-seeker.followup_schedule') as $key => $schedule){
-            $model->followups()->create([
-                'followup_date' => \Carbon\Carbon::parse($model->opened_at)->modify($schedule)->toDateTimeString(),
-                'followup_period' => $key,
-                'type' => 'scheduled',
-                'user_id' => $model->user_id,
-            ]);
+
+            $followUp = $model->followups()->where('type','scheduled')->where('followup_period',$key)->first();
+
+            if(!$followUp){
+                $model->followups()->create([
+                    'followup_date' => \Carbon\Carbon::parse($model->opened_at)->modify($schedule)->toDateTimeString(),
+                    'followup_period' => $key,
+                    'type' => 'scheduled',
+                    'user_id' => $model->user_id,
+                ]);
+            }
         }
     }
 }

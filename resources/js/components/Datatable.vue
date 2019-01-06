@@ -118,17 +118,6 @@
      * and are passed using the mixin
      */
     props: {
-      extraOptions: {
-        type: Object,
-        default: () => {
-          return {
-            icon: '',
-            text: 'icon-Page_1_x40_2xpng_2',
-            callback: 'view-notes'
-          }
-
-        }
-      },
       loading: {
         type: Boolean,
         default: false
@@ -163,11 +152,6 @@
         default: () => []
       }
     },
-    methods:{
-      extraClicked(row){
-        this.$emit(this.extraOptions.callback,row.id);
-      }
-    }
   }
 </script>
 

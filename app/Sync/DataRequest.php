@@ -1,34 +1,11 @@
 <?php namespace App\Sync;
 
-use GuzzleHttp\Client;
-
-class DataRequest
+class DataRequest extends Request
 {
-    /**
-     * @var \GuzzleHttp\Client
-     */
-    protected $client;
-
     /**
      * @var string
      */
     protected $url = 'https://www.commcarehq.org/a/billy-excerpt/api/v0.5/case/';
-
-    protected $whiteListParams = [
-        'type',
-        'limit',
-        'offset',
-        'page'
-    ];
-
-    /**
-     * StructureRequest constructor.
-     * @param \GuzzleHttp\Client $client
-     */
-    public function __construct(\GuzzleHttp\Client $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * @param $caseType
@@ -39,33 +16,7 @@ class DataRequest
     {
         $params['type'] = $caseType;
 
-        $url = $this->url . '?' . $this->buildParamsHttpQuery($params);
-
-        $response = $this->client->get($url, [
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Authorization' => "ApiKEY " . config('irc.commcare_api_key')
-            ]
-        ]);
-
-        $responseContents = $response->getBody()->getContents();
-
-        $responseContents = json_decode($responseContents, true);
-
-        return $responseContents;
-    }
-
-    protected function buildParamsHttpQuery($params)
-    {
-        $params['limit'] = array_get($params, 'limit') ?? 80;
-
-        $params['page'] = array_get($params, 'page') ?? 1;
-        $page = $params['page'];
-        unset($params['page']);
-
-        $params['offset'] = array_get($params, 'offset') ?? ($page - 1) * $params['limit'];
-
-        return http_build_query($params);
+        return $this->send($params);
     }
 }
 

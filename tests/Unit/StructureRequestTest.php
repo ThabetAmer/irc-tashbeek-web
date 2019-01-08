@@ -18,14 +18,13 @@ class StructureRequestTest extends TestCase
         $responseMock = \Mockery::mock(\GuzzleHttp\Psr7\Response::class);
         $streamMock = \Mockery::mock(\GuzzleHttp\Psr7\Stream::class);
 
-        $url = 'https://www.commcarehq.org/a/billy-excerpt/api/v0.5/application/c61e28d4cb837ae011d1d0ea2ddd2dba';
+        $url = 'https://www.commcarehq.org/a/billy-excerpt/api/v0.5/application/c61e28d4cb837ae011d1d0ea2ddd2dba?limit=80&offset=0';
 
         $mock->shouldReceive('get')->with($url,[
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Authorization' => "ApiKEY " . config("irc.commcare_api_key")
             ],
-            ['verify' => false]
         ])->andReturn($responseMock);
 
         $responseMock->shouldReceive('getBody')->andReturn($streamMock);

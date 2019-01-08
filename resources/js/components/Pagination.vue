@@ -80,7 +80,7 @@
           Rows per page:
         </div>
         <div>
-          <custom-select
+          <CustomSelect
             :options="perPageOptions"
             track-by="value"
             placeholder="rows per page"

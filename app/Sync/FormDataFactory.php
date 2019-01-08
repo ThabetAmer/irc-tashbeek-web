@@ -113,7 +113,6 @@ class FormDataFactory
      */
     protected function getFormIdFromXmlns($xmlns)
     {
-
         $segments = explode('/', parse_url($xmlns)['path']);
 
         return end($segments);

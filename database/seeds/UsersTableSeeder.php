@@ -25,12 +25,13 @@ class UsersTableSeeder extends Seeder
         ]);
     }
 
-    protected function createUser(array $user ){
+    protected function createUser(array $user)
+    {
 
         $tashbeekUser = User::where('email', $user['email'])->first();
 
         if ($tashbeekUser) {
-            return ;
+            return;
         }
 
         User::query()->insert($user);

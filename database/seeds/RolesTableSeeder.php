@@ -16,22 +16,23 @@ class RolesTableSeeder extends Seeder
 
         Role::query()->insert([
             [
-                'name' => 'system_admin',
+                'name' => 'System Administrator',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'project_match_admin',
+                'name' => 'Project Match Admin',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'eso',
+                'name' => 'Employment Service Officer (ESO)',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'esso',
+                'name' => 'Employment Senior Service Officer (ESSO)',
                 'guard_name' => 'web'
             ],
         ]);
+
 
     }
 

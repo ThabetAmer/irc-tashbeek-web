@@ -10,15 +10,16 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 
-class UserTest extends TestCase
+class CreateUserTest extends TestCase
 {
     use RefreshDatabase;
 
 
     public function test_name_is_required()
     {
+        $this->loginApi();
 
-        $response = $this->post('/user', []);
+        $response = $this->post('api/user', []);
 
         $response->assertStatus(302);
 
@@ -29,7 +30,9 @@ class UserTest extends TestCase
 
     public function test_email_is_required()
     {
-        $response = $this->post('/user', []);
+        $this->loginApi();
+
+        $response = $this->post('api/user', []);
 
         $response->assertStatus(302);
 
@@ -39,9 +42,11 @@ class UserTest extends TestCase
 
     public function test_email_is_unique_in_create()
     {
+        $this->loginApi();
+
         factory(User::class)->create(['email' => 'sehweil@gmail.com']);
 
-        $this->json('POST', '/user', ['email' => 'sehweil@gmail.com'])
+        $this->json('POST', 'api/user', ['email' => 'sehweil@gmail.com'])
             ->assertStatus(422)
             ->assertJsonValidationErrors(['email']);
 
@@ -49,8 +54,9 @@ class UserTest extends TestCase
 
     public function test_password_is_required()
     {
+        $this->loginApi();
 
-        $this->json('POST', '/user', ['password' => null])
+        $this->json('POST', 'api/user', ['password' => null])
             ->assertStatus(422)
             ->assertJsonValidationErrors(['password']);
 
@@ -59,16 +65,18 @@ class UserTest extends TestCase
 
     public function test_password_confirmation_is_required()
     {
+        $this->loginApi();
 
-        $this->json('POST', '/user', ['password_confirmation' => null])
+        $this->json('POST', 'api/user', ['password_confirmation' => null])
             ->assertStatus(422)
             ->assertJsonValidationErrors(['password']);
     }
 
     public function test_password_confirmation_and_password_not_matched()
     {
+        $this->loginApi();
 
-        $this->json('POST', '/user', [
+        $this->json('POST', 'api/user', [
             'password' => 'password_1',
             'password_confirmation' => 'password_2',
         ])
@@ -79,6 +87,7 @@ class UserTest extends TestCase
 
     public function test_check_if_password_saved_encrypted()
     {
+        $this->loginApi();
 
         $data = [
             'name' => 'Mohammed',
@@ -88,15 +97,19 @@ class UserTest extends TestCase
 
         ];
 
-        $this->json('POST', '/user', $data);
+        $this->json('POST', 'api/user', $data);
 
-        $user = User::find(1);
+        $user = User::query()->where('email', $data['email'])->first();  // instead of using User::find(2)
 
+        $this->assertNotNull($user);
         $this->assertTrue(Hash::check($data['password'], $user->password));
     }
 
     public function test_profile_picture_uploaded_successfully()
     {
+
+        $this->loginApi();
+
         Storage::fake('upload');
 
         $data = [
@@ -107,7 +120,7 @@ class UserTest extends TestCase
             'profile_picture' => UploadedFile::fake()->image('avatar.jpg')
         ];
 
-        $this->json('POST', '/user', $data);
+        $this->json('POST', 'api/user', $data);
         Storage::disk('upload')->assertExists('/1/avatar.jpg');
 
     }
@@ -115,6 +128,8 @@ class UserTest extends TestCase
 
     public function test_profile_picture_if_empty()
     {
+        $this->loginApi();
+
         Storage::fake('upload');
 
         $data = [
@@ -125,7 +140,7 @@ class UserTest extends TestCase
             'profile_picture' => null
         ];
 
-        $this->json('POST', '/user', $data);
+        $this->json('POST', 'api/user', $data);
 
         $user = User::find(1);
         $this->assertNull($user->profile_picture);
@@ -134,6 +149,8 @@ class UserTest extends TestCase
 
     public function test_create_user()
     {
+        $this->loginApi();
+
         $data = [
             'name' => 'Mohammed',
             'email' => 'sehweil@gmail.com',
@@ -142,7 +159,7 @@ class UserTest extends TestCase
 
         ];
 
-        $response = $this->json('POST', '/user', $data);
+        $response = $this->json('POST', 'api/user', $data);
 
         $response
             ->assertStatus(200)
@@ -151,7 +168,6 @@ class UserTest extends TestCase
             ]);
 
 
-        $this->assertCount(1, User::all());
         $this->assertDatabaseHas('users', array_except($data, ['password_confirmation', 'password']));
     }
 

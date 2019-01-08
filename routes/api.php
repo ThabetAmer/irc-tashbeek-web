@@ -28,6 +28,14 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('upcoming-followups/counts', 'UpcomingFollowupsController@counts')->name('api.upcoming-followups.counts');
 
 
+
+    Route::resource('user', 'UserController');
+
+    Route::group(['prefix' => 'user'], function () {
+        Route::post('{user}/activate', 'UserController@activate');
+        Route::post('{user}/deactivate', 'UserController@deactivate');
+    });
+
 });
 
 

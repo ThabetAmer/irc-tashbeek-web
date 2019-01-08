@@ -16,8 +16,7 @@ class CreateUserAction
      */
     public function create($data)
     {
-        $user = User::query()
-            ->create($data);
+        $user = User::query()->create($data);
 
         try {
             $user->saveAttachments('profile_picture', 'profile_picture');

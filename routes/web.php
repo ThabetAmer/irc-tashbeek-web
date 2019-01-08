@@ -13,17 +13,17 @@
 
 Auth::routes();
 
-Route::group(['middleware' => ['web','auth']],function(){
-    Route::get('/','HomeController@index');
-    Route::get('/job-seekers','JobSeekerController@index');
-    Route::get('/job-seekers/{jobSeeker}','JobSeekerController@show');
+Route::group(['middleware' => ['web', 'auth']], function () {
+    Route::get('/', 'HomeController@index');
+    Route::get('/job-seekers', 'JobSeekerController@index');
+    Route::get('/job-seekers/{jobSeeker}', 'JobSeekerController@show');
 
 
-    Route::get('/firms','FirmController@index');
-    Route::get('/firms/{firm}','FirmController@show');
+    Route::get('/firms', 'FirmController@index');
+    Route::get('/firms/{firm}', 'FirmController@show');
 
 
-    Route::get('/job-openings','JobOpeningController@index');
+    Route::get('/job-openings', 'JobOpeningController@index');
 });
 
 //
@@ -36,10 +36,9 @@ Route::get('/dashboard', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('/dashboard', function (){
+Route::get('/dashboard', function () {
     return view('home');
 });
-
 
 
 Route::get('/firm', function () {
@@ -58,4 +57,3 @@ Route::get('/allFirms', function () {
     return view('allFirms');
 });
 
-Route::resource('user', 'UserController');

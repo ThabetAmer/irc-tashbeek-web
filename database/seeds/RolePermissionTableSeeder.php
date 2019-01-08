@@ -20,10 +20,10 @@ class RolePermissionTableSeeder extends Seeder
         $esso = $this->getRole('Employment Senior Service Officer (ESSO)');
 
 
-        $this->assignPermissionToRole($systemAdministratorRole, ['users_management', 'job-seekers', 'firms', 'job-opening-eso', 'job-opening-esso']);
-        $this->assignPermissionToRole($projectMatchAdmin, ['users_management']);
-        $this->assignPermissionToRole($eso, ['job-seekers', 'job-opening-eso']);
-        $this->assignPermissionToRole($esso, ['firms', 'job-opening-esso']);
+        $this->assignPermissionsToRole($systemAdministratorRole, ['users_management', 'job-seekers', 'firms', 'job-opening-eso', 'job-opening-esso']);
+        $this->assignPermissionsToRole($projectMatchAdmin, ['users_management']);
+        $this->assignPermissionsToRole($eso, ['job-seekers', 'job-opening-eso']);
+        $this->assignPermissionsToRole($esso, ['firms', 'job-opening-esso']);
     }
 
 
@@ -33,7 +33,7 @@ class RolePermissionTableSeeder extends Seeder
     }
 
 
-    private function assignPermissionToRole($role, $permissions)
+    private function assignPermissionsToRole($role, $permissions)
     {
         if (!$role) {
             return;

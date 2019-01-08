@@ -115,4 +115,11 @@ abstract class TestCase extends BaseTestCase
 
         var_dump($usage);
     }
+
+
+    protected function loginAsEso(){
+        $user =factory(User::class)->create();
+        $this->actingAs($user ?? factory(User::class)->create(),'api');
+    }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\JobSeekerRequest;
 use App\Models\JobSeeker;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class JobSeekerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(JobSeekerRequest $request)
     {
         return view('job-seeker.index');
     }
@@ -24,8 +25,8 @@ class JobSeekerController extends Controller
      * @param JobSeeker $jobSeeker
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(JobSeeker $jobSeeker)
+    public function show(JobSeekerRequest $request, JobSeeker $jobSeeker)
     {
-        return view('job-seeker.show',compact('jobSeeker'));
+        return view('job-seeker.show', compact('jobSeeker'));
     }
 }

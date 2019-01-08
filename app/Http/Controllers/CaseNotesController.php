@@ -9,6 +9,8 @@ class CaseNotesController extends Controller
 
     public function index($caseType, $id)
     {
+        abort_unless(auth()->user()->hasPermissionTo("notes.{$caseType}"), 403);
+
         $case = $this->getCaseModelOrFail($caseType);
 
         $record = $case->query()->where('id',$id)->firstOrFail();

@@ -44,6 +44,15 @@ class User extends Authenticatable implements HasMedia
 
     protected $appends = ['profile_picture'];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        parent::creating(function ($model) {
+            $model->api_token = \Illuminate\Support\Str::random(50);
+        });
+    }
+
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);

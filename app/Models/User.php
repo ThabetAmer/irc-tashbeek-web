@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\Permission\Traits\HasRoles;
 
 
 class User extends Authenticatable implements HasMedia
 {
-    use Notifiable, SoftDeletes, MediaFunctionality, Notifiable;
+    use Notifiable, SoftDeletes, MediaFunctionality, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.

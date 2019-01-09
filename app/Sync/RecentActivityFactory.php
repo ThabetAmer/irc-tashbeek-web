@@ -10,6 +10,18 @@ use App\Sync\QuestionHandler\DateHandler;
 
 class RecentActivityFactory
 {
+
+    const FORMS = [
+        'job-seeker-monthly-followup' => [
+            'case_type' => 'job-seeker',
+            'form_id' => '1C0909C3-286E-4EAA-BB12-79D5758366BE',
+        ],
+
+        'form-monthly-followup' => [
+            'case_type' => 'firm',
+            'form_id' => '192695F5-F1BE-431B-8DE7-4302C02AB020',
+        ],
+    ];
     /**
      * @var StructureRequest
      */
@@ -27,12 +39,31 @@ class RecentActivityFactory
     /**
      * Sync case data to database
      *
-     * @param null $caseType
+     * @param $form
      * @param int $page
      * @throws \Throwable
      */
-    public function make($caseType, $xmlns, $page = 1)
+    public function make($formName, $page = 1)
     {
+
+        if(!array_key_exists($formName,static::FORMS)){
+            throw new \InvalidArgumentException("$formName is invalid");
+        }
+
+        $form = static::FORMS[$formName];
+
+        if(!isset($form['case_type'])){
+            throw new \InvalidArgumentException("case_type is not exists in {$formName} definition.");
+        }
+
+        if(!isset($form['form_id'])){
+            throw new \InvalidArgumentException("form_id is not exists in {$formName} definition.");
+        }
+
+        $xmlns = $form['form_id'];
+
+        $caseType = $form['case_type'];
+
         $response = $this->request->data([
             'page' => $page,
             'xmlns' => 'http://openrosa.org/formdesigner/' . $xmlns
@@ -41,7 +72,7 @@ class RecentActivityFactory
         $this->saveItems($caseType, $response['objects']);
 
         if (!is_null($response['meta']['next'])) {
-            $this->make($caseType,$xmlns, $page + 1);
+            $this->make($form, $page + 1);
         }
     }
 

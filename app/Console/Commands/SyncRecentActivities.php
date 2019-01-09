@@ -12,7 +12,7 @@ class SyncRecentActivities extends Command
      *
      * @var string
      */
-    protected $signature = 'sync:activities';
+    protected $signature = 'sync:activities {form}';
 
     /**
      * The console command description.
@@ -38,8 +38,13 @@ class SyncRecentActivities extends Command
      */
     public function handle()
     {
-//        app(RecentActivityFactory::class)->make('job-seeker','1C0909C3-286E-4EAA-BB12-79D5758366BE');
-//        app(RecentActivityFactory::class)->make('job-seeker','6DD33B9C-B111-49E9-B4D0-F1B38736D9EC');
-        app(RecentActivityFactory::class)->make('firm','192695F5-F1BE-431B-8DE7-4302C02AB020');
+        $form = $this->argument('form');
+
+        if(!array_key_exists($form, RecentActivityFactory::FORMS)){
+            $this->error('{form} must be one of: [' . implode(', ', array_keys(RecentActivityFactory::FORMS)) . '].');
+            return ;
+        }
+
+        app(RecentActivityFactory::class)->make($form);
     }
 }

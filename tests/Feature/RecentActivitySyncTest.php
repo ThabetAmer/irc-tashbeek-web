@@ -2,18 +2,44 @@
 
 namespace Tests\Feature;
 
-use App\Models\JobSeeker;
 use App\Models\RecentActivity;
-use App\Sync\RecentActivityFactory;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Sync\RecentActivityFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
+use Tests\Fixtures\Classes\RecentActivityFactory as RecentActivityFactoryFixture;
 class RecentActivitySyncTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_sync_users()
+    public function test_it_throw_exception()
+    {
+
+        $this->expectException(\InvalidArgumentException::class);
+
+        app(RecentActivityFactory::class)->make(
+            'something-invalid'
+        );
+    }
+
+    public function test_it_throw_exception_on_missing_case_type()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        app(RecentActivityFactoryFixture::class)->make(
+            'missing_case_type'
+        );
+    }
+
+    public function test_it_throw_exception_on_missing_form_id()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        app(RecentActivityFactoryFixture::class)->make(
+            'missing_form_id'
+        );
+    }
+
+    public function test_it_sync_activities()
     {
         $this->syncStructure('job-seeker');
 
@@ -22,7 +48,7 @@ class RecentActivitySyncTest extends TestCase
         $this->mockFormRequest();
 
         app(RecentActivityFactory::class)->make(
-            'job-seeker', '1C0909C3-286E-4EAA-BB12-79D5758366BE'
+            'job-seeker-monthly-followup'
         );
 
         $this->assertCount(1, RecentActivity::all());

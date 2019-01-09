@@ -28,7 +28,6 @@
         <div class="px-2 flex-grow w-full">
           <Panel
             custom-class="min-h-630 pt-8 max-h-630 overflow-y-auto"
-            :has-title="hasTitle"
             title="Follow-ups"
           >
             <ul class=" list-reset border-0 custom-navs mb-4 absolute pin-r pin-t mt-4 mr-4">
@@ -43,7 +42,7 @@
                                             text-grey-dark text-2xl font-semibold"
                   :class="{active: viewType == 'calendar'}"
                 >
-                  <i class="icon-Calendar_2_x40_2xpng_2" />
+                  <i class="icon-Calendar_2_x40_2xpng_2"/>
                 </button>
               </li>
               <li
@@ -61,13 +60,14 @@
                 </button>
               </li>
             </ul>
+
             <div class="tab-content">
               <div
                 v-if="viewType =='calendar'"
                 id="calendarTab"
                 class="tab-pane fade in active show "
               >
-                <div class="calendar pr-24">
+                <div class="calendar xl:pr-24">
                   <FullCalendar
                     ref="fullCalendar"
                     :events="events"
@@ -78,29 +78,26 @@
 
                 <div class="selected-day mt-4">
                   <EmptyState
-                    v-if="!daySelected"
+                    v-if="!daySelected && !loading"
                     icon="icon-Calendar_1_x40_2xpng_2 text-5xl mt-3 block"
                     message="No date selected"
                     custom-class="mt-5 min-h-200 text-lg"
                   />
-                  <!--<div-->
-                  <!---->
-                  <!--class="selected-day-content text-grey-dark text-lg"-->
-                  <!--&gt;-->
-                  <!--No date selected-->
-                  <!--</div>-->
+                  <PageLoader
+                    v-else-if="loading"
+                    message="Events are being loaded!"
+                  />
 
                   <div v-else>
                     <Panel
-                      has-title="`true`"
                       :title="selectedDate"
                       custom-class="bg-transparent border-transparent border-0"
                     >
                       <Datatable
                         :fixed-header="true"
-                        :has-pagination="hasFilters"
-                        :has-filters="hasFilters"
-                        :striped="hasFilters"
+                        :has-pagination="true"
+                        :has-filters="false"
+                        :striped="false"
                       />
                     </Panel>
                   </div>
@@ -114,8 +111,8 @@
               >
                 <Datatable
                   :fixed-header="true"
-                  :has-filters="hasFilters"
-                  :has-pagination="hasFilters"
+                  :has-filters="false"
+                  :has-pagination="false"
                 />
               </div>
             </div>
@@ -164,6 +161,8 @@
 <script>
   import moment from 'moment';
   import {FullCalendar} from 'vue-full-calendar'
+  import {upcomingFollowups as getFollowups} from '../API/followupAPI'
+  import {upcomingFollowupsCount as getCounts} from '../API/followupAPI'
 
   export default {
     components: {
@@ -173,7 +172,34 @@
     props: {},
     data() {
       return {
+        tableHeaders: [
+          {
+            name: "followup_type",
+            translations: {
+              ara: "نوع المتابعة",
+              en: "Type"
+            }
+
+          },
+          {
+            name: "followup_type",
+            translations: {
+              ara: "نوع المتابعة",
+              en: "Type"
+            }
+
+          }
+        ],
+        loading: false,
         viewType: 'calendar',
+        events: [
+          {
+            title: 1,
+            start: "2019-01-9"
+          }
+        ],
+        followups: [],
+        selectedFollowups: [],
         recentActivity: [
           {
             date: 'Wednesday 14 November',
@@ -258,8 +284,6 @@
         ],
         selectedDate: '',
         daySelected: false,
-        hasFilters: false,
-        hasPagination: false,
         hasTitle: true,
         config: {
           editable: false,
@@ -288,31 +312,16 @@
           eventRender: function (event, element) {
 
           },
+          viewRender: function (view, el) {
+            console.log(' view si ', view, ' el is ', el);
+            console.log('hhh', view, ' el is ', el);
+            this.getCounts(view.calendar.currentDate.format("YYYY-MM"));
+          }.bind(this),
           unselect: function (view, el) {
             this.dayUnselected(view, el);
           }.bind(this)
         },
-        events: [
-          {
-            title: 'event1',
-            start: '2018-12-12',
-          },
-          {
-            title: 'event2',
-            start: '2018-12-12',
-          },
-          {
-            title: 'event3',
-            start: '2018-12-14',
-          },
-          {
-            title: 'event3',
-            start: '2018-12-14',
-          }, {
-            title: 'event3',
-            start: '2018-12-14',
-          },
-        ]
+
       }
     },
     computed: {},
@@ -320,22 +329,43 @@
     created() {
     },
     mounted() {
-
     },
     methods: {
+      getCounts(date) {
+        this.loading = true;
+        this.events = [];
+        getCounts(date)
+            .then(resp => {
+              this.counts = resp.data.data;
+              this.counts.forEach(day => {
+                this.events.push({
+                  start: day.followup_date,
+                  title: day.followup_count,
+                  className: moment().diff(moment(day.followup_date), 'days') > 0 ? 'past' : 'future',
+                })
+              });
+              this.loading = false;
+            })
+            .catch(error => {
+              console.log('error');
+            });
+      },
       clickCal() {
         this.viewType = 'calendar';
-        // console.log('view type is ', this.viewType, ' cal is ', this.$refs.fullCalendar);
-        // this.$re
-        // this.$refs.fullCalendar.$forceUpdate();
-
       },
       dayClicked: function (date, jsEvent, view) {
-        // this.$parent.$emit('dayClicked', date);
-        console.log('daaay clicked');
         this.daySelected = true;
         let selectedString = moment(date, "DD MMMM");
         this.selectedDate = selectedString.format("DD MMMM");
+        this.loading = true;
+        getFollowups(selectedString.format('YYYY-MM-DD'))
+            .then(resp => {
+              this.followups = resp.data.data;
+              this.loading = false;
+
+            })
+            .catch(error => {
+            });
 
 
       },

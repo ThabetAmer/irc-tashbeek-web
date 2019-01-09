@@ -19,7 +19,7 @@ class CreateUserTest extends TestCase
     {
         $this->loginApi();
 
-        $response = $this->post('api/user', []);
+        $response = $this->post('api/users', []);
 
         $response->assertStatus(302);
 
@@ -32,7 +32,7 @@ class CreateUserTest extends TestCase
     {
         $this->loginApi();
 
-        $response = $this->post('api/user', []);
+        $response = $this->post('api/users', []);
 
         $response->assertStatus(302);
 
@@ -46,7 +46,7 @@ class CreateUserTest extends TestCase
 
         factory(User::class)->create(['email' => 'sehweil@gmail.com']);
 
-        $this->json('POST', 'api/user', ['email' => 'sehweil@gmail.com'])
+        $this->json('POST', 'api/users', ['email' => 'sehweil@gmail.com'])
             ->assertStatus(422)
             ->assertJsonValidationErrors(['email']);
 
@@ -56,7 +56,7 @@ class CreateUserTest extends TestCase
     {
         $this->loginApi();
 
-        $this->json('POST', 'api/user', ['password' => null])
+        $this->json('POST', 'api/users', ['password' => null])
             ->assertStatus(422)
             ->assertJsonValidationErrors(['password']);
 
@@ -67,7 +67,7 @@ class CreateUserTest extends TestCase
     {
         $this->loginApi();
 
-        $this->json('POST', 'api/user', ['password_confirmation' => null])
+        $this->json('POST', 'api/users', ['password_confirmation' => null])
             ->assertStatus(422)
             ->assertJsonValidationErrors(['password']);
     }
@@ -76,7 +76,7 @@ class CreateUserTest extends TestCase
     {
         $this->loginApi();
 
-        $this->json('POST', 'api/user', [
+        $this->json('POST', 'api/users', [
             'password' => 'password_1',
             'password_confirmation' => 'password_2',
         ])
@@ -97,7 +97,7 @@ class CreateUserTest extends TestCase
 
         ];
 
-        $this->json('POST', 'api/user', $data);
+        $this->json('POST', 'api/users', $data);
 
         $user = User::query()->where('email', $data['email'])->first();  // instead of using User::find(2)
 
@@ -120,7 +120,7 @@ class CreateUserTest extends TestCase
             'profile_picture' => UploadedFile::fake()->image('avatar.jpg')
         ];
 
-        $this->json('POST', 'api/user', $data);
+        $this->json('POST', 'api/users', $data);
         Storage::disk('upload')->assertExists('/1/avatar.jpg');
 
     }
@@ -140,7 +140,7 @@ class CreateUserTest extends TestCase
             'profile_picture' => null
         ];
 
-        $this->json('POST', 'api/user', $data);
+        $this->json('POST', 'api/users', $data);
 
         $user = User::find(1);
         $this->assertNull($user->profile_picture);
@@ -159,7 +159,7 @@ class CreateUserTest extends TestCase
 
         ];
 
-        $response = $this->json('POST', 'api/user', $data);
+        $response = $this->json('POST', 'api/users', $data);
 
         $response
             ->assertStatus(200)

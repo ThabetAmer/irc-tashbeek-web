@@ -22,7 +22,7 @@ class ChangeStatusUserTest extends TestCase
 
         $user = $this->createUser('deactivated');
 
-        $this->post('api/user/' . $user->id . '/activate')
+        $this->post('api/users/' . $user->id . '/activate')
             ->assertStatus(200);
 
         $user = $user->fresh();
@@ -39,7 +39,7 @@ class ChangeStatusUserTest extends TestCase
 
         $user = $this->createUser();
 
-        $this->post('api/user/' . $user->id . '/deactivate')
+        $this->post('api/users/' . $user->id . '/deactivate')
             ->assertStatus(200);
 
         $user = $user->fresh();

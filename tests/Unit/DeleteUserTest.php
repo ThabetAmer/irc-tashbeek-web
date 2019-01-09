@@ -22,8 +22,9 @@ class DeleteUserTest extends TestCase
 
         $this->loginApi($user);
 
-        $this->delete('api/user/' . $user->id)
+        $this->delete('api/users/' . $user->id)
             ->assertStatus(200);
+
 
         $this->assertNull(User::find(1));
         $this->assertNotNull(User::withTrashed()->find(1));

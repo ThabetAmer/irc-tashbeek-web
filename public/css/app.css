@@ -39514,3 +39514,8 @@ html {
 .fc-day-grid .fc-row:first-child .fc-highlight:after {
   top: 7px;
 }
+
+.toasted i {
+  margin-right: 5px;
+  font-size: 16px;
+}

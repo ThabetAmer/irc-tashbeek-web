@@ -13,10 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('cases/{caseType}', 'ResponseApiController@index');
@@ -29,7 +25,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
 
 
-    Route::resource('user', 'UserController');
+    Route::resource('users', 'UserController');
 
     Route::group(['prefix' => 'user'], function () {
         Route::post('{user}/activate', 'UserController@activate');

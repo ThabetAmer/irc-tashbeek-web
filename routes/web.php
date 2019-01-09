@@ -20,6 +20,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
 
     Route::get('/firms', 'FirmController@index');
+    Route::get('/users', 'UserControllerView@index');
     Route::get('/firms/{firm}', 'FirmController@show');
 
 

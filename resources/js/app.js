@@ -38,6 +38,7 @@ Vue.component('Firm',require('./components/Firm.vue').default);
 Vue.component('CaseListing',require('./components/CaseListing.vue').default);
 Vue.component('SeekerProfile',require('./components/JobSeeker.vue').default);
 Vue.component('JobSeeker',require('./components/JobSeeker.vue').default);
+Vue.component('UserListing',require('./components/UserListing.vue').default);
 
 // UI components
 Vue.component('Btn',require('./components/Button.vue').default);

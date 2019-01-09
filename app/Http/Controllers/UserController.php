@@ -21,8 +21,8 @@ class UserController extends Controller
     public function index()
     {
         $users = app(UsersList::class)->get();
-
         return UserResource::collection($users);
+//        return view('users',compact('users'));
     }
 
     public function create()

@@ -36,6 +36,8 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('{user}/deactivate', 'UserController@deactivate');
     });
 
+    Route::get('roles', 'RoleController@index');
+
     Route::get('cards', 'CardsController@index');
 
 });

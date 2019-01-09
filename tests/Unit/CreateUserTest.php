@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -170,5 +171,26 @@ class CreateUserTest extends TestCase
 
         $this->assertDatabaseHas('users', array_except($data, ['password_confirmation', 'password']));
     }
+
+    public function test_user_roles()
+    {
+        $this->loginApi();
+
+        $data = [
+            'name' => 'Mohammed',
+            'email' => 'ali@gmail.com',
+            'password' => 'sehweil',
+            'password_confirmation' => 'sehweil',
+            'roles' => Role::query()->take(3)->pluck('id')->toArray(),
+        ];
+
+        $response = $this->json('POST', 'api/users', $data);
+
+        $user = User::find(2);
+
+        $this->assertCount(3, $user->roles);
+
+    }
+
 
 }

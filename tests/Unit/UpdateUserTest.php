@@ -222,6 +222,55 @@ class UpdateUserTest extends TestCase
     }
 
 
+    public function test_user_roles()
+    {
+        $user = $this->createUser();
+
+        $this->loginApi($user);
+
+        $user->assignRole([1, 2]);
+
+        $data = [
+            'name' => 'Hassan',
+            'email' => 'hassan@gmail.com',
+            'password' => 'hassan',
+            'password_confirmation' => 'hassan',
+            'roles' => [1],
+        ];
+
+        $response = $this->json('PUT', 'api/users/' . $user->id, $data);
+
+        $user = $user->fresh();
+
+        $this->assertCount(1, $user->roles);
+
+    }
+
+
+    public function test_remove_all_roles_from_user()
+    {
+        $user = $this->createUser();
+
+        $this->loginApi($user);
+
+        $user->assignRole([1, 2]);
+
+        $data = [
+            'name' => 'Hassan',
+            'email' => 'hassan@gmail.com',
+            'password' => 'hassan',
+            'password_confirmation' => 'hassan',
+        ];
+
+        $response = $this->json('PUT', 'api/users/' . $user->id, $data);
+
+        $user = $user->fresh();
+
+        $this->assertCount(0, $user->roles);
+
+    }
+
+
     private function createUser()
     {
         $user = factory(User::class)->create([

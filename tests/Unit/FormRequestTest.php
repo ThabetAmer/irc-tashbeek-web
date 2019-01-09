@@ -2,10 +2,10 @@
 
 namespace Tests\Unit;
 
-use App\Sync\FormDataRequest;
+use App\Sync\FormRequest;
 use Tests\TestCase;
 
-class FormDataRequestTest extends TestCase
+class FormRequestTest extends TestCase
 {
     public function test_it_send_request_to_pull_forms_data()
     {
@@ -14,7 +14,7 @@ class FormDataRequestTest extends TestCase
         $responseMock = \Mockery::mock(\GuzzleHttp\Psr7\Response::class);
         $streamMock = \Mockery::mock(\GuzzleHttp\Psr7\Stream::class);
 
-        $url = 'https://www.commcarehq.org/a/billy-excerpt/api/v0.5/form?limit=40&offset=0';
+        $url = 'https://www.commcarehq.org/a/billy-excerpt/api/v0.5/form?limit=80&offset=0';
 
         $mock->shouldReceive('get')->with($url,[
             'headers' => [
@@ -29,7 +29,7 @@ class FormDataRequestTest extends TestCase
 
         app()->instance(\GuzzleHttp\Client::class,$mock);
 
-        $request = app(FormDataRequest::class);
+        $request = app(FormRequest::class);
 
         $data = $request->data();
 

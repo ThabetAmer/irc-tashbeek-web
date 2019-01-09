@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Firm extends Model implements SyncableInterface
 {
-    use MorphToForm, Routable, HasFilter, Sortable, Notable;
+    use MorphToForm,
+        Routable,
+        HasFilter,
+        Sortable,
+        Notable,
+        HasActivity;
 
     public $withCount = ['openings'];
 

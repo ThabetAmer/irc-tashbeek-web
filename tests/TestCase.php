@@ -4,9 +4,10 @@ namespace Tests;
 
 use App\Models\User;
 use App\Sync\DataRequest;
-use App\Sync\FormDataRequest;
+use App\Sync\FormRequest;
 use App\Sync\UsersRequest;
 use App\Sync\UsersSync;
+use Tests\Fixtures\Classes\DataFactory;
 use Tests\Fixtures\Classes\StructureFactory;
 use App\Sync\StructureRequest;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -62,15 +63,15 @@ abstract class TestCase extends BaseTestCase
         app()->instance(DataRequest::class, $requestMock);
     }
 
-    protected function mockFormDataRequest(){
+    protected function mockFormRequest(){
 
-        $requestMock = \Mockery::mock(FormDataRequest::class);
+        $requestMock = \Mockery::mock(FormRequest::class);
 
-        $data = json_decode(file_get_contents(base_path('tests/Fixtures/forms.json')),true);
+        $data = json_decode(file_get_contents(base_path('tests/Fixtures/job_seeker_monthly_followups.json')),true);
 
         $requestMock->shouldReceive('data')->andReturn($data);
 
-        app()->instance(FormDataRequest::class, $requestMock);
+        app()->instance(FormRequest::class, $requestMock);
     }
 
     protected function mockUsersRequest($data = null ){
@@ -86,7 +87,7 @@ abstract class TestCase extends BaseTestCase
         app()->instance(UsersRequest::class, $requestMock);
     }
 
-    public function syncStructure(string $caseType)
+    protected function syncStructure(string $caseType)
     {
         $this->mockStructureRequest();
 
@@ -95,15 +96,23 @@ abstract class TestCase extends BaseTestCase
         return $factory->make($caseType);
     }
 
+    protected function syncCaseData(string $caseType)
+    {
+        $this->mockDataRequest();
 
-    public function syncUsers()
+        $factory = app(DataFactory::class);
+
+        return $factory->make($caseType);
+    }
+
+    protected function syncUsers()
     {
         $this->mockUsersRequest();
 
         app(UsersSync::class)->make();
     }
 
-    function memoryUsage() {
+    protected function memoryUsage() {
         $usage = memory_get_usage(true);
         if ($usage < 1024){
             $usage = $usage." bytes";

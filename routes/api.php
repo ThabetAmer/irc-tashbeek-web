@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('upcoming-followups', 'UpcomingFollowupsController@index')->name('api.upcoming-followups');
     Route::get('upcoming-followups/counts', 'UpcomingFollowupsController@counts')->name('api.upcoming-followups.counts');
 
+    Route::get('recent-activities', 'RecentActivitiesController@index')->name('api.recent-activities');
 
 
     Route::resource('user', 'UserController');

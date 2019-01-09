@@ -15,15 +15,30 @@ class RolePermissionTableSeeder extends Seeder
     public function run()
     {
         $systemAdministratorRole = $this->getRole('System Administrator');
+
         $projectMatchAdmin = $this->getRole('Project Match Admin');
+
         $eso = $this->getRole('Employment Service Officer (ESO)');
+
         $esso = $this->getRole('Employment Senior Service Officer (ESSO)');
 
 
-        $this->assignPermissionsToRole($systemAdministratorRole, ['users_management', 'job-seekers', 'firms', 'job-opening-eso', 'job-opening-esso']);
+        $this->assignPermissionsToRole($systemAdministratorRole, [
+            'users_management',
+            'cases.job-seeker',
+            'cases.firm',
+            'cases.job-opening',
+            'cases.job-opening.match',
+            'notes.firm',
+            'notes.job-seeker',
+
+        ]);
+
         $this->assignPermissionsToRole($projectMatchAdmin, ['users_management']);
-        $this->assignPermissionsToRole($eso, ['job-seekers', 'job-opening-eso']);
-        $this->assignPermissionsToRole($esso, ['firms', 'job-opening-esso']);
+
+        $this->assignPermissionsToRole($eso, ['cases.job-opening', 'cases.job-opening.match', 'cases.job-seeker', 'notes.job-seeker']);
+
+        $this->assignPermissionsToRole($esso, ['cases.job-opening', 'cases.firm', 'notes.firm']);
     }
 
 
@@ -33,7 +48,7 @@ class RolePermissionTableSeeder extends Seeder
     }
 
 
-    private function assignPermissionsToRole($role, $permissions)
+    private function assignPermissionsToRole(Role $role, $permissions)
     {
         if (!$role) {
             return;

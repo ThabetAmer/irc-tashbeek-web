@@ -18,6 +18,10 @@ class UpdateUserAction
     public function update(User $user, $data)
     {
         $user->update($data);
+
+        $roles = $data['roles'] ?? [];
+        $user->syncRoles($roles);
+
         $collectionName = 'profile_picture';
         try {
             if (request()->hasFile('profile_picture')) {

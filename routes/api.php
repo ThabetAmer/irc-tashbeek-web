@@ -17,6 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('cases/{caseType}', 'ResponseApiController@index');
@@ -29,13 +30,16 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('recent-activities', 'RecentActivitiesController@index')->name('api.recent-activities');
 
+    Route::resource('users', 'UserController');
 
-    Route::resource('user', 'UserController');
-
-    Route::group(['prefix' => 'user'], function () {
+    Route::group(['prefix' => 'users'], function () {
         Route::post('{user}/activate', 'UserController@activate');
         Route::post('{user}/deactivate', 'UserController@deactivate');
     });
+
+    Route::get('roles', 'RoleController@index');
+
+    Route::get('cards', 'CardsController@index');
 
 });
 

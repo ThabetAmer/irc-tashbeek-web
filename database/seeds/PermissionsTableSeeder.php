@@ -30,7 +30,7 @@ class PermissionsTableSeeder extends Seeder
                     'guard_name' => 'web',
                 ],
                 [
-                    'name' => $this->getCaseTypePermission('cases', \App\Models\JobOpening::class, 'access'),
+                    'name' => $this->getCaseTypePermission('cases', \App\Models\JobOpening::class),
                     'guard_name' => 'web',
                 ],
                 [

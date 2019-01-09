@@ -36,7 +36,6 @@ class AddUserRolesTableSeeder extends Seeder
             'password' => bcrypt('irc123!')
         ]);
 
-
         $administrator->assignRole('System Administrator');
 
         $admin->assignRole('Project Match Admin');

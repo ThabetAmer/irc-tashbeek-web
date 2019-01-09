@@ -48,7 +48,7 @@ class RolePermissionTableSeeder extends Seeder
     }
 
 
-    private function assignPermissionsToRole($role, $permissions)
+    private function assignPermissionsToRole(Role $role, $permissions)
     {
         if (!$role) {
             return;

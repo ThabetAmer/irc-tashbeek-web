@@ -42,7 +42,7 @@
                                             text-grey-dark text-2xl font-semibold"
                   :class="{active: viewType == 'calendar'}"
                 >
-                  <i class="icon-Calendar_2_x40_2xpng_2" />
+                  <i class="icon-Calendar_2_x40_2xpng_2"/>
                 </button>
               </li>
               <li
@@ -127,27 +127,31 @@
       >
         <div class="days-container max-h-680 overflow-y-auto">
           <div
-            v-for="day in recentActivity"
-            :key="day.date"
+            v-for="day in recent"
+            :key="day.name"
             class=""
           >
             <div class="text-left text-green-dark font-bold text-xs mt-8 -mb-1">
-              {{ day.date }}
+              {{ day.name}}
             </div>
             <ul class="list-reset">
               <li
-                v-for="event in day.events"
-                :key="event.label"
+                v-for="activity in day.items"
+                :key="activity.id"
                 class="relative text-left text-black border-grey-lighter border-solid
                             border-b-2 font-semibold text-md  py-5 flex items-center "
               >
                 <Component
-                  :is="event.component"
-                  :icon-class="event.iconClass+' text-grey-darker text-1xl mr-2'"
+                  v-if="activity.component"
+                  :is="activity.component.name"
+                  :icon-class="activity.component.value+' text-grey-darker text-1xl mr-2'"
                 />
-                <span class="text-sm">
-                  {{ event.label }}
-                </span>
+                <a class="no-underline text-black" :href="activity.entity.details_url">
+                  <span class="text-sm">
+                    {{ activity.title  }} •  {{activity.entity.name}}
+                  </span>
+                </a>
+
               </li>
             </ul>
           </div>
@@ -163,6 +167,7 @@
   import {FullCalendar} from 'vue-full-calendar'
   import {upcomingFollowups as getFollowups} from '../API/followupAPI'
   import {upcomingFollowupsCount as getCounts} from '../API/followupAPI'
+  import {get as getRecentActivity} from '../API/recentActivityAPI'
 
   export default {
     components: {
@@ -192,96 +197,10 @@
         ],
         loading: false,
         viewType: 'calendar',
-        events: [
-          {
-            title: 1,
-            start: "2019-01-9"
-          }
-        ],
+        events: [],
         followups: [],
         selectedFollowups: [],
-        recentActivity: [
-          {
-            date: 'Wednesday 14 November',
-            events: [
-              {
-                label: 'Monthy follow-up • Ismael Ghassan',
-                component: 'icon',
-                iconClass: 'icon-Calendar_2_x40_2xpng_2'
-              },
-              {
-                label: 'Match follow-up • Boutros Baqaeen',
-                component: 'icon',
-                iconClass: 'icon-Filter_x40_2xpng_2'
-              },
-              {
-                label: 'Hired follow-up • Sara Hourani',
-                component: 'icon',
-                iconClass: 'icon-Star_in_Circle_x40_2xpng_2'
-              },
-            ]
-          },
-          {
-            date: 'Wednesday 15 November',
-            events: [
-              {
-                label: 'Monthy follow-up • Ismael Ghassan',
-                component: 'icon',
-                iconClass: 'icon-Calendar_2_x40_2xpng_2'
-              },
-              {
-                label: 'Match follow-up • Boutros Baqaeen',
-                component: 'icon',
-                iconClass: 'icon-Filter_x40_2xpng_2'
-              },
-              {
-                label: 'Hired follow-up • Sara Hourani',
-                component: 'icon',
-                iconClass: 'icon-Star_in_Circle_x40_2xpng_2'
-              },
-            ]
-          },
-          {
-            date: 'Wednesday 16 November',
-            events: [
-              {
-                label: 'Monthy follow-up • Ismael Ghassan',
-                component: 'icon',
-                iconClass: 'icon-Calendar_2_x40_2xpng_2'
-              },
-              {
-                label: 'Match follow-up • Boutros Baqaeen',
-                component: 'icon',
-                iconClass: 'icon-Filter_x40_2xpng_2'
-              },
-              {
-                label: 'Hired follow-up • Sara Hourani',
-                component: 'icon',
-                iconClass: 'icon-Star_in_Circle_x40_2xpng_2'
-              },
-            ]
-          },
-          {
-            date: 'Wednesday 17 November',
-            events: [
-              {
-                label: 'Monthy follow-up • Ismael Ghassan',
-                component: 'icon',
-                iconClass: 'icon-Calendar_2_x40_2xpng_2'
-              },
-              {
-                label: 'Match follow-up • Boutros Baqaeen',
-                component: 'icon',
-                iconClass: 'icon-Filter_x40_2xpng_2'
-              },
-              {
-                label: 'Hired follow-up • Sara Hourani',
-                component: 'icon',
-                iconClass: 'icon-Star_in_Circle_x40_2xpng_2'
-              },
-            ]
-          }
-        ],
+        recent: [],
         selectedDate: '',
         daySelected: false,
         hasTitle: true,
@@ -313,8 +232,6 @@
 
           },
           viewRender: function (view, el) {
-            console.log(' view si ', view, ' el is ', el);
-            console.log('hhh', view, ' el is ', el);
             this.getCounts(view.calendar.currentDate.format("YYYY-MM"));
           }.bind(this),
           unselect: function (view, el) {
@@ -329,8 +246,18 @@
     created() {
     },
     mounted() {
+      this.getRecentActivity();
     },
     methods: {
+      getRecentActivity() {
+        getRecentActivity()
+            .then(resp => {
+              console.log(' recent resp is ', resp);
+              this.recent = resp.data.data;
+            })
+            .catch(error => {
+            });
+      },
       getCounts(date) {
         this.loading = true;
         this.events = [];

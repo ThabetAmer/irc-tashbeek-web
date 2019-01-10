@@ -18,13 +18,13 @@
               <span
                 v-if="head['translations']['en'].length > 14"
                 v-tooltip="{placement:'left',content:head['translations']['en'],classes:['tooltip-datatable']}"
-                class=" truncate block"
+                class="  block"
               >
                 {{ head['translations']['en'] }}
               </span>
               <span
                 v-else
-                class="truncate"
+                class=""
               >
                 {{ head['translations']['en'] }}
               </span>
@@ -35,7 +35,7 @@
                 ${sorting.column === head.name && sorting.type === 'asc' ? 'icon-Up_Arrow_4_1' :'icon-Down_Arrow_4_1'}`"
               />
             </th>
-            <th class="pb-2 px-4 pl-1 max-w-150 truncate" />
+            <th class="pb-2 px-4 pl-1 max-w-150 " />
           </tr>
         </thead>
 
@@ -58,7 +58,7 @@
               />
               <span
                 v-else-if="head.clickable_from && row[head.clickable_from]"
-                class="py-1 max-w-150 truncate block"
+                class="py-1 max-w-150  block"
                 dir="auto"
               >
                 <a
@@ -71,7 +71,7 @@
               <span
                 v-else-if="row[head.name] && row[head.name].length > 10"
                 v-tooltip="{placement: 'left',content:row[head.name],classes:['tooltip-datatable']}"
-                class="max-w-150 truncate block"
+                class="max-w-150  block"
                 dir="auto"
               >
                 {{ row[head.name] }}

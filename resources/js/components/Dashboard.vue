@@ -42,7 +42,7 @@
                                             text-grey-dark text-2xl font-semibold"
                   :class="{active: viewType == 'calendar'}"
                 >
-                  <i class="icon-Calendar_2_x40_2xpng_2"/>
+                  <i class="icon-Calendar_2_x40_2xpng_2" />
                 </button>
               </li>
               <li
@@ -132,7 +132,7 @@
             class=""
           >
             <div class="text-left text-green-dark font-bold text-xs mt-8 -mb-1">
-              {{ day.name}}
+              {{ day.name }}
             </div>
             <ul class="list-reset">
               <li
@@ -142,16 +142,18 @@
                             border-b-2 font-semibold text-md  py-5 flex items-center "
               >
                 <Component
-                  v-if="activity.component"
                   :is="activity.component.name"
+                  v-if="activity.component"
                   :icon-class="activity.component.value+' text-grey-darker text-1xl mr-2'"
                 />
-                <a class="no-underline text-black" :href="activity.entity.details_url">
+                <a
+                  class="no-underline text-black"
+                  :href="activity.entity.details_url"
+                >
                   <span class="text-sm">
-                    {{ activity.title  }} •  {{activity.entity.name}}
+                    {{ activity.title }} •  {{ activity.entity.name }}
                   </span>
                 </a>
-
               </li>
             </ul>
           </div>

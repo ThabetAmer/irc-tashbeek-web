@@ -26,28 +26,31 @@
             @click="console.log('clicked')"
           />
           <transition name="fade">
-          <div v-if="showEdit" class="sm:mx-auto w-150 mt-5 sm:mb-5">
-            <Btn
-              btn-class=""
-              theme="default"
-              @click="openViewer"
+            <div
+              v-if="showEdit"
+              class="sm:mx-auto w-150 mt-5 sm:mb-5"
             >
-              <div
-                slot="text"
-                class="flex items-center"
+              <Btn
+                btn-class=""
+                theme="default"
+                @click="openViewer"
               >
-                <i class="icon-Photo_x40_2xpng_2 mr-2" />
-                {{ imageSrc? 'Change': 'Upload' }}
-              </div>
-            </Btn>
+                <div
+                  slot="text"
+                  class="flex items-center"
+                >
+                  <i class="icon-Photo_x40_2xpng_2 mr-2" />
+                  {{ imageSrc? 'Change': 'Upload' }}
+                </div>
+              </Btn>
 
-            <input
-              ref="fileInput"
-              aria-hidden="true"
-              type="file"
-              @change="handleFileChange"
-            >
-          </div>
+              <input
+                ref="fileInput"
+                aria-hidden="true"
+                type="file"
+                @change="handleFileChange"
+              >
+            </div>
           </transition>
         </div>
         <div class="sm:w-full lg:w-2/3 ">
@@ -60,42 +63,42 @@
                 Name
               </label>
               <input
-                :disabled="!showEdit"
                 id="grid-first-name"
                 v-model="user.name"
+                :disabled="!showEdit"
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
-               px-4 mb-3 leading-tight focus:outline-none focus:bg-white ${!showEdit ? 'cursor-not-allowed':''}  ${user.name ? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
+               px-4 mb-3 leading-tight focus:outline-none focus:bg-white ${!showEdit ? 'cursor-not-allowed':''}  ${!internalError['name'] ? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="text"
                 placeholder="Name"
               >
               <p
-                v-if="!user.name"
+                v-if="internalError['name']"
                 class="text-left text-red text-xs italic"
               >
-                Please fill out this field.
+                {{ internalError['name'][0] }}
               </p>
             </div>
             <div class="w-full md:w-1/2 px-3">
               <label
                 class="text-left block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                for="grid-last-name"
+                for="email"
               >
                 Email
               </label>
               <input
-                id="grid-last-name"
+                id="email"
                 v-model="user.email"
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
-               px-4 mb-3 leading-tight focus:outline-none focus:bg-white  ${user.email ? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
+               px-4 mb-3 leading-tight focus:outline-none focus:bg-white  ${!internalError['email']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="text"
                 placeholder="Email"
               >
 
               <p
-                v-if="!user.email"
+                v-if="internalError['email']"
                 class="text-left text-red text-xs italic"
               >
-                Please fill out this field with a valid Email.
+                {{ internalError['email'][0] }}
               </p>
             </div>
           </div>
@@ -109,10 +112,19 @@
               </label>
               <input
                 id="password"
-                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey"
+                v-model="user.password"
+                :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
+               px-4 mb-3 leading-tight focus:outline-none focus:bg-white  ${!internalError['password']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="password"
                 placeholder="******************"
               >
+
+              <p
+                v-if="internalError['password']"
+                class="text-left text-red text-xs italic"
+              >
+                {{ internalError['password'][0] }}
+              </p>
             </div>
 
 
@@ -125,10 +137,18 @@
               </label>
               <input
                 id="password_confirm"
-                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey"
+                v-model="user.password_confirmation"
+                :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
+               px-4 mb-3 leading-tight focus:outline-none focus:bg-white  ${!internalError['password']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="password"
                 placeholder="******************"
               >
+              <p
+                v-if="internalError['password']"
+                class="text-left text-red text-xs italic"
+              >
+                {{ internalError['password'][0] }}
+              </p>
             </div>
           </div>
         </div>
@@ -162,13 +182,19 @@
       </div>
 
       <transition name="fade">
-      <div v-if="showEdit"  class="w-full text-right">
-        <Btn theme="default">
-          <p slot="text">
-            {{ this.userProp ? 'Update user':'Create user' }}
-          </p>
-        </Btn>
-      </div>
+        <div
+          v-if="showEdit"
+          class="w-full text-right"
+        >
+          <Btn
+            theme="default"
+            @click="handleUserCreate"
+          >
+            <p slot="text">
+              {{ userProp ? 'Update user':'Create user' }}
+            </p>
+          </Btn>
+        </div>
       </transition>
     </Panel>
   </div>
@@ -177,6 +203,8 @@
 <script>
 
   import Avatar from 'vue-avatar'
+  import {update as updateUser} from '../api/userAPI'
+  import {create as createUser} from '../api/userAPI'
 
   export default {
     components: {Avatar},
@@ -194,6 +222,7 @@
     },
     data() {
       return {
+        internalError:[],
         showEdit: true,
         imageSrc: 'https://picsum.photos/200/300',
         user: {},
@@ -214,8 +243,8 @@
         ]
       }
     },
-    beforeMount(){
-      if(this.viewOnly){
+    beforeMount() {
+      if (this.viewOnly) {
         this.showEdit = false;
       }
     },
@@ -231,6 +260,38 @@
       }
     },
     methods: {
+      handleUserCreate() {
+        if (this.userProp) {
+          updateUser(this.user.id, this.user)
+              .then(resp => {
+                this.$toasted.show(resp.data.message, {
+                  icon: 'icon-Checkmark_2_x40_2xpng_2'
+                });
+                this.name = this.user.name;
+              })
+              .catch(error => {
+              });
+        }
+        else {
+          createUser(this.user)
+              .then(resp => {
+                console.log(' resp is ', resp);
+                this.name = this.user.name;
+                this.internalError = [];
+                this.$toasted.show(resp.data.message, {
+                  icon: 'icon-Checkmark_2_x40_2xpng_2'
+                });
+              })
+              .catch(error => {
+                if (error.response.status === 422) {
+                  this.internalError = error.response.data.errors
+                }
+              });
+        }
+      },
+      createUser() {
+        console.log(' createUser user');
+      },
       enableFields() {
         this.showEdit = true;
       },

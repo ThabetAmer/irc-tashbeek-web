@@ -13,3 +13,10 @@ export const activateUser = (id,params = {}) => {
 export const deactivateUser = (id,params = {}) => {
   return $httpRequester.post(`api/user/${id}/deactivate`)
 }
+
+export const update = (id,params = {}) => {
+  return $httpRequester.put(`api/users/${id}`, params)
+}
+export const create = (params = {}) => {
+  return $httpRequester.post(`api/users`, params)
+}

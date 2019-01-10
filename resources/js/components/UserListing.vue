@@ -80,9 +80,9 @@
 <script>
 
   import queryString from '../helpers/QueryString'
-  import {get as getUsers} from '../api/userListing'
-  import {activateUser as activateUser} from '../api/userListing'
-  import {deactivateUser as deactivateUser} from '../api/userListing'
+  import {get as getUsers} from '../api/userAPI'
+  import {activateUser as activateUser} from '../api/userAPI'
+  import {deactivateUser as deactivateUser} from '../api/userAPI'
 
   export default {
     mixins: [],

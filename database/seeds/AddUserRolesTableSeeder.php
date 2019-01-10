@@ -15,25 +15,25 @@ class AddUserRolesTableSeeder extends Seeder
         $administrator = $this->createUser([
             'name' => 'System Administrator',
             'email' => 'administrator@tashbeek.org',
-            'password' => bcrypt('irc123!')
+            'password' => 'irc123!'
         ]);
 
         $admin = $this->createUser([
             'name' => 'Project Match Admin',
             'email' => 'admin@tashbeek.org',
-            'password' => bcrypt('irc123!')
+            'password' => 'irc123!'
         ]);
 
         $esso = $this->createUser([
             'name' => 'Employment Senior Service Officer',
             'email' => 'esso@tashbeek.org',
-            'password' => bcrypt('irc123!')
+            'password' => 'irc123!'
         ]);
 
         $eso = $this->createUser([
             'name' => 'Employment Service Officer',
             'email' => 'eso@tashbeek.org',
-            'password' => bcrypt('irc123!')
+            'password' => 'irc123!'
         ]);
 
         $administrator->assignRole('System Administrator');

@@ -84,6 +84,7 @@
     @endif
 
     <div class="content p-10 container mx-auto px-16 {{!auth()->check()? ' flex items-center' :''}}" id="app">
+        <breadcrumbs></breadcrumbs>
         @yield('content')
     </div>
 </div>

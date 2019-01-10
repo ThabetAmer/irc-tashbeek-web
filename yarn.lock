@@ -6630,6 +6630,11 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
+sweetalert2@7.x:
+  version "7.33.1"
+  resolved "http://registry.npm.taobao.org/sweetalert2/download/sweetalert2-7.33.1.tgz#7e3534d2c2962f875f419cfea5d75ee526d65cd4"
+  integrity sha1-fjU00sKWL4dfQZz+pdde5SbWXNQ=
+
 table@^5.0.2:
   version "5.1.1"
   resolved "http://registry.npm.taobao.org/table/download/table-5.1.1.tgz#92030192f1b7b51b6eeab23ed416862e47b70837"
@@ -7023,6 +7028,11 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-avatar@^2.1.7:
+  version "2.1.7"
+  resolved "http://registry.npm.taobao.org/vue-avatar/download/vue-avatar-2.1.7.tgz#00fca25f59ad9311159d55aacc4a98f70a23bd9d"
+  integrity sha1-APyiX1mtkxEVnVWqzEqY9wojvZ0=
+
 vue-eslint-parser@^4.0.2:
   version "4.0.3"
   resolved "http://registry.npm.taobao.org/vue-eslint-parser/download/vue-eslint-parser-4.0.3.tgz#80cf162e484387b2640371ad21ba1f86e0c10a61"
@@ -7084,6 +7094,13 @@ vue-style-loader@^4.1.0:
   dependencies:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
+
+vue-sweetalert2@^1.6.3:
+  version "1.6.3"
+  resolved "http://registry.npm.taobao.org/vue-sweetalert2/download/vue-sweetalert2-1.6.3.tgz#20509b256139293b3997fa591ec24a51a2730aac"
+  integrity sha1-IFCbJWE5KTs5l/pZHsJKUaJzCqw=
+  dependencies:
+    sweetalert2 "7.x"
 
 vue-template-compiler@^2.5.21:
   version "2.5.21"

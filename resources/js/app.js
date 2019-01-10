@@ -19,6 +19,9 @@ window.Vue = require('vue');
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
+import VueSweetalert2 from 'vue-sweetalert2';
+Vue.use(VueSweetalert2);
+
 
 Vue.use(Toasted, {
   position: 'bottom-right',
@@ -38,9 +41,12 @@ Vue.component('Firm',require('./components/Firm.vue').default);
 Vue.component('CaseListing',require('./components/CaseListing.vue').default);
 Vue.component('SeekerProfile',require('./components/JobSeeker.vue').default);
 Vue.component('JobSeeker',require('./components/JobSeeker.vue').default);
-Vue.component('UserListing',require('./components/UserListing.vue').default);
+Vue.component('UsersListing',require('./components/UserListing.vue').default);
+Vue.component('UserView',require('./components/UserView.vue').default);
+
 
 // UI components
+Vue.component('Breadcrumbs',require('./components/Breadcrumbs.vue').default);
 Vue.component('Btn',require('./components/Button.vue').default);
 Vue.component('Icon',require('./components/Icon.vue').default);
 Vue.component('Modal',require('./components/Modal.vue').default);

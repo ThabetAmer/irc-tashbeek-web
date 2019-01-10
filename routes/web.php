@@ -21,6 +21,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::get('/firms', 'FirmController@index');
     Route::get('/users', 'UserControllerView@index');
+    Route::get('/users/create', 'UserControllerView@create');
+    Route::get('/users/{user}/edit', 'UserControllerView@edit');
+    Route::get('/users/{user}', 'UserControllerView@show');
     Route::get('/firms/{firm}', 'FirmController@show');
 
 

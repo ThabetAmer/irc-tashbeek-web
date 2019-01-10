@@ -26,7 +26,7 @@ export default {
       let style = "";
       switch (this.theme) {
         case 'default':
-          style = 'bg-white hover:bg-grey-lightest text-grey-darkest'
+          style = 'bg-white border border-grey-light hover:bg-grey-lightest text-grey-darkest'
           break
         case 'primary':
           style = 'bg-blue hover:bg-blue-dark text-white'

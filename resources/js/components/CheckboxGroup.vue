@@ -5,7 +5,9 @@
         which returns an array that has the
         selected objects
     -->
-  <div>
+  <div
+    :class="`${display==='inline' ? 'inline-flex mr-2':''}`"
+  >
     <CheckboxField
       v-for="checkbox in checkboxes"
       :key="checkbox.value"
@@ -34,14 +36,15 @@
       checkboxes: {
         type: [Array, Object],
         default: () => []
+      },
+      display: {
+        type: String,
+        default: ''
       }
     },
     data() {
       return {
-        checkboxValue: {
-          type: Array,
-          default: () => []
-        },
+        checkboxValue: []
       }
     },
     watch: {

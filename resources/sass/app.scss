@@ -11,6 +11,7 @@
 @import "~tailwindcss/preflight.css";
 @import '~fullcalendar/dist/fullcalendar.css';
 @import './style.css';
+@import './breadcrumbs';
 
 .navbar-laravel {
   background-color: #fff;
@@ -567,12 +568,17 @@ table.scrollable-fixed-header {
   background: #405e80 !important;;
 }
 
-[aria-hidden="true"] {
-  opacity: 0;
-  position: absolute;
-  z-index: -9999;
-  pointer-events: none;
+.clipboard-container,.user-container{
+  [aria-hidden="true"] {
+    opacity: 0;
+    position: absolute;
+    z-index: -9999;
+    pointer-events: none;
+  }
+
 }
+
+
 
 .multiselect__option multiselect__option--selected {
 
@@ -818,4 +824,11 @@ body, html {
     font-size: 16px;
   }
 
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }

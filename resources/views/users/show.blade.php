@@ -1,7 +1,10 @@
 @extends('layouts.layout')
 @section('content')
     <div class="" id="all-users">
-        <user-listing></user-listing>
+        <user-view
+                :user-prop="{{json_encode($user->toArray())}}"
+                :view-only="true"
+        ></user-view>
     </div>
 @endsection
 

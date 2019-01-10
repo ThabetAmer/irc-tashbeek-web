@@ -3,6 +3,21 @@
     <Panel
       custom-class=""
     >
+      <div class="text-right">
+        <Btn
+          theme="success"
+          @click="addUser"
+        >
+          <div
+            slot="text"
+            class="flex items-center"
+          >
+            <i class="icon-Add_x40_2xpng_2 mr-2" />
+            Add user
+          </div>
+        </Btn>
+      </div>
+
       <!--<Filters-->
       <!--v-if="filters.length > 0"-->
       <!--:filters="filters"-->
@@ -23,37 +38,42 @@
           slot-scope="{row}"
         >
           <button
+            v-tooltip="{placement: 'top',content:'View account',classes:['tooltip-datatable']}"
+            class="flex-1 text-xl mr-1 text-green-dark"
+            @click="viewAccount(row)"
+          >
+            <i class="icon-Eye_x40_2xpng_2" />
+          </button>
+
+          <button
             v-tooltip="{placement: 'top',content:'Edit account',classes:['tooltip-datatable']}"
             class="flex-1 text-xl mr-1 text-green-dark"
             @click="editAccount(row)"
           >
-            <i class="icon-Pencil_x40_2xpng_2"/>
+            <i class="icon-Pencil_x40_2xpng_2" />
           </button>
 
           <button
-            v-tooltip="{placement: 'top',content:'Deactivate account',classes:['tooltip-datatable']}"
             v-if="row.status ==='activated'"
+            v-tooltip="{placement: 'top',content:'Deactivate account',classes:['tooltip-datatable']}"
             class="flex-1 text-xl  text-green-dark"
             @click="deActivateUser(row)"
           >
-            <i class="icon-Lock_x40_2xpng_2"/>
+            <i class="icon-Lock_x40_2xpng_2" />
           </button>
 
           <button
-            v-tooltip="{placement: 'top',content:'Reactivate account',classes:['tooltip-datatable']}"
             v-else
+            v-tooltip="{placement: 'top',content:'Reactivate account',classes:['tooltip-datatable']}"
             class="flex-1 text-xl  text-green-dark"
             @click="reActivateUser(row)"
-
           >
-            <i class="icon-Unlock_x40_2xpng_2"/>
+            <i class="icon-Unlock_x40_2xpng_2" />
           </button>
-
         </td>
       </Datatable>
-      <PageLoader v-else/>
+      <PageLoader v-else />
     </Panel>
-
   </div>
 </template>
 
@@ -159,32 +179,66 @@
         history.pushState({}, document.title, url);
       },
       deActivateUser(user) {
-        deactivateUser(user.id)
-            .then(resp => {
-              this.$toasted.show(resp.data.message, {
-                icon: 'icon-Lock_x40_2xpng_2'
-              })
-              this.loadData();
+        this.$swal('Hello Vue world!!!');
 
-            })
-            .catch(error => {
-              console.log(' error !', error);
-            });
+        Vue.swal({
+          title: 'Deactivate User?',
+          type: 'warning',
+          allowEscapeKey: true,
+          confirmButtonText: 'Deactivate',
+          showCancelButton: true,
+          cancelButtonText: 'Cancel',
+        }).then(result => {
+          if(result.value){
+            deactivateUser(user.id)
+                .then(resp => {
+                  this.$toasted.show(resp.data.message, {
+                    icon: 'icon-Lock_x40_2xpng_2'
+                  });
+                  this.loadData();
+
+                })
+                .catch(error => {
+                  console.log(' error !', error);
+                });
+          }
+          // console.log(' res is ', result)
+        });
+
       },
       reActivateUser(user) {
-        activateUser(user.id)
-            .then(resp => {
-              this.$toasted.show(resp.data.message, {
-                icon: 'icon-Unlock_x40_2xpng_2'
-              })
+        Vue.swal({
+          title: 'Activate User?',
+          type: 'warning',
+          allowEscapeKey: true,
+          confirmButtonText: 'Activate',
+          showCancelButton: true,
+          cancelButtonText: 'Cancel',
+        }).then(result => {
+          if(result.value){
+            activateUser(user.id)
+                .then(resp => {
+                  this.$toasted.show(resp.data.message, {
+                    icon: 'icon-Unlock_x40_2xpng_2'
+                  })
 
-              this.loadData();
-            })
-            .catch(error => {
-              console.log(' error !', error);
-            });
+                  this.loadData();
+                })
+                .catch(error => {
+                  console.log(' error !', error);
+                });
+          }
+        });
+
       },
       editAccount(user) {
+        window.location.href = `users/${user.id}/edit`;
+      },
+      viewAccount(user) {
+        window.location.href = `users/${user.id}`;
+      },
+      addUser(){
+        window.location.href = `users/create`;
 
       }
 

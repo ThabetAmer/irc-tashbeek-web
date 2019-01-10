@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <div class="w-1/3 px-2">
+    <div class="w-1/3 pr-2">
       <Panel
         custom-class="min-h-900 "
         :has-title="hasTitle"

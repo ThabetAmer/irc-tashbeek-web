@@ -20,17 +20,23 @@ class UserControllerView extends Controller
 
     public function index()
     {
-        return view('users', compact('users'));
+        return view('users.index');
     }
 
     public function create()
     {
+        return view('users.create');
 
     }
 
-    public function edit()
+    public function edit(User $user)
     {
+        return view('users.edit',compact('user'));
+    }
 
+    public function show(User $user)
+    {
+        return view('users.show',compact('user'));
     }
 
 }

@@ -42,7 +42,7 @@
                                             text-grey-dark text-2xl font-semibold"
                   :class="{active: viewType == 'calendar'}"
                 >
-                  <i class="icon-Calendar_2_x40_2xpng_2"/>
+                  <i class="icon-Calendar_2_x40_2xpng_2" />
                 </button>
               </li>
               <li

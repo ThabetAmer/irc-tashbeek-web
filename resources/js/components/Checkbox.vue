@@ -5,7 +5,7 @@
     the type is checkbox. change and input
     are both handled.
     -->
-  <div>
+  <div class="mr-2">
     <label class="form-check-label">
       <input
         :id="checkId"

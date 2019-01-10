@@ -30,9 +30,16 @@ class UserController extends Controller
 
     }
 
-    public function edit()
+    public function edit(User $user)
     {
 
+        return $user;
+    }
+
+    public function show(User $user)
+    {
+
+        return $user;
     }
 
     /**

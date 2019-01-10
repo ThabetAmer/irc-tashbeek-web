@@ -14,7 +14,7 @@ class AddUserRolesTableSeeder extends Seeder
     {
         $administrator = $this->createUser([
             'name' => 'System Administrator',
-            'email' => 'administrator@stashbeek.org',
+            'email' => 'ml@stashbeek.org',
             'password' => bcrypt('irc123!')
         ]);
 

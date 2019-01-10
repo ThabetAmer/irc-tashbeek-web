@@ -72,7 +72,7 @@ class RecentActivityFactory
         $this->saveItems($caseType, $response['objects']);
 
         if (!is_null($response['meta']['next'])) {
-            $this->make($form, $page + 1);
+            $this->make($formName, $page + 1);
         }
     }
 

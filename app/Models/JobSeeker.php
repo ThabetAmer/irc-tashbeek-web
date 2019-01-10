@@ -11,7 +11,8 @@ class JobSeeker extends Model implements SyncableInterface
         Routable,
         HasFilter,
         MorphToForm,
-        HasFollowup;
+        HasFollowup,
+        HasActivity;
 
     protected $appends = [
       'details_url'

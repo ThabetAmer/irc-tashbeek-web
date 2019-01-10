@@ -2,17 +2,17 @@
 
 namespace App\Console\Commands;
 
-use App\Sync\FormDataFactory;
+use App\Sync\RecentActivityFactory;
 use Illuminate\Console\Command;
 
-class SyncFormData extends Command
+class SyncRecentActivities extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'sync:form';
+    protected $signature = 'sync:activities {form}';
 
     /**
      * The console command description.
@@ -38,12 +38,13 @@ class SyncFormData extends Command
      */
     public function handle()
     {
-        try{
-            app(FormDataFactory::class)->make();
+        $form = $this->argument('form');
 
-            $this->info("Form data sync completed.");
-        }catch(\Throwable $e){
-            $this->error($e->getMessage() . ', Line: ' . $e->getLine() . ', File: '. $e->getFile());
+        if(!array_key_exists($form, RecentActivityFactory::FORMS)){
+            $this->error('{form} must be one of: [' . implode(', ', array_keys(RecentActivityFactory::FORMS)) . '].');
+            return ;
         }
+
+        app(RecentActivityFactory::class)->make($form);
     }
 }

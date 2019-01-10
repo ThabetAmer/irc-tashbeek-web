@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class FollowupResource extends JsonResource
+class RecentActivityResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,13 +16,14 @@ class FollowupResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'followup_type' => case_type($this->followup_type),
-            'followup_date' => $this->followup_date,
-            'followup_period' => $this->followup_period,
-            'type' => $this->type,
-            'followup' => [
-                'id' => $this->followup->id,
-                'name' => $this->getResourceDisplayName($this->followup),
+            'created_at' => $this->created_at->toDateTimeString(),
+            'created_at_text' => $this->created_at->format('l d F'),
+            'entity_type' => case_type($this->entity_type),
+            'title' => $this->title,
+            'entity' => [
+                'id' => $this->entity->id,
+                'name' => $this->getResourceDisplayName($this->entity),
+                'details_url' => $this->entity->details_url,
             ]
         ];
     }

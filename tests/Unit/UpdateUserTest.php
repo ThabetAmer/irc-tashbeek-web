@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -22,7 +23,7 @@ class UpdateUserTest extends TestCase
 
         $this->loginApi($user);
 
-        $response = $this->put('api/user/' . $user->id, []);
+        $response = $this->put('api/users/' . $user->id, []);
 
         $response->assertStatus(302);
 
@@ -37,7 +38,7 @@ class UpdateUserTest extends TestCase
 
         $this->loginApi($user);
 
-        $response = $this->put('api/user/' . $user->id, []);
+        $response = $this->put('api/users/' . $user->id, []);
 
         $response->assertStatus(302);
 
@@ -53,7 +54,7 @@ class UpdateUserTest extends TestCase
 
         $user2 = factory(User::class)->create(['email' => 'ali@gmail.com']);
 
-        $this->json('PUT', 'api/user/' . $user2->id, ['email' => 'sehweil@gmail.com'])
+        $this->json('PUT', 'api/users/' . $user2->id, ['email' => 'sehweil@gmail.com'])
             ->assertStatus(422)
             ->assertJsonValidationErrors(['email']);
 
@@ -66,7 +67,7 @@ class UpdateUserTest extends TestCase
 
         $this->loginApi($user);
 
-        $this->json('put', 'api/user/' . $user->id, ['name' => 's', 'email' => 'gg@gmail.com'])
+        $this->json('put', 'api/users/' . $user->id, ['name' => 's', 'email' => 'gg@gmail.com'])
             ->assertStatus(200)
             ->assertJsonMissingValidationErrors(['password']);
 
@@ -86,7 +87,7 @@ class UpdateUserTest extends TestCase
         ];
 
 
-        $this->json('put', 'api/user/' . $user->id, $data)
+        $this->json('put', 'api/users/' . $user->id, $data)
             ->assertStatus(422)
             ->assertJsonValidationErrors(['password']);
     }
@@ -106,7 +107,7 @@ class UpdateUserTest extends TestCase
             'password_confirmation' => 'password'
         ];
 
-        $this->json('put', 'api/user/' . $user->id, $data)
+        $this->json('put', 'api/users/' . $user->id, $data)
             ->assertStatus(200);
 
         $user = $user->fresh();
@@ -127,7 +128,7 @@ class UpdateUserTest extends TestCase
             'email' => 'gg@gmail.com',
         ];
 
-        $this->json('put', 'api/user/' . $user->id, $data)
+        $this->json('put', 'api/users/' . $user->id, $data)
             ->assertStatus(200);
 
         $user = $user->fresh();
@@ -162,7 +163,7 @@ class UpdateUserTest extends TestCase
         ];
 
 
-        $this->json('PUT', 'api/user/' . $user->id, $data);
+        $this->json('PUT', 'api/users/' . $user->id, $data);
 
         $user = $user->fresh();
 
@@ -187,7 +188,7 @@ class UpdateUserTest extends TestCase
             'profile_picture' => null
         ];
 
-        $this->json('PUT', 'api/user/' . $user->id, $data);
+        $this->json('PUT', 'api/users/' . $user->id, $data);
 
         $user = $user->fresh();
 
@@ -208,7 +209,7 @@ class UpdateUserTest extends TestCase
             'password_confirmation' => 'hassan',
         ];
 
-        $response = $this->json('PUT', 'api/user/' . $user->id, $data);
+        $response = $this->json('PUT', 'api/users/' . $user->id, $data);
 
         $response
             ->assertStatus(200)
@@ -219,6 +220,70 @@ class UpdateUserTest extends TestCase
 
         $this->assertCount(1, User::all());
         $this->assertDatabaseHas('users', array_except($data, ['password_confirmation', 'password']));
+    }
+
+
+    public function test_user_roles()
+    {
+
+        $role1 = factory(Role::class)->create();
+        $role2 = factory(Role::class)->create();
+
+        $user = $this->createUser();
+
+        $this->loginApi($user);
+
+        $user->assignRole([$role1->id,$role2->id]);
+
+        $this->assertCount(2, $user->roles);
+
+        $data = [
+            'name' => 'Hassan',
+            'email' => 'hassan@gmail.com',
+            'password' => 'hassan',
+            'password_confirmation' => 'hassan',
+            'roles' => [1],
+        ];
+
+        $response = $this->json('PUT', 'api/users/' . $user->id, $data);
+
+        $user = $user->fresh();
+
+        $this->assertCount(1, $user->roles);
+
+    }
+
+
+    public function test_remove_all_roles_from_user()
+    {
+
+        $role1 = factory(Role::class)->create();
+        $role2 = factory(Role::class)->create();
+
+        $user = $this->createUser();
+
+        $this->loginApi($user);
+
+        $user->assignRole([
+            $role1->id,
+            $role2->id
+        ]);
+
+        $this->assertCount(2, $user->roles);
+
+        $data = [
+            'name' => 'Hassan',
+            'email' => 'hassan@gmail.com',
+            'password' => 'hassan',
+            'password_confirmation' => 'hassan',
+        ];
+
+        $response = $this->json('PUT', 'api/users/' . $user->id, $data);
+
+        $user = $user->fresh();
+
+        $this->assertCount(0, $user->roles);
+
     }
 
 

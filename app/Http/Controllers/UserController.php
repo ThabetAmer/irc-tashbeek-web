@@ -82,7 +82,6 @@ class UserController extends Controller
     {
         app(ChangeUserStatusAction::class)->activate($user);
         return response()->json(['message' => 'User activated successfully'], 200);
-
     }
 
     /**
@@ -93,7 +92,6 @@ class UserController extends Controller
     {
         app(ChangeUserStatusAction::class)->deactivate($user);
         return response()->json(['message' => 'User deactivated successfully'], 200);
-
     }
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FirmRequest;
 use App\Models\Firm;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class FirmController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(FirmRequest $request)
     {
         return view('firm.index');
     }
@@ -24,8 +25,8 @@ class FirmController extends Controller
      * @param Firm $firm
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Firm $firm)
+    public function show(FirmRequest $request, Firm $firm)
     {
-        return view('firm.show',compact('firm'));
+        return view('firm.show', compact('firm'));
     }
 }

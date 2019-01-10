@@ -18,14 +18,14 @@
       </Btn>
       <div class="w-full flex-wrap flex mb-10">
         <div class="sm:w-full lg:w-1/3 hd:w-1/5 pt-5 pl-5">
-          <avatar
+          <Avatar
             class="sm:mx-auto"
             :src="imageSrc"
             :size="150"
             :username="name"
             @click="console.log('clicked')"
           />
-          <transition name="fade">
+          <Transition name="fade">
             <div
               v-if="showEdit"
               class="sm:mx-auto w-150 mt-5 sm:mb-5"
@@ -51,7 +51,7 @@
                 @change="handleFileChange"
               >
             </div>
-          </transition>
+          </Transition>
         </div>
         <div class="sm:w-full lg:w-2/3 ">
           <div class="flex flex-wrap -mx-3 mb-6">
@@ -181,7 +181,7 @@
         </div>
       </div>
 
-      <transition name="fade">
+      <Transition name="fade">
         <div
           v-if="showEdit"
           class="w-full text-right"
@@ -195,7 +195,7 @@
             </p>
           </Btn>
         </div>
-      </transition>
+      </Transition>
     </Panel>
   </div>
 </template>
@@ -203,8 +203,8 @@
 <script>
 
   import Avatar from 'vue-avatar'
-  import {update as updateUser} from '../api/userAPI'
-  import {create as createUser} from '../api/userAPI'
+  import {update as updateUser} from '../API/userAPI'
+  import {create as createUser} from '../API/userAPI'
 
   export default {
     components: {Avatar},

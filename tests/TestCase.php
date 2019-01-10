@@ -7,6 +7,8 @@ use App\Sync\DataRequest;
 use App\Sync\FormRequest;
 use App\Sync\UsersRequest;
 use App\Sync\UsersSync;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Tests\Fixtures\Classes\DataFactory;
 use Tests\Fixtures\Classes\StructureFactory;
 use App\Sync\StructureRequest;
@@ -18,7 +20,6 @@ abstract class TestCase extends BaseTestCase
 
     public function tearDown() {
         \Mockery::close();
-//        $this->memoryUsage();
     }
 
     protected function loginApi($user = null){
@@ -124,4 +125,32 @@ abstract class TestCase extends BaseTestCase
 
         var_dump($usage);
     }
+
+
+    protected function loginAsEso(){
+        $user =factory(User::class)->create();
+        $this->actingAs($user ?? factory(User::class)->create(),'api');
+    }
+
+
+    public function createUserRoleWithPermission($user, $permissions, $guard = 'web')
+    {
+        $permissions = collect($permissions)->map(function($permission) use($guard){
+            return [
+                'name' => $permission,
+                'guard_name' => $guard,
+            ];
+        });
+
+        Permission::query()->insert($permissions->toArray());
+
+        $role = factory(Role::class)->create();
+
+        $role->givePermissionTo(
+            $permissions->pluck('name')->toArray()
+        );
+
+        $user->assignRole($role->id);
+    }
+
 }

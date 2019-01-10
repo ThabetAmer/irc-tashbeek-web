@@ -24,7 +24,8 @@ class RecentActivityResource extends JsonResource
                 'id' => $this->entity->id,
                 'name' => $this->getResourceDisplayName($this->entity),
                 'details_url' => $this->entity->details_url,
-            ]
+            ],
+            'icon' => 'icon-Calendar_2_x40_2xpng_2'
         ];
     }
 

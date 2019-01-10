@@ -35,28 +35,28 @@
           >
             <span>
               Located in
-              <a
-                v-if="firm.city"
-                class="link text-blue-dark font-bold"
-                :href="`/firms?filters[city]=${firm.city}`"
-              >
-                {{ firm.city }}
-              </a>
+                      <a
+                        v-if="firm.city"
+                        class="link text-blue-dark font-bold"
+                        :href="`/firms?filters[city]=${firm.city}`"
+                      >
+                        {{ firm.city }}
+                      </a>
 
-              <span
-                v-if="firm.city && firm.district"
-                class="mx-1 link text-blue-dark font-bold"
-              >
-                •
-              </span>
+                      <span
+                        v-if="firm.city && firm.district"
+                        class="mx-1 link text-blue-dark font-bold"
+                      >
+                        •
+                      </span>
 
-              <a
-                v-if="firm.district"
-                class="link text-blue-dark font-bold"
-                :href="`/firms?filters[district]=${firm.district}`"
-              >
-                {{ firm.district }}
-              </a>
+                      <a
+                        v-if="firm.district"
+                        class="link text-blue-dark font-bold"
+                        :href="`/firms?filters[district]=${firm.district}`"
+                      >
+                        {{ firm.district }}
+                      </a>
             </span>
           </ListItem>
 
@@ -221,9 +221,9 @@
 
 
 <script>
-  import {get as getCaseListing} from '../api/caseListing'
-  import {get as getNotes} from '../api/noteAPI'
-  import {post as addNote} from '../api/noteAPI'
+  import {get as getCaseListing} from '../API/caseListing'
+  import {get as getNotes} from '../API/noteAPI'
+  import {post as addNote} from '../API/noteAPI'
 
   export default {
     props: {

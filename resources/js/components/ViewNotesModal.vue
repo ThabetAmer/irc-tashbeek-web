@@ -44,7 +44,7 @@
 
 
 <script>
-  import {get as getNotes} from '../api/noteAPI'
+  import {get as getNotes} from '../API/noteAPI'
   export default {
 
     mixins: [],

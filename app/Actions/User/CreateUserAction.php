@@ -18,6 +18,10 @@ class CreateUserAction
     {
         $user = User::query()->create($data);
 
+        $roles = $data['roles'] ?? [];
+
+        $user->assignRole($roles);
+
         try {
             $user->saveAttachments('profile_picture', 'profile_picture');
         } catch (\Exception $exception) {

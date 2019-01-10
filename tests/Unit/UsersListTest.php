@@ -24,7 +24,7 @@ class UsersListTest extends TestCase
 
         $this->loginApi($users[0]);  // login with the one of the users. so the count will be 5 not 6.
 
-        $response = $this->get('api/user')
+        $response = $this->get('api/users')
             ->assertStatus(200)
             ->assertJsonCount(5, 'data')
             ->assertJsonStructure([

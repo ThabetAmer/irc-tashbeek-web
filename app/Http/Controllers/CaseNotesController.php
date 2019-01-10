@@ -11,6 +11,8 @@ class CaseNotesController extends Controller
     {
         $case = $this->getCaseModelOrFail($caseType);
 
+        abort_unless(auth()->user()->hasPermissionTo("notes.{$caseType}"), 403);
+
         $record = $case->query()->where('id',$id)->firstOrFail();
 
         $results = $record->notes()->with('user')->latest()->paginate(5);

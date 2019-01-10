@@ -22,23 +22,43 @@ class PermissionsTableSeeder extends Seeder
                     'guard_name' => 'web',
                 ],
                 [
-                    'name' => 'job-seekers',
+                    'name' => $this->getCaseTypePermission('cases', \App\Models\JobSeeker::class),
                     'guard_name' => 'web',
                 ],
                 [
-                    'name' => 'firms',
+                    'name' => $this->getCaseTypePermission('cases', \App\Models\Firm::class),
                     'guard_name' => 'web',
                 ],
                 [
-                    'name' => 'job-opening-eso', // ESOs find job seeker “matches” for job openings available at firms
+                    'name' => $this->getCaseTypePermission('cases', \App\Models\JobOpening::class),
                     'guard_name' => 'web',
                 ],
                 [
-                    'name' => 'job-opening-esso', // Filling job-opening,
+                    'name' => $this->getCaseTypePermission('cases', \App\Models\JobOpening::class, 'match'),
+                    'guard_name' => 'web',
+                ],
+                [
+                    'name' => $this->getCaseTypePermission('notes', \App\Models\Firm::class),
+                    'guard_name' => 'web',
+                ],
+                [
+                    'name' => $this->getCaseTypePermission('notes', \App\Models\JobSeeker::class),
                     'guard_name' => 'web',
                 ]
+
             ]);
 
+    }
+
+
+    private function getCaseTypePermission($permission, $model, $action = null)
+    {
+        $caseType = case_type($model);
+        $result = "$permission.$caseType";
+        if ($action) {
+            $result .= ".$action";
+        }
+        return $result;
     }
 
 }

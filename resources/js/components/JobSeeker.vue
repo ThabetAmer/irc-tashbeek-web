@@ -58,16 +58,16 @@
             <span>
               Living in {{ jobSeeker.city }}
 
-              <span
-                v-if="jobSeeker.city && jobSeeker.district "
-                class="mx-1"
-              >
-                •
-              </span>
+                     <span
+                       v-if="jobSeeker.city && jobSeeker.district "
+                       class="mx-1"
+                     >
+                       •
+                     </span>
 
-              <span v-if="jobSeeker.district !== ''">
-                {{ jobSeeker.district }}
-              </span>
+                     <span v-if="jobSeeker.district !== ''">
+                       {{ jobSeeker.district }}
+                     </span>
             </span>
           </ListItem>
 
@@ -286,8 +286,8 @@
 </template>
 
 <script>
-  import {get as getNotes} from '../api/noteAPI'
-  import {post as addNote} from '../api/noteAPI'
+  import {get as getNotes} from '../API/noteAPI'
+  import {post as addNote} from '../API/noteAPI'
 
   export default {
     props: {

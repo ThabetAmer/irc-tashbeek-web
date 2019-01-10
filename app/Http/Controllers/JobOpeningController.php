@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 
 
+use App\Http\Requests\JobOpeningRequest;
+
 class JobOpeningController extends Controller
 {
     /**
@@ -8,7 +10,7 @@ class JobOpeningController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(JobOpeningRequest $request)
     {
         return view('job-opening.index');
     }

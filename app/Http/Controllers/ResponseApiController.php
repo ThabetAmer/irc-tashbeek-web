@@ -18,6 +18,8 @@ class ResponseApiController extends Controller
      */
     public function index($caseType, CaseFilter $caseFilter, SortableCase $sortableCase)
     {
+        abort_unless(auth()->user()->hasPermissionTo("cases.{$caseType}"), 403);
+
         $query = get_case_type_model($caseType)->query();
 
         $query->filter($caseFilter);
@@ -42,9 +44,9 @@ class ResponseApiController extends Controller
     protected function perPage()
     {
         $perPage = request("perPage");
-        $perPagesLimit = [15,30,50];
+        $perPagesLimit = [15, 30, 50];
 
-        if(!in_array($perPage, $perPagesLimit)){
+        if (!in_array($perPage, $perPagesLimit)) {
             $perPage = 15;
         }
 

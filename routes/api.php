@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
+
+
 Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('cases/{caseType}', 'ResponseApiController@index');
@@ -25,13 +27,18 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('recent-activities', 'RecentActivitiesController@index')->name('api.recent-activities');
 
+    Route::resource('users', 'UserController');
 
     Route::resource('users', 'UserController');
 
-    Route::group(['prefix' => 'user'], function () {
+    Route::group(['prefix' => 'users'], function () {
         Route::post('{user}/activate', 'UserController@activate');
         Route::post('{user}/deactivate', 'UserController@deactivate');
     });
+
+    Route::get('roles', 'RoleController@index');
+
+    Route::get('cards', 'CardsController@index');
 
 });
 

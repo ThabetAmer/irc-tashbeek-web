@@ -14,6 +14,9 @@ class AddRolePermissionsAndUsers extends Migration
      */
     public function up()
     {
+        if(App::runningUnitTests()){
+            return ;
+        }
         app(RolesTableSeeder::class)->run();
         app(PermissionsTableSeeder::class)->run();
         app(RolePermissionTableSeeder::class)->run();

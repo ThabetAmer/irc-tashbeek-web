@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 
 use Illuminate\Foundation\Testing\WithFaker;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 use App\Models\JobSeeker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -38,15 +39,25 @@ class CaseNotesIndexTest extends TestCase
 
         $this->loginApi();
 
+        $this->createUserRoleWithPermission(auth()->user(), [
+            'notes.job-seeker'
+        ]);
+
         $this->json('get', route('case-notes.index', ['job-seeker', 1]))
             ->assertStatus(404);
     }
 
     public function test_it_list_notes_of_case()
     {
+        $this->withoutExceptionHandling();
+
         $this->syncStructure('job-seeker');
 
         $this->loginApi();
+
+        $this->createUserRoleWithPermission(auth()->user(), [
+            'notes.job-seeker'
+        ]);
 
         $jobSeeker = factory(JobSeeker::class)->create();
 

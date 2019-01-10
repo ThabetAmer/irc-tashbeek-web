@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -224,11 +225,17 @@ class UpdateUserTest extends TestCase
 
     public function test_user_roles()
     {
+
+        $role1 = factory(Role::class)->create();
+        $role2 = factory(Role::class)->create();
+
         $user = $this->createUser();
 
         $this->loginApi($user);
 
-        $user->assignRole([1, 2]);
+        $user->assignRole([$role1->id,$role2->id]);
+
+        $this->assertCount(2, $user->roles);
 
         $data = [
             'name' => 'Hassan',
@@ -249,11 +256,20 @@ class UpdateUserTest extends TestCase
 
     public function test_remove_all_roles_from_user()
     {
+
+        $role1 = factory(Role::class)->create();
+        $role2 = factory(Role::class)->create();
+
         $user = $this->createUser();
 
         $this->loginApi($user);
 
-        $user->assignRole([1, 2]);
+        $user->assignRole([
+            $role1->id,
+            $role2->id
+        ]);
+
+        $this->assertCount(2, $user->roles);
 
         $data = [
             'name' => 'Hassan',

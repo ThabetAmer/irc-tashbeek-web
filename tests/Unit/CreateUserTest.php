@@ -168,12 +168,15 @@ class CreateUserTest extends TestCase
                 'message' => true,
             ]);
 
-
         $this->assertDatabaseHas('users', array_except($data, ['password_confirmation', 'password']));
     }
 
     public function test_user_roles()
     {
+        $role = factory(Role::class)->create();
+
+        $this->withoutExceptionHandling();
+
         $this->loginApi();
 
         $data = [
@@ -181,14 +184,17 @@ class CreateUserTest extends TestCase
             'email' => 'ali@gmail.com',
             'password' => 'sehweil',
             'password_confirmation' => 'sehweil',
-            'roles' => Role::query()->take(3)->pluck('id')->toArray(),
+            'roles' => [
+                $role->id
+            ],
         ];
 
-        $response = $this->json('POST', 'api/users', $data);
+        $this->json('POST', 'api/users', $data)
+        ->assertSuccessful();
 
         $user = User::find(2);
 
-        $this->assertCount(3, $user->roles);
+        $this->assertCount(1, $user->roles);
 
     }
 

@@ -22,7 +22,6 @@ class RolePermissionTableSeeder extends Seeder
 
         $esso = $this->getRole('Employment Senior Service Officer (ESSO)');
 
-
         $this->assignPermissionsToRole($systemAdministratorRole, [
             'users_management',
             'cases.job-seeker',

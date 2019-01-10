@@ -21,8 +21,8 @@ class UserController extends Controller
     public function index()
     {
         $users = app(UsersList::class)->get();
-
         return UserResource::collection($users);
+//        return view('users',compact('users'));
     }
 
     public function create()
@@ -30,9 +30,16 @@ class UserController extends Controller
 
     }
 
-    public function edit()
+    public function edit(User $user)
     {
 
+        return $user;
+    }
+
+    public function show(User $user)
+    {
+
+        return $user;
     }
 
     /**

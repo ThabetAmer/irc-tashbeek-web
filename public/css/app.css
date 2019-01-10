@@ -5733,6 +5733,10 @@
   width: 16rem;
 }
 
+.w-150 {
+  width: 150px;
+}
+
 .w-auto {
   width: auto;
 }
@@ -11506,6 +11510,10 @@
 
   .sm\:w-64 {
     width: 16rem;
+  }
+
+  .sm\:w-150 {
+    width: 150px;
   }
 
   .sm\:w-auto {
@@ -17284,6 +17292,10 @@
     width: 16rem;
   }
 
+  .md\:w-150 {
+    width: 150px;
+  }
+
   .md\:w-auto {
     width: auto;
   }
@@ -23058,6 +23070,10 @@
 
   .lg\:w-64 {
     width: 16rem;
+  }
+
+  .lg\:w-150 {
+    width: 150px;
   }
 
   .lg\:w-auto {
@@ -28836,6 +28852,10 @@
     width: 16rem;
   }
 
+  .xl\:w-150 {
+    width: 150px;
+  }
+
   .xl\:w-auto {
     width: auto;
   }
@@ -34612,6 +34632,10 @@
     width: 16rem;
   }
 
+  .hd\:w-150 {
+    width: 150px;
+  }
+
   .hd\:w-auto {
     width: auto;
   }
@@ -38810,6 +38834,57 @@ a[aria-expanded=true] {
   min-height: 57px !important;
 }
 
+.breadcrumbs-container {
+  padding: 0px;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 0;
+  min-width: 1024px;
+  z-index: 9997;
+}
+
+.breadcrumbs-container ol {
+  list-style: none;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-bottom: 0;
+  border-radius: 5px;
+  padding: 10px 10px;
+}
+
+.breadcrumbs-container ol li {
+  display: inline-block;
+  position: relative;
+  font-weight: 600;
+}
+
+.breadcrumbs-container ol li a {
+  color: #8795a1 !important;
+}
+
+.breadcrumbs-container ol li:not(:last-child) {
+  margin-right: 10px;
+}
+
+.breadcrumbs-container ol li:last-child a {
+  color: initial !important;
+}
+
+.breadcrumbs-container ol li:first-child i {
+  display: none;
+}
+
+.breadcrumbs-container ol li:not(:first-child) i {
+  color: #405e80;
+  vertical-align: middle;
+  padding-right: 3px;
+  font-size: 20px;
+  vertical-align: middle;
+  left: -27px;
+  top: 1px;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
@@ -38950,10 +39025,6 @@ a[data-toggle=collapse] {
   font-weight: 600;
 }
 
-#calendar .fc-day-top.fc-today .fc-day-number {
-  background-color: rgba(92, 182, 87, .15);
-}
-
 #calendar .alert-info {
   background: transparent !important;
 }
@@ -38964,7 +39035,6 @@ a[data-toggle=collapse] {
   border-radius: 50%;
   padding: 0px;
   height: 20px;
-  top: -8px;
   margin-left: 42px;
   padding-top: 3px;
   color: white;
@@ -39334,7 +39404,8 @@ table.scrollable-fixed-header thead th {
   background: #405e80 !important;
 }
 
-[aria-hidden=true] {
+.clipboard-container [aria-hidden=true],
+.user-container [aria-hidden=true] {
   opacity: 0;
   position: absolute;
   z-index: -9999;
@@ -39417,4 +39488,112 @@ html {
 
 .fc-toolbar .fc-right button[aria-label=next] span:before {
   content: "\E98F";
+}
+
+.fc-more-cell {
+  display: none;
+}
+
+.fc-day-grid-event .fc-content {
+  text-align: center;
+}
+
+.fc-event-container {
+  position: relative;
+}
+
+.fc-event-container .fc-day-grid-event {
+  position: absolute;
+  top: -39px;
+  right: 30px;
+  width: 20px;
+  height: 20px;
+  padding-top: 1px;
+  background: #5cb657;
+  border-radius: 50%;
+  color: white;
+  font-weight: 500;
+  opacity: .8;
+}
+
+.fc-event-container .fc-day-grid-event.past {
+  background: #d8d8d8;
+}
+
+.fc-day-grid .fc-row:first-child {
+  padding-top: 5px;
+}
+
+.fc-today span {
+  color: #5cb657 !important;
+}
+
+.fc-day-top:focus span {
+  background-color: red !important;
+}
+
+@media only screen and (min-width: 768px) {
+  .fc-event-container .fc-day-grid-event {
+    right: 10px;
+  }
+}
+
+@media only screen and (min-width: 1350px) {
+  .fc-event-container .fc-day-grid-event {
+    right: 15px;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .fc-event-container .fc-day-grid-event {
+    right: 20px;
+  }
+}
+
+@media only screen and (min-width: 1700px) {
+  .fc-event-container .fc-day-grid-event {
+    right: 25px;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  .fc-event-container .fc-day-grid-event {
+    right: 30px;
+  }
+}
+
+.fc-highlight {
+  background: transparent;
+  position: relative;
+}
+
+.fc-highlight:after {
+  position: absolute;
+  width: 30px;
+  top: 2px;
+  right: 39%;
+  background-color: #5cb657;
+  opacity: .5;
+  height: 30px;
+  border-radius: 50%;
+  content: "";
+}
+
+.fc-day-grid .fc-row:first-child .fc-highlight:after {
+  top: 7px;
+}
+
+.toasted i {
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }

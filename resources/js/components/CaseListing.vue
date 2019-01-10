@@ -48,7 +48,7 @@
 </template>
 
 <script>
-  import {get as getListing} from '../api/caseListing'
+  import {get as getListing} from '../API/caseListing'
   import FiltersProvider from "../mixins/FiltersProvider";
   import queryString from '../helpers/QueryString'
   import sortingProvider from "../mixins/sortingProvider";

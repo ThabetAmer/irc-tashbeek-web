@@ -505,6 +505,7 @@ module.exports = {
     'full': '100%',
     'screen': '100vw',
     '50': '50px',
+    '150': '150px',
     '0': '0px'
   },
 

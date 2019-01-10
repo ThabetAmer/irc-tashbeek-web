@@ -13,9 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 
 Route::group(['middleware' => ['auth:api']], function () {
@@ -29,6 +26,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('upcoming-followups/counts', 'UpcomingFollowupsController@counts')->name('api.upcoming-followups.counts');
 
     Route::get('recent-activities', 'RecentActivitiesController@index')->name('api.recent-activities');
+
+    Route::resource('users', 'UserController');
 
     Route::resource('users', 'UserController');
 

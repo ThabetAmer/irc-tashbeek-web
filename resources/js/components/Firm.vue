@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <div class="w-1/3 px-2">
+    <div class="w-1/3 pr-2">
       <Panel
         custom-class="min-h-642"
         :has-title="hasTitle"
@@ -221,9 +221,9 @@
 
 
 <script>
-  import {get as getCaseListing} from '../api/caseListing'
-  import {get as getNotes} from '../api/noteAPI'
-  import {post as addNote} from '../api/noteAPI'
+  import {get as getCaseListing} from '../API/caseListing'
+  import {get as getNotes} from '../API/noteAPI'
+  import {post as addNote} from '../API/noteAPI'
 
   export default {
     props: {

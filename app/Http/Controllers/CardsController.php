@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Cards\ValueCard;
 use App\Http\Resources\NoteResource;
 use App\Models\Firm;
+use App\Models\Followup;
+use App\Models\JobOpening;
 
 class CardsController extends Controller
 {
@@ -12,9 +14,15 @@ class CardsController extends Controller
     public function cards()
     {
         return [
-            ValueCard::make("Count of firms")
+            ValueCard::make('Total Number Of Firms')
                 ->model(Firm::class)
-                ->avg()
+                ->count(),
+            ValueCard::make('Total number of follow-ups')
+                ->model(Followup::class)
+                ->count(),
+            ValueCard::make('Current job openings')
+                ->model(JobOpening::class)
+                ->count()
         ];
     }
 

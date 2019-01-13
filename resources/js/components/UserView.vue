@@ -67,7 +67,7 @@
                 v-model="user.name"
                 :disabled="!showEdit"
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
-               px-4 mb-3 leading-tight focus:outline-none focus:bg-white ${!showEdit ? 'cursor-not-allowed':''}  ${!internalError['name'] ? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
+               px-4 leading-tight focus:outline-none focus:bg-white ${!showEdit ? 'cursor-not-allowed':''}  ${!internalError['name'] ? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="text"
                 placeholder="Name"
               >
@@ -89,7 +89,7 @@
                 id="email"
                 v-model="user.email"
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
-               px-4 mb-3 leading-tight focus:outline-none focus:bg-white  ${!internalError['email']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
+               px-4 leading-tight focus:outline-none focus:bg-white  ${!internalError['email']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="text"
                 placeholder="Email"
               >
@@ -114,7 +114,7 @@
                 id="password"
                 v-model="user.password"
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
-               px-4 mb-3 leading-tight focus:outline-none focus:bg-white  ${!internalError['password']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
+               px-4 leading-tight focus:outline-none focus:bg-white  ${!internalError['password']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="password"
                 placeholder="******************"
               >
@@ -139,7 +139,7 @@
                 id="password_confirm"
                 v-model="user.password_confirmation"
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
-               px-4 mb-3 leading-tight focus:outline-none focus:bg-white  ${!internalError['password']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
+               px-4 leading-tight focus:outline-none focus:bg-white  ${!internalError['password']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="password"
                 placeholder="******************"
               >

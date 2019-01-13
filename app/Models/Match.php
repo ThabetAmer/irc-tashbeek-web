@@ -14,4 +14,14 @@ class Match extends Model implements SyncableInterface
 
     protected $guarded = ['id'];
 
+
+    public function jobSeeker()
+    {
+        return $this->belongsTo(JobSeeker::class);
+    }
+
+    public function jobOpening()
+    {
+        return $this->belongsTo(JobOpening::class);
+    }
 }

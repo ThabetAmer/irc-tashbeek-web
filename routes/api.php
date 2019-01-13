@@ -40,6 +40,8 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('cards', 'CardsController@index');
 
+    Route::get('/job-openings/{jobOpening}/matches', 'JobOpeningMatchController@matches')->name('api.matches');
+
 });
 
 

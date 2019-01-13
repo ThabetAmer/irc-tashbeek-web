@@ -9,6 +9,7 @@
       >
         <thead>
           <tr class="font-bold text-green-theme">
+            <td />
             <th
               v-for="head in header"
               :key="head.name"
@@ -45,6 +46,10 @@
             :key="row.id"
             class="font-bold text-black  border-grey-light border-b-2"
           >
+            <slot
+              :row="row"
+              name="start-td"
+            />
             <td
               v-for="head in header"
               :key="head.name"

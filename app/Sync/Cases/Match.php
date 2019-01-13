@@ -1,5 +1,6 @@
 <?php namespace App\Sync\Cases;
 
+use App\Sync\QuestionHandler\MatchIsCandidate;
 use App\Sync\QuestionHandler\MatchJobOpeningIdHandler;
 use App\Sync\QuestionHandler\MatchJobSeekerIdHandler;
 
@@ -47,6 +48,17 @@ class Match extends AbstractCase
                 ],
                 'valueHandler' => MatchJobSeekerIdHandler::class
             ],
+            'is_candidate' => [
+                'column_name' => 'is_candidate',
+                'column_type' => 'boolean',
+                'property' => true,
+                'type' => 'select',
+                'translations' => [
+                    'en' => 'Is Candidate',
+                    'ara' => 'Is Candidate'
+                ],
+                'valueHandler' => MatchIsCandidate::class
+            ]
 
         ];
     }

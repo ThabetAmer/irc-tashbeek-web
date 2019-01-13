@@ -43,6 +43,7 @@ Vue.component('SeekerProfile',require('./components/JobSeeker.vue').default);
 Vue.component('JobSeeker',require('./components/JobSeeker.vue').default);
 Vue.component('UsersListing',require('./components/UserListing.vue').default);
 Vue.component('UserView',require('./components/UserView.vue').default);
+Vue.component('JobOpeningMatch', require('./components/JobOpeningMatch.vue').default);
 
 
 // UI components

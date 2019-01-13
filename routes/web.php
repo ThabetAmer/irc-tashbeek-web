@@ -28,11 +28,10 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
 
     Route::get('/job-openings', 'JobOpeningController@index');
+    Route::get('/job-openings/{jobOpening}/match', 'JobOpeningMatchController@index');
 });
 
-//
 Route::get('/dashboard', function () {
-//    return redirect()->route('login');
     return view('home');
 });
 

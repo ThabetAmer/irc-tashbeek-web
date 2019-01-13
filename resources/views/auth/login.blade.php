@@ -38,6 +38,9 @@
                 @endif
 
 
+                @if ($errors->has('deactivated_user'))
+                    <span class="text-red-dark"><strong>{{$errors->first('deactivated_user')}}</strong></span>
+                @endif
             </div>
             <div class="md:flex md:items-center mb-6">
                 <label class="block text-grey font-bold">

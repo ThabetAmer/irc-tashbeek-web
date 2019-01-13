@@ -12,7 +12,7 @@ class SyncData extends Command
      *
      * @var string
      */
-    protected $signature = 'sync:data {caseType} : Case Type job-seeker, job-opening, firm, job-matching';
+    protected $signature = 'sync:data {caseType} : Case Type job-seeker, job-opening, firm, match';
 
     /**
      * The console command description.

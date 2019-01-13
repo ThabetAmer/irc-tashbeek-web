@@ -7,11 +7,11 @@ export const get = (params = {}) => {
 
 
 export const activateUser = (id,params = {}) => {
-  return $httpRequester.post(`api/user/${id}/activate`)
+  return $httpRequester.post(`api/users/${id}/activate`)
 }
 
 export const deactivateUser = (id,params = {}) => {
-  return $httpRequester.post(`api/user/${id}/deactivate`)
+  return $httpRequester.post(`api/users/${id}/deactivate`)
 }
 
 export const update = (id,params = {}) => {

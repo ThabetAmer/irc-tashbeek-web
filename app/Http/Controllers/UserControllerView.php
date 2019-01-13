@@ -9,6 +9,7 @@ use App\Actions\User\UsersList;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class UserControllerView extends Controller
 {
@@ -31,12 +32,21 @@ class UserControllerView extends Controller
 
     public function edit(User $user)
     {
-        return view('users.edit',compact('user'));
+        return view('users.edit', compact('user'));
     }
 
     public function show(User $user)
     {
-        return view('users.show',compact('user'));
+        $roles = Role::all()
+            ->transform(function ($role) use($user){
+                return [
+                    'id' => $role->id,
+                    'name' => $role->name,
+                    'has_role' => $user->hasRole($role)
+                ];
+            });
+
+        return view('users.show', compact('user','roles'));
     }
 
 }

@@ -3,6 +3,7 @@
     <div class="" id="all-users">
         <user-view
                 :user-prop="{{json_encode($user->toArray())}}"
+                :role-prop="{{json_encode($roles->toArray())}}"
                 :view-only="true"
         ></user-view>
     </div>

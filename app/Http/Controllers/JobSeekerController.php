@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\CaseFilter;
 use App\Http\Requests\JobSeekerRequest;
+use App\Http\Sortable\SortableCase;
 use App\Models\JobSeeker;
 use Illuminate\Http\Request;
 
@@ -28,5 +30,41 @@ class JobSeekerController extends Controller
     public function show(JobSeekerRequest $request, JobSeeker $jobSeeker)
     {
         return view('job-seeker.show', compact('jobSeeker'));
+    }
+
+    public function matches(JobSeeker $jobSeeker, CaseFilter $filter, SortableCase $sortableCase)
+    {
+        abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
+
+        $query = $jobSeeker->matches();
+
+        $query->filter($filter);
+
+        $query->sort($sortableCase);
+
+        $results = $query->paginate();
+
+        $caseType = 'job-opening';
+
+        return case_resource_collection($caseType, $results, $caseType);
+    }
+
+    public function candidates(JobSeeker $jobSeeker, CaseFilter $filter, SortableCase $sortableCase)
+    {
+        abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
+
+        $query = $jobSeeker->matches();
+
+        $query->filter($filter);
+
+        $query->sort($sortableCase);
+
+        $query->where('is_candidate',1);
+
+        $results = $query->paginate();
+
+        $caseType = 'job-opening';
+
+        return case_resource_collection($caseType, $results, $caseType);
     }
 }

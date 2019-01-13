@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Filters\MatchesFilter;
+use App\Http\Filters\CaseFilter;
 use App\Http\Sortable\SortableCase;
 use App\Models\JobOpening;
 use App\Models\Match;
@@ -15,7 +15,7 @@ class JobOpeningMatchController extends Controller
         return view('job-opening.match', compact('jobOpening'));
     }
 
-    public function matches(JobOpening $jobOpening, MatchesFilter $filter, SortableCase $sortableCase)
+    public function matches(JobOpening $jobOpening, CaseFilter $filter, SortableCase $sortableCase)
     {
         abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
 

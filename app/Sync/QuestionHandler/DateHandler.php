@@ -11,10 +11,8 @@ use Carbon\Carbon;
 
 class DateHandler implements HandlerInterface
 {
-
     public function handle($caseData, $questionId, $question, AbstractCase $case)
     {
-
         $value = array_get(array_get($caseData, 'properties'), $questionId);
 
         if(empty($value) && isset($question['alias'])){

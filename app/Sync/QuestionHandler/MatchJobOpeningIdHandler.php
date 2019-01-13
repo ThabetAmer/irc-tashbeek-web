@@ -17,10 +17,14 @@ class MatchJobOpeningIdHandler implements HandlerInterface
         $jobId = array_get($caseData,'properties.job_id');
         $jobOpening = JobOpening::where('job_id', $jobId)->first();
 
-        if(!$jobOpening){
+        return $this->resolve($jobOpening);
+    }
+
+    public function resolve($value){
+        if(!$value){
             return null;
         }
 
-        return $jobOpening->id;
+        return $value->id;
     }
 }

@@ -18,13 +18,19 @@ class ResponseApiController extends Controller
      */
     public function index($caseType, CaseFilter $caseFilter, SortableCase $sortableCase)
     {
+
         abort_unless(auth()->user()->hasPermissionTo("cases.{$caseType}"), 403);
 
-        $query = get_case_type_model($caseType)->query();
+        try{
+            $query = get_case_type_model($caseType)->query();
+        }catch(\Throwable $e){
+            dd($e->getMessage());
+        }
 
         $query->filter($caseFilter);
 
         $query->sort($sortableCase);
+
 
         $results = $this->handlePagination($query);
 

@@ -14,7 +14,7 @@ class AddCasesPermissionsSeeder extends Seeder
     public function run()
     {
         $permissions = [
-            'cases.matches'
+            'cases.match'
         ];
 
         $this->givePermissionToSuperUser($permissions);

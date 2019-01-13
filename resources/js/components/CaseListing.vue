@@ -63,6 +63,7 @@
         <td
           slot="extra"
           slot-scope="{row}"
+          class="mr-2 pr-2"
         >
           <button
             class="flex-1 text-xl  text-green-dark"

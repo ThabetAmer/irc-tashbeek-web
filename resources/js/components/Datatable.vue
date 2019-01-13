@@ -13,7 +13,7 @@
             <th
               v-for="head in header"
               :key="head.name"
-              class="pb-2 pl-6 text-xs max-w-150 relative cursor-pointer"
+              class="pb-2 pl-6 text-xs truncate max-w-150 relative cursor-pointer"
               @click="$emit('sort',head.name)"
             >
               <span

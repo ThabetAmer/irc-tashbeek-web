@@ -2,29 +2,18 @@
   <div class="flex">
     <div class=" w-2/3">
       <div class="flex flex-wrap">
-        <div class="flex-1 px-2">
-          <MetricCard
+        <div
+          v-for="card in cards"
+          :key="card.label + card.value"
+          class="px-2 w-1/3"
+        >
+          <Component
+            :is="card.component"
             :icon-class="'icon-Add_x40_2xpng_2'"
-            :value="'11'"
-            :label="'Current Jobs'"
+            :value="parseInt(card.value)"
+            :label="card.label"
           />
         </div>
-
-        <div class="flex-1 px-2">
-          <MetricCard
-            :icon-class="'icon-Calendar_2_x40_2xpng_2'"
-            :value="'11'"
-            :label="'Current Jobs'"
-          />
-        </div>
-        <div class="flex-1 px-2">
-          <MetricCard
-            :icon-class="'icon-Briefcase_x40_2xpng_2'"
-            :value="'11'"
-            :label="'Current Jobs'"
-          />
-        </div>
-
         <div class="px-2 flex-grow w-full">
           <Panel
             custom-class="min-h-630 pt-8 max-h-630 overflow-y-auto"
@@ -170,6 +159,7 @@
   import {upcomingFollowups as getFollowups} from '../API/followupAPI'
   import {upcomingFollowupsCount as getCounts} from '../API/followupAPI'
   import {get as getRecentActivity} from '../API/recentActivityAPI'
+  import {get as getCards} from '../API/cardsAPI'
 
   export default {
     components: {
@@ -179,6 +169,7 @@
     props: {},
     data() {
       return {
+        cards: [],
         tableHeaders: [
           {
             name: "followup_type",
@@ -249,6 +240,14 @@
     },
     mounted() {
       this.getRecentActivity();
+      getCards()
+          .then(resp => {
+            this.cards = resp.data;
+            console.log(' resp for cards is ', resp);
+          })
+          .catch(error => {
+          });
+
     },
     methods: {
       getRecentActivity() {

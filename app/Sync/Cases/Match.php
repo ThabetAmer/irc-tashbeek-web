@@ -29,6 +29,7 @@ class Match extends AbstractCase
                 'column_name' => 'job_opening_id',
                 'column_type' => 'text',
                 'property' => true,
+                'type' => 'select',
                 'translations' => [
                     'en' => 'Job Opening',
                     'ara' => 'Job Opening'
@@ -39,6 +40,7 @@ class Match extends AbstractCase
                 'column_name' => 'job_seeker_id',
                 'column_type' => 'text',
                 'property' => true,
+                'type' => 'select',
                 'translations' => [
                     'en' => 'Job Seeker',
                     'ara' => 'Job Seeker'

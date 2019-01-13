@@ -21,16 +21,11 @@ class ResponseApiController extends Controller
 
         abort_unless(auth()->user()->hasPermissionTo("cases.{$caseType}"), 403);
 
-        try{
-            $query = get_case_type_model($caseType)->query();
-        }catch(\Throwable $e){
-            dd($e->getMessage());
-        }
+        $query = get_case_type_model($caseType)->query();
 
         $query->filter($caseFilter);
 
         $query->sort($sortableCase);
-
 
         $results = $this->handlePagination($query);
 

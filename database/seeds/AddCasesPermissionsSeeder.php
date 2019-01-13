@@ -14,11 +14,13 @@ class AddCasesPermissionsSeeder extends Seeder
     public function run()
     {
         $permissions = [
-            'cases.match'
+            'notes.job-opening'
         ];
 
         $this->givePermissionToSuperUser($permissions);
 
         $this->givePermissionToESO($permissions);
+
+
     }
 }

@@ -9,8 +9,8 @@
                     slot="end-td"
                     slot-scope="{row}"
             >
-                <a :href="`/job-openings/${row.id}/match`">
-                    Match
+                <a class="no-underline text-green mr-2 text-xl" :href="`/job-openings/${row.id}/match`">
+                    <i class="icon-Magnify_Glass_x40_2xpng_2"></i>
                 </a>
             </template>
         </case-listing>

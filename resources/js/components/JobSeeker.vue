@@ -340,9 +340,9 @@
         this.showAddModalNote = false;
 
       },
-      addNoteToList(noteText) {
+      addNoteToList(noteText,type) {
 
-        addNote('job-seeker', this.jobSeeker.id, {note: noteText})
+        addNote('job-seeker', this.jobSeeker.id, {note: noteText,type:type})
             .then(resp => {
               this.notes.push(resp.data.note);
             }).catch(error => {

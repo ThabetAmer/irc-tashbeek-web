@@ -275,8 +275,8 @@
       changeStarredNote(note) {
         this.starredNote = note;
       },
-      addNoteToList(noteText) {
-        addNote('firm', this.firm.id, {note: noteText})
+      addNoteToList(noteText,type) {
+        addNote('firm', this.firm.id, {note: noteText,type:type})
             .then(resp => {
               this.notes.push(resp.data.note);
             }).catch(error => {

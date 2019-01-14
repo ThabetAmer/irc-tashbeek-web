@@ -65,11 +65,7 @@
                 show: '',
                 noteText: '',
                 SelectOptions: [
-                    {name: 'Vue.js', language: 'JavaScript'},
-                    {name: 'Rails', language: 'Ruby'},
-                    {name: 'Sinatra', language: 'Ruby'},
-                    {name: 'Laravel', language: 'PHP'},
-                    {name: 'Phoenix', language: 'Elixir'}
+                    {label: 'Follow Up', name: 'follow_up'},
                 ],
             }
         },
@@ -91,13 +87,11 @@
 
             },
             addNote() {
-                console.log('clicked on add note');
-                this.$emit('note-added', this.noteText);
+                this.$emit('note-added', this.noteText,this.value);
                 this.$emit('close');
 
             },
             handleSelect(selected) {
-                console.log('selected is ', selected);
                 this.value = selected;
             },
         }

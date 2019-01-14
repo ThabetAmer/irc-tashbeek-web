@@ -15,6 +15,7 @@
       :check-id="checkbox.value"
       :checked="checkbox.checked"
       @change="checkboxChange(checkbox,$event)"
+      :disabled="disabled"
     />
   </div>
 </template>
@@ -40,6 +41,10 @@
       display: {
         type: String,
         default: ''
+      },
+      disabled:{
+        type:Boolean,
+        default:false
       }
     },
     data() {

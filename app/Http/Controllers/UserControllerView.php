@@ -40,7 +40,9 @@ class UserControllerView extends Controller
 
     public function show(User $user)
     {
-        $roles = $this->getRoles($user);
+        $roles = $this->getRoles($user)->filter(function($role){
+            return $role['has_role'] === true;
+        });
 
         return view('users.show', compact('user', 'roles'));
     }

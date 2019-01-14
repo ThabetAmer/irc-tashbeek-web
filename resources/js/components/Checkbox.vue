@@ -13,6 +13,7 @@
         type="checkbox"
         :checked="checked"
         :class="checkboxClass"
+        :disabled="disabled"
         @input="$emit('input', $event.target.checked)"
         @change="$emit('change', $event.target.checked)"
       >
@@ -56,6 +57,10 @@
       value: {
         type: [String, Boolean],
         default: ''
+      },
+      disabled:{
+        type:Boolean,
+        default:false
       }
     },
     computed: {

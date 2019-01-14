@@ -164,9 +164,14 @@
 
           <div class="mb-6">
             <CheckboxGroup
+              v-if="availableRoles.length > 0"
+              :disabled="viewOnly"
               :checkboxes="availableRoles"
               @change="onRoleSelection"
             />
+            <div v-else>
+              No assigned roles for this user
+            </div>
           </div>
         </div>
       </div>

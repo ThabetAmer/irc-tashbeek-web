@@ -39,7 +39,7 @@
           slot="start-td"
           slot-scope="{row}"
         >
-          <td>
+          <td class="pl-2">
             <slot
               :row="row"
               name="start-td"

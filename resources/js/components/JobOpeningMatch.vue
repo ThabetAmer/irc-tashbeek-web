@@ -10,9 +10,9 @@
           <h1 class="flex-1">
             {{ jobOpening.job_title }}
           </h1>
-          <button @click="saveMatches">
-            Save matches
-          </button>
+          <btn theme="success" @click="saveMatches">
+            <span slot="text">Save matches</span>
+          </btn>
         </div>
         <div>
           <label>Job Description</label>

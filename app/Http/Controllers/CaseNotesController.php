@@ -68,7 +68,7 @@ class CaseNotesController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'Note has been created.',
+            'message' => 'Note has been starred.',
             'note' => new NoteResource($note)
         ], 200);
     }

@@ -163,20 +163,10 @@
           </label>
 
           <div class="md:flex md:items-center mb-6">
-            <!--<label class="md:w-2/3 block text-grey font-bold">-->
-            <!--<input-->
-            <!--class="mr-2 leading-tight"-->
-            <!--type="checkbox"-->
-            <!--&gt;-->
-            <!--<span class="text-sm">-->
-            <!--Send me your newsletter!-->
-            <!--</span>-->
-            <!--</label>-->
-            [TODO]
-            <!--<CheckboxGroup-->
-            <!--:checkboxes="checkboxes"-->
-            <!--display="inline"-->
-            <!--/>-->
+            <CheckboxGroup
+              :checkboxes="checkboxes"
+              display="inline"
+            />
           </div>
         </div>
       </div>
@@ -218,6 +208,10 @@
       viewOnly: {
         type: Boolean,
         default: false
+      },
+      roles:{
+        type:Array,
+        default: () => []
       }
     },
     data() {

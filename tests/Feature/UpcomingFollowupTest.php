@@ -35,7 +35,8 @@ class UpcomingFollowupTest extends TestCase
         $jobSeeker->followups()->create([
             'followup_period' => 'monthly',
             'type' => 'scheduled',
-            'followup_date' => now()->toDateString()
+            'followup_date' => now()->toDateString(),
+            'user_id' => auth()->id()
         ]);
 
         $this->json('get',route('api.upcoming-followups'))
@@ -77,19 +78,70 @@ class UpcomingFollowupTest extends TestCase
         $jobSeeker->followups()->create([
             'followup_period' => 'monthly',
             'type' => 'scheduled',
-            'followup_date' => now()->toDateString()
+            'followup_date' => now()->toDateString(),
+            'user_id' => auth()->id()
         ]);
 
         $jobSeeker->followups()->create([
             'followup_period' => 'monthly',
             'type' => 'scheduled',
-            'followup_date' => now()->toDateString()
+            'followup_date' => now()->toDateString(),
+            'user_id' => auth()->id()
         ]);
 
         $jobSeeker->followups()->create([
             'followup_period' => 'monthly',
             'type' => 'scheduled',
-            'followup_date' => now()->addDay(2)->toDateString()
+            'followup_date' => now()->addDay(2)->toDateString(),
+            'user_id' => auth()->id()
+        ]);
+
+        $this->json('get',route('api.upcoming-followups'),['followup_date' => now()->addDay(2)->toDateString()])
+            ->assertJson([
+                'data' => [
+                    [
+                        'followup_date' => now()->addDay(2)->toDateString(),
+                    ]
+                ]
+            ])
+            ->assertJsonCount(1,'data')
+            ->assertStatus(200);
+    }
+
+
+
+    public function test_it_fetch_followups_per_user_only()
+    {
+        $this->loginApi();
+
+        $this->syncStructure('job-seeker');
+
+        $jobSeeker = factory(JobSeeker::class)->create();
+
+        $jobSeeker->followups()->create([
+            'followup_period' => 'monthly',
+            'type' => 'scheduled',
+            'followup_date' => now()->toDateString(),
+            'user_id' => auth()->id()
+        ]);
+
+        $jobSeeker->followups()->create([
+            'followup_period' => 'monthly',
+            'type' => 'scheduled',
+            'followup_date' => now()->toDateString(),
+            'user_id' => auth()->id()
+        ]);
+
+        $jobSeeker->followups()->create([
+            'followup_period' => 'monthly',
+            'type' => 'scheduled',
+            'followup_date' => now()->addDay(2)->toDateString(),
+            'user_id' => auth()->id()
+        ]);
+        $jobSeeker->followups()->create([
+            'followup_period' => 'monthly',
+            'type' => 'scheduled',
+            'followup_date' => now()->addDay(2)->toDateString(),
         ]);
 
         $this->json('get',route('api.upcoming-followups'),['followup_date' => now()->addDay(2)->toDateString()])

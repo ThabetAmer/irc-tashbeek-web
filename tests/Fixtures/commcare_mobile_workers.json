@@ -1,0 +1,426 @@
+{
+  "meta": {
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total_count": 30
+  },
+  "objects": [
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "Dalia",
+      "groups": [
+        "c760a0e0985c77d8297c1cb4a793b093"
+      ],
+      "id": "a32a6f8316dc4c58b856f5dbb51329cd",
+      "last_name": "Barhoum",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/a32a6f8316dc4c58b856f5dbb51329cd/",
+      "user_data": {
+        "billy_role": "NA",
+        "cash_role": "NA",
+        "commcare_location_id": "bb0503380066449eaa96fac5b18a3145",
+        "commcare_location_ids": "bb0503380066449eaa96fac5b18a3145",
+        "commcare_primary_case_sharing_id": "bb0503380066449eaa96fac5b18a3145",
+        "commcare_project": "billy-excerpt"
+      },
+      "username": "cso01@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "Aseel",
+      "groups": [
+        "c760a0e0985c77d8297c1cb4a793b093"
+      ],
+      "id": "1b1723598239469bb415fd7fe17ae808",
+      "last_name": "Halaiqah",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/1b1723598239469bb415fd7fe17ae808/",
+      "user_data": {
+        "billy_role": "NA",
+        "cash_role": "NA",
+        "commcare_location_id": "bb0503380066449eaa96fac5b18a3145",
+        "commcare_location_ids": "bb0503380066449eaa96fac5b18a3145",
+        "commcare_primary_case_sharing_id": "bb0503380066449eaa96fac5b18a3145",
+        "commcare_project": "billy-excerpt"
+      },
+      "username": "cso02@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "erd",
+      "groups": [
+        "d53a4d627508a3222b2658089c6e8ff2"
+      ],
+      "id": "83945505bdb54e5c9811d054bae0323b",
+      "last_name": "erd",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/83945505bdb54e5c9811d054bae0323b/",
+      "user_data": {
+        "billy_role": "admin",
+        "cash_role": "NA",
+        "commcare_project": "billy-excerpt"
+      },
+      "username": "erd@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "Lara",
+      "groups": [
+        "c760a0e0985c77d8297c1cb4a793b093"
+      ],
+      "id": "7f3a0c05b7204b6691d02dd5a6986b29",
+      "last_name": "Rababaa",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/7f3a0c05b7204b6691d02dd5a6986b29/",
+      "user_data": {
+        "billy_role": "NA",
+        "cash_role": "NA",
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt",
+        "treatment_prob_1": "",
+        "treatment_prob_2": "",
+        "treatment_prob_3": "",
+        "treatment_prob_4": ""
+      },
+      "username": "eso01@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "Maha",
+      "groups": [
+        "c760a0e0985c77d8297c1cb4a793b093"
+      ],
+      "id": "71b21d9df59c485bab8658b0a5151345",
+      "last_name": "Nasser",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/71b21d9df59c485bab8658b0a5151345/",
+      "user_data": {
+        "billy_role": "NA",
+        "cash_role": "NA",
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt",
+        "treatment_prob_1": "",
+        "treatment_prob_2": "",
+        "treatment_prob_3": "",
+        "treatment_prob_4": ""
+      },
+      "username": "eso02@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "Mohamed",
+      "groups": [
+        "c760a0e0985c77d8297c1cb4a793b093"
+      ],
+      "id": "2dc2fa6c1a1a434193b1b6cef1247173",
+      "last_name": "Azzam",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/2dc2fa6c1a1a434193b1b6cef1247173/",
+      "user_data": {
+        "billy_role": "NA",
+        "cash_role": "NA",
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt",
+        "treatment_prob_1": "",
+        "treatment_prob_2": "",
+        "treatment_prob_3": "",
+        "treatment_prob_4": ""
+      },
+      "username": "eso03@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "Hisham",
+      "groups": [
+        "c760a0e0985c77d8297c1cb4a793b093"
+      ],
+      "id": "039322c81e41404895182fd72e10c947",
+      "last_name": "Ababneh",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/039322c81e41404895182fd72e10c947/",
+      "user_data": {
+        "billy_role": "NA",
+        "cash_role": "NA",
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt",
+        "treatment_prob_1": "",
+        "treatment_prob_2": "",
+        "treatment_prob_3": "",
+        "treatment_prob_4": ""
+      },
+      "username": "eso04@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "",
+      "groups": [
+        "c760a0e0985c77d8297c1cb4a793b093"
+      ],
+      "id": "8ade7713ff314304a4f6336c75b6b5b4",
+      "last_name": "",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/8ade7713ff314304a4f6336c75b6b5b4/",
+      "user_data": {
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt"
+      },
+      "username": "eso05@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "",
+      "groups": [
+        "c760a0e0985c77d8297c1cb4a793b093"
+      ],
+      "id": "f3925ab1177f42beaa86e197a2e4131e",
+      "last_name": "",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/f3925ab1177f42beaa86e197a2e4131e/",
+      "user_data": {
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt"
+      },
+      "username": "eso06@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "",
+      "groups": [
+        "c760a0e0985c77d8297c1cb4a793b093"
+      ],
+      "id": "e00455e9f89646a8bd879cfc8083b881",
+      "last_name": "",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/e00455e9f89646a8bd879cfc8083b881/",
+      "user_data": {
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt"
+      },
+      "username": "eso07@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "",
+      "groups": [
+        "c760a0e0985c77d8297c1cb4a793b093"
+      ],
+      "id": "3e44cda505a74680a369e2efd7cd8c79",
+      "last_name": "",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/3e44cda505a74680a369e2efd7cd8c79/",
+      "user_data": {
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt"
+      },
+      "username": "eso08@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "",
+      "groups": [
+        "c760a0e0985c77d8297c1cb4a793b093"
+      ],
+      "id": "073416321234479eba75d3d696f362db",
+      "last_name": "",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/073416321234479eba75d3d696f362db/",
+      "user_data": {
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt"
+      },
+      "username": "eso09@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "",
+      "groups": [
+        "c760a0e0985c77d8297c1cb4a793b093"
+      ],
+      "id": "e1ec6c3e7c7943fe8f4e623a8c0c4b4f",
+      "last_name": "",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/e1ec6c3e7c7943fe8f4e623a8c0c4b4f/",
+      "user_data": {
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt"
+      },
+      "username": "eso10@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "nuha.abdulraheem@rescue.org",
+      "first_name": "Nuha",
+      "groups": [
+        "c760a0e0985c77d8297c1cb4a793b093"
+      ],
+      "id": "f0fa08fe67e142e3804c2f8da38192ff",
+      "last_name": "Abdul Raheem",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/f0fa08fe67e142e3804c2f8da38192ff/",
+      "user_data": {
+        "billy_role": "NA",
+        "cash_role": "NA",
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt"
+      },
+      "username": "eso11@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "Shady",
+      "groups": [
+        "c760a0e0985c77d8297c1cb4a793b093"
+      ],
+      "id": "900226fa94a34ae8a070f7893d4b780e",
+      "last_name": "Abuzurooq",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/900226fa94a34ae8a070f7893d4b780e/",
+      "user_data": {
+        "billy_role": "NA",
+        "cash_role": "NA",
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt"
+      },
+      "username": "eso12@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "Shurooq",
+      "groups": [
+        "c760a0e0985c77d8297c1cb4a793b093"
+      ],
+      "id": "b1169e28224149049d7b95049db05c56",
+      "last_name": "Abuzir",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/b1169e28224149049d7b95049db05c56/",
+      "user_data": {
+        "billy_role": "NA",
+        "cash_role": "NA",
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt"
+      },
+      "username": "eso13@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "alaa",
+      "groups": [],
+      "id": "6a458d4776904e04b27c862f640c1955",
+      "last_name": "sleti",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/6a458d4776904e04b27c862f640c1955/",
+      "user_data": {
+        "billy_role": "NA",
+        "cash_role": "NA",
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt"
+      },
+      "username": "eso14@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "Naj",
+      "groups": [
+        "c760a0e0985c77d8297c1cb4a793b093"
+      ],
+      "id": "f7dade71ead6471083c4a02bab32bff4",
+      "last_name": "Abunuwar",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/f7dade71ead6471083c4a02bab32bff4/",
+      "user_data": {
+        "billy_role": "NA",
+        "cash_role": "NA",
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt"
+      },
+      "username": "eso15@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "Mohammad",
+      "groups": [],
+      "id": "74adb7b2a894420188fd44d1b764fda3",
+      "last_name": "Melhem",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/74adb7b2a894420188fd44d1b764fda3/",
+      "user_data": {
+        "billy_role": "NA",
+        "cash_role": "NA",
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt"
+      },
+      "username": "eso16@billy-excerpt.commcarehq.org"
+    },
+    {
+      "default_phone_number": null,
+      "email": "",
+      "first_name": "Lubna",
+      "groups": [],
+      "id": "2f2c793bbe4a4f4984e3967c908ffeb4",
+      "last_name": "Abd Al Nabi",
+      "phone_numbers": [],
+      "resource_uri": "/a/billy-excerpt/api/v0.5/user/2f2c793bbe4a4f4984e3967c908ffeb4/",
+      "user_data": {
+        "billy_role": "NA",
+        "cash_role": "NA",
+        "commcare_location_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_location_ids": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_primary_case_sharing_id": "40c7d589ba38440a9307543a644d1da4",
+        "commcare_project": "billy-excerpt"
+      },
+      "username": "eso17@billy-excerpt.commcarehq.org"
+    }
+  ]
+}

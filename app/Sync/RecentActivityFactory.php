@@ -113,10 +113,17 @@ class RecentActivityFactory
             return ;
         }
 
+        $userId = null;
+
+        if(!empty(array_get($form,'form.meta.userID'))){
+            $userId = optional(User::where('commcare_id',array_get($form,'form.meta.userID'))->first())->id;
+        };
+
         $record->recentActivities()->create([
             'commcare_id' => $form['id'],
             'title' => array_get($form,'form.@name'),
-            'created_at' => app(DateHandler::class)->resolve($form['received_on'])
+            'created_at' => app(DateHandler::class)->resolve($form['received_on']),
+            'user_id' => $userId
         ]);
 
     }

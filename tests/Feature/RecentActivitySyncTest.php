@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\RecentActivity;
+use App\Models\User;
 use Tests\TestCase;
 use App\Sync\RecentActivityFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,7 +14,6 @@ class RecentActivitySyncTest extends TestCase
 
     public function test_it_throw_exception()
     {
-
         $this->expectException(\InvalidArgumentException::class);
 
         app(RecentActivityFactory::class)->make(
@@ -52,5 +52,27 @@ class RecentActivitySyncTest extends TestCase
         );
 
         $this->assertCount(1, RecentActivity::all());
+    }
+
+
+    public function test_it_sync_user_ud()
+    {
+        $user = factory(User::class)->create([
+            'commcare_id' => 'f0fa08fe67e142e3804c2f8da38192ff'
+        ]);
+
+        $this->syncStructure('job-seeker');
+
+        $this->syncCaseData('job-seeker');
+
+        $this->mockFormRequest();
+
+        app(RecentActivityFactory::class)->make(
+            'job-seeker-monthly-followup'
+        );
+
+        $this->assertCount(1, RecentActivity::all());
+
+        $this->assertEquals($user->id, RecentActivity::first()->user_id);
     }
 }

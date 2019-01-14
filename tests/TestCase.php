@@ -5,6 +5,7 @@ namespace Tests;
 use App\Models\User;
 use App\Sync\DataRequest;
 use App\Sync\FormRequest;
+use App\Sync\MobileWorkersRequest;
 use App\Sync\UsersRequest;
 use App\Sync\UsersSync;
 use Spatie\Permission\Models\Permission;
@@ -82,7 +83,6 @@ abstract class TestCase extends BaseTestCase
 
     protected function mockUsersRequest($data = null)
     {
-
         $requestMock = \Mockery::mock(UsersRequest::class);
 
         if (!$data) {
@@ -92,6 +92,22 @@ abstract class TestCase extends BaseTestCase
         $requestMock->shouldReceive('data')->andReturn($data);
 
         app()->instance(UsersRequest::class, $requestMock);
+
+        $this->mockMobileWorkersRequest(true);
+    }
+
+    protected function mockMobileWorkersRequest($empty = false){
+        $requestMock = \Mockery::mock(MobileWorkersRequest::class);
+
+        $data = json_decode(file_get_contents(base_path('tests/Fixtures/commcare_mobile_workers.json')), true);
+
+        if($empty){
+            $data['objects'] = [];
+        }
+
+        $requestMock->shouldReceive('data')->andReturn($data);
+
+        app()->instance(MobileWorkersRequest::class, $requestMock);
     }
 
     protected function syncStructure(string $caseType)

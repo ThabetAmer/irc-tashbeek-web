@@ -31,6 +31,7 @@ On project root directory run the following commands:
  
 ## Data Sync Priorities
  some cases must be synced before others due to relationship between these cases and it must be exists on the database to ensure data are appearing on system.
+ 
  * users
  * job-seeker
  * job-opening

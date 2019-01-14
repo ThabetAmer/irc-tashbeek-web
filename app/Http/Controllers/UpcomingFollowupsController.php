@@ -23,6 +23,8 @@ class UpcomingFollowupsController extends Controller
 
         $query->with('followup');
 
+        $query->where('user_id', auth()->id());
+
         $results = $query->paginate();
 
         return FollowupResource::collection($results);
@@ -44,6 +46,8 @@ class UpcomingFollowupsController extends Controller
         $query->orderBy('followup_date','asc');
 
         $query->whereBetween('followup_date',$this->getStartAndEndOfMonth(request('followup_date')));
+
+        $query->where('user_id', auth()->id());
 
         return [
             'data' => $query->get()->map(function($item){

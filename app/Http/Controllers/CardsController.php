@@ -10,7 +10,6 @@ use App\Models\JobOpening;
 
 class CardsController extends Controller
 {
-
     public function cards()
     {
         return [
@@ -34,6 +33,4 @@ class CardsController extends Controller
         }
         return $cardsData;
     }
-
-
 }

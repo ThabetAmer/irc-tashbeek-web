@@ -11,7 +11,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SaveMatchesTest extends TestCase
 {
-
     use RefreshDatabase;
 
     public function test_save_matches_requires_auth()

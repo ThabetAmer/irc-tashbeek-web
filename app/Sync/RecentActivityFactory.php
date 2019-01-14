@@ -17,7 +17,7 @@ class RecentActivityFactory
             'form_id' => '1C0909C3-286E-4EAA-BB12-79D5758366BE',
         ],
 
-        'form-monthly-followup' => [
+        'firm-monthly-followup' => [
             'case_type' => 'firm',
             'form_id' => '192695F5-F1BE-431B-8DE7-4302C02AB020',
         ],

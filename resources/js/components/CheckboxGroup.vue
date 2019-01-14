@@ -14,8 +14,8 @@
       :label="checkbox.label"
       :check-id="checkbox.value"
       :checked="checkbox.checked"
-      @change="checkboxChange(checkbox,$event)"
       :disabled="disabled"
+      @change="checkboxChange(checkbox,$event)"
     />
   </div>
 </template>

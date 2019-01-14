@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
     <breadcrumbs
-            :crumbs="[{name:'All users', link:'users'},{name:'Viewing [{{$user->name}}]', link:''}]"
+            :crumbs="[{name:'All users', link:'/users'},{name:'Viewing [{{$user->name}}]', link:''}]"
     ></breadcrumbs>
     <div class="" id="all-users">
         <user-view

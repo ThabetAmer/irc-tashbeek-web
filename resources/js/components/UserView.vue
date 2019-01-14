@@ -116,7 +116,7 @@
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
                px-4 leading-tight focus:outline-none focus:bg-white  ${!internalError['password']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="password"
-                placeholder="******************"
+                placeholder="******"
               >
 
               <p
@@ -141,7 +141,7 @@
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
                px-4 leading-tight focus:outline-none focus:bg-white  ${!internalError['password']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="password"
-                placeholder="******************"
+                placeholder="******"
               >
               <p
                 v-if="internalError['password']"

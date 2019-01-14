@@ -59,16 +59,26 @@ class CaseNotesController extends Controller
 
         $note = $record->notes()->find($noteId);
 
+        $isStar = !$note->is_starred;
+
+        if($isStar){
+            $record->notes()->update([
+                'is_starred' => false
+            ]);
+        }
+
         if(!$note){
             abort(404);
         }
 
         $note->update([
-            'is_starred' => !$note->is_starred
+            'is_starred' => $isStar
         ]);
 
+        $message = 'Note has been ' . $isStar?'Starred.':'Unstarred.' ;
+
         return response()->json([
-            'message' => 'Note has been created.',
+            'message' => $message,
             'note' => new NoteResource($note)
         ], 200);
     }

@@ -222,30 +222,30 @@
             v-if="jobOpeningView=='all'"
             class=""
           >
-            <Screenbox />
-            <Screenbox />
+            <Screenbox/>
+            <Screenbox/>
           </div>
 
           <div
             v-if="jobOpeningView=='screening'"
             class=""
           >
-            <Screenbox />
+            <Screenbox/>
           </div>
 
           <div
             v-if="jobOpeningView=='matched'"
             class=""
           >
-            <Screenbox />
-            <Screenbox />
+            <Screenbox/>
+            <Screenbox/>
           </div>
 
           <div
             v-if="jobOpeningView=='candidate'"
             class=""
           >
-            <Screenbox />
+            <Screenbox/>
           </div>
 
           <div
@@ -288,6 +288,7 @@
 <script>
   import {get as getNotes} from '../API/noteAPI'
   import {post as addNote} from '../API/noteAPI'
+  import {setNoteStarred as starNote} from '../API/noteAPI'
 
   export default {
     props: {
@@ -336,7 +337,7 @@
       },
       addNoteToList(noteText) {
 
-        addNote('job-seeker',this.jobSeeker.id, {note: noteText})
+        addNote('job-seeker', this.jobSeeker.id, {note: noteText})
             .then(resp => {
               this.notes.push(resp.data.note);
             }).catch(error => {
@@ -346,7 +347,16 @@
 
       },
       changeStarredNote(note) {
-        this.starredNote = note;
+        starNote('job-seeker', this.jobSeeker.id, note.id)
+            .then(resp => {
+              console.log(' resp for strar note ',resp)
+              this.starredNote = resp.data.note;
+              this.$toasted.show(resp.data.message,{
+                icon: 'icon-Stars_x40_2xpng_2 mr-2'
+              })
+            })
+            .catch(error => {
+            });
       }
     },
 

@@ -20,7 +20,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = app(UsersList::class)->get();
+        $users = app(UsersList::class)->get([], $this->perPage());
         return UserResource::collection($users);
 //        return view('users',compact('users'));
     }
@@ -92,6 +92,21 @@ class UserController extends Controller
     {
         app(ChangeUserStatusAction::class)->deactivate($user);
         return response()->json(['message' => 'User deactivated successfully'], 200);
+    }
+
+
+
+
+    protected function perPage()
+    {
+        $perPage = request("perPage");
+        $perPagesLimit = [15, 30, 50];
+
+        if (!in_array($perPage, $perPagesLimit)) {
+            $perPage = 15;
+        }
+
+        return $perPage;
     }
 
 

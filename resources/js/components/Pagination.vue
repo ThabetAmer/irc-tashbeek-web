@@ -75,7 +75,10 @@
         </Btn>
       </li>
 
-      <li class="ml-auto flex items-center pagination-select">
+      <li
+        v-if="perPageEnabled"
+        class="ml-auto flex items-center pagination-select"
+      >
         <div class="mr-2">
           Rows per page:
         </div>
@@ -97,6 +100,10 @@
   export default {
     name: 'Pagination',
     props: {
+      perPageEnabled:{
+        type:Boolean,
+        default: true
+      },
       maxVisibleButtons: {
         type: Number,
         required: false,

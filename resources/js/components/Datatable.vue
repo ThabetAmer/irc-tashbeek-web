@@ -70,7 +70,7 @@
                   :href="row[head.clickable_from]"
                   class="text-blue-dark no-underline hover:underline "
                 >
-                  {{ row[head.name] }}
+                  {{ getRowValue(row,head) }}
                 </a>
               </span>
               <span
@@ -79,13 +79,13 @@
                 class="max-w-150  block"
                 dir="auto"
               >
-                {{ row[head.name] }}
+                {{ getRowValue(row,head) }}
               </span>
               <span
                 v-else
                 dir="auto"
               >
-                {{ row[head.name] }}
+                {{ getRowValue(row,head) }}
               </span>
             </td>
 
@@ -105,7 +105,7 @@
 
     <EmptyState
       v-else
-      custom-class="min-h-200 text-lg"
+      custom-class="min-h-200 text-lg mb-4"
     />
     <Pagination
       v-if="pagination.lastPage > 1"
@@ -113,6 +113,7 @@
       :total="pagination.total"
       :per-page="pagination.perPage"
       :current-page="pagination.currentPage"
+      :per-page-enabled="perPageEnabled"
       @pagechanged="$emit('pagechanged', $event)"
       @perPage="$emit('perPage', $event)"
     />
@@ -128,6 +129,10 @@
      * and are passed using the mixin
      */
     props: {
+      perPageEnabled:{
+        type:Boolean,
+        default: true
+      },
       loading: {
         type: Boolean,
         default: false
@@ -167,6 +172,14 @@
       console.log(
         this.$scopedSlots
       )
+    },
+    methods:{
+      getRowValue(row,{valueHandler,name}){
+        if(valueHandler && typeof valueHandler === "function"){
+          return valueHandler(row)
+        }
+        return row[name];
+      }
     }
   }
 </script>

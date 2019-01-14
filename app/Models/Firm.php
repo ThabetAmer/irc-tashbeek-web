@@ -37,4 +37,9 @@ class Firm extends Model implements SyncableInterface
     {
         return $this->job_title;
     }
+
+    public function matches()
+    {
+        return $this->belongsToMany(   JobSeeker::class,'matches');
+    }
 }

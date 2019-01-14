@@ -9,7 +9,7 @@
       >
         <thead>
           <tr class="font-bold text-green-theme">
-            <td />
+            <slot name="head-start-td" />
             <th
               v-for="head in header"
               :key="head.name"
@@ -91,6 +91,11 @@
 
             <slot
               :row="row"
+              name="end-td"
+            />
+
+            <slot
+              :row="row"
               name="extra"
             />
           </tr>
@@ -157,6 +162,12 @@
         default: () => []
       }
     },
+
+    mounted(){
+      console.log(
+        this.$scopedSlots
+      )
+    }
   }
 </script>
 

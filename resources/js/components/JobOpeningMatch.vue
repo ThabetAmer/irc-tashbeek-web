@@ -10,13 +10,20 @@
           <h1 class="flex-1">
             {{ jobOpening.job_title }}
           </h1>
-          <button>Save matches</button>
+          <button @click="saveMatches">
+            Save matches
+          </button>
         </div>
         <div>
           <label>Job Description</label>
           <div>{{ jobOpening.job_description }}</div>
         </div>
       </div>
+    </template>
+    <template
+      slot="head-start-td"
+    >
+      Select
     </template>
 
     <template
@@ -33,6 +40,8 @@
 </template>
 
 <script>
+  import axios from 'axios'
+
   export default {
     name: "JobOpeningMatch",
     props: {
@@ -58,11 +67,20 @@
       handleSelection(id) {
         const index = this.selections.indexOf(id)
 
-        if(index !== -1){
+        if (index !== -1) {
           this.selections.splice(index, 1)
-        }else{
+        } else {
           this.selections.push(id)
         }
+      },
+      saveMatches() {
+
+        axios.post(`/api/job-openings/${this.jobOpening.id}/matches`, {
+          matches: this.selections
+        }).then(({data}) => {
+          console.log('data')
+        })
+
       }
     }
   }

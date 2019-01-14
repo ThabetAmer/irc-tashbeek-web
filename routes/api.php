@@ -42,6 +42,13 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('/job-openings/{jobOpening}/matches', 'JobOpeningMatchController@matches')->name('api.matches');
 
+    Route::post('/job-openings/{jobOpening}/matches', 'JobOpeningMatchController@store')->name('api.matches');
+
+    Route::get('/job-seekers/{jobOpening}/matches', 'JobSeekerController@matches')->name('api.job-seeker.matches');
+    Route::get('/job-seekers/{jobOpening}/candidates', 'JobSeekerController@candidates')->name('api.job-seeker.candidates');
+
+    Route::get('/firms/{firm}/matches', 'FirmController@matches')->name('api.firm.matches');
+
 });
 
 

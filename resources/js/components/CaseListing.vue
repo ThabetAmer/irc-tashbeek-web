@@ -23,15 +23,42 @@
         @perPage="loadData({perPage: $event})"
         @sort="handleSort($event, loadData)"
       >
-        <td
+        <template
+          v-if="$scopedSlots['start-td']"
+          slot="head-start-td"
+        >
+          <td class="pb-2 text-xs max-w-150 relative cursor-pointer">
+            <slot
+              name="head-start-td"
+            />
+          </td>
+        </template>
+
+        <template
+          v-if="$scopedSlots['start-td']"
           slot="start-td"
           slot-scope="{row}"
         >
-          <slot
-            :row="row"
-            name="start-td"
-          />
-        </td>
+          <td>
+            <slot
+              :row="row"
+              name="start-td"
+            />
+          </td>
+        </template>
+
+        <template
+          v-if="$scopedSlots['end-td']"
+          slot="end-td"
+          slot-scope="{row}"
+        >
+          <td>
+            <slot
+              :row="row"
+              name="end-td"
+            />
+          </td>
+        </template>
 
         <td
           slot="extra"

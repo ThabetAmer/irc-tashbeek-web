@@ -9,7 +9,7 @@ namespace App\Sync\QuestionHandler;
 use App\Models\JobOpening;
 use App\Sync\Cases\AbstractCase;
 
-class MatchJobOpeningIdHandler implements HandlerInterface
+class MatchFirmIdHandler implements HandlerInterface
 {
 
     public function handle($caseData, $questionId, $question, AbstractCase $case)
@@ -25,6 +25,6 @@ class MatchJobOpeningIdHandler implements HandlerInterface
             return null;
         }
 
-        return $value->id;
+        return $value->firm_id;
     }
 }

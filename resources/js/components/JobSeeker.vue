@@ -58,16 +58,16 @@
             <span>
               Living in {{ jobSeeker.city }}
 
-                     <span
-                       v-if="jobSeeker.city && jobSeeker.district "
-                       class="mx-1"
-                     >
-                       •
-                     </span>
+              <span
+                v-if="jobSeeker.city && jobSeeker.district "
+                class="mx-1"
+              >
+                •
+              </span>
 
-                     <span v-if="jobSeeker.district !== ''">
-                       {{ jobSeeker.district }}
-                     </span>
+              <span v-if="jobSeeker.district !== ''">
+                {{ jobSeeker.district }}
+              </span>
             </span>
           </ListItem>
 
@@ -115,7 +115,7 @@
         </div>
         <Notebox
           v-if="starredNote"
-          :body="starredNote.body"
+          :body="starredNote.note"
           :date="starredNote.date"
           :author="starredNote.author"
           :show-star="false"
@@ -288,6 +288,7 @@
 <script>
   import {get as getNotes} from '../API/noteAPI'
   import {post as addNote} from '../API/noteAPI'
+  import {setNoteStarred as starNote} from '../API/noteAPI'
 
   export default {
     props: {
@@ -317,6 +318,11 @@
         getNotes('job-seeker', this.jobSeeker.id)
             .then(({data}) => {
               this.notes = data.data;
+              this.notes.forEach(note => {
+                if(note.is_starred){
+                  this.starredNote = note;
+                }
+              })
             }).catch(error => {
           console.log('Error : ', error);
         });
@@ -334,9 +340,9 @@
         this.showAddModalNote = false;
 
       },
-      addNoteToList(noteText) {
+      addNoteToList(noteText,type) {
 
-        addNote('job-seeker',this.jobSeeker.id, {note: noteText})
+        addNote('job-seeker', this.jobSeeker.id, {note: noteText,type:type})
             .then(resp => {
               this.notes.push(resp.data.note);
             }).catch(error => {
@@ -346,7 +352,21 @@
 
       },
       changeStarredNote(note) {
-        this.starredNote = note;
+        starNote('job-seeker', this.jobSeeker.id, note.id)
+            .then(resp => {
+              if (resp.data.note.is_starred) {
+                this.starredNote = resp.data.note;
+              }
+              else {
+                this.starredNote = null;
+
+              }
+              this.$toasted.show(resp.data.message, {
+                icon: 'icon-Stars_x40_2xpng_2 mr-2'
+              })
+            })
+            .catch(error => {
+            });
       }
     },
 

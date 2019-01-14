@@ -13,19 +13,19 @@
             <th
               v-for="head in header"
               :key="head.name"
-              class="pb-2 pl-6 text-xs truncate max-w-150 relative cursor-pointer"
+              class="pb-2 pl-6 text-xs  max-w-150 relative cursor-pointer"
               @click="$emit('sort',head.name)"
             >
               <span
                 v-if="head['translations']['en'].length > 14"
                 v-tooltip="{placement:'left',content:head['translations']['en'],classes:['tooltip-datatable']}"
-                class="  block"
+                class=" truncate  block"
               >
                 {{ head['translations']['en'] }}
               </span>
               <span
                 v-else
-                class=""
+                class=" truncate"
               >
                 {{ head['translations']['en'] }}
               </span>

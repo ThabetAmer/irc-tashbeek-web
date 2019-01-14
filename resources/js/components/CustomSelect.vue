@@ -119,7 +119,7 @@
     computed: {
       selectStyle() {
         return classNames([
-          'multiselect-field', this.customClass]);
+          'multiselect-field', this.customClass, this.value ? 'filled':'empty']);
       }
     },
     methods: {

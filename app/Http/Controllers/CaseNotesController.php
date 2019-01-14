@@ -75,7 +75,7 @@ class CaseNotesController extends Controller
             'is_starred' => $isStar
         ]);
 
-        $message = 'Note has been ' . $isStar?'Starred.':'Unstarred.' ;
+        $message = 'Note has been ' . ($isStar?'Starred.':'Unstarred.' );
 
         return response()->json([
             'message' => $message,

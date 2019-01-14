@@ -15,8 +15,8 @@ class RecentActivityApiTest extends TestCase
 
     public function test_it_requires_auth()
     {
-        $this->json('get',route('api.recent-activities'))
-        ->assertStatus(401);
+        $this->json('get', route('api.recent-activities'))
+            ->assertStatus(401);
     }
 
 
@@ -68,10 +68,10 @@ class RecentActivityApiTest extends TestCase
         ]);
 
 
-        $r = $this->json('get',route('api.recent-activities'))
-            ->assertJsonCount(3,'data.0.items')
-            ->assertJsonCount(2,'data.1.items')
-            ->assertJsonCount(2,'data')
+        $this->json('get', route('api.recent-activities'))
+            ->assertJsonCount(3, 'data.0.items')
+            ->assertJsonCount(2, 'data.1.items')
+            ->assertJsonCount(2, 'data')
             ->assertStatus(200);
     }
 }

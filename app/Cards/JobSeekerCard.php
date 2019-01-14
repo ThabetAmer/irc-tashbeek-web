@@ -1,12 +1,11 @@
 <?php namespace App\Http\Cards;
 
-use App\Models\Firm;
 
 /**
- * Class ValueCard
+ * Class JobSeekerCard
  * @package App\Http\Cards
  */
-class ValueCard extends Card
+class JobSeekerCard extends Card
 {
     protected $method = 'count'; // initial value
 
@@ -22,7 +21,7 @@ class ValueCard extends Card
         switch ($this->method) {
             case 'count':
             default:
-                return $query->count();
+                return $query->currentMonth()->count();
 
         }
     }
@@ -56,7 +55,6 @@ class ValueCard extends Card
         $this->method = 'count';
         return $this;
     }
-
 
 
 }

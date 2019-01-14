@@ -1,16 +1,19 @@
 <?php namespace App\Http\Cards;
 
-use App\Models\Firm;
+use App\Models\Followup;
+
 
 /**
- * Class ValueCard
+ * Class FollowUpCard
  * @package App\Http\Cards
  */
-class ValueCard extends Card
+class FollowUpCard extends Card
 {
     protected $method = 'count'; // initial value
 
     protected $model;
+
+    protected $for;
 
     /**
      * @return ValueCard
@@ -22,7 +25,7 @@ class ValueCard extends Card
         switch ($this->method) {
             case 'count':
             default:
-                return $query->count();
+                return $query->ofType($this->for)->count();
 
         }
     }
@@ -34,18 +37,18 @@ class ValueCard extends Card
 
 
     /**
-     * @param $model
+     * @param $for
      * @return $this
      */
-    public function model($model)
+    public function for($for)
     {
-        $this->model = $model;
+        $this->for = $for;
         return $this;
     }
 
     public function getQuery()
     {
-        return app($this->model)->query();
+        return app(Followup::class)->query();
     }
 
     /**
@@ -56,7 +59,6 @@ class ValueCard extends Card
         $this->method = 'count';
         return $this;
     }
-
 
 
 }

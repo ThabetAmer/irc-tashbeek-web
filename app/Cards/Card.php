@@ -10,6 +10,8 @@ abstract class Card
 
     protected $label;
 
+    protected $authorizationCallback;
+
     abstract public function apply();
 
     abstract public function component();
@@ -56,7 +58,7 @@ abstract class Card
      * @param $label
      * @return self
      */
-    public static function make($label) : self
+    public static function make($label): self
     {
         $object = app(static::class);
 
@@ -65,6 +67,37 @@ abstract class Card
         return $object;
     }
 
+
+    /**
+     * @param \Closure $callback
+     * @return $this
+     */
+    public function authorize(\Closure $callback)
+    {
+        $this->authorizationCallback = $callback;
+
+        return $this;
+    }
+
+    public function isAuthorized()
+    {
+        $authorizationCallback = $this->getAuthorizationCallback();
+
+        return $authorizationCallback();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAuthorizationCallback()
+    {
+        if (!auth()->user()->hasRole(config('roles.administrator_id')) and $this->authorizationCallback) {
+            return $this->authorizationCallback;
+        }
+        return function () {
+            return true;
+        };
+    }
 
 
 }

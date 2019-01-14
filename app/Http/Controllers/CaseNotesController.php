@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\NoteResource;
+use App\Models\Note;
 
 class CaseNotesController extends Controller
 {
@@ -48,5 +49,27 @@ class CaseNotesController extends Controller
         }catch(\Throwable $e){
             abort(404, "Cannot find this case type" );
         }
+    }
+
+    public function star($caseType, $id, $noteId)
+    {
+        $case = $this->getCaseModelOrFail($caseType);
+
+        $record = $case->query()->where('id',$id)->firstOrFail();
+
+        $note = $record->notes()->find($noteId);
+
+        if(!$note){
+            abort(404);
+        }
+
+        $note->update([
+            'is_starred' => !$note->is_starred
+        ]);
+
+        return response()->json([
+            'message' => 'Note has been created.',
+            'note' => new NoteResource($note)
+        ], 200);
     }
 }

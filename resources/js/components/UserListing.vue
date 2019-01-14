@@ -101,10 +101,10 @@
 
           },
           {
-            name: "commcare_id",
+            name: "email",
             translations: {
-              ara: "الاسم",
-              en: "Commcare ID"
+              ara: "الايميل",
+              en: "Email"
             }
 
           },
@@ -114,15 +114,6 @@
               ara: "الاسم",
               en: "Created At"
             }
-
-          },
-          {
-            name: "email",
-            translations: {
-              ara: "الايميل",
-              en: "Email"
-            }
-
           },
 
         ],

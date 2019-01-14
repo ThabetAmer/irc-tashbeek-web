@@ -43,6 +43,7 @@ Vue.component('SeekerProfile',require('./components/JobSeeker.vue').default);
 Vue.component('JobSeeker',require('./components/JobSeeker.vue').default);
 Vue.component('UsersListing',require('./components/UserListing.vue').default);
 Vue.component('UserView',require('./components/UserView.vue').default);
+Vue.component('JobOpeningMatch', require('./components/JobOpeningMatch.vue').default);
 
 
 // UI components
@@ -62,7 +63,7 @@ Vue.component('PageLoader',require('./components/PageLoader.vue').default);
 Vue.component('AnchorLink',require('./components/Link.vue').default);
 Vue.component('CustomSelect',require('./components/CustomSelect.vue').default);
 Vue.component('CheckboxGroup',require('./components/CheckboxGroup.vue').default);
-Vue.component('MetricCard',require('./components/MetricCard.vue').default);
+Vue.component('ValueCard',require('./components/MetricCard.vue').default);
 Vue.component('AddNoteModal',require('./components/AddNoteModal.vue').default);
 Vue.component('Clipboard',require('./components/Clipboard.vue').default);
 Vue.component('ListItem',require('./components/ListItem.vue').default);

@@ -6,11 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Match extends Model implements SyncableInterface
 {
-    use MorphToForm, Routable, HasFilter, Sortable;
-
-    protected $appends = [
-        'details_url'
-    ];
+    use MorphToForm, HasFilter, Sortable;
 
     protected $guarded = ['id'];
 

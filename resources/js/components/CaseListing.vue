@@ -3,6 +3,8 @@
     <Panel
       custom-class=""
     >
+      <slot name="header" />
+
       <Filters
         v-if="filters.length > 0"
         :filters="filters"
@@ -21,9 +23,47 @@
         @perPage="loadData({perPage: $event})"
         @sort="handleSort($event, loadData)"
       >
+        <template
+          v-if="$scopedSlots['start-td']"
+          slot="head-start-td"
+        >
+          <td class="pb-2 text-xs max-w-150 relative cursor-pointer">
+            <slot
+              name="head-start-td"
+            />
+          </td>
+        </template>
+
+        <template
+          v-if="$scopedSlots['start-td']"
+          slot="start-td"
+          slot-scope="{row}"
+        >
+          <td>
+            <slot
+              :row="row"
+              name="start-td"
+            />
+          </td>
+        </template>
+
+        <template
+          v-if="$scopedSlots['end-td']"
+          slot="end-td"
+          slot-scope="{row}"
+        >
+          <td>
+            <slot
+              :row="row"
+              name="end-td"
+            />
+          </td>
+        </template>
+
         <td
           slot="extra"
           slot-scope="{row}"
+          class="mr-2 pr-2"
         >
           <button
             class="flex-1 text-xl  text-green-dark"
@@ -48,7 +88,7 @@
 </template>
 
 <script>
-  import {get as getListing} from '../API/caseListing'
+  import {get as getListing, getByUrl as getListingByUrl} from '../API/caseListing'
   import FiltersProvider from "../mixins/FiltersProvider";
   import queryString from '../helpers/QueryString'
   import sortingProvider from "../mixins/sortingProvider";
@@ -60,10 +100,14 @@
         type: String,
         required: true
       },
+      endPoint: {
+        type: String,
+        default: ""
+      }
     },
     data() {
       return {
-        caseId:0,
+        caseId: 0,
         showNotesModal: false,
         loading: false,
         rows: [],
@@ -86,7 +130,7 @@
       });
     },
     methods: {
-      loadData({filters = {}, page = null, sorting = {},perPage = 15} = {}) {
+      loadData({filters = {}, page = null, sorting = {}, perPage = 15} = {}) {
         filters = filters && typeof filters === "object" ? filters : {}
         sorting = sorting && typeof sorting === "object" ? sorting : {}
         const params = {
@@ -102,26 +146,37 @@
           }
         };
         this.loading = true
-        return getListing(this.type, params)
-          .then(({data}) => {
-            this.changeUrlUsingParams(params);
-            this.rows = data.data;
-            this.headers = data.headers;
-            this.filters = data.filters;
-            this.sorting = data.sorting;
-            if (this.userFilters.length === 0) {
-              this.userFilters = this.initialUserFilters(data.filters.slice(0, 3), filters);
-            }
-            this.pagination = {
-              total: data.meta.total,
-              lastPage: data.meta.last_page,
-              perPage: parseInt(data.meta.per_page),
-              currentPage: data.meta.current_page
-            };
-            this.loading = false;
-          }).catch(error => {
-            console.log('Error : ', error);
-          });
+
+        let apiResponse;
+
+        if (this.endPoint.trim() !== "") {
+          apiResponse = getListingByUrl(this.endPoint, params)
+        } else {
+          apiResponse = getListing(this.type, params)
+        }
+
+        return apiResponse.then(({data}) => {
+          this.changeUrlUsingParams(params);
+          this.rows = data.data;
+          this.$emit('fetch', {
+            data: data.data
+          })
+          this.headers = data.headers;
+          this.filters = data.filters;
+          this.sorting = data.sorting;
+          if (this.userFilters.length === 0) {
+            this.userFilters = this.initialUserFilters(data.filters.slice(0, 3), filters);
+          }
+          this.pagination = {
+            total: data.meta.total,
+            lastPage: data.meta.last_page,
+            perPage: parseInt(data.meta.per_page),
+            currentPage: data.meta.current_page
+          };
+          this.loading = false;
+        }).catch(error => {
+          console.log('Error : ', error);
+        });
       },
       changeUrlUsingParams(params) {
 
@@ -134,11 +189,11 @@
         history.pushState({}, document.title, url);
       },
 
-      viewNotes(caseId){
+      viewNotes(caseId) {
         this.showNotesModal = true;
         this.caseId = caseId;
       },
-      closeModalNote(){
+      closeModalNote() {
         this.showNotesModal = false;
 
       }

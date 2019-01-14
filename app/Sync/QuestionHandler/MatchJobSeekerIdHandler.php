@@ -18,10 +18,15 @@ class MatchJobSeekerIdHandler implements HandlerInterface
 
         $jobSeeker = JobSeeker::byCommCareId($jobSeekerId)->first();
 
-        if (!$jobSeeker) {
+        return $this->resolve($jobSeeker);
+    }
+
+
+    public function resolve($value){
+        if (!$value) {
             return null;
         }
 
-        return $jobSeeker->id;
+        return $value->id;
     }
 }

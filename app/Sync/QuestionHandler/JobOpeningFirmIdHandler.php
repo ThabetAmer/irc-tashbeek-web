@@ -18,10 +18,15 @@ class JobOpeningFirmIdHandler implements HandlerInterface
 
         $firm = Firm::byCommCareId($firmId)->first();
 
-        if (!$firm) {
+        return $this->resolve($firm);
+    }
+
+    public function resolve($value)
+    {
+        if (!$value) {
             return null;
         }
 
-        return $firm->id;
+        return $value->id;
     }
 }

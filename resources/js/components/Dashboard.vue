@@ -2,38 +2,27 @@
   <div class="flex">
     <div class=" w-2/3">
       <div class="flex flex-wrap">
-        <div class="flex-1 px-2">
-          <MetricCard
+        <div
+          v-for="card in cards"
+          :key="card.label + card.value"
+          class="px-2 w-1/3"
+        >
+          <Component
+            :is="card.component"
             :icon-class="'icon-Add_x40_2xpng_2'"
-            :value="'11'"
-            :label="'Current Jobs'"
+            :value="parseInt(card.value)"
+            :label="card.label"
           />
         </div>
-
-        <div class="flex-1 px-2">
-          <MetricCard
-            :icon-class="'icon-Calendar_2_x40_2xpng_2'"
-            :value="'11'"
-            :label="'Current Jobs'"
-          />
-        </div>
-        <div class="flex-1 px-2">
-          <MetricCard
-            :icon-class="'icon-Briefcase_x40_2xpng_2'"
-            :value="'11'"
-            :label="'Current Jobs'"
-          />
-        </div>
-
         <div class="px-2 flex-grow w-full">
           <Panel
-            custom-class="min-h-630 pt-8 max-h-630 overflow-y-auto"
+            custom-class="min-h-784 pt-8 overflow-y-auto"
             title="Follow-ups"
           >
             <ul class=" list-reset border-0 custom-navs mb-4 absolute pin-r pin-t mt-4 mr-4">
               <li
                 class="inline-flex"
-                @click="clickCal"
+                @click="changeViewType('calendar')"
               >
                 <button
                   data-toggle="tab"
@@ -47,7 +36,7 @@
               </li>
               <li
                 class="inline-flex"
-                @click="viewType = 'table';"
+                @click="changeViewType('table')"
               >
                 <button
                   data-toggle="tab"
@@ -78,10 +67,10 @@
 
                 <div class="selected-day mt-4">
                   <EmptyState
-                    v-if="!daySelected && !loading"
+                    v-if="followups.length===0 && !loading"
                     icon="icon-Calendar_1_x40_2xpng_2 text-5xl mt-3 block"
                     message="No date selected"
-                    custom-class="mt-5 min-h-200 text-lg"
+                    custom-class="mt-5 min-h-300 text-lg"
                   />
                   <PageLoader
                     v-else-if="loading"
@@ -90,14 +79,19 @@
 
                   <div v-else>
                     <Panel
-                      :title="selectedDate"
-                      custom-class="bg-transparent border-transparent border-0"
+                      :title="selectedDateHuman"
+                      custom-class="bg-grey border-transparent border-0"
                     >
                       <Datatable
+                        :header="tableHeaders"
+                        :rows="followups"
+                        :pagination="pagination"
                         :fixed-header="true"
                         :has-pagination="true"
                         :has-filters="false"
                         :striped="false"
+                        :per-page-enabled="false"
+                        @pagechanged="getFollowups(selectedDate,$event)"
                       />
                     </Panel>
                   </div>
@@ -107,12 +101,16 @@
               <div
                 v-else
                 id="list"
-                class="tab-pane fade in"
+                class="tab-pane fade in max-h-600"
               >
                 <Datatable
-                  :fixed-header="true"
+                  :header="tableHeaders"
+                  :rows="followups"
+                  :pagination="pagination"
+                  :has-pagination="true"
                   :has-filters="false"
-                  :has-pagination="false"
+                  :per-page-enabled="false"
+                  @pagechanged="getFollowups(null,$event)"
                 />
               </div>
             </div>
@@ -123,7 +121,7 @@
     <div class=" w-1/3">
       <Panel
         title="Recent activity"
-        custom-class=" pl-6 pr-2  max-h-750 min-h-750"
+        custom-class=" pl-6 pr-2   min-h-900"
       >
         <div class="days-container max-h-680 overflow-y-auto">
           <div
@@ -170,6 +168,7 @@
   import {upcomingFollowups as getFollowups} from '../API/followupAPI'
   import {upcomingFollowupsCount as getCounts} from '../API/followupAPI'
   import {get as getRecentActivity} from '../API/recentActivityAPI'
+  import {get as getCards} from '../API/cardsAPI'
 
   export default {
     components: {
@@ -179,9 +178,12 @@
     props: {},
     data() {
       return {
+        selectedDateHuman: "",
+        endPoint: "",
+        cards: [],
         tableHeaders: [
           {
-            name: "followup_type",
+            name: "type",
             translations: {
               ara: "نوع المتابعة",
               en: "Type"
@@ -189,11 +191,12 @@
 
           },
           {
-            name: "followup_type",
+            name: "followup",
             translations: {
               ara: "نوع المتابعة",
-              en: "Type"
-            }
+              en: "Job seeker"
+            },
+            valueHandler: (row) => row.followup.name
 
           }
         ],
@@ -201,7 +204,6 @@
         viewType: 'calendar',
         events: [],
         followups: [],
-        selectedFollowups: [],
         recent: [],
         selectedDate: '',
         daySelected: false,
@@ -240,6 +242,13 @@
             this.dayUnselected(view, el);
           }.bind(this)
         },
+        page: 1,
+        pagination: {
+          total: 0,
+          lastPage: 3,
+          perPage: 15,
+          currentPage: 1
+        },
 
       }
     },
@@ -249,12 +258,18 @@
     },
     mounted() {
       this.getRecentActivity();
+      getCards()
+          .then(resp => {
+            this.cards = resp.data;
+          })
+          .catch(error => {
+          });
+
     },
     methods: {
       getRecentActivity() {
         getRecentActivity()
             .then(resp => {
-              console.log(' recent resp is ', resp);
               this.recent = resp.data.data;
             })
             .catch(error => {
@@ -279,24 +294,38 @@
               console.log('error');
             });
       },
-      clickCal() {
-        this.viewType = 'calendar';
+      changeViewType(type) {
+        this.viewType = type;
+        if (type === 'table') {
+          this.getFollowups(null, this.pagination.currentPage);
+        }
       },
       dayClicked: function (date, jsEvent, view) {
         this.daySelected = true;
         let selectedString = moment(date, "DD MMMM");
-        this.selectedDate = selectedString.format("DD MMMM");
+        this.selectedDateHuman = selectedString.format("DD MMMM");
+        this.selectedDate = selectedString.format("YYYY-MM-DD");
         this.loading = true;
-        getFollowups(selectedString.format('YYYY-MM-DD'))
+        this.getFollowups(this.selectedDate, this.pagination.page);
+
+      },
+      getFollowups(date, page) {
+        this.loading = true;
+        getFollowups(date, page)
             .then(resp => {
+              console.log(' full resp is ', resp);
               this.followups = resp.data.data;
+              this.pagination = {
+                total: resp.data.meta.total,
+                lastPage: resp.data.meta.last_page,
+                perPage: resp.data.meta.per_page,
+                currentPage: resp.data.meta.current_page
+              }
               this.loading = false;
 
             })
             .catch(error => {
             });
-
-
       },
       dayUnselected(view, el) {
         if (!view.target.className || !(view.target.className === 'fc-day-number')) {

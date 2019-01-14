@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Filters\CaseFilter;
 use App\Http\Requests\FirmRequest;
+use App\Http\Sortable\SortableCase;
 use App\Models\Firm;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -28,5 +30,22 @@ class FirmController extends Controller
     public function show(FirmRequest $request, Firm $firm)
     {
         return view('firm.show', compact('firm'));
+    }
+
+    public function matches(Firm $firm, CaseFilter $filter, SortableCase $sortableCase)
+    {
+        abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
+
+        $query = $firm->matches();
+
+        $query->filter($filter);
+
+        $query->sort($sortableCase);
+
+        $results = $query->paginate();
+
+        $caseType = 'job-seeker';
+
+        return case_resource_collection($caseType, $results, $caseType);
     }
 }

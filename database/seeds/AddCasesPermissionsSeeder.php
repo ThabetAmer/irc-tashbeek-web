@@ -20,7 +20,5 @@ class AddCasesPermissionsSeeder extends Seeder
         $this->givePermissionToSuperUser($permissions);
 
         $this->givePermissionToESO($permissions);
-
-
     }
 }

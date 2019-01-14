@@ -11,6 +11,7 @@ class RecentActivitiesController extends Controller
     {
         return new RecentActivityGroupedCollection(
             RecentActivity::latest()
+                ->where('user_id', auth()->id())
                 ->with('entity')
                 ->paginate(30)
         );

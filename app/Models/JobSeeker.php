@@ -38,4 +38,9 @@ class JobSeeker extends Model implements SyncableInterface
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+
+
+    public function matches(){
+        return $this->belongsToMany(JobOpening::class,'matches')->withPivot(['is_candidate']);
+    }
 }

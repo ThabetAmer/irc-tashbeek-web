@@ -1,17 +1,24 @@
 <template>
   <div class="breadcrumbs-container">
-    <ol
-      v-if="crumbs.length>0"
-      class=""
-    >
+    <ol>
+      <li>
+        <i class=" icon-Right_Arrow_1_1" />
+        <a
+          :href="'/'"
+          class="menu-link no-underline text-sm"
+        >
+          <!--<a>Login</a>-->
+          Dashboard
+        </a>
+      </li>
       <li
         v-for="crumb in crumbs"
         :key="crumb.name"
       >
         <i class=" icon-Right_Arrow_1_1" />
         <a
-          :href="crumb.link"
-          class="menu-link no-underline text-sm"
+          :href="crumb.link ? crumb.link :'javascript:void(0)'"
+          :class="`menu-link no-underline text-sm ${crumb.link ? 'cursor-pointer':'cursor-default'}`"
         >
           <!--<a>Login</a>-->
           {{ crumb.name }}
@@ -31,8 +38,8 @@
         type: Array,
         default: () => [
           {
-            name: 'Job seekers',
-            link: 'Test',
+            name: 'Dashboard',
+            link: '/',
           },
           {
             name: 'View',

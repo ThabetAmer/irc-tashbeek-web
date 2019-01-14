@@ -9,25 +9,27 @@ class UsersSync
      * @var UsersRequest
      */
     private $request;
+    /**
+     * @var MobileWorkersRequest
+     */
+    private $mobileWorkersRequest;
 
     /**
      * UsersSync constructor.
      * @param UsersRequest $request
+     * @param MobileWorkersRequest $mobileWorkersRequest
      */
-    public function __construct(UsersRequest $request)
+    public function __construct(UsersRequest $request, MobileWorkersRequest $mobileWorkersRequest)
     {
         $this->request = $request;
+        $this->mobileWorkersRequest = $mobileWorkersRequest;
     }
 
     public function make($page = 1)
     {
-        $response = $this->request->data(['page' => $page]);
+        $this->sync($page, $this->request);
 
-        $this->saveUsers($response['objects']);
-
-        if (!is_null($response['meta']['next'])) {
-            $this->make($page + 1);
-        }
+        $this->sync($page, $this->mobileWorkersRequest);
     }
 
     /**
@@ -68,4 +70,14 @@ class UsersSync
         $user->save();
     }
 
+    protected function sync($page = 1, $request)
+    {
+        $response = $request->data(['page' => $page]);
+
+        $this->saveUsers($response['objects']);
+
+        if (!is_null($response['meta']['next'])) {
+            $this->sync($page + 1, $request);
+        }
+    }
 }

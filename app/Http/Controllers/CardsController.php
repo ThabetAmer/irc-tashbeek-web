@@ -27,6 +27,4 @@ class CardsController extends Controller
         }
         return $cardsData;
     }
-
-
 }

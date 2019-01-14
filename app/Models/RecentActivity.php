@@ -11,7 +11,8 @@ class RecentActivity extends Model
     protected $fillable = [
         'commcare_id',
         'title',
-        'created_at'
+        'created_at',
+        'user_id'
     ];
 
     protected $casts = [

@@ -20,7 +20,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('cases/{caseType}', 'ResponseApiController@index');
 
     Route::get('case-notes/{caseType}/{id}', 'CaseNotesController@index')->name('case-notes.index');
+
     Route::post('case-notes/{caseType}/{id}', 'CaseNotesController@store')->name('case-notes.create');
+
+    Route::post('case-notes/{caseType}/{caseId}/{noteId}/star', 'CaseNotesController@star')->name('api.case-notes.star');
 
     Route::get('upcoming-followups', 'UpcomingFollowupsController@index')->name('api.upcoming-followups');
     Route::get('upcoming-followups/counts', 'UpcomingFollowupsController@counts')->name('api.upcoming-followups.counts');
@@ -39,6 +42,15 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('roles', 'RoleController@index');
 
     Route::get('cards', 'CardsController@index');
+
+    Route::get('/job-openings/{jobOpening}/matches', 'JobOpeningMatchController@matches')->name('api.matches');
+
+    Route::post('/job-openings/{jobOpening}/matches', 'JobOpeningMatchController@store')->name('api.matches');
+
+    Route::get('/job-seekers/{jobOpening}/matches', 'JobSeekerController@matches')->name('api.job-seeker.matches');
+    Route::get('/job-seekers/{jobOpening}/candidates', 'JobSeekerController@candidates')->name('api.job-seeker.candidates');
+
+    Route::get('/firms/{firm}/matches', 'FirmController@matches')->name('api.firm.matches');
 
 });
 

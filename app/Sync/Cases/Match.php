@@ -1,5 +1,7 @@
 <?php namespace App\Sync\Cases;
 
+use App\Sync\QuestionHandler\MatchFirmIdHandler;
+use App\Sync\QuestionHandler\MatchIsCandidate;
 use App\Sync\QuestionHandler\MatchJobOpeningIdHandler;
 use App\Sync\QuestionHandler\MatchJobSeekerIdHandler;
 
@@ -27,7 +29,7 @@ class Match extends AbstractCase
         return [
             'job_opening_id' => [
                 'column_name' => 'job_opening_id',
-                'column_type' => 'text',
+                'column_type' => 'unsignedInteger',
                 'property' => true,
                 'type' => 'select',
                 'translations' => [
@@ -38,7 +40,7 @@ class Match extends AbstractCase
             ],
             'job_seeker_id' => [
                 'column_name' => 'job_seeker_id',
-                'column_type' => 'text',
+                'column_type' => 'unsignedInteger',
                 'property' => true,
                 'type' => 'select',
                 'translations' => [
@@ -47,6 +49,28 @@ class Match extends AbstractCase
                 ],
                 'valueHandler' => MatchJobSeekerIdHandler::class
             ],
+            'firm_id' => [
+                'column_name' => 'firm_id',
+                'column_type' => 'unsignedInteger',
+                'property' => true,
+                'type' => 'select',
+                'translations' => [
+                    'en' => 'Firm',
+                    'ara' => 'Firm'
+                ],
+                'valueHandler' => MatchFirmIdHandler::class
+            ],
+            'is_candidate' => [
+                'column_name' => 'is_candidate',
+                'column_type' => 'boolean',
+                'property' => true,
+                'type' => 'select',
+                'translations' => [
+                    'en' => 'Is Candidate',
+                    'ara' => 'Is Candidate'
+                ],
+                'valueHandler' => MatchIsCandidate::class
+            ]
 
         ];
     }

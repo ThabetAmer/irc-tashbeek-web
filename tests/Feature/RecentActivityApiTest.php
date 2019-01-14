@@ -67,7 +67,6 @@ class RecentActivityApiTest extends TestCase
             'title' => $this->faker->name,
         ]);
 
-
         $this->json('get', route('api.recent-activities'))
             ->assertJsonCount(3, 'data.0.items')
             ->assertJsonCount(2, 'data.1.items')

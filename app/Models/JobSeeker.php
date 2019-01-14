@@ -15,7 +15,7 @@ class JobSeeker extends Model implements SyncableInterface
         HasActivity;
 
     protected $appends = [
-      'details_url'
+        'details_url'
     ];
 
     protected $guarded = ['id'];
@@ -24,6 +24,14 @@ class JobSeeker extends Model implements SyncableInterface
     public function scopeByCommCareId(Builder $builder, $commCareId)
     {
         $builder->where('commcare_id', $commCareId);
+    }
+
+    public function scopeCurrentMonth(Builder $builder)
+    {
+        $startOfMonth = now()->startOfMonth()->toDateString();
+        $endOfMonth = now()->endOfMonth()->toDateString();
+
+        $builder->whereBetween('opened_at', [$startOfMonth, $endOfMonth]);
     }
 
     public function displayName()

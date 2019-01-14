@@ -19,16 +19,21 @@ class Followup extends Model
 
     public function scopeUpcoming(Builder $builder)
     {
-        $builder->orderBy('followup_date','desc');
+        $builder->orderBy('followup_date', 'desc');
 
-        $builder->where('followup_date' , '<=' , now()->toDateString());
+        $builder->where('followup_date', '<=', now()->toDateString());
     }
 
     public function scopeUpcomingOnDate(Builder $builder, $date)
     {
-        $builder->orderBy('followup_date','desc');
+        $builder->orderBy('followup_date', 'desc');
 
-        $builder->where('followup_date' , '=' , $date);
+        $builder->where('followup_date', '=', $date);
+    }
+
+    public function scopeOfType($query, $type)
+    {
+        return $query->where('followups.followup_type', $type);
     }
 
     public function followup()

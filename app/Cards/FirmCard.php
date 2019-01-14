@@ -3,10 +3,10 @@
 use App\Models\Firm;
 
 /**
- * Class ValueCard
+ * Class FirmCard
  * @package App\Http\Cards
  */
-class ValueCard extends Card
+class FirmCard extends Card
 {
     protected $method = 'count'; // initial value
 
@@ -22,7 +22,7 @@ class ValueCard extends Card
         switch ($this->method) {
             case 'count':
             default:
-                return $query->count();
+                return $query->where('user_id', auth()->user()->id)->count();
 
         }
     }
@@ -56,7 +56,6 @@ class ValueCard extends Card
         $this->method = 'count';
         return $this;
     }
-
 
 
 }

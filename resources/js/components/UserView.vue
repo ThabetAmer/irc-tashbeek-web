@@ -162,10 +162,10 @@
             User Roles
           </label>
 
-          <div class="md:flex md:items-center mb-6">
+          <div class="mb-6">
             <CheckboxGroup
-              :checkboxes="checkboxes"
-              display="inline"
+              :checkboxes="availableRoles"
+              @change="onRoleSelection"
             />
           </div>
         </div>
@@ -209,32 +209,21 @@
         type: Boolean,
         default: false
       },
-      roles:{
-        type:Array,
+      roles: {
+        type: Array,
         default: () => []
       }
     },
     data() {
       return {
-        internalError:[],
+        internalError: [],
         showEdit: true,
         imageSrc: 'https://picsum.photos/200/300',
         user: {},
         name: '',
-        checkboxes: [
-          {
-            value: 1,
-            label: 'Admin'
-          },
-          {
-            value: 2,
-            label: 'Other'
-          },
-          {
-            value: 3,
-            label: 'Viewer'
-          }
-        ]
+        checkboxes: [],
+        availableRoles: [],
+        selectedRoles: []
       }
     },
     beforeMount() {
@@ -252,35 +241,52 @@
         this.imageSrc = "";
         this.name = "New User";
       }
+
+      this.availableRoles = this.roles.map(role => ({
+        ...role,
+        label: role.name,
+        value: role.id,
+        checked: role.has_role
+      }))
+
+      this.selectedRoles = this.roles.filter(role => role.has_role === true).map(role => role.id)
     },
     methods: {
       handleUserCreate() {
         if (this.userProp) {
-          updateUser(this.user.id, this.user)
-              .then(resp => {
-                this.$toasted.show(resp.data.message, {
-                  icon: 'icon-Checkmark_2_x40_2xpng_2'
-                });
-                this.name = this.user.name;
-              })
-              .catch(error => {
-              });
+          updateUser(this.user.id, {
+            ...this.user,
+            roles: this.selectedRoles
+          }).then(resp => {
+            this.$toasted.show(resp.data.message, {
+              icon: 'icon-Checkmark_2_x40_2xpng_2'
+            });
+            this.name = this.user.name;
+          }).catch(error => {
+            if (error.response.status === 422) {
+              this.internalError = error.response.data.errors
+            } else {
+              this.$toasted.error("Something went wrong, cannot update user.");
+            }
+          });
         }
         else {
-          createUser(this.user)
-              .then(resp => {
-                console.log(' resp is ', resp);
-                this.name = this.user.name;
-                this.internalError = [];
-                this.$toasted.show(resp.data.message, {
-                  icon: 'icon-Checkmark_2_x40_2xpng_2'
-                });
-              })
-              .catch(error => {
-                if (error.response.status === 422) {
-                  this.internalError = error.response.data.errors
-                }
-              });
+          createUser({
+            ...this.user,
+            ...this.selectedRoles
+          }).then(resp => {
+            this.name = this.user.name;
+            this.internalError = [];
+            this.$toasted.show(resp.data.message, {
+              icon: 'icon-Checkmark_2_x40_2xpng_2'
+            });
+          }).catch(error => {
+            if (error.response.status === 422) {
+              this.internalError = error.response.data.errors
+            }else{
+              this.$toasted.error("Something went wrong, cannot create user.");
+            }
+          });
         }
       },
       createUser() {
@@ -297,6 +303,9 @@
         // Whenever the file changes, emit the 'input' event with the file data.
         console.log(e.target.files);
         // this.imageSrc = e.target.files[0].name;
+      },
+      onRoleSelection(selection) {
+        this.selectedRoles = selection.map(selection => selection.value)
       }
     },
 

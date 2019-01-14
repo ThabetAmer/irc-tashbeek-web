@@ -5,10 +5,10 @@
     ></breadcrumbs>
     <div class="" id="all-users">
         <user-view
+            :roles="{{$roles->toJson()}}"
         ></user-view>
     </div>
 @endsection
-
 
 
 {{--<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>--}}

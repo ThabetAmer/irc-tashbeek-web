@@ -13,7 +13,7 @@
       :key="checkbox.value"
       :label="checkbox.label"
       :check-id="checkbox.value"
-      :checked="checkedField(checkbox)"
+      :checked="checkbox.checked"
       @change="checkboxChange(checkbox,$event)"
     />
   </div>
@@ -23,10 +23,10 @@
 <script>
   export default {
     /**
-     * the only passed prop to the froup
+     * the only passed prop to the group
      * is the array of checkbox objects
      * each of these objects will contain
-     * value and label. Label is to display lable
+     * value and label. Label is to display label
      * and value is a unique value for the checkbox
      *
      * The only data is the checkboxValue which
@@ -34,7 +34,7 @@
      */
     props: {
       checkboxes: {
-        type: [Array, Object],
+        type: Array,
         default: () => []
       },
       display: {
@@ -44,26 +44,29 @@
     },
     data() {
       return {
-        checkboxValue: []
+        selections: []
       }
     },
-    watch: {
-      checkboxValue: function (newValue, oldValue) {
-        this.$emit('change', this.checkboxValue);
+    watch:{
+      checkboxes: function(newValue){
+        this.selections =  newValue.filter(checkbox => checkbox.checked === true);
       }
+    },
+    mounted(){
+      this.selections = [...this.checkboxes.filter(checkbox => checkbox.checked === true)]
     },
     methods: {
-      checkedField(option) {
-        return this.checkboxValue.findIndex(item => item.value === option.value) !== -1
-      },
       checkboxChange(option, value) {
-        const index = this.checkboxValue.findIndex(item => item.value === option.value)
+        const index = this.selections.findIndex(item => item.value === option.value)
+
         if (value) {
-          this.checkboxValue.push(option)
+          this.selections.push(option)
         }
         else {
-          this.checkboxValue.splice(index, 1)
+          this.selections.splice(index, 1)
         }
+
+        this.$emit('change', this.selections)
       }
     }
 

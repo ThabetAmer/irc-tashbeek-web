@@ -39688,7 +39688,7 @@ html {
 }
 
 .multiselect.filled .multiselect__tags {
-  background: rgba(92, 182, 80, .3);
+  background: rgba(92, 182, 80, .2);
 }
 
 .multiselect.filled .multiselect__single {

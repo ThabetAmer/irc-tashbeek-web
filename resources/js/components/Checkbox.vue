@@ -16,7 +16,10 @@
         @input="$emit('input', $event.target.checked)"
         @change="$emit('change', $event.target.checked)"
       >
-      <span v-if="labelClass" class="checkmark"></span>
+      <span
+        v-if="labelClass"
+        class="checkmark"
+      />
 
       {{ label }}
     </label>

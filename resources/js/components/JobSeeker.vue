@@ -58,16 +58,16 @@
             <span>
               Living in {{ jobSeeker.city }}
 
-                     <span
-                       v-if="jobSeeker.city && jobSeeker.district "
-                       class="mx-1"
-                     >
-                       •
-                     </span>
+              <span
+                v-if="jobSeeker.city && jobSeeker.district "
+                class="mx-1"
+              >
+                •
+              </span>
 
-                     <span v-if="jobSeeker.district !== ''">
-                       {{ jobSeeker.district }}
-                     </span>
+              <span v-if="jobSeeker.district !== ''">
+                {{ jobSeeker.district }}
+              </span>
             </span>
           </ListItem>
 
@@ -115,7 +115,7 @@
         </div>
         <Notebox
           v-if="starredNote"
-          :body="starredNote.body"
+          :body="starredNote.note"
           :date="starredNote.date"
           :author="starredNote.author"
           :show-star="false"
@@ -222,30 +222,30 @@
             v-if="jobOpeningView=='all'"
             class=""
           >
-            <Screenbox/>
-            <Screenbox/>
+            <Screenbox />
+            <Screenbox />
           </div>
 
           <div
             v-if="jobOpeningView=='screening'"
             class=""
           >
-            <Screenbox/>
+            <Screenbox />
           </div>
 
           <div
             v-if="jobOpeningView=='matched'"
             class=""
           >
-            <Screenbox/>
-            <Screenbox/>
+            <Screenbox />
+            <Screenbox />
           </div>
 
           <div
             v-if="jobOpeningView=='candidate'"
             class=""
           >
-            <Screenbox/>
+            <Screenbox />
           </div>
 
           <div
@@ -318,6 +318,11 @@
         getNotes('job-seeker', this.jobSeeker.id)
             .then(({data}) => {
               this.notes = data.data;
+              this.notes.forEach(note => {
+                if(note.is_starred){
+                  this.starredNote = note;
+                }
+              })
             }).catch(error => {
           console.log('Error : ', error);
         });
@@ -349,9 +354,14 @@
       changeStarredNote(note) {
         starNote('job-seeker', this.jobSeeker.id, note.id)
             .then(resp => {
-              console.log(' resp for strar note ',resp)
-              this.starredNote = resp.data.note;
-              this.$toasted.show(resp.data.message,{
+              if (resp.data.note.is_starred) {
+                this.starredNote = resp.data.note;
+              }
+              else {
+                this.starredNote = null;
+
+              }
+              this.$toasted.show(resp.data.message, {
                 icon: 'icon-Stars_x40_2xpng_2 mr-2'
               })
             })

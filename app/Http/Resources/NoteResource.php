@@ -21,6 +21,7 @@ class NoteResource extends Resource
             'type' => $this->type,
             'created_at' => $this->created_at->toDateTimeString(),
             'created_at_text' => $this->created_at->format('l d F'),
+            'is_starred' => $this->is_starred
         ];
     }
 }

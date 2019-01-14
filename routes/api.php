@@ -20,7 +20,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('cases/{caseType}', 'ResponseApiController@index');
 
     Route::get('case-notes/{caseType}/{id}', 'CaseNotesController@index')->name('case-notes.index');
+
     Route::post('case-notes/{caseType}/{id}', 'CaseNotesController@store')->name('case-notes.create');
+
+    Route::post('case-notes/{caseType}/{caseId}/{noteId}/star', 'CaseNotesController@star')->name('api.case-notes.star');
 
     Route::get('upcoming-followups', 'UpcomingFollowupsController@index')->name('api.upcoming-followups');
     Route::get('upcoming-followups/counts', 'UpcomingFollowupsController@counts')->name('api.upcoming-followups.counts');

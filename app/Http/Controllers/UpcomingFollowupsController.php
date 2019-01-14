@@ -30,7 +30,6 @@ class UpcomingFollowupsController extends Controller
         return FollowupResource::collection($results);
     }
 
-
     public function counts()
     {
         request()->validate([

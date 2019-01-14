@@ -26,27 +26,35 @@ class UserControllerView extends Controller
 
     public function create()
     {
-        return view('users.create');
+        $roles = $this->getRoles();
 
+        return view('users.create',compact('roles'));
     }
 
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $roles = $this->getRoles($user);
+
+        return view('users.edit', compact('user', 'roles'));
     }
 
     public function show(User $user)
     {
-        $roles = Role::all()
-            ->transform(function ($role) use($user){
+        $roles = $this->getRoles($user);
+
+        return view('users.show', compact('user', 'roles'));
+    }
+
+    protected function getRoles($user = null)
+    {
+        return Role::all()
+            ->transform(function ($role) use ($user) {
                 return [
                     'id' => $role->id,
                     'name' => $role->name,
-                    'has_role' => $user->hasRole($role)
+                    'has_role' => $user ? $user->hasRole($role) : false
                 ];
             });
-
-        return view('users.show', compact('user','roles'));
     }
 
 }

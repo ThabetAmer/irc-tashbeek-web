@@ -5,7 +5,8 @@
     ></breadcrumbs>
     <div class="" id="all-users">
         <user-view
-                :user-prop="{{json_encode($user->toArray())}}"
+                :roles="{{$roles->toJson()}}"
+                :user-prop="{{$user->toJson() }}"
         ></user-view>
     </div>
 @endsection

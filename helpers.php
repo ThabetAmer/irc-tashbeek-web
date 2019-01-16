@@ -122,3 +122,32 @@ if (!function_exists('trans_commcare')) {
         return $default;
     }
 }
+
+if (!function_exists('switch_url')) {
+    function switch_url($html = false){
+
+        $locale = \App::getLocale();
+
+        $locales = [];
+
+        foreach(config('laravellocalization.supportedLocales') as $key => $value){
+            if($locale !== $key){
+                $locales[] = array_merge($value,['locale_key' => $key]);
+            }
+        }
+
+        if(!count($locales)){
+            return ;
+        }
+
+        $first = reset($locales);
+
+        $url = \LaravelLocalization::getLocalizedURL($first['locale_key']);
+
+        if(!$html){
+            return $url;
+        }
+
+        return "<a href='{$url}' class='text-white'>{$first['native']}</a>";
+    }
+}

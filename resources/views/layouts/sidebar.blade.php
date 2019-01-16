@@ -1,7 +1,13 @@
 <nav id="sidebar" class="px-4 py-4 relative">
-    <button type="button" id="sidebarCollapse" class="mt-2 mr-3 text-white text-2xl  absolute pin-t pin-r mt-4 mr-4">
-        <i class="icon-List_1_x40_2xpng_2"></i>
-    </button>
+    <div>
+        <button type="button" id="sidebarCollapse" class="mt-2 mr-3 text-white text-2xl  absolute pin-t pin-r mt-4 mr-4">
+            <i class="icon-List_1_x40_2xpng_2"></i>
+        </button>
+
+
+        {!! switch_url(true) !!}
+
+    </div>
 
     <div class="sidebar-header mb-6 text-center mt-10">
         <img src="{{ asset('img/logo_big.png') }}" width="90" height="79" alt="">

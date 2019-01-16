@@ -60119,3 +60119,9 @@ html {
           transform: scale(-1);
   display: inline-block;
 }
+
+[dir=rtl] .checkmark {
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+  display: inline-block;
+}

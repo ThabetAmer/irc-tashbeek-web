@@ -968,3 +968,8 @@ body, html {
   transform: scale(-1);
   display: inline-block;
 }
+
+[dir=rtl] .checkmark{
+  transform: scaleX(-1);
+  display: inline-block;
+}

@@ -12,33 +12,19 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-
-    public function __construct()
-    {
-
-    }
-
     public function index()
     {
         $users = app(UsersList::class)->get([], $this->perPage());
         return UserResource::collection($users);
-//        return view('users',compact('users'));
-    }
-
-    public function create()
-    {
-
     }
 
     public function edit(User $user)
     {
-
         return $user;
     }
 
     public function show(User $user)
     {
-
         return $user;
     }
 
@@ -49,7 +35,10 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $user = app(CreateUserAction::class)->create($request->all());
-        return response()->json(['message' => 'User created successfully'], 200);
+        return response()->json([
+            'message' => trans('irc.user_created'),
+            'user' => new UserResource($user)
+        ], 200);
     }
 
     /**
@@ -60,7 +49,10 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         $user = app(UpdateUserAction::class)->update($user, $request->all());
-        return response()->json(['message' => 'User updated successfully'], 200);
+        return response()->json([
+            'message' => trans('irc.user_updated'),
+            'user' => new UserResource($user)
+        ], 200);
     }
 
     /**
@@ -70,7 +62,9 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         app(DeleteUserAction::class)->delete($user);
-        return response()->json(['message' => 'User deleted successfully'], 200);
+        return response()->json([
+            'message' => trans('irc.user_deleted'),
+        ], 200);
 
     }
 
@@ -81,7 +75,9 @@ class UserController extends Controller
     public function activate(User $user)
     {
         app(ChangeUserStatusAction::class)->activate($user);
-        return response()->json(['message' => 'User activated successfully'], 200);
+        return response()->json([
+            'message' => trans('irc.user_activated')
+        ], 200);
     }
 
     /**
@@ -91,11 +87,10 @@ class UserController extends Controller
     public function deactivate(User $user)
     {
         app(ChangeUserStatusAction::class)->deactivate($user);
-        return response()->json(['message' => 'User deactivated successfully'], 200);
+        return response()->json([
+            'message' => trans('irc.user_deactivated')
+        ], 200);
     }
-
-
-
 
     protected function perPage()
     {
@@ -108,6 +103,4 @@ class UserController extends Controller
 
         return $perPage;
     }
-
-
 }

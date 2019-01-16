@@ -10,14 +10,14 @@
         <img src="{{ asset('img/logo_big.png') }}" width="90" height="79" alt="">
     </div>
 
-    <div class="text-white flex">
+    <div class="text-white flex items-center">
         <img class="rounded-full w-10 h-10 mr-2"
              src="{{ auth()->user()->profile_picture }}"
              alt="{{auth()->user()->name}}">
 
         <div>
             <div class="text-bold mb-2 hide-min ">{{auth()->user()->name}}</div>
-            <div class="text-grey-dark text-base hide-min">Location: Amman</div>
+            {{--<div class="text-grey-dark text-base hide-min">Location: Amman</div>--}}
         </div>
     </div>
 

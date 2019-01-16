@@ -4,7 +4,6 @@
       custom-class=""
       :title="name"
     >
-      <!--<h1>loading user</h1>-->
       <Btn
         v-if="viewOnly && !showEdit"
         class="m-3 absolute pin-r pin-t"
@@ -20,14 +19,14 @@
         <div class="sm:w-full lg:w-1/3 hd:w-1/5 pt-5 pl-5">
           <Avatar
             class="sm:mx-auto"
-            :src="imageSrc"
+            :src="profileImagePreview"
             :size="150"
-            :username="name"
+            :username="user && user.name ? user.name : ''"
           />
           <Transition name="fade">
             <div
               v-if="showEdit"
-              class="sm:mx-auto w-150 mt-5 sm:mb-5"
+              class="sm:mx-auto w-150 mt-5 sm:mb-5 text-center"
             >
               <Btn
                 btn-class=""
@@ -39,12 +38,13 @@
                   class="flex items-center"
                 >
                   <i class="icon-Photo_x40_2xpng_2 mr-2" />
-                  {{ (imageSrc? 'irc.change': 'irc.upload') | trans }}
+                  {{ (uploadedImage ? 'irc.change': 'irc.upload') | trans }}
                 </div>
               </Btn>
 
               <input
                 ref="fileInput"
+                accept="image/*"
                 aria-hidden="true"
                 type="file"
                 @change="handleFileChange"
@@ -196,17 +196,14 @@
 <script>
 
   import Avatar from 'vue-avatar'
-  import {update as updateUser} from '../API/userAPI'
-  import {create as createUser} from '../API/userAPI'
+  import {update as updateUser, create as createUser} from '../API/userAPI'
 
   export default {
     components: {Avatar},
-    mixins: [],
     props: {
       userProp: {
         type: Object,
-        default: () => {
-        }
+        default: () => ({})
       },
       viewOnly: {
         type: Boolean,
@@ -221,12 +218,46 @@
       return {
         internalError: [],
         showEdit: true,
-        imageSrc: '',
+        uploadedImage: null,
+        uploadedProfileImagePreview:null,
         user: {},
         name: '',
         checkboxes: [],
         availableRoles: [],
         selectedRoles: []
+      }
+    },
+    computed:{
+      formData(){
+        const fd = new FormData;
+
+        fd.append('name', this.user.name)
+        fd.append('email', this.user.email)
+
+        if(this.user.password){
+          fd.append('password', this.user.password)
+        }
+
+        if(this.user.password_confirmation){
+          fd.append('password_confirmation', this.user.password_confirmation)
+        }
+
+        this.selectedRoles.forEach(role => {
+          fd.append('roles[]', role)
+        })
+
+        if(this.uploadedImage){
+          fd.append('profile_picture', this.uploadedImage)
+        }
+        return fd
+      },
+
+      profileImagePreview(){
+        if(this.uploadedProfileImagePreview){
+          return this.uploadedProfileImagePreview
+        }
+
+        return this.user.profile_picture
       }
     },
     beforeMount() {
@@ -238,10 +269,9 @@
       if (this.userProp) {
         this.user = this.userProp;
         this.name = this.user.name;
-      }
-      else {
+      }else {
         this.user = {};
-        this.imageSrc = "";
+        this.uploadedImage = "";
         this.name = this.$options.filters.trans('irc.create_new_user');
       }
 
@@ -256,11 +286,8 @@
     },
     methods: {
       handleUserCreate() {
-        if (this.userProp) {
-          updateUser(this.user.id, {
-            ...this.user,
-            roles: this.selectedRoles
-          }).then(resp => {
+        if (this.user.id) {
+          updateUser(this.user.id, this.formData).then(resp => {
             this.$toasted.show(resp.data.message, {
               icon: 'icon-Checkmark_2_x40_2xpng_2'
             });
@@ -274,10 +301,7 @@
           });
         }
         else {
-          createUser({
-            ...this.user,
-            ...this.selectedRoles
-          }).then(resp => {
+          createUser(this.formData).then(resp => {
             this.name = this.user.name;
             this.internalError = [];
             this.$toasted.show(resp.data.message, {
@@ -286,27 +310,50 @@
           }).catch(error => {
             if (error.response.status === 422) {
               this.internalError = error.response.data.errors
-            }else{
+            } else {
               this.$toasted.error("Something went wrong, cannot create user.");
             }
           });
         }
       },
-      createUser() {
-        console.log(' createUser user');
-      },
+
       enableFields() {
         this.showEdit = true;
       },
+
       openViewer() {
         this.$refs.fileInput.click();
+      },
+
+      handleFileChange(e) {
+
+        this.uploadedImage = e.target.files[0];
+
+        if(!this.uploadedImage){
+          this.uploadedProfileImagePreview = this.user.profile_picture
+          return
+        }
+
+        let reader  = new FileReader();
+
+        reader.addEventListener("load", () => {
+          this.uploadedProfileImagePreview = reader.result;
+        }, false);
+
+        if( this.uploadedImage ){
+
+          if ( /\.(jpe?g|png|gif)$/i.test( this.uploadedImage.name ) ) {
+            /*
+              Fire the readAsDataURL method which will read the file in and
+              upon completion fire a 'load' event which we will listen to and
+              display the image in the preview.
+            */
+            reader.readAsDataURL( this.uploadedImage );
+          }
+        }
 
       },
-      handleFileChange(e) {
-        // Whenever the file changes, emit the 'input' event with the file data.
-        console.log(e.target.files);
-        // this.imageSrc = e.target.files[0].name;
-      },
+
       onRoleSelection(selection) {
         this.selectedRoles = selection.map(selection => selection.value)
       }

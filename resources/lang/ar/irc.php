@@ -86,5 +86,14 @@ return [
 
     'confirm_deactivate_user' => 'هل انت متأكد من تعطيل المستخدم؟',
     'confirm_activate_user' => 'هل انت متأكد من تفعيل المتسخدم؟',
-    'cancel' => 'الغاء'
+    'cancel' => 'الغاء',
+
+    'user_created' => 'تم اضافة مستخدم بنجاح.',
+    'user_updated' => 'تم تحديث المستخدم بنجاح.',
+
+    'user_deleted' => 'تم حذف المستخدم بنجاح.',
+    'user_activated' => 'تم تفعيل المستخدم بنجاح.',
+    'user_deactivated' => 'تم تعطيل المستخدم بنجاح',
+    'export' => 'تحميل Excel',
+    'no_date_selected' => 'لم يتم تحديد تاريخ معين'
 ];

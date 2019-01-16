@@ -50,15 +50,6 @@
               </li>
             </ul>
 
-
-            <button
-              class="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-3 border border-blue hover:border-transparent rounded float-right"
-              @click="exportData"
-            >
-              Export
-            </button>
-
-
             <div class="tab-content">
               <div
                 v-if="viewType =='calendar'"
@@ -78,7 +69,7 @@
                   <EmptyState
                     v-if="followups.length===0 && !loading"
                     icon="icon-Calendar_1_x40_2xpng_2 text-5xl mt-3 block"
-                    message="No date selected"
+                    :message="'irc.no_date_selected' | trans"
                     custom-class="mt-5 min-h-300 text-lg"
                   />
                   <PageLoader
@@ -91,6 +82,13 @@
                       :title="selectedDateHuman"
                       custom-class="bg-grey border-transparent border-0"
                     >
+                      <button
+                        class="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-3 border border-blue hover:border-transparent rounded float-right"
+                        @click="exportData"
+                      >
+                        {{ 'irc.export' | trans }}
+                      </button>
+
                       <Datatable
                         :header="tableHeaders"
                         :rows="followups"

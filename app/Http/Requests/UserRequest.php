@@ -23,7 +23,6 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-
         $isUpdate = $this->getMethod() == 'POST' ? false : true;
 
         if ($this->getMethod() == 'POST' or $this->getMethod() == 'PUT') {

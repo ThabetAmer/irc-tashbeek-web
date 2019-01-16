@@ -9,7 +9,7 @@
         class="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded float-right"
         @click="exportData"
       >
-        Export
+        {{ 'irc.export' | trans }}
       </button>
 
 

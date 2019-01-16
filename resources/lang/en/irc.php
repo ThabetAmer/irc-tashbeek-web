@@ -85,6 +85,13 @@ return [
 
     'confirm_deactivate_user' => 'Are you sure to Deactivate user?',
     'confirm_activate_user' => 'Are you sure to Deactivate user?',
-    'cancel' => 'Cancel'
+    'cancel' => 'Cancel',
 
+    'user_created' => 'User created successfully',
+    'user_updated' => 'User updated successfully',
+    'user_deleted' => 'User deleted successfully',
+    'user_activated' => 'User activated successfully',
+    'user_deactivated' => 'User deactivated successfully',
+    'export' => 'Export to Excel',
+    'no_date_selected' => 'No date selected'
 ];

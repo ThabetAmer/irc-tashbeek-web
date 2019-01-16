@@ -151,3 +151,20 @@ if (!function_exists('switch_url')) {
         return "<a href='{$url}' class='text-white'>{$first['native']}</a>";
     }
 }
+
+if (!function_exists('export')) {
+    function export($class, $title, $data)
+    {
+        $class = app($class);
+
+        if (!$class instanceof \App\Export\ExportInterface) {
+            abort(500, "Exports should implement ExportInterface");
+        }
+
+        $class
+            ->title($title)
+            ->data($data);
+
+        return $class->apply();
+    }
+}

@@ -18,9 +18,7 @@
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
 
-    {{--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">--}}
     <link rel="stylesheet" href="{{asset('./css/app.css')}}">
-    <link rel="stylesheet" href="{{asset('./css/style.css')}}">
     <link rel="shortcut icon" href="{{{ asset('img/logo_big.png') }}}">
 </head>
 <body class="bg-grey-light">
@@ -61,11 +59,6 @@
 <script src="{{asset('./js/messages.js')}}"></script>
 <script src="{{asset('./js/app.js')}}"></script>
 
-
-{{--<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>--}}
-
 @section('script')
 
 @show
-
-{{--<script src="{{ asset('js/seekerProfile.js') }}" type="text/javascript"></script>--}}

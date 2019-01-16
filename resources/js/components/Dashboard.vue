@@ -50,6 +50,15 @@
               </li>
             </ul>
 
+
+            <button
+              class="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-3 border border-blue hover:border-transparent rounded float-right"
+              @click="exportData"
+            >
+              Export
+            </button>
+
+
             <div class="tab-content">
               <div
                 v-if="viewType =='calendar'"
@@ -167,8 +176,10 @@
   import {FullCalendar} from 'vue-full-calendar'
   import {upcomingFollowups as getFollowups} from '../API/followupAPI'
   import {upcomingFollowupsCount as getCounts} from '../API/followupAPI'
+  import {exportData as exportDataByUrl} from '../API/followupAPI'
   import {get as getRecentActivity} from '../API/recentActivityAPI'
   import {get as getCards} from '../API/cardsAPI'
+  import exportDataHelper from '../helpers/ExportData'
 
   export default {
     components: {
@@ -333,6 +344,18 @@
         }
 
 
+      },
+      exportData(){
+
+        let selectedDate = this.selectedDate;
+        if(this.viewType == "table"){
+            selectedDate = null;
+        }
+
+          exportDataByUrl(selectedDate, this.pagination.page, {export: true})
+            .then(response => {
+                exportDataHelper.exportCallback(response);
+            });
       }
 
     }

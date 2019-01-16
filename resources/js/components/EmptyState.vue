@@ -5,9 +5,9 @@
     <slot
       name="empty-label"
     >
-      <div class="mx-auto text-grey-dark mb-2">
+      <div class="mx-auto  text-grey-dark mb-2">
         {{ message }}
-        <i :class="icon" />
+        <i :class="`text-center ${icon}`" />
       </div>
     </slot>
   </div>

@@ -6,7 +6,7 @@
       <slot name="header" />
 
       <Filters
-        v-if="filters.length > 0"
+        v-if="filters.length > 0 && hasFilters"
         :filters="filters"
         :user-filters="userFilters"
         @change="filterChange($event, loadData)"
@@ -104,6 +104,14 @@
       endPoint: {
         type: String,
         default: ""
+      },
+      changeUrl: {
+        type: Boolean,
+        default: true
+      },
+      hasFilters: {
+        type: Boolean,
+        default: true
       }
     },
     data() {
@@ -151,7 +159,9 @@
         }
 
         return apiResponse.then(({data}) => {
-          this.changeUrlUsingParams(params);
+          if(this.changeUrl){
+            this.changeUrlUsingParams(params);
+          }
           this.rows = data.data;
           this.$emit('fetch', {
             data: data.data

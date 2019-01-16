@@ -219,7 +219,7 @@
         </ul>
         <div class="tab-content">
           <div
-            v-if="jobOpeningView=='all'"
+            v-if="jobOpeningView==='all'"
             class=""
           >
             <Screenbox />
@@ -227,25 +227,36 @@
           </div>
 
           <div
-            v-if="jobOpeningView=='screening'"
+            v-if="jobOpeningView==='screening'"
             class=""
           >
             <Screenbox />
           </div>
 
           <div
-            v-if="jobOpeningView=='matched'"
+            v-if="jobOpeningView==='matched'"
             class=""
           >
-            <Screenbox />
-            <Screenbox />
+            <CaseListing
+              key="matches"
+              :end-point="matchedEndPoint"
+              type="job-seeker"
+              :has-filters="false"
+              :change-url="false"
+            />
           </div>
 
           <div
-            v-if="jobOpeningView=='candidate'"
+            v-if="jobOpeningView==='candidate'"
             class=""
           >
-            <Screenbox />
+            <CaseListing
+              key="candidates"
+              :end-point="candidateEndPoint"
+              type="job-seeker"
+              :has-filters="false"
+              :change-url="false"
+            />
           </div>
 
           <div
@@ -307,19 +318,25 @@
         filters: false,
         showAddModalNote: false,
         starredNote: null,
-        notes: []
+        notes: [],
+        matches: [],
+        matchedEndPoint: '',
+        candidateEndPoint: ''
       }
     },
     created() {
+      this.matchedEndPoint = `api/job-seekers/${this.jobSeeker.id}/matches`;
+      this.candidateEndPoint = `api/job-seekers/${this.jobSeeker.id}/candidates`;
       this.getNotes();
     },
     methods: {
+
       getNotes() {
         getNotes('job-seeker', this.jobSeeker.id)
             .then(({data}) => {
               this.notes = data.data;
               this.notes.forEach(note => {
-                if(note.is_starred){
+                if (note.is_starred) {
                   this.starredNote = note;
                 }
               })
@@ -328,6 +345,7 @@
         });
       },
       changeJobOpeningview(view) {
+        this.$forceUpdate();
         this.jobOpeningView = view;
         if (view === 'notes') {
           this.showAddNote = true;
@@ -340,9 +358,9 @@
         this.showAddModalNote = false;
 
       },
-      addNoteToList(noteText,type) {
+      addNoteToList(noteText, type) {
 
-        addNote('job-seeker', this.jobSeeker.id, {note: noteText,type:type})
+        addNote('job-seeker', this.jobSeeker.id, {note: noteText, type: type})
             .then(resp => {
               this.notes.push(resp.data.note);
             }).catch(error => {

@@ -43,7 +43,7 @@
       <CheckboxField
         :checked="selections.indexOf(row.id) !== -1"
         label=""
-        label-class="theme-radio-label -mt-5"
+        label-class="theme-radio-label -mt-6"
         @change="handleSelection(row.id)"
       />
     </template>

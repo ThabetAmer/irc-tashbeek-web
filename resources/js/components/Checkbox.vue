@@ -6,7 +6,7 @@
     are both handled.
     -->
   <div class="mr-2">
-    <label :class="`form-check-label ${labelClass}`">
+    <label :class="`form-check-label  ${labelClass}`">
       <input
         :id="checkId"
         :value="value"
@@ -17,12 +17,9 @@
         @input="$emit('input', $event.target.checked)"
         @change="$emit('change', $event.target.checked)"
       >
-      <span
-        v-if="labelClass"
-        class="checkmark"
-      />
 
       {{ label }}
+      <span :class="`checkmark`" />
     </label>
   </div>
 </template>

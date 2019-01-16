@@ -79,12 +79,6 @@
     </ul>
 </nav>
 
-<style>
-    .hd\:mt-2 {
-        margin-top: -0.5rem;
-    }
-
-</style>
 
 @section('script')
 

@@ -223,7 +223,7 @@
       return {
         internalError: [],
         showEdit: true,
-        imageSrc: 'https://picsum.photos/200/300',
+        imageSrc: '',
         user: {},
         name: '',
         checkboxes: [],

@@ -92,9 +92,10 @@
   import FiltersProvider from "../mixins/FiltersProvider";
   import queryString from '../helpers/QueryString'
   import sortingProvider from "../mixins/sortingProvider";
+  import paginationMixin from "../mixins/paginationMixin";
 
   export default {
-    mixins: [FiltersProvider, sortingProvider],
+    mixins: [FiltersProvider, sortingProvider,paginationMixin],
     props: {
       type: {
         type: String,
@@ -112,12 +113,6 @@
         loading: false,
         rows: [],
         headers: [],
-        pagination: {
-          total: 0,
-          lastPage: 1,
-          perPage: 15,
-          currentPage: 1
-        },
       }
     },
     mounted() {

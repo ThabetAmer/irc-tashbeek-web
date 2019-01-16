@@ -602,7 +602,7 @@ table.scrollable-fixed-header {
 
 //html, body { margin: 0; padding: 0; height: 100%; width: 100%;}
 
-.content {
+.body-container {
   max-width: calc(100% - 250px) !important;
 }
 
@@ -922,3 +922,4 @@ body, html {
   border-radius: 50%;
   background: white;
 }
+

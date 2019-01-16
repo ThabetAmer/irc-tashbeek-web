@@ -174,8 +174,9 @@ module.exports = {
     'lg': '992px',
     'xl': '1200px',
     'hd': '1366px',
-    // 'fhd': '1500px',
+    'fhd': '1500px',
   },
+
 
 
   /*
@@ -688,6 +689,8 @@ module.exports = {
     '20': '5rem',
     '24': '6rem',
     '32': '8rem',
+    '48': '10rem',
+    '64': '14rem',
   },
 
 
@@ -961,7 +964,7 @@ module.exports = {
   plugins: [
     require('tailwindcss/plugins/container')({
       // center: true,
-      // padding: '1rem',
+      // 'padding': '2rem',
     }),
   ],
 

@@ -50,30 +50,24 @@ class CaseDataResource extends ResourceCollection
         $selectedColumns = $this->getSelectedColumns($request, $properties);
 
         foreach ($properties as $property) {
-            $translations = array_get($property->attributes, 'translations', []);
 
-            if (!count($translations)) {
-                $translations = [
-                    'en' => $property->column_name,
-                    'ara' => $property->column_name,
-                ];
-            }
+            $label = trans_commcare(array_get($property->attributes, 'translations', []), $property->column_name);
 
             if (in_array($property->column_name, $selectedColumns)) {
                 $headers[] = [
-                    'translations' => $translations,
+                    'label' => $label,
                     'name' => $property->column_name,
                 ];
             }
 
             $columns[] = [
-                'translations' => $translations,
+                'label' => $label,
                 'name' => $property->column_name,
             ];
 
             $filters[] = [
                 'name' => $property->column_name,
-                'label' => $translations[\App::getLocale()] ?? array_get($translations, 'en', $property->column_name),
+                'label' => $label,
                 'type' => strtolower($property->attributes['type']) ?? 'text',
                 'options' => PropertyOptionsResource::collection(collect($property->attributes['options'] ?? [])),
             ];

@@ -96,6 +96,61 @@ if (!function_exists('withCount')) {
     }
 }
 
+if (!function_exists('trans_commcare')) {
+    function trans_commcare($options, $default = null, $locale = null)
+    {
+        if(!$locale){
+            $locale = \App::getLocale();
+        }
+
+        if(array_has($options,$locale)){
+            return $options[$locale];
+        }
+
+        $alias = config('laravellocalization.supportedLocales.' . $locale . '.' . 'alias');
+
+        if(array_has($options,$alias)){
+            return $options[$alias];
+        }
+
+        $fallbackLocale = config('app.fallback_locale');
+
+        if(array_has($options,$fallbackLocale)){
+            return $options[$fallbackLocale];
+        }
+
+        return $default;
+    }
+}
+
+if (!function_exists('switch_url')) {
+    function switch_url($html = false){
+
+        $locale = \App::getLocale();
+
+        $locales = [];
+
+        foreach(config('laravellocalization.supportedLocales') as $key => $value){
+            if($locale !== $key){
+                $locales[] = array_merge($value,['locale_key' => $key]);
+            }
+        }
+
+        if(!count($locales)){
+            return ;
+        }
+
+        $first = reset($locales);
+
+        $url = \LaravelLocalization::getLocalizedURL($first['locale_key']);
+
+        if(!$html){
+            return $url;
+        }
+
+        return "<a href='{$url}' class='text-white'>{$first['native']}</a>";
+    }
+}
 
 if (!function_exists('export')) {
     function export($class, $title, $data)

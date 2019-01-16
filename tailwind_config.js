@@ -169,13 +169,15 @@ module.exports = {
   */
 
   screens: {
-    'sm': '576px',
+    'sm': '500px',
     'md': '768px',
     'lg': '992px',
     'xl': '1200px',
     'hd': '1366px',
-    // 'fhd': '1500px',
+    'fhd': '1500px',
+    'qhd': '1800px',
   },
+
 
 
   /*
@@ -589,6 +591,7 @@ module.exports = {
   minHeight: {
     '0': '0',
     '100': '100px',
+    '115': '115px',
     '200': '200px',
     '300': '300px',
     '642': '642px',
@@ -653,6 +656,7 @@ module.exports = {
     '680': '680px',
     '600': '600px',
     '700': '700px',
+    '800': '800px',
     'screen': '100vh',
   },
 
@@ -688,6 +692,8 @@ module.exports = {
     '20': '5rem',
     '24': '6rem',
     '32': '8rem',
+    '48': '10rem',
+    '64': '14rem',
   },
 
 
@@ -961,7 +967,7 @@ module.exports = {
   plugins: [
     require('tailwindcss/plugins/container')({
       // center: true,
-      // padding: '1rem',
+      // 'padding': '2rem',
     }),
   ],
 

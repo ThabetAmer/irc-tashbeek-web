@@ -25,12 +25,6 @@ class PropertyOption extends Model
     }
 
     public function name(){
-        $name = array_get($this->name,\App::getLocale());
-
-        if(empty($name)){
-            $name = array_get($this->name,'en');
-        }
-
-        return $name;
+        return trans_commcare($this->name,$this->commcare_id);
     }
 }

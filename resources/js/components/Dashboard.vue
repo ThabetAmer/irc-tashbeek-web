@@ -1,11 +1,11 @@
 <template>
-  <div class="flex">
-    <div class=" w-2/3">
+  <div class="flex flex-wrap">
+    <div class="sm:w-full xl:w-2/3">
       <div class="flex flex-wrap">
         <div
           v-for="card in cards"
           :key="card.label + card.value"
-          class="px-2 w-1/3"
+          class="lg:pr-2 sm:w-full lg:w-1/2 qhd:w-1/3"
         >
           <Component
             :is="card.component"
@@ -14,14 +14,11 @@
             :label="card.label"
           />
         </div>
-        <div class="px-2 flex-grow w-full">
+        <div class=" flex-grow w-full lg:pr-2">
           <Panel
             custom-class="min-h-784 pt-8 overflow-y-auto"
-            title="Follow-ups"
+            :title="`irc.followups` | trans"
           >
-
-
-
             <ul class=" list-reset border-0 custom-navs mb-4 absolute pin-r pin-t mt-4 mr-4">
               <li
                 class="inline-flex"
@@ -50,18 +47,8 @@
                     class="icon-List_3_x40_2xpng_2"
                   />
                 </button>
-
               </li>
             </ul>
-
-
-            <button
-                    class="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-3 border border-blue hover:border-transparent rounded float-right"
-                    @click="exportData"
-            >
-              Export
-            </button>
-
 
             <div class="tab-content">
               <div
@@ -82,7 +69,7 @@
                   <EmptyState
                     v-if="followups.length===0 && !loading"
                     icon="icon-Calendar_1_x40_2xpng_2 text-5xl mt-3 block"
-                    message="No date selected"
+                    :message="'irc.no_date_selected' | trans"
                     custom-class="mt-5 min-h-300 text-lg"
                   />
                   <PageLoader
@@ -93,8 +80,18 @@
                   <div v-else>
                     <Panel
                       :title="selectedDateHuman"
-                      custom-class="bg-grey border-transparent border-0"
+                      bg="light"
+                      custom-class="border-transparent border-0"
                     >
+                      <template slot="tools">
+                        <button
+                          class="bg-white text-base hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-3 border border-blue hover:border-transparent rounded"
+                          @click="exportData"
+                        >
+                          {{ 'irc.export' | trans }}
+                        </button>
+                      </template>
+
                       <Datatable
                         :header="tableHeaders"
                         :rows="followups"
@@ -131,12 +128,12 @@
         </div>
       </div>
     </div>
-    <div class=" w-1/3">
+    <div class="sm:w-full xl:w-1/3">
       <Panel
-        title="Recent activity"
+        :title="`irc.recent_activity` | trans"
         custom-class=" pl-6 pr-2   min-h-900"
       >
-        <div class="days-container max-h-680 overflow-y-auto">
+        <div class="days-container max-h-800 overflow-y-auto">
           <div
             v-for="day in recent"
             :key="day.name"
@@ -199,18 +196,12 @@
         tableHeaders: [
           {
             name: "type",
-            translations: {
-              ara: "نوع المتابعة",
-              en: "Type"
-            }
+            label:'Type'
 
           },
           {
             name: "followup",
-            translations: {
-              ara: "نوع المتابعة",
-              en: "Job seeker"
-            },
+            label: 'Job seeker',
             valueHandler: (row) => row.followup.name
 
           }
@@ -280,6 +271,7 @@
           .catch(error => {
           });
 
+      this.dayClicked(moment())
     },
     methods: {
       getRecentActivity() {
@@ -316,19 +308,18 @@
         }
       },
       dayClicked: function (date, jsEvent, view) {
+        console.log(date)
         this.daySelected = true;
         let selectedString = moment(date, "DD MMMM");
         this.selectedDateHuman = selectedString.format("DD MMMM");
         this.selectedDate = selectedString.format("YYYY-MM-DD");
         this.loading = true;
         this.getFollowups(this.selectedDate, this.pagination.page);
-
       },
       getFollowups(date, page) {
         this.loading = true;
         getFollowups(date, page)
             .then(resp => {
-              console.log(' full resp is ', resp);
               this.followups = resp.data.data;
               this.pagination = {
                 total: resp.data.meta.total,

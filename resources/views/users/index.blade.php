@@ -1,9 +1,9 @@
 @extends('layouts.layout')
 @section('content')
     <breadcrumbs
-            :crumbs="[{name:'All users', link:'/users'}]"
+            :crumbs="[{name:'{{trans('irc.users')}}', link:'{{route('users')}}'}]"
     ></breadcrumbs>
-    <div class="" id="all-users">
+    <div>
         <users-listing></users-listing>
     </div>
 @endsection

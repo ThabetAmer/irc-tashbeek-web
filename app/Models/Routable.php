@@ -11,7 +11,6 @@ trait Routable
     public function getDetailsUrlAttribute()
     {
         $caseType = str_plural(case_type(static::class));
-
-        return "/$caseType/{$this->getKey()}";
+        return route(str_plural($caseType ) . '.show', $this->getKey());
     }
 }

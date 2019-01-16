@@ -1,5 +1,6 @@
 <template>
   <CaseListing
+    v-if="!loading"
     :end-point="route"
     type="job-seeker"
     @fetch="onFetch"
@@ -11,17 +12,18 @@
             {{ jobOpening.job_title }}
           </h1>
           <Btn
+            btn-class="text-xs"
             theme="success"
             @click="saveMatches"
           >
             <span slot="text">
-              Save matches
+              {{ 'irc.save_matches' | trans }}
             </span>
           </Btn>
         </div>
-        <div>
-          <label class="text-green-theme font-bold">
-            Job Description
+        <div class="mb-4">
+          <label class="text-green-theme font-bold text-xs uppercase mb-2">
+            {{ 'irc.job_description' | trans }}
           </label>
           <div class="text-black">
             {{ jobOpening.job_description }}
@@ -43,11 +45,22 @@
       <CheckboxField
         :checked="selections.indexOf(row.id) !== -1"
         label=""
-        label-class="theme-radio-label -mt-5"
+        label-class="theme-radio-label -mt-6"
         @change="handleSelection(row.id)"
       />
     </template>
   </CaseListing>
+
+  <Panel v-else>
+    <div class="text-center py-16">
+      <Spinner
+        size="lg"
+      />
+      <div class="mt-5">
+        Saving Matches
+      </div>
+    </div>
+  </Panel>
 </template>
 
 <script>
@@ -67,7 +80,8 @@
     },
     data() {
       return {
-        selections: []
+        selections: [],
+        loading: false
       }
     },
     methods: {
@@ -85,11 +99,14 @@
         }
       },
       saveMatches() {
-
+        this.loading = true;
         axios.post(`/api/job-openings/${this.jobOpening.id}/matches`, {
           matches: this.selections
         }).then(({data}) => {
-          console.log('data')
+          this.loading = false;
+          this.$toasted.show('Matches saved', {
+            icon: 'icon-Floppy_Disk_1_1',
+          })
         })
 
       }

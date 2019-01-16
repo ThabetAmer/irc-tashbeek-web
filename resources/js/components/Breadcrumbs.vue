@@ -8,7 +8,7 @@
           class="menu-link no-underline text-sm"
         >
           <!--<a>Login</a>-->
-          Dashboard
+          {{ 'irc.dashboard' | trans }}
         </a>
       </li>
       <li

@@ -75,6 +75,10 @@ Vue.component('ViewNoteModal',require('./components/ViewNotesModal.vue').default
 Vue.component('Popper',Popper);
 
 
+Vue.filter('trans', function (key,value) {
+  return window.Lang.get(key);
+})
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

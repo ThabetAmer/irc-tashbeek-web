@@ -9,12 +9,12 @@
         class="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded float-right"
         @click="exportData"
       >
-        Export
+        {{ 'irc.export' | trans }}
       </button>
 
 
       <Filters
-        v-if="filters.length > 0"
+        v-if="filters.length > 0 && hasFilters"
         :filters="filters"
         :user-filters="userFilters"
         @change="filterChange($event, loadData)"
@@ -101,9 +101,10 @@
   import queryString from '../helpers/QueryString'
   import sortingProvider from "../mixins/sortingProvider";
   import exportDataHelper from '../helpers/ExportData'
+  import paginationMixin from "../mixins/paginationMixin";
 
   export default {
-    mixins: [FiltersProvider, sortingProvider],
+    mixins: [FiltersProvider, sortingProvider, paginationMixin],
     props: {
       type: {
         type: String,
@@ -112,6 +113,14 @@
       endPoint: {
         type: String,
         default: ""
+      },
+      changeUrl: {
+        type: Boolean,
+        default: true
+      },
+      hasFilters: {
+        type: Boolean,
+        default: true
       }
     },
     data() {
@@ -121,12 +130,6 @@
         loading: false,
         rows: [],
         headers: [],
-        pagination: {
-          total: 0,
-          lastPage: 1,
-          perPage: 15,
-          currentPage: 1
-        },
       }
     },
     mounted() {
@@ -166,7 +169,9 @@
         }
 
         return apiResponse.then(({data}) => {
-          this.changeUrlUsingParams(params);
+          if(this.changeUrl){
+            this.changeUrlUsingParams(params);
+          }
           this.rows = data.data;
           this.$emit('fetch', {
             data: data.data
@@ -199,20 +204,10 @@
         history.pushState({}, document.title, url);
       },
       exportData() {
-
-        let  apiResponse = exportDatByUrl(this.type,
-          {
-            filters:{
-              ...this.userFiltersToParams()
-            },
+        exportDatByUrl(this.type,{
+            ...this.userFiltersToParams(),
             export: true
-          }).then((response) => {
-          exportDataHelper.exportCallback(response);
-        })
-
-
-
-
+        }).then(exportDataHelper.exportCallback)
       },
       viewNotes(caseId) {
         this.showNotesModal = true;

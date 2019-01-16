@@ -8,12 +8,32 @@ export default {
     customClass:{
       type:String,
       default:''
+    },
+    bg:{
+      type:String,
+      default: "lightest"
     }
   },
   computed: {
     panelStyle() {
+      let bg
+
+      switch (this.bg){
+        case 'lightest':
+        default:
+          bg = 'white'
+          break;
+        case 'lighter':
+          bg = 'grey-lightest'
+          break;
+        case 'light':
+          bg = 'grey-lighter'
+          break;
+      }
+
+      bg = `bg-${bg}`
       return classNames([
-        'bg-white rounded-lg  px-6 py-6 border border-solid mb-3 relative',this.customClass]);
+        'rounded-lg  px-6 py-6 border border-solid mb-3 relative', this.customClass, bg]);
     }
   },
 }

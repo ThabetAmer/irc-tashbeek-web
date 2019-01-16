@@ -26,10 +26,12 @@ class JobOpening extends AbstractCase
             'job_id' => [
                 'column_name' => 'job_id',
                 'column_type' => 'string',
-                'translation' => [
-                    'en' => 'Job ID',
-                    'ara' => 'Job ID'
-                ]
+                'translations' => [
+                    'en' => trans('irc.job_id',[],'en'),
+                    'ara' => trans('irc.job_id',[], 'ar')
+                ],
+                'property' => true,
+                'type' => 'text',
             ],
             'vtit' => [
                 'column_name' => 'job_title',
@@ -43,8 +45,8 @@ class JobOpening extends AbstractCase
                 'property' => true,
                 'type' => 'select',
                 'translations' => [
-                    'en' => 'Firm name',
-                    'ara' => 'Firm name'
+                    'en' => trans('irc.firm_name',[],'en'),
+                    'ara' => trans('irc.firm_name',[], 'ar')
                 ],
             ],
             'date_opened' => [
@@ -53,8 +55,8 @@ class JobOpening extends AbstractCase
                 'property' => true,
                 'type' => 'date',
                 'translations' => [
-                    'en' => 'Date opened',
-                    'ara' => 'Date Opened'
+                    'en' => trans('irc.date_opened',[],'en'),
+                    'ara' => trans('irc.date_opened',[], 'ar')
                 ],
                 'valueHandler' => \App\Sync\QuestionHandler\DateHandler::class,
             ],

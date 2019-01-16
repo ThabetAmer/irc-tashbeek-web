@@ -2,7 +2,7 @@
 @extends('layouts.layout')
 @section('content')
     <breadcrumbs
-            :crumbs="[{name:'All job seekers', link:'job-seekers'}]"
+            :crumbs="[{name:'{{trans('irc.all_job_seekers')}}', link:'{{route('job-seekers')}}'}]"
     ></breadcrumbs>
 
     <div class="" id="all-firms">

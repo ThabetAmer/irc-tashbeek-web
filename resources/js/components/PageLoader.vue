@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center">
     <Spinner />
     <div class="mt-6">
-      {{ message }}
+      {{ message | trans }}
     </div>
   </div>
 </template>
@@ -12,7 +12,7 @@
     props:{
       message:{
         type:String,
-        default:"Data is being fetched, please wait!"
+        default:"irc.data_is_being_fetch"
       }
     }
   }

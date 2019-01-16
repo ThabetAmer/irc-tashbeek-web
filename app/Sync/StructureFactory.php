@@ -110,8 +110,13 @@ class StructureFactory
 
             foreach ($case->questions() as $name => $question) {
                 if ($questions->get($name)) {
-                    $questionObject = $questions->get($name);
+                    $questionObject = array_merge(
+                        $questions->get($name),
+                        array_only($question,['translations','type'])
+                    );
+
                     $questionObject['case_question'] = $question;
+
                 }else if(isset($question['property'])){
                     $questionObject = array_only($question,['translations','type']);
                     if(!isset($questionObject['name'])){

@@ -4,9 +4,13 @@
   <div :class="panelStyle">
     <div
       v-if="title"
-      class="text-black text-left font-bold text-xl mb-4"
+      class="text-black text-left font-bold text-xl mb-4 flex"
     >
-      {{ title }}
+      <span class="flex-1">
+        {{ title }}
+      </span>
+
+      <slot name="tools" />
     </div>
     <slot />
   </div>

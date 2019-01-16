@@ -40,7 +40,13 @@ class JobSeeker extends Model implements SyncableInterface
     }
 
 
-    public function matches(){
-        return $this->belongsToMany(JobOpening::class,'matches')->withPivot(['is_candidate']);
+    public function matches()
+    {
+        return $this->belongsToMany(JobOpening::class, 'matches')->withPivot(['is_candidate']);
+    }
+
+    public function basicInfo()
+    {
+        return $this->only(['age', 'gender', 'city']);
     }
 }

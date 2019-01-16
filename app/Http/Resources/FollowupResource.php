@@ -20,9 +20,11 @@ class FollowupResource extends JsonResource
             'followup_date' => $this->followup_date,
             'followup_period' => $this->followup_period,
             'type' => $this->type,
+            'due_date' => $this->due_date,
             'followup' => [
                 'id' => $this->followup->id,
                 'name' => $this->getResourceDisplayName($this->followup),
+                'background' => $this->getBasicInfo($this->followup),
             ]
         ];
     }
@@ -34,5 +36,14 @@ class FollowupResource extends JsonResource
         }
 
         return $resource;
+    }
+
+    private function getBasicInfo($resource)
+    {
+        if(method_exists($resource,'basicInfo')){
+            return $resource->basicInfo();
+        }
+
+        return '';
     }
 }

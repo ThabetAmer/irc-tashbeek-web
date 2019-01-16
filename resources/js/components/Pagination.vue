@@ -13,7 +13,7 @@
           @click="onClickFirstPage"
         >
           <template slot="text">
-            First
+            {{ 'irc.first_page' | trans }}
           </template>
         </Btn>
       </li>
@@ -26,7 +26,7 @@
           @click="onClickPreviousPage"
         >
           <template slot="text">
-            Previous
+            {{ 'irc.prev_page' | trans }}
           </template>
         </Btn>
       </li>
@@ -57,7 +57,7 @@
           @click="onClickNextPage"
         >
           <template slot="text">
-            Next
+            {{ 'irc.next_page' | trans }}
           </template>
         </Btn>
       </li>
@@ -70,7 +70,7 @@
           @click="onClickLastPage"
         >
           <template slot="text">
-            Last
+            {{ 'irc.last_page' | trans }}
           </template>
         </Btn>
       </li>
@@ -80,7 +80,7 @@
         class="ml-auto flex items-center pagination-select"
       >
         <div class="mr-2">
-          Rows per page:
+          {{ 'irc.rows_per_page' | trans }}
         </div>
         <div>
           <CustomSelect

@@ -6,7 +6,7 @@
       name="empty-label"
     >
       <div class="mx-auto text-grey-dark mb-2">
-        {{ message }}
+        {{ message | trans }}
         <i :class="icon" />
       </div>
     </slot>
@@ -19,13 +19,13 @@
   export default {
     components: {},
     props: {
-      icon:{
-        type:String,
-        default:null
+      icon: {
+        type: String,
+        default: null
       },
-      message:{
-        type:String,
-        default:'No data to be presented'
+      message: {
+        type: String,
+        default: 'irc.no_data_to_present'
       },
       customClass: {
         type: String,

@@ -9,7 +9,7 @@
       slot="header"
       class="relative w-full text-left mb-8"
     >
-      <h3>Add Note</h3>
+      <h3>{{ 'irc.add_note' | trans }}</h3>
       <Btn
 
         :theme="'success'"
@@ -17,7 +17,7 @@
         @click="addNote"
       >
         <template slot="text">
-          Add Note
+          {{ 'irc.add_note' | trans }}
         </template>
       </Btn>
     </div>
@@ -29,7 +29,7 @@
         :label="'name'"
         :options="SelectOptions"
         track-by="name"
-        placeholder="Type of follow-up"
+        :placeholder="'irc.type_of_followup' | trans"
         custom-class="w-1/2 bg-grey-lighter note-select"
         @select="handleSelect"
       />
@@ -37,7 +37,7 @@
       <textarea
         v-model="noteText"
         rows="4"
-        placeholder="Write note here..."
+        :placeholder="'irc.write_note_here' | trans"
         class="w-full mt-2 bg-grey-lighter rounded p-2"
       />
     </div>

@@ -19,7 +19,7 @@
         class="flex-1"
       >
         <div class="text-black font-bold ">
-          From {{ author }}
+          {{ 'irc.from' | trans }} {{ author }}
         </div>
         <div class="uppercase">
           {{ date }}
@@ -31,7 +31,7 @@
           class="uppercase flex items-center ml-auto text-green-dark text-sm font-bold ml-2"
           @click="showFullNoteModal"
         >
-          View More
+          {{ 'irc.view_more' | trans }}
           <i class=" align-text-bottom icon-Right_Arrow_1_1 text-xl ml-2" />
         </button>
       </div>
@@ -47,7 +47,7 @@
         class="mb-6"
       >
         <div class="text-xl mb-1 text-black font-bold">
-          Note from {{ author }}
+          {{ 'irc.note_from' | trans }} {{ author }}
         </div>
         <div class="text-grey text-sm mb-1">
           {{ date }}

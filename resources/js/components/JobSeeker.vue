@@ -7,7 +7,7 @@
         :title="`${jobSeeker.first_name} ${jobSeeker.last_name}`"
       >
         <div class="firm-id uppercase text-green text-left font-bold mt-4 mb-4 flex items-center">
-          ID
+          {{ 'irc.id' | trans }}
           <Clipboard
             :to-be-copied="jobSeeker.commcare_id"
           >
@@ -47,7 +47,7 @@
                 v-if="jobSeeker.age"
                 class="mr-1"
               >
-                {{ jobSeeker.age }} years old
+                {{ jobSeeker.age }} {{ 'irc.years_old' | trans }}
               </span>
             </div>
           </ListItem>
@@ -56,7 +56,7 @@
             icon="icon-Location_Pin_1_1"
           >
             <span>
-              Living in {{ jobSeeker.city }}
+              {{ 'irc.living_in' | trans }} {{ jobSeeker.city }}
 
               <span
                 v-if="jobSeeker.city && jobSeeker.district "
@@ -76,7 +76,7 @@
             icon="icon-Location_Pin_3_1"
           >
             <span>
-              Willing to work in QIZ
+              {{ 'irc.will_work_qiz' | trans }}
             </span>
           </ListItem>
 
@@ -109,10 +109,10 @@
           </ListItem>
         </ul>
 
-
         <div class="stared-note uppercase text-green text-left font-bold mt-10 -mb-2">
-          Starred Note
+          {{ 'irc.starred_note' | trans }}
         </div>
+
         <Notebox
           v-if="starredNote"
           :body="starredNote.note"
@@ -125,7 +125,7 @@
         <EmptyState
           v-else
           icon="icon-Stars_x40_2xpng_2 text-5xl mt-3 block"
-          message="You haven't starred any notes!"
+          :message="'irc.no_starred_note' | trans"
           custom-class="mt-5 min-h-200 text-lg"
         />
       </Panel>
@@ -134,7 +134,7 @@
       <Panel
         custom-class="min-h-900 max-h-900 overflow-y-auto"
         :has-title="hasTitle"
-        title="Job openings"
+        :title="'irc.job_openings' | trans"
       >
         <ul class="flex list-reset border-0 custom-navs mb-4">
           <li
@@ -142,12 +142,12 @@
             @click="changeJobOpeningview('all')"
           >
             <button
-              :class="{active: jobOpeningView=='all'}"
+              :class="{active: jobOpeningView === 'all'}"
               class="nav-link  border-0 py-2 px-4
                                  rounded-full  no-underline
                                  text-grey-dark text-sm font-semibold "
             >
-              All
+              {{ 'irc.all' | trans }}
             </button>
           </li>
           <li
@@ -155,11 +155,11 @@
             @click="changeJobOpeningview('screening')"
           >
             <button
-              :class="{active: jobOpeningView=='screening'}"
+              :class="{active: jobOpeningView === 'screening'}"
               class="nav-link border-0 no-underline py-2 px-4
                                                 text-grey-dark text-sm font-semibold"
             >
-              Screening
+              {{ 'irc.screening' | trans }}
             </button>
           </li>
 
@@ -169,11 +169,11 @@
             @click="changeJobOpeningview('matched')"
           >
             <button
-              :class="{active: jobOpeningView=='matched'}"
+              :class="{active: jobOpeningView === 'matched'}"
               class="nav-link border-0 no-underline  py-2 px-4
                                                 text-grey-dark text-sm font-semibold"
             >
-              Matched
+              {{ 'irc.matched' | trans }}
             </button>
           </li>
 
@@ -182,11 +182,11 @@
             @click="changeJobOpeningview('candidate')"
           >
             <button
-              :class="{active: jobOpeningView=='candidate'}"
+              :class="{active: jobOpeningView === 'candidate'}"
               class="nav-link border-0 no-underline  py-2 px-4
                                                 text-grey-dark text-sm font-semibold"
             >
-              Candidate
+              {{ 'irc.candidates' | trans }}
             </button>
           </li>
 
@@ -195,11 +195,11 @@
             @click="changeJobOpeningview('notes')"
           >
             <button
-              :class="{active: jobOpeningView=='notes'}"
+              :class="{active: jobOpeningView === 'notes'}"
               class="nav-link border-0 no-underline  py-2 px-4
                         text-grey-dark text-sm font-semibold"
             >
-              Notes
+              {{ 'irc.notes' | trans }}
             </button>
           </li>
           <li
@@ -212,14 +212,14 @@
               @click="addNoteClick"
             >
               <template slot="text">
-                Add Note
+                {{ 'irc.add_note' | trans }}
               </template>
             </Btn>
           </li>
         </ul>
         <div class="tab-content">
           <div
-            v-if="jobOpeningView=='all'"
+            v-if="jobOpeningView === 'all'"
             class=""
           >
             <Screenbox />
@@ -227,14 +227,14 @@
           </div>
 
           <div
-            v-if="jobOpeningView=='screening'"
+            v-if="jobOpeningView === 'screening'"
             class=""
           >
             <Screenbox />
           </div>
 
           <div
-            v-if="jobOpeningView=='matched'"
+            v-if="jobOpeningView === 'matched'"
             class=""
           >
             <Screenbox />
@@ -242,14 +242,14 @@
           </div>
 
           <div
-            v-if="jobOpeningView=='candidate'"
+            v-if="jobOpeningView === 'candidate'"
             class=""
           >
             <Screenbox />
           </div>
 
           <div
-            v-if="jobOpeningView=='notes'"
+            v-if="jobOpeningView === 'notes'"
             class=""
           >
             <div v-if="notes && notes.length > 0">
@@ -263,7 +263,6 @@
                 @noteStarred="changeStarredNote"
               />
             </div>
-
 
             <EmptyState
               v-else
@@ -307,7 +306,7 @@
         filters: false,
         showAddModalNote: false,
         starredNote: null,
-        notes: []
+        notes: [],
       }
     },
     created() {
@@ -316,14 +315,14 @@
     methods: {
       getNotes() {
         getNotes('job-seeker', this.jobSeeker.id)
-            .then(({data}) => {
-              this.notes = data.data;
-              this.notes.forEach(note => {
-                if(note.is_starred){
-                  this.starredNote = note;
-                }
-              })
-            }).catch(error => {
+          .then(({data}) => {
+            this.notes = data.data;
+            this.notes.forEach(note => {
+              if (note.is_starred) {
+                this.starredNote = note;
+              }
+            })
+          }).catch(error => {
           console.log('Error : ', error);
         });
       },
@@ -340,32 +339,32 @@
         this.showAddModalNote = false;
 
       },
-      addNoteToList(noteText,type) {
+      addNoteToList(noteText, type) {
 
-        addNote('job-seeker', this.jobSeeker.id, {note: noteText,type:type})
-            .then(resp => {
-              this.notes.push(resp.data.note);
-            }).catch(error => {
+        addNote('job-seeker', this.jobSeeker.id, {note: noteText, type: type})
+          .then(resp => {
+            this.notes.push(resp.data.note);
+          }).catch(error => {
           console.log('Error : ', error);
         });
 
       },
       changeStarredNote(note) {
         starNote('job-seeker', this.jobSeeker.id, note.id)
-            .then(resp => {
-              if (resp.data.note.is_starred) {
-                this.starredNote = resp.data.note;
-              }
-              else {
-                this.starredNote = null;
+          .then(resp => {
+            if (resp.data.note.is_starred) {
+              this.starredNote = resp.data.note;
+            }
+            else {
+              this.starredNote = null;
 
-              }
-              this.$toasted.show(resp.data.message, {
-                icon: 'icon-Stars_x40_2xpng_2 mr-2'
-              })
+            }
+            this.$toasted.show(resp.data.message, {
+              icon: 'icon-Stars_x40_2xpng_2 mr-2'
             })
-            .catch(error => {
-            });
+          })
+          .catch(error => {
+          });
       }
     },
 

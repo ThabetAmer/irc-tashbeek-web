@@ -13,7 +13,7 @@
             class="flex items-center"
           >
             <i class="icon-Add_x40_2xpng_2 mr-2" />
-            Add user
+            {{ 'irc.create_new_user' | trans }}
           </div>
         </Btn>
       </div>
@@ -38,7 +38,7 @@
           slot-scope="{row}"
         >
           <button
-            v-tooltip="{placement: 'top',content:'View account',classes:['tooltip-datatable']}"
+            v-tooltip="{placement: 'top',content:$options.filters.trans('irc.view'),classes:['tooltip-datatable']}"
             class="flex-1 text-xl mr-1 text-green-dark"
             @click="viewAccount(row)"
           >
@@ -46,7 +46,7 @@
           </button>
 
           <button
-            v-tooltip="{placement: 'top',content:'Edit account',classes:['tooltip-datatable']}"
+            v-tooltip="{placement: 'top',content:$options.filters.trans('irc.edit'),classes:['tooltip-datatable']}"
             class="flex-1 text-xl mr-1 text-green-dark"
             @click="editAccount(row)"
           >
@@ -55,7 +55,7 @@
 
           <button
             v-if="row.status ==='activated'"
-            v-tooltip="{placement: 'top',content:'Deactivate account',classes:['tooltip-datatable']}"
+            v-tooltip="{placement: 'top',content:$options.filters.trans('irc.deactivate'),classes:['tooltip-datatable']}"
             class="flex-1 text-xl  text-green-dark"
             @click="deActivateUser(row)"
           >
@@ -64,7 +64,7 @@
 
           <button
             v-else
-            v-tooltip="{placement: 'top',content:'Reactivate account',classes:['tooltip-datatable']}"
+            v-tooltip="{placement: 'top',content: $options.filters.trans('irc.activate') ,classes:['tooltip-datatable']}"
             class="flex-1 text-xl  text-green-dark"
             @click="reActivateUser(row)"
           >
@@ -95,26 +95,15 @@
         headers: [
           {
             name: "name",
-            translations: {
-              ara: "الاسم",
-              en: "Name"
-            }
-
+            label: this.$options.filters.trans('irc.name')
           },
           {
             name: "email",
-            translations: {
-              ara: "الايميل",
-              en: "Email"
-            }
-
+            label: this.$options.filters.trans('irc.email')
           },
           {
             name: "created_at",
-            translations: {
-              ara: "الاسم",
-              en: "Created At"
-            }
+            label: this.$options.filters.trans('irc.created_at')
           },
 
         ],
@@ -165,15 +154,13 @@
         history.pushState({}, document.title, url);
       },
       deActivateUser(user) {
-        this.$swal('Hello Vue world!!!');
-
         Vue.swal({
-          title: 'Deactivate User?',
+          title:  this.$options.filters.trans('irc.confirm_deactivate_user'),
           type: 'warning',
           allowEscapeKey: true,
-          confirmButtonText: 'Deactivate',
+          confirmButtonText: this.$options.filters.trans('irc.deactivate'),
           showCancelButton: true,
-          cancelButtonText: 'Cancel',
+          cancelButtonText: this.$options.filters.trans('irc.cancel'),
         }).then(result => {
           if(result.value){
             deactivateUser(user.id)
@@ -194,12 +181,12 @@
       },
       reActivateUser(user) {
         Vue.swal({
-          title: 'Activate User?',
+          title:  this.$options.filters.trans('irc.confirm_activate_user'),
           type: 'warning',
           allowEscapeKey: true,
-          confirmButtonText: 'Activate',
+          confirmButtonText: this.$options.filters.trans('irc.activate'),
           showCancelButton: true,
-          cancelButtonText: 'Cancel',
+          cancelButtonText: this.$options.filters.trans('irc.cancel'),
         }).then(result => {
           if(result.value){
             activateUser(user.id)

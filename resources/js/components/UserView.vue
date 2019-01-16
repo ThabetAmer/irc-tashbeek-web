@@ -13,7 +13,7 @@
       >
         <div slot="text">
           <i class="icon-Pencil_x40_2xpng_2 mr-2" />
-          Edit user
+          {{ 'irc.edit_user' | trans }}
         </div>
       </Btn>
       <div class="w-full flex-wrap flex mb-10">
@@ -23,7 +23,6 @@
             :src="imageSrc"
             :size="150"
             :username="name"
-            @click="console.log('clicked')"
           />
           <Transition name="fade">
             <div
@@ -40,7 +39,7 @@
                   class="flex items-center"
                 >
                   <i class="icon-Photo_x40_2xpng_2 mr-2" />
-                  {{ imageSrc? 'Change': 'Upload' }}
+                  {{ (imageSrc? 'irc.change': 'irc.upload') | trans }}
                 </div>
               </Btn>
 
@@ -60,7 +59,7 @@
                 class="text-left block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                 for="grid-first-name"
               >
-                Name
+                {{ 'irc.name' | trans }}
               </label>
               <input
                 id="grid-first-name"
@@ -69,7 +68,7 @@
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
                px-4 leading-tight focus:outline-none focus:bg-white ${!showEdit ? 'cursor-not-allowed':''}  ${!internalError['name'] ? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="text"
-                placeholder="Name"
+                :placeholder="'irc.name' | trans"
               >
               <p
                 v-if="internalError['name']"
@@ -83,7 +82,7 @@
                 class="text-left block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                 for="email"
               >
-                Email
+                {{ 'irc.email' | trans }}
               </label>
               <input
                 id="email"
@@ -91,7 +90,7 @@
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
                px-4 leading-tight focus:outline-none focus:bg-white  ${!internalError['email']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="text"
-                placeholder="Email"
+                :placeholder="'irc.email' | trans"
               >
 
               <p
@@ -108,7 +107,7 @@
                 class="text-left block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                 for="password"
               >
-                Password
+                {{ 'irc.password' | trans }}
               </label>
               <input
                 id="password"
@@ -133,7 +132,7 @@
                 class="text-left block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                 for="password_confirm"
               >
-                Confirm password
+                {{ 'irc.confirm_password' | trans }}
               </label>
               <input
                 id="password_confirm"
@@ -156,10 +155,9 @@
       <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3">
           <label
-            class="text-left block uppercase tracking-wide text-grey-darker text-md font-bold mb-2"
-            for="password_confirm"
+            class="text-left block uppercase tracking-wide text-grey-darker text-md font-bold mb-4"
           >
-            User Roles
+            {{ 'irc.user_roles' | trans }}
           </label>
 
           <div class="mb-6">
@@ -170,7 +168,7 @@
               @change="onRoleSelection"
             />
             <div v-else>
-              No assigned roles for this user
+              {{ 'irc.no_assigned_roles' | trans }}
             </div>
           </div>
         </div>
@@ -186,7 +184,7 @@
             @click="handleUserCreate"
           >
             <p slot="text">
-              {{ userProp ? 'Update user':'Create user' }}
+              {{ (userProp ? 'irc.update_user':'irc.create_user') | trans }}
             </p>
           </Btn>
         </div>
@@ -244,7 +242,7 @@
       else {
         this.user = {};
         this.imageSrc = "";
-        this.name = "New User";
+        this.name = this.$options.filters.trans('irc.create_new_user');
       }
 
       this.availableRoles = this.roles.map(role => ({

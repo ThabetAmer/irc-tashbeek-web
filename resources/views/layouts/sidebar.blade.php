@@ -17,7 +17,7 @@
 
     <ul class="list-unstyled components list-reset">
 
-        <li class="uppercase  text-white {{ Request::url() == url('/') ?'active' :''}} ">
+        <li class="uppercase  text-white {{ request()->routeIs('home') ?'active' :''}} ">
             <a href="{{route('home')}}" class="text-white flex items-center  text-sm remove-text-minified py-4 relative mb-3">
                 <i class="icon-Presentation_3_1 min-w-30 text-2xl mr-10 ml-3"></i>
                 <span>{{__('irc.dashboard')}}</span>
@@ -25,7 +25,7 @@
         </li>
 
         @if(\Auth::user()->hasPermissionTo('cases.job-seeker'))
-            <li class="uppercase  text-white {{ Request::url() == url('/job-seekers') ?'active' :''}} ">
+            <li class="uppercase  text-white {{ request()->is('*job-seekers*') ?'active' :''}} ">
                 <a href="{{route('job-seekers')}}"
                    class="text-white flex items-center  text-sm remove-text-minified py-4 relative mb-3">
                     <i class="icon-Users_2_x40_2xpng_2 min-w-30  text-2xl mr-10 ml-3"></i>
@@ -35,7 +35,7 @@
         @endif
 
         @if(\Auth::user()->hasPermissionTo('cases.firm'))
-            <li class="uppercase  text-white {{ Request::url() == url('/firms') ?'active' :''}}">
+            <li class="uppercase  text-white {{ request()->is('*firms*') ?'active' :''}}">
                 <a href="{{route('firms')}}" class="text-white text-sm flex items-center remove-text-minified   py-4 relative mb-3">
                     <i class="icon-Storefront_x40_2xpng_2 min-w-30 pin-l pin-t text-xl mr-10 ml-3"></i>
                     <span>{{__('irc.employers')}}</span>
@@ -44,8 +44,8 @@
         @endif
 
         @if(\Auth::user()->hasPermissionTo('cases.job-opening'))
-            <li class="uppercase  text-white {{ Request::url() == url('/job-openings') ?'active' :''}}">
-                <a href="{{url('job-openings')}}"
+            <li class="uppercase  text-white {{ request()->is('*job-openings*') ?'active' :''}}">
+                <a href="{{route('job-openings')}}"
                    class="text-white flex items-center  text-sm remove-text-minified py-4 relative mb-3">
                     <i class="icon-Briefcase_x40_2xpng_2 min-w-30  pin-l pin-t text-xl mr-10 ml-3"></i>
                     <span>{{__('irc.jobs')}}</span>
@@ -53,7 +53,7 @@
             </li>
         @endif
 
-        <li class="uppercase  text-white {{ Request::url() == url('/users') ?'active' :''}}">
+        <li class="uppercase  text-white {{  request()->is('*users*') ?'active' :''}}">
             <a href="{{route('users')}}"
                class="text-white flex items-center  text-sm remove-text-minified py-4 relative mb-3">
                 <i class="icon-Briefcase_x40_2xpng_2 min-w-30  pin-l pin-t text-xl mr-10 ml-3"></i>

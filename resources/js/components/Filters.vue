@@ -51,7 +51,7 @@
       track-by="name"
       :filters="filters"
       :user-filters="userFilters"
-      placeholder="More"
+      :placeholder="'irc.more' | trans"
       :multiple="true"
       custom-class="mb-2 note-select mr-2 w-1/5 filter-selector"
       @select="handleFilterSelect"

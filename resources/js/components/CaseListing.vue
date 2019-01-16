@@ -151,6 +151,7 @@
         }
 
         return apiResponse.then(({data}) => {
+
           this.changeUrlUsingParams(params);
           this.rows = data.data;
           this.$emit('fetch', {

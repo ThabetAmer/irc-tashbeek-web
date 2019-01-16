@@ -11,17 +11,18 @@
             {{ jobOpening.job_title }}
           </h1>
           <Btn
+            btn-class="text-xs"
             theme="success"
             @click="saveMatches"
           >
             <span slot="text">
-              Save matches
+              {{ 'irc.save_matches' | trans }}
             </span>
           </Btn>
         </div>
-        <div>
-          <label class="text-green-theme font-bold">
-            Job Description
+        <div class="mb-4">
+          <label class="text-green-theme font-bold text-xs uppercase mb-2">
+            {{ 'irc.job_description' | trans }}
           </label>
           <div class="text-black">
             {{ jobOpening.job_description }}

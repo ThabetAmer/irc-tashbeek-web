@@ -29,7 +29,7 @@ Route::group([
     Route::get('/job-seekers/{jobSeeker}', 'JobSeekerController@show')->name('job-seekers.show');
 
     Route::get('/firms', 'FirmController@index')->name('firms');
-    Route::get('/firms/{firm}', 'FirmController@show');
+    Route::get('/firms/{firm}', 'FirmController@show')->name('firms.show');
 
     Route::get('/users', 'UserControllerView@index')->name('users');
     Route::get('/users/create', 'UserControllerView@create')->name('users.create');

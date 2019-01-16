@@ -18,7 +18,7 @@ class PropertyOptionsResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'label' => $this['translations'][\App::getLocale()] ?? $this['translations']['en'],
+            'label' => trans_commcare((array) $this['translations'], $this['value']),
             'value' => $this['value']
         ];
     }

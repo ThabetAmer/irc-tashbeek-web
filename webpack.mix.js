@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const WebpackShellPlugin = require('webpack-shell-plugin');
 
 /*
  |--------------------------------------------------------------------------
@@ -35,3 +36,10 @@ if (process.env.NODE_ENV === 'development') {
     },
   });
 }
+
+mix.webpackConfig({
+  plugins:
+    [
+      new WebpackShellPlugin({onBuildStart: ['php artisan lang:js -c public/js/messages.js --quiet'], onBuildEnd: []})
+    ]
+});

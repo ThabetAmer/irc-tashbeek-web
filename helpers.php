@@ -95,3 +95,30 @@ if (!function_exists('withCount')) {
         }, $withCountArray);
     }
 }
+
+if (!function_exists('trans_commcare')) {
+    function trans_commcare($options, $default = null, $locale = null)
+    {
+        if(!$locale){
+            $locale = \App::getLocale();
+        }
+
+        if(array_has($options,$locale)){
+            return $options[$locale];
+        }
+
+        $alias = config('laravellocalization.supportedLocales.' . $locale . '.' . 'alias');
+
+        if(array_has($options,$alias)){
+            return $options[$alias];
+        }
+
+        $fallbackLocale = config('app.fallback_locale');
+
+        if(array_has($options,$fallbackLocale)){
+            return $options[$fallbackLocale];
+        }
+
+        return $default;
+    }
+}

@@ -110,7 +110,7 @@ abstract class TestCase extends BaseTestCase
         app()->instance(MobileWorkersRequest::class, $requestMock);
     }
 
-    protected function syncStructure(string $caseType)
+    protected function syncStructure(string $caseType = null)
     {
         $this->mockStructureRequest();
 

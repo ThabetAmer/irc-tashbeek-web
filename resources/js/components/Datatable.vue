@@ -17,17 +17,17 @@
               @click="$emit('sort',head.name)"
             >
               <span
-                v-if="head['translations']['en'].length > 14"
-                v-tooltip="{placement:'left',content:head['translations']['en'],classes:['tooltip-datatable']}"
+                v-if="head.label.length > 14"
+                v-tooltip="{placement:'left',content:head.label,classes:['tooltip-datatable']}"
                 class=" truncate  block"
               >
-                {{ head['translations']['en'] }}
+                {{ head.label }}
               </span>
               <span
                 v-else
                 class=" truncate"
               >
-                {{ head['translations']['en'] }}
+                {{ head.label }}
               </span>
 
               <i

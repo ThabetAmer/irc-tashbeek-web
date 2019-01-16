@@ -17,7 +17,7 @@
         <div class="px-2 flex-grow w-full">
           <Panel
             custom-class="min-h-784 pt-8 overflow-y-auto"
-            title="Follow-ups"
+            :title="`irc.followups` | trans"
           >
             <ul class=" list-reset border-0 custom-navs mb-4 absolute pin-r pin-t mt-4 mr-4">
               <li
@@ -120,7 +120,7 @@
     </div>
     <div class=" w-1/3">
       <Panel
-        title="Recent activity"
+        :title="`irc.recent_activity` | trans"
         custom-class=" pl-6 pr-2   min-h-900"
       >
         <div class="days-container max-h-680 overflow-y-auto">

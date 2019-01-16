@@ -13,50 +13,29 @@
 
 Auth::routes();
 
-Route::group(['middleware' => ['web', 'auth']], function () {
-    Route::get('/', 'HomeController@index');
-    Route::get('/job-seekers', 'JobSeekerController@index');
-    Route::get('/job-seekers/{jobSeeker}', 'JobSeekerController@show');
+Route::group([
 
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [
+        'localize',
+        'web',
+        'auth'
+    ]
 
-    Route::get('/firms', 'FirmController@index');
-    Route::get('/users', 'UserControllerView@index');
-    Route::get('/users/create', 'UserControllerView@create');
-    Route::get('/users/{user}/edit', 'UserControllerView@edit');
-    Route::get('/users/{user}', 'UserControllerView@show');
+], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+
+    Route::get('/job-seekers', 'JobSeekerController@index')->name('job-seekers');
+    Route::get('/job-seekers/{jobSeeker}', 'JobSeekerController@show')->name('job-seekers.show');
+
+    Route::get('/firms', 'FirmController@index')->name('firms');
     Route::get('/firms/{firm}', 'FirmController@show');
 
+    Route::get('/users', 'UserControllerView@index')->name('users');
+    Route::get('/users/create', 'UserControllerView@create')->name('users.create');
+    Route::get('/users/{user}/edit', 'UserControllerView@edit')->name('users.edit');
+    Route::get('/users/{user}', 'UserControllerView@show')->name('users.show');
 
-    Route::get('/job-openings', 'JobOpeningController@index');
-    Route::get('/job-openings/{jobOpening}/match', 'JobOpeningMatchController@index');
+    Route::get('/job-openings', 'JobOpeningController@index')->name('job-openings');
+    Route::get('/job-openings/{jobOpening}/match', 'JobOpeningMatchController@index')->name('job-openings.match');
 });
-
-Route::get('/dashboard', function () {
-    return view('home');
-});
-
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
-Route::get('/dashboard', function () {
-    return view('home');
-});
-
-
-Route::get('/firm', function () {
-    return view('firmProfile');
-});
-
-Route::get('/seeker', function () {
-    return view('seekerProfile');
-});
-
-Route::get('/allSeekers', function () {
-    return view('allSeekers');
-});
-
-Route::get('/allFirms', function () {
-    return view('allFirms');
-});
-

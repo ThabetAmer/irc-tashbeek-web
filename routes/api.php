@@ -12,10 +12,12 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-
-
-Route::group(['middleware' => ['auth:api']], function () {
+Route::group([
+    'middleware' => [
+        'localize',
+        'auth:api'
+    ]
+], function () {
 
     Route::get('cases/{caseType}', 'ResponseApiController@index');
 

@@ -3,6 +3,4 @@
  */
 import axios from 'axios';
 
-export const $httpRequester = axios.create({
-    baseURL : `${appURL}/`
-});
+export const $httpRequester = axios.create();

@@ -12,10 +12,10 @@ class FirmResourceCollection extends CaseDataResource
         $with = parent::with($request);
         $with['headers'][] = [
             'name' => 'openings_count',
-            'translations' => [
+            'translations' => trans_commcare([
                 'en' => 'Job Openings',
                 'ara' => 'Job Openings'
-            ]
+            ], 'openings_count')
         ];
 
         return $with;

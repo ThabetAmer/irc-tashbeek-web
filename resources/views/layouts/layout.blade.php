@@ -110,6 +110,7 @@
     });
 </script>
 
+<script src="{{asset('./js/messages.js')}}"></script>
 <script src="{{asset('./js/app.js')}}"></script>
 
 

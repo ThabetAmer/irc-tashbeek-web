@@ -14,25 +14,25 @@ class Cards
     public function get()
     {
         return [
-            JobSeekerCard::make('Total monthly Intakes')
+            JobSeekerCard::make(trans('irc.total_monthly_intakes'))
                 ->model(JobSeeker::class)
                 ->authorize($this->isEso())
                 ->count(),
-            FollowUpCard::make('Total number of pending follow-ups')
+            FollowUpCard::make(trans('irc.total_pending_followups'))
                 ->for(JobSeeker::class)
                 ->authorize($this->isEso())
                 ->count(),
 
 
-            FollowUpCard::make('Total number of pending follow-ups')
+            FollowUpCard::make(trans('irc.total_pending_followups'))
                 ->for(Firm::class)
                 ->authorize($this->isEsso())
                 ->count(),
-            ValueCard::make('Current job openings') //x
+            ValueCard::make(trans('irc.total_job_openings'))
                 ->model(JobOpening::class)
                 ->authorize($this->isEsso())
                 ->count(),
-            FirmCard::make('Total firm intakes per user')
+            FirmCard::make(trans('irc.total_firms_per_user'))
                 ->model(Firm::class)
                 ->authorize($this->isEsso())
                 ->count()

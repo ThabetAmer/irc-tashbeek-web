@@ -364,7 +364,10 @@
             .then(resp => {
               this.notes.push(resp.data.note);
             }).catch(error => {
-          console.log('Error : ', error);
+          this.$toasted.show(error.response.data.message, {
+            icon: 'icon-Error_x40_2xpng_2',
+            className:'toast-error'
+          })
         });
 
       },
@@ -383,6 +386,7 @@
               })
             })
             .catch(error => {
+
             });
       }
     },

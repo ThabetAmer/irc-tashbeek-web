@@ -1,11 +1,11 @@
 <template>
-  <div class="flex">
-    <div class=" w-2/3">
+  <div class="flex flex-wrap">
+    <div class="sm:w-full xl:w-2/3">
       <div class="flex flex-wrap">
         <div
           v-for="card in cards"
           :key="card.label + card.value"
-          class="px-2 w-1/3"
+          class="lg:pr-2 sm:w-full lg:w-1/2 qhd:w-1/3"
         >
           <Component
             :is="card.component"
@@ -14,7 +14,7 @@
             :label="card.label"
           />
         </div>
-        <div class="px-2 flex-grow w-full">
+        <div class=" flex-grow w-full lg:pr-2">
           <Panel
             custom-class="min-h-784 pt-8 overflow-y-auto"
             title="Follow-ups"
@@ -118,12 +118,12 @@
         </div>
       </div>
     </div>
-    <div class=" w-1/3">
+    <div class="sm:w-full xl:w-1/3">
       <Panel
         title="Recent activity"
         custom-class=" pl-6 pr-2   min-h-900"
       >
-        <div class="days-container max-h-680 overflow-y-auto">
+        <div class="days-container max-h-800 overflow-y-auto">
           <div
             v-for="day in recent"
             :key="day.name"

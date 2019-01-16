@@ -205,8 +205,11 @@
       },
       exportData() {
         exportDatByUrl(this.type,{
+          filters: {
             ...this.userFiltersToParams(),
-            export: true
+          },
+          export: true,
+          paginate: "false"
         }).then(exportDataHelper.exportCallback)
       },
       viewNotes(caseId) {

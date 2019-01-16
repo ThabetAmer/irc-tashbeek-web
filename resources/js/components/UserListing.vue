@@ -83,9 +83,10 @@
   import {get as getUsers} from '../API/userAPI'
   import {activateUser as activateUser} from '../API/userAPI'
   import {deactivateUser as deactivateUser} from '../API/userAPI'
+  import paginationMixin from "../mixins/paginationMixin";
 
   export default {
-    mixins: [],
+    mixins: [paginationMixin],
     props: {},
     data() {
       return {
@@ -118,12 +119,6 @@
 
         ],
         loading: false,
-        pagination: {
-          total: 0,
-          lastPage: 1,
-          perPage: 15,
-          currentPage: 1
-        },
       }
     },
     mounted() {

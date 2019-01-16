@@ -58,16 +58,16 @@
             <span>
               Living in {{ jobSeeker.city }}
 
-                     <span
-                       v-if="jobSeeker.city && jobSeeker.district "
-                       class="mx-1"
-                     >
-                       •
-                     </span>
+              <span
+                v-if="jobSeeker.city && jobSeeker.district "
+                class="mx-1"
+              >
+                •
+              </span>
 
-                     <span v-if="jobSeeker.district !== ''">
-                       {{ jobSeeker.district }}
-                     </span>
+              <span v-if="jobSeeker.district !== ''">
+                {{ jobSeeker.district }}
+              </span>
             </span>
           </ListItem>
 
@@ -348,7 +348,6 @@
             }).catch(error => {
           console.log('Error : ', error);
         });
-
 
       },
       changeStarredNote(note) {

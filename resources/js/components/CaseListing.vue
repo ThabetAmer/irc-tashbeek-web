@@ -200,11 +200,14 @@
       },
       exportData() {
 
-        let  apiResponse = exportDatByUrl(this.type,{
-            ...this.userFiltersToParams(),
+        let  apiResponse = exportDatByUrl(this.type,
+          {
+            filters:{
+              ...this.userFiltersToParams()
+            },
             export: true
-        }).then((response) => {
-            exportDataHelper.exportCallback(response);
+          }).then((response) => {
+          exportDataHelper.exportCallback(response);
         })
 
 

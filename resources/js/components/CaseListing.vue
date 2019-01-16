@@ -5,6 +5,14 @@
     >
       <slot name="header" />
 
+      <button
+        class="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded float-right"
+        @click="exportData"
+      >
+        Export
+      </button>
+
+
       <Filters
         v-if="filters.length > 0"
         :filters="filters"
@@ -88,10 +96,11 @@
 </template>
 
 <script>
-  import {get as getListing, getByUrl as getListingByUrl} from '../API/caseListing'
+  import {get as getListing, getByUrl as getListingByUrl, exportData as exportDatByUrl} from '../API/caseListing'
   import FiltersProvider from "../mixins/FiltersProvider";
   import queryString from '../helpers/QueryString'
   import sortingProvider from "../mixins/sortingProvider";
+  import exportDataHelper from '../helpers/ExportData'
 
   export default {
     mixins: [FiltersProvider, sortingProvider],
@@ -126,7 +135,8 @@
         page: queryStringObject.page,
         filters: queryStringObject.filters,
         sorting: queryStringObject.sorting,
-        perPage: queryStringObject.perPage
+        perPage: queryStringObject.perPage,
+        export: queryStringObject.export
       });
     },
     methods: {
@@ -188,7 +198,19 @@
 
         history.pushState({}, document.title, url);
       },
+      exportData() {
 
+        let  apiResponse = exportDatByUrl(this.type,{
+            ...this.userFiltersToParams(),
+            export: true
+        }).then((response) => {
+            exportDataHelper.exportCallback(response);
+        })
+
+
+
+
+      },
       viewNotes(caseId) {
         this.showNotesModal = true;
         this.caseId = caseId;
@@ -196,7 +218,8 @@
       closeModalNote() {
         this.showNotesModal = false;
 
-      }
+      },
+
     }
   }
 </script>

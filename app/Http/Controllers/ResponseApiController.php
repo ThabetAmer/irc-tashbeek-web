@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Export\CaseExport;
 use App\Http\Filters\CaseFilter;
 use App\Http\Resources\CaseDataResource;
 use App\Http\Sortable\SortableCase;
@@ -29,7 +30,12 @@ class ResponseApiController extends Controller
 
         $results = $this->handlePagination($query);
 
-        return case_resource_collection($caseType, $results, $caseType);
+        $collection = case_resource_collection($caseType, $results, $caseType);
+
+        if (request('export')) {
+            return export(CaseExport::class, $caseType . '_' . now()->format('Y:m:d'), $collection);
+        }
+        return $collection;
     }
 
     public function handlePagination($query)

@@ -19,6 +19,9 @@
             custom-class="min-h-784 pt-8 overflow-y-auto"
             title="Follow-ups"
           >
+
+
+
             <ul class=" list-reset border-0 custom-navs mb-4 absolute pin-r pin-t mt-4 mr-4">
               <li
                 class="inline-flex"
@@ -47,8 +50,18 @@
                     class="icon-List_3_x40_2xpng_2"
                   />
                 </button>
+
               </li>
             </ul>
+
+
+            <button
+                    class="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-3 border border-blue hover:border-transparent rounded float-right"
+                    @click="exportData"
+            >
+              Export
+            </button>
+
 
             <div class="tab-content">
               <div
@@ -167,8 +180,10 @@
   import {FullCalendar} from 'vue-full-calendar'
   import {upcomingFollowups as getFollowups} from '../API/followupAPI'
   import {upcomingFollowupsCount as getCounts} from '../API/followupAPI'
+  import {exportData as exportDataByUrl} from '../API/followupAPI'
   import {get as getRecentActivity} from '../API/recentActivityAPI'
   import {get as getCards} from '../API/cardsAPI'
+  import exportDataHelper from '../helpers/ExportData'
 
   export default {
     components: {
@@ -333,6 +348,18 @@
         }
 
 
+      },
+      exportData(){
+
+        let selectedDate = this.selectedDate;
+        if(this.viewType == "table"){
+            selectedDate = null;
+        }
+
+          exportDataByUrl(selectedDate, this.pagination.page, {export: true})
+            .then(response => {
+                exportDataHelper.exportCallback(response);
+            });
       }
 
     }

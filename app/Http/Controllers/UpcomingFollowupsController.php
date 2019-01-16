@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Export\FollowupsExport;
 use App\Http\Resources\FollowupResource;
 use App\Models\Followup;
 
@@ -27,7 +28,13 @@ class UpcomingFollowupsController extends Controller
 
         $results = $query->paginate();
 
-        return FollowupResource::collection($results);
+        $collection = FollowupResource::collection($results);
+
+        if (request('export')) {
+            return export(FollowupsExport::class, 'followups' . '_' . now()->format('Y:m:d'), $collection);
+        }
+
+        return $collection;
     }
 
     public function counts()

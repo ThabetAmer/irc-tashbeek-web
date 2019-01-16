@@ -7,7 +7,24 @@
       class="absolute pin-t pin-r text-xl hover:text-2xl p-2 font-bold text-green-dark"
       @click="noteStarClicked"
     >
-      <i class="icon-Star_x40_2xpng_2" />
+      <transition
+        v-if="!isStarred"
+        mode="out-in"
+        name=""
+      >
+        <i :class="`icon-Star_x40_2xpng_2`" />
+      </transition>
+
+      <transition
+        v-else
+        mode="out-in"
+        name="bounce"
+      >
+        <img
+          width="20"
+          src="../../../public/svg/star-filled.svg"
+        >
+      </transition>
     </button>
     <div class=" text-left text-sm text-black font-bold">
       {{ body }}
@@ -75,69 +92,73 @@
 
 
 <script>
-    export default {
-        /**
-         * all props have their needed types
-         * and are passed using the mixin
-         */
-        mixins: [],
-        props: {
-            showModal:{
-                type:Boolean,
-                default:false
-            },
-            id: {
-                type: Number,
-                default: 0
-            },
-            date: {
-                type: String,
-                default: 'Wednesday 12 November'
-            },
-            author: {
-                type: String,
-                default: 'Mohammad Karmi'
-            },
-            body: {
-                type: String,
-                default: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s\n' +
-                '            standard dummy text ever since the 1500s, when an unknown printer\n' +
-                '            took a galley of type and scrambled it to make a type specimen book.\n' +
-                '            It has survived not only five centuries, but also the leap into electronic\n' +
-                '            typesetting, remaining essentially unchanged'
-            },
-            showStar: {
-                type: [Boolean, String],
-                default: true
-            },
-            showCreatorDetails: {
-                type: [Boolean, String],
-                default: true
-            },
-            customClass: {
-                type: [String],
-                default: 'border'
-            }
-        },
-        data() {
-            return {
-                showFullNote: false,
-            }
-        },
-        methods: {
-            noteStarClicked() {
-                this.$emit('noteStarred', {
-                    id: this.id,
-                    body:this.body,
-                    date:this.date,
-                    author:this.author
-                })
-            },
-            showFullNoteModal() {
-                this.showFullNote = true;
-            }
-        }
+  export default {
+    /**
+     * all props have their needed types
+     * and are passed using the mixin
+     */
+    mixins: [],
+    props: {
+      isStarred: {
+        type: Boolean,
+        default: false
+      },
+      showModal: {
+        type: Boolean,
+        default: false
+      },
+      id: {
+        type: Number,
+        default: 0
+      },
+      date: {
+        type: String,
+        default: 'Wednesday 12 November'
+      },
+      author: {
+        type: String,
+        default: 'Mohammad Karmi'
+      },
+      body: {
+        type: String,
+        default: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s\n' +
+        '            standard dummy text ever since the 1500s, when an unknown printer\n' +
+        '            took a galley of type and scrambled it to make a type specimen book.\n' +
+        '            It has survived not only five centuries, but also the leap into electronic\n' +
+        '            typesetting, remaining essentially unchanged'
+      },
+      showStar: {
+        type: [Boolean, String],
+        default: true
+      },
+      showCreatorDetails: {
+        type: [Boolean, String],
+        default: true
+      },
+      customClass: {
+        type: [String],
+        default: 'border'
+      }
+    },
+    data() {
+      return {
+        showFullNote: false,
+      }
+    },
+    methods: {
+      noteStarClicked() {
+        this.$emit('noteStarred', {
+          id: this.id,
+          body: this.body,
+          date: this.date,
+          author: this.author
+        })
+      },
+      showFullNoteModal() {
+        this.showFullNote = true;
+      }
     }
+  }
 </script>
 
 <style lang="scss">

@@ -54,15 +54,12 @@
     <div class="text-center py-16">
       <spinner
         size="lg"
-      >
-      </spinner>
+      />
       <div class="mt-5">
         Saving Matches
       </div>
     </div>
-
   </panel>
-
 </template>
 
 <script>

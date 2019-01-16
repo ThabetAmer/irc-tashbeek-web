@@ -270,6 +270,7 @@
                 :key="note.id"
                 :date="note.created_at_text"
                 :author="note.user.name"
+                :is-starred="note.is_starred"
                 :body="note.note"
                 @noteStarred="changeStarredNote"
               />
@@ -383,6 +384,11 @@
               }
               this.$toasted.show(resp.data.message, {
                 icon: 'icon-Stars_x40_2xpng_2 mr-2'
+              })
+
+
+              this.notes.forEach(note => {
+                note.is_starred = (resp.data.note.id === note.id) && (resp.data.note.is_starred);
               })
             })
             .catch(error => {

@@ -116,7 +116,7 @@
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
                px-4 leading-tight focus:outline-none focus:bg-white  ${!internalError['password']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="password"
-                placeholder="******************"
+                placeholder="******"
               >
 
               <p
@@ -141,7 +141,7 @@
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
                px-4 leading-tight focus:outline-none focus:bg-white  ${!internalError['password']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="password"
-                placeholder="******************"
+                placeholder="******"
               >
               <p
                 v-if="internalError['password']"
@@ -162,21 +162,16 @@
             User Roles
           </label>
 
-          <div class="md:flex md:items-center mb-6">
-            <!--<label class="md:w-2/3 block text-grey font-bold">-->
-            <!--<input-->
-            <!--class="mr-2 leading-tight"-->
-            <!--type="checkbox"-->
-            <!--&gt;-->
-            <!--<span class="text-sm">-->
-            <!--Send me your newsletter!-->
-            <!--</span>-->
-            <!--</label>-->
-            [TODO]
-            <!--<CheckboxGroup-->
-            <!--:checkboxes="checkboxes"-->
-            <!--display="inline"-->
-            <!--/>-->
+          <div class="mb-6">
+            <CheckboxGroup
+              v-if="availableRoles.length > 0"
+              :disabled="viewOnly"
+              :checkboxes="availableRoles"
+              @change="onRoleSelection"
+            />
+            <div v-else>
+              No assigned roles for this user
+            </div>
           </div>
         </div>
       </div>
@@ -218,29 +213,22 @@
       viewOnly: {
         type: Boolean,
         default: false
+      },
+      roles: {
+        type: Array,
+        default: () => []
       }
     },
     data() {
       return {
-        internalError:[],
+        internalError: [],
         showEdit: true,
         imageSrc: 'https://picsum.photos/200/300',
         user: {},
         name: '',
-        checkboxes: [
-          {
-            value: 1,
-            label: 'Admin'
-          },
-          {
-            value: 2,
-            label: 'Other'
-          },
-          {
-            value: 3,
-            label: 'Viewer'
-          }
-        ]
+        checkboxes: [],
+        availableRoles: [],
+        selectedRoles: []
       }
     },
     beforeMount() {
@@ -258,35 +246,52 @@
         this.imageSrc = "";
         this.name = "New User";
       }
+
+      this.availableRoles = this.roles.map(role => ({
+        ...role,
+        label: role.name,
+        value: role.id,
+        checked: role.has_role
+      }))
+
+      this.selectedRoles = this.roles.filter(role => role.has_role === true).map(role => role.id)
     },
     methods: {
       handleUserCreate() {
         if (this.userProp) {
-          updateUser(this.user.id, this.user)
-              .then(resp => {
-                this.$toasted.show(resp.data.message, {
-                  icon: 'icon-Checkmark_2_x40_2xpng_2'
-                });
-                this.name = this.user.name;
-              })
-              .catch(error => {
-              });
+          updateUser(this.user.id, {
+            ...this.user,
+            roles: this.selectedRoles
+          }).then(resp => {
+            this.$toasted.show(resp.data.message, {
+              icon: 'icon-Checkmark_2_x40_2xpng_2'
+            });
+            this.name = this.user.name;
+          }).catch(error => {
+            if (error.response.status === 422) {
+              this.internalError = error.response.data.errors
+            } else {
+              this.$toasted.error("Something went wrong, cannot update user.");
+            }
+          });
         }
         else {
-          createUser(this.user)
-              .then(resp => {
-                console.log(' resp is ', resp);
-                this.name = this.user.name;
-                this.internalError = [];
-                this.$toasted.show(resp.data.message, {
-                  icon: 'icon-Checkmark_2_x40_2xpng_2'
-                });
-              })
-              .catch(error => {
-                if (error.response.status === 422) {
-                  this.internalError = error.response.data.errors
-                }
-              });
+          createUser({
+            ...this.user,
+            ...this.selectedRoles
+          }).then(resp => {
+            this.name = this.user.name;
+            this.internalError = [];
+            this.$toasted.show(resp.data.message, {
+              icon: 'icon-Checkmark_2_x40_2xpng_2'
+            });
+          }).catch(error => {
+            if (error.response.status === 422) {
+              this.internalError = error.response.data.errors
+            }else{
+              this.$toasted.error("Something went wrong, cannot create user.");
+            }
+          });
         }
       },
       createUser() {
@@ -303,6 +308,9 @@
         // Whenever the file changes, emit the 'input' event with the file data.
         console.log(e.target.files);
         // this.imageSrc = e.target.files[0].name;
+      },
+      onRoleSelection(selection) {
+        this.selectedRoles = selection.map(selection => selection.value)
       }
     },
 

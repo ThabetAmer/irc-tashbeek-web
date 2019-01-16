@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -34,6 +35,15 @@ class Followup extends Model
     public function scopeOfType($query, $type)
     {
         return $query->where('followups.followup_type', $type);
+    }
+
+    public function getDueDateAttribute()
+    {
+        $followupDate = Carbon::parse($this->followup_date);
+        if (now()->lt($followupDate)) {
+            return $followupDate->diffInDays(now()) + 1;
+        }
+        return 0;
     }
 
     public function followup()

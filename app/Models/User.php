@@ -62,7 +62,7 @@ class User extends Authenticatable implements HasMedia
     {
         $media = $this->getAllAttachmentsAttribute(true, 'profile_picture')->first();
 
-        return $media ? url($media->getUrl()) : null;
+        $url = $media ? url($media->getUrl()) : null;
     }
 
 }

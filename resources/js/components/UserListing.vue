@@ -130,7 +130,6 @@
         return getUsers(params)
             .then(({data}) => {
               this.changeUrlUsingParams(params);
-              console.log(' data ', data);
               this.loading = false;
               this.rows = data.data;
               this.pagination = {

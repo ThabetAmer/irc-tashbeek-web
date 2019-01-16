@@ -10,7 +10,7 @@
         :value="getOptionValue(filter)"
         :options="filter.options"
         :placeholder="filter.label"
-        wrapper-class="w-1/7 mr-2 h-50"
+        wrapper-class="sm:w-full md:w-1/2 lg:w-1/3 xl:w-1/7  pr-2 h-50"
         custom-class="mb-2 note-select filter-input multiselect-with-remove"
         @clear="handleClear(filter.name)"
         @select="handleSelect(filter.name, $event)"
@@ -20,7 +20,7 @@
         :key="filter.name+'-'+filter.type"
         lang="en"
         :value="filter.filterValue"
-        wrapper-class="w-1/7 mr-2 h-50"
+        wrapper-class="sm:w-full md:w-1/2 lg:w-1/3  xl:w-1/7  pr-2 h-50"
         input-class="height-align text-sm
         mb-2 mr-2 p-2 text-grey-darkest font-bold
         w-full bg-grey-lighter rounded"
@@ -38,7 +38,7 @@
         input-class="height-align
         mb-2 mr-2 p-2 text-grey-darkest font-bold
         w-full bg-grey-lighter rounded"
-        wrapper-class="w-1/7 mr-2 h-50"
+        wrapper-class="sm:w-full md:w-1/2 lg:w-1/3  xl:w-1/7   pr-2 h-50"
         :has-remove="true"
         :placeholder="filter.label"
         :value="filter.filterValue"
@@ -53,7 +53,7 @@
       :user-filters="userFilters"
       :placeholder="'irc.more' | trans"
       :multiple="true"
-      custom-class="mb-2 note-select mr-2 w-1/5 filter-selector"
+      custom-class="mb-2 note-select pr-2 sm:w-full md:w-1/2 lg:w-1/3  xl:w-1/7 filter-selector"
       @select="handleFilterSelect"
     />
   </div>

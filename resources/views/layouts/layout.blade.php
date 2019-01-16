@@ -30,7 +30,7 @@
         @include('layouts.sidebar')
     @endif
 
-    <div class="p-10 container body-container mx-auto px-16 {{!auth()->check()? ' flex items-center' :''}}" id="app">
+    <div class="p-10 container body-container mx-auto px-16 sm:pl-24 md:pl-16 {{!auth()->check()? ' flex items-center' :''}}" id="app">
         @if(auth()->check())
         @endif
         @yield('content')
@@ -53,6 +53,7 @@
     $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar').toggleClass('minified');
+            $('.wrapper ').toggleClass('collapsed');
         });
     });
 </script>

@@ -237,15 +237,26 @@
             v-if="jobOpeningView === 'matched'"
             class=""
           >
-            <Screenbox />
-            <Screenbox />
+            <CaseListing
+              key="matches"
+              :end-point="matchedEndPoint"
+              type="job-seeker"
+              :has-filters="false"
+              :change-url="false"
+            />
           </div>
 
           <div
             v-if="jobOpeningView === 'candidate'"
             class=""
           >
-            <Screenbox />
+            <CaseListing
+              key="candidates"
+              :end-point="candidateEndPoint"
+              type="job-seeker"
+              :has-filters="false"
+              :change-url="false"
+            />
           </div>
 
           <div
@@ -259,6 +270,7 @@
                 :key="note.id"
                 :date="note.created_at_text"
                 :author="note.user.name"
+                :is-starred="note.is_starred"
                 :body="note.note"
                 @noteStarred="changeStarredNote"
               />
@@ -307,12 +319,18 @@
         showAddModalNote: false,
         starredNote: null,
         notes: [],
+        matches: [],
+        matchedEndPoint: '',
+        candidateEndPoint: ''
       }
     },
     created() {
+      this.matchedEndPoint = `api/job-seekers/${this.jobSeeker.id}/matches`;
+      this.candidateEndPoint = `api/job-seekers/${this.jobSeeker.id}/candidates`;
       this.getNotes();
     },
     methods: {
+
       getNotes() {
         getNotes('job-seeker', this.jobSeeker.id)
           .then(({data}) => {
@@ -323,10 +341,11 @@
               }
             })
           }).catch(error => {
-          console.log('Error : ', error);
-        });
+            console.log('Error : ', error);
+          });
       },
       changeJobOpeningview(view) {
+        this.$forceUpdate();
         this.jobOpeningView = view;
         if (view === 'notes') {
           this.showAddNote = true;
@@ -341,29 +360,34 @@
       },
       addNoteToList(noteText, type) {
 
-        addNote('job-seeker', this.jobSeeker.id, {note: noteText, type: type})
+        addNote('job-seeker', this.jobSeeker.id, {note: noteText, type})
           .then(resp => {
             this.notes.push(resp.data.note);
           }).catch(error => {
-          console.log('Error : ', error);
+            this.$toasted.show(error.response.data.message, {
+            icon: 'icon-Error_x40_2xpng_2',
+            className:'toast-error'
+          })
         });
 
       },
       changeStarredNote(note) {
         starNote('job-seeker', this.jobSeeker.id, note.id)
-          .then(resp => {
-            if (resp.data.note.is_starred) {
-              this.starredNote = resp.data.note;
-            }
-            else {
-              this.starredNote = null;
+          .then(({data}) => {
 
+            if (data.note.is_starred) {
+              this.starredNote = data.note;
+            }else {
+              this.starredNote = null;
             }
-            this.$toasted.show(resp.data.message, {
+
+            this.$toasted.show(data.message, {
               icon: 'icon-Stars_x40_2xpng_2 mr-2'
             })
-          })
-          .catch(error => {
+
+            this.notes.forEach(note => {
+              note.is_starred = (data.note.id === note.id) && (data.note.is_starred);
+            })
           });
       }
     },

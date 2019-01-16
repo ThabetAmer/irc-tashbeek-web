@@ -2,7 +2,7 @@
   <!--
     -->
   <div class="">
-    <Panel custom-class="relative px-3 py-4">
+    <Panel custom-class="relative px-3 py-4 min-h-115">
       <div class="absolute flex items-center justify-center w-50 h-50 flex p-2 pin-t pin-r rounded-tr-lg bg-green-opac">
         <i :class="iconClasses" />
       </div>
@@ -20,7 +20,7 @@
       <div
         class="text text-black
                         text-left font-bold
-                        text-sm mt-2 uppercase"
+                        sm:text-xs hd:text-sm mt-2 uppercase"
       >
         {{ label }}
       </div>

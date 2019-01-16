@@ -11,9 +11,9 @@
     >
       <h3>{{ 'irc.add_note' | trans }}</h3>
       <Btn
-
+        :disabled="noteText === ''"
         :theme="'success'"
-        :btn-class="'mb-2 absolute pin-t pin-r rounded-full uppercase'"
+        :btn-class="`mb-2 absolute pin-t pin-r rounded-full uppercase ${noteText === '' ? 'cursor-not-allowed':'' }`"
         @click="addNote"
       >
         <template slot="text">

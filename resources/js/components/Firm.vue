@@ -86,7 +86,7 @@
 
         <Notebox
           v-if="starredNote"
-          :body="starredNote.body"
+          :body="starredNote.note"
           :date="starredNote.date"
           :author="starredNote.author"
           :show-star="false"
@@ -105,6 +105,7 @@
     <div class="w-2/3 px-2">
       <Panel
         :has-title="hasTitle"
+        custom-class="max-h-600 overflow-y-auto"
         :title="'irc.job_openings' | trans"
       >
         <ul class="list-reset flex border-0 custom-navs mb-4">
@@ -161,9 +162,12 @@
             id="matches"
             class="tab-pane fade in"
           >
-            <Datatable
-              :has-pagination="filters"
-              :has-filters="filters"
+            <CaseListing
+              key="matches"
+              :end-point="matchedEndPoint"
+              type="firm"
+              :has-filters="false"
+              :change-url="false"
             />
           </div>
         </div>
@@ -222,6 +226,7 @@
   import {get as getCaseListing} from '../API/caseListing'
   import {get as getNotes} from '../API/noteAPI'
   import {post as addNote} from '../API/noteAPI'
+  import {setNoteStarred as starNote} from '../API/noteAPI'
 
   export default {
     props: {
@@ -239,12 +244,16 @@
         showStar: false,
         filters: false,
         jobOpenings: [],
+        matches: [],
+        matchedEndPoint: '',
         jobOpeningsLoading: true,
         notes: [],
         starredNote: null
       }
     },
     mounted() {
+      this.matchedEndPoint = `api/firms/${this.firm.id}/matches`;
+
       getCaseListing('job-opening', {
         filters: {
           firm_id: this.firm.id,
@@ -264,6 +273,11 @@
           .then(({data}) => {
             this.notes = data.data;
             this.notesLoading = false;
+            this.notes.forEach(note => {
+              if (note.is_starred) {
+                this.starredNote = note;
+              }
+            })
           }).catch(error => {
         console.log('Error : ', error);
       });
@@ -271,7 +285,22 @@
     },
     methods: {
       changeStarredNote(note) {
-        this.starredNote = note;
+        starNote('firm', this.firm.id, note.id)
+            .then(resp => {
+              if (resp.data.note.is_starred) {
+                this.starredNote = resp.data.note;
+              }
+              else {
+                this.starredNote = null;
+
+              }
+              this.$toasted.show(resp.data.message, {
+                icon: 'icon-Stars_x40_2xpng_2 mr-2'
+              })
+            })
+            .catch(error => {
+            });
+
       },
       addNoteToList(noteText,type) {
         addNote('firm', this.firm.id, {note: noteText,type:type})

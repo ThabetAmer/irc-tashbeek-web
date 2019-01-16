@@ -7,7 +7,7 @@
     >
       <div class="mx-auto text-grey-dark mb-2">
         {{ message | trans }}
-        <i :class="icon" />
+        <i :class="`text-center ${icon}`" />
       </div>
     </slot>
   </div>

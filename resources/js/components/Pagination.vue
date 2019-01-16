@@ -4,7 +4,7 @@
       v-if="totalPages > 1"
       class="flex list-reset w-auto font-sans pagination"
     >
-      <li class="pagination-item">
+      <li class="sm:hidden xl:block pagination-item">
         <Btn
           class="no-underline block hover:text-blue hover:bg-grey-lighter bg-white text-green-dark border border-grey-light rounded  px-1 py-1 mr-2"
           type="button"
@@ -33,7 +33,7 @@
       <li
         v-for="page in pages"
         :key="page.name"
-        class="pagination-item"
+        class="sm:hidden lg:block pagination-item"
       >
         <Btn
           class="no-underline block  border border-grey-light rounded  px-1 py-1 mr-2"
@@ -61,7 +61,7 @@
           </template>
         </Btn>
       </li>
-      <li class="pagination-item">
+      <li class="sm:hidden xl:block pagination-item">
         <Btn
           class="no-underline block hover:text-blue hover:bg-grey-lighter bg-white text-green-dark border border-grey-light rounded  px-1 py-1 mr-2"
           type="button"
@@ -77,7 +77,7 @@
 
       <li
         v-if="perPageEnabled"
-        class="ml-auto flex items-center pagination-select"
+        class="ml-auto sm:text-xs  lg:text-base flex items-center pagination-select"
       >
         <div class="mr-2">
           {{ 'irc.rows_per_page' | trans }}

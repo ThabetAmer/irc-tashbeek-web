@@ -1,5 +1,6 @@
 <template>
   <CaseListing
+    v-if="!loading"
     :end-point="route"
     type="job-seeker"
     @fetch="onFetch"
@@ -49,6 +50,17 @@
       />
     </template>
   </CaseListing>
+
+  <Panel v-else>
+    <div class="text-center py-16">
+      <Spinner
+        size="lg"
+      />
+      <div class="mt-5">
+        Saving Matches
+      </div>
+    </div>
+  </Panel>
 </template>
 
 <script>
@@ -68,7 +80,8 @@
     },
     data() {
       return {
-        selections: []
+        selections: [],
+        loading: false
       }
     },
     methods: {
@@ -86,11 +99,14 @@
         }
       },
       saveMatches() {
-
+        this.loading = true;
         axios.post(`/api/job-openings/${this.jobOpening.id}/matches`, {
           matches: this.selections
         }).then(({data}) => {
-          console.log('data')
+          this.loading = false;
+          this.$toasted.show('Matches saved', {
+            icon: 'icon-Floppy_Disk_1_1',
+          })
         })
 
       }

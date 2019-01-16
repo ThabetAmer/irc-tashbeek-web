@@ -4,7 +4,7 @@
       <li>
         <i class=" icon-Right_Arrow_1_1" />
         <a
-          :href="'/'"
+          :href="homeUrl"
           class="menu-link no-underline text-sm"
         >
           <!--<a>Login</a>-->
@@ -52,12 +52,11 @@
         ]
       }
     },
-    data() {
-      return {}
-    },
-    mounted() {
-    },
-    methods: {},
+    computed:{
+      homeUrl(){
+        return window.homeUrl
+      }
+    }
 
   }
 </script>

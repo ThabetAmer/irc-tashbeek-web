@@ -39,6 +39,7 @@
 
 <script type="text/javascript">
     window.appURL = '{{ url('/') }}';
+    window.homeUrl = '{{ route('home') }}'
 
 </script>
 

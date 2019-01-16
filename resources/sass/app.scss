@@ -363,16 +363,6 @@ table.scrollable-fixed-header {
     visibility: hidden;
     clear: both;
   }
-  thead th {
-    height: 30px;
-
-    /*text-align: left;*/
-  }
-
-  tbody {
-    height: 130px;
-    overflow-y: auto;
-  }
 
   thead {
     /* fallback */
@@ -972,4 +962,9 @@ body, html {
   100% {
     transform: scale(1);
   }
+}
+
+[dir=rtl] .icon-Right_Arrow_1_1:before{
+  transform: scale(-1);
+  display: inline-block;
 }

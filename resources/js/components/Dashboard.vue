@@ -80,14 +80,17 @@
                   <div v-else>
                     <Panel
                       :title="selectedDateHuman"
-                      custom-class="bg-grey border-transparent border-0"
+                      bg="light"
+                      custom-class="border-transparent border-0"
                     >
-                      <button
-                        class="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-3 border border-blue hover:border-transparent rounded float-right"
-                        @click="exportData"
-                      >
-                        {{ 'irc.export' | trans }}
-                      </button>
+                      <template slot="tools">
+                        <button
+                          class="bg-white text-base hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-3 border border-blue hover:border-transparent rounded"
+                          @click="exportData"
+                        >
+                          {{ 'irc.export' | trans }}
+                        </button>
+                      </template>
 
                       <Datatable
                         :header="tableHeaders"
@@ -193,18 +196,12 @@
         tableHeaders: [
           {
             name: "type",
-            translations: {
-              ara: "نوع المتابعة",
-              en: "Type"
-            }
+            label:'Type'
 
           },
           {
             name: "followup",
-            translations: {
-              ara: "نوع المتابعة",
-              en: "Job seeker"
-            },
+            label: 'Job seeker',
             valueHandler: (row) => row.followup.name
 
           }
@@ -274,6 +271,7 @@
           .catch(error => {
           });
 
+      this.dayClicked(moment())
     },
     methods: {
       getRecentActivity() {
@@ -310,19 +308,18 @@
         }
       },
       dayClicked: function (date, jsEvent, view) {
+        console.log(date)
         this.daySelected = true;
         let selectedString = moment(date, "DD MMMM");
         this.selectedDateHuman = selectedString.format("DD MMMM");
         this.selectedDate = selectedString.format("YYYY-MM-DD");
         this.loading = true;
         this.getFollowups(this.selectedDate, this.pagination.page);
-
       },
       getFollowups(date, page) {
         this.loading = true;
         getFollowups(date, page)
             .then(resp => {
-              console.log(' full resp is ', resp);
               this.followups = resp.data.data;
               this.pagination = {
                 total: resp.data.meta.total,

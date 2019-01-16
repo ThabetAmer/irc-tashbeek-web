@@ -13,20 +13,10 @@
             <th
               v-for="head in header"
               :key="head.name"
-              class="pb-2 pl-6 text-xs  max-w-150 relative cursor-pointer"
+              class="pl-6 text-xs  whitespace-no-wrap relative cursor-pointer"
               @click="$emit('sort',head.name)"
             >
-              <span
-                v-if="head.label.length > 14"
-                v-tooltip="{placement:'left',content:head.label,classes:['tooltip-datatable']}"
-                class=" truncate  block"
-              >
-                {{ head.label }}
-              </span>
-              <span
-                v-else
-                class=" truncate"
-              >
+              <span>
                 {{ head.label }}
               </span>
 
@@ -36,7 +26,7 @@
                 ${sorting.column === head.name && sorting.type === 'asc' ? 'icon-Up_Arrow_4_1' :'icon-Down_Arrow_4_1'}`"
               />
             </th>
-            <th class="pb-2 px-4 pl-1 max-w-150 " />
+            <th class="px-4 pl-1 max-w-150 " />
           </tr>
         </thead>
 
@@ -53,7 +43,7 @@
             <td
               v-for="head in header"
               :key="head.name"
-              class="py-4 pl-6 text-sm"
+              class="py-4 pl-6 text-sm "
             >
               <Component
                 :is="row[head.name].component"
@@ -63,7 +53,7 @@
               />
               <span
                 v-else-if="head.clickable_from && row[head.clickable_from]"
-                class="py-1 max-w-150  block"
+                class="py-1 whitespace-no-wrap  block"
                 dir="auto"
               >
                 <a
@@ -76,7 +66,7 @@
               <span
                 v-else-if="row[head.name] && row[head.name].length > 10"
                 v-tooltip="{placement: 'left',content:row[head.name],classes:['tooltip-datatable']}"
-                class="max-w-150  block"
+                class="whitespace-no-wrap  block"
                 dir="auto"
               >
                 {{ getRowValue(row,head) }}
@@ -84,6 +74,7 @@
               <span
                 v-else
                 dir="auto"
+                class="whitespace-no-wrap"
               >
                 {{ getRowValue(row,head) }}
               </span>

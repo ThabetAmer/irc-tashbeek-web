@@ -19,6 +19,9 @@ mix
   processCssUrls: false,
   postCss: [
     tailwindcss('./tailwind_config.js'),
+    require( 'postcss-rtl' )({
+
+    })
   ]
 });
 

@@ -19,14 +19,13 @@ class CaseExport extends Export
 
         $headers = array_map(function ($header) {
             $this->headers[] = $header['name'];
-            return $header['translations']['en'];
+            return $header['label'];
         }, $headers);
 
         array_unshift($headers, 'id');
 
         return $headers;
     }
-
 
     /**
      * @return array|mixed
@@ -39,6 +38,4 @@ class CaseExport extends Export
             return array_only($response, $this->headers);
         }, $responses);
     }
-
-
 }

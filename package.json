@@ -25,6 +25,7 @@
         "laravel-mix": "^4.0.12",
         "lodash": "^4.17.5",
         "popper.js": "^1.12",
+        "postcss-rtl": "^1.3.3",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
         "tailwindcss": "^0.7.2",

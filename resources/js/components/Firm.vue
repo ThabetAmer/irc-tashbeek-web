@@ -38,7 +38,7 @@
               <a
                 v-if="firm.city"
                 class="link text-blue-dark font-bold"
-                :href="`/firms?filters[city]=${firm.city}`"
+                :href="`${homeUrl}/firms?filters[city]=${firm.city}`"
               >
                 {{ firm.city }}
               </a>
@@ -53,7 +53,7 @@
               <a
                 v-if="firm.district"
                 class="link text-blue-dark font-bold"
-                :href="`/firms?filters[district]=${firm.district}`"
+                :href="`${homeUrl}/firms?filters[district]=${firm.district}`"
               >
                 {{ firm.district }}
               </a>
@@ -282,6 +282,9 @@
         console.log('Error : ', error);
       });
 
+    },
+    computed: {
+        homeUrl: function () { return window.homeUrl; }
     },
     methods: {
       changeStarredNote(note) {

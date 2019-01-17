@@ -19,11 +19,13 @@ class JobOpeningResource extends CaseResource
 
         $data['firm_id'] = $this->firm ? $this->firm->firm_name : null;
 
-        try{
+        try {
             $data['date_opened_text'] = Carbon::parse($this->date_opened)->format('M d D');
-        }catch(\Throwable $e){
+        } catch (\Throwable $e) {
             $data['date_opened_text'] = null;
         }
+
+        $data['matches_number'] = $this->matches()->count();
 
         return $data;
     }

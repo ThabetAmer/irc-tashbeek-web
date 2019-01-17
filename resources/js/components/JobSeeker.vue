@@ -32,17 +32,22 @@
                 {{ jobSeeker.nationality }}
               </span>
               <span
+                v-if="jobSeeker.nationality && jobSeeker.gender"
+                class="mx-1"
+              >•</span>
+
+              <span
                 v-if="jobSeeker.gender"
                 class="mr-1"
               >
                 {{ jobSeeker.gender }}
               </span>
+
               <span
-                v-if="jobSeeker.age && (jobSeeker.nationality || jobSeeker.gender) "
+                v-if="jobSeeker.gender && jobSeeker.age"
                 class="mx-1"
-              >
-                •
-              </span>
+              >•</span>
+
               <span
                 v-if="jobSeeker.age"
                 class="mr-1"

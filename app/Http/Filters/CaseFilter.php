@@ -62,7 +62,10 @@ class CaseFilter implements FilterInterface
     {
         foreach ($filters as $name => $value) {
 
-            if (trim($value) === "" || is_null($value)) {
+            if(is_array($value)){
+                $value = array_filter($value);
+            }
+            if (!$value) {
                 continue;
             }
 

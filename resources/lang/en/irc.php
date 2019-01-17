@@ -93,5 +93,13 @@ return [
     'user_activated' => 'User activated successfully',
     'user_deactivated' => 'User deactivated successfully',
     'export' => 'Export to Excel',
-    'no_date_selected' => 'No date selected'
+    'no_date_selected' => 'No date selected',
+
+
+    'notes_created_successfully' => 'Note has been created successfully.',
+    'cannot_find_case_type' => 'Cannot find this case type',
+    'notes_has_been' => 'Notes has been ',
+    'starred' => 'Starred.',
+    'unstarred' => 'Unstarred.',
+
 ];

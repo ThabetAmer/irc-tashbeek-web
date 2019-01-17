@@ -37,7 +37,7 @@ class CaseNotesController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'Note has been created.',
+            'message' => trans('irc.notes_created_successfully'),
             'note' => new NoteResource($note)
         ], 201);
     }
@@ -47,7 +47,7 @@ class CaseNotesController extends Controller
         try{
             return get_case_type_model($caseType);
         }catch(\Throwable $e){
-            abort(404, "Cannot find this case type" );
+            abort(404, trans('irc.cannot_find_case_type') );
         }
     }
 
@@ -75,7 +75,7 @@ class CaseNotesController extends Controller
             'is_starred' => $isStar
         ]);
 
-        $message = 'Note has been ' . ($isStar?'Starred.':'Unstarred.' );
+        $message = trans('irc.notes_has_been') . ($isStar?trans('irc.starred'):trans('irc.unstarred') );
 
         return response()->json([
             'message' => $message,

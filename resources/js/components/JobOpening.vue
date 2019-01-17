@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="flex-1 text-right text-green-dark font-bold">
-      2 Matches
+      {{jobOpening.matches_number}} Matches
     </div>
   </div>
 </template>

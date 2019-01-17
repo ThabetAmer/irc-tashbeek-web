@@ -11,7 +11,7 @@
     </div>
 
     <div class="text-white flex items-center">
-        <img class="rounded-full w-10 h-10 mr-2"
+        <img class="rounded-full w-10 h-10 mx-2"
              src="{{ auth()->user()->profile_picture }}"
              alt="{{auth()->user()->name}}">
 
@@ -62,7 +62,7 @@
         <li class="uppercase  text-white {{  request()->is('*users*') ?'active' :''}}">
             <a href="{{route('users')}}"
                class="text-white flex items-center  text-sm remove-text-minified py-4 relative mb-3">
-                <i class="icon-Briefcase_x40_2xpng_2 min-w-30  pin-l pin-t text-xl mr-4 ml-3"></i>
+                <i class="icon-Users_1_x40_2xpng_2 min-w-30  pin-l pin-t text-xl mr-4 ml-3"></i>
                 <span class="sm:text-xs xl:text-base hide-min">{{__('irc.users')}}</span>
             </a>
         </li>

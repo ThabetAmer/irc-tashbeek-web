@@ -973,3 +973,10 @@ body, html {
   transform: scaleX(-1);
   display: inline-block;
 }
+
+
+[dir=rtl] .fa-chevron-right,
+[dir=rtl] .fa-chevron-left{
+
+  transform: scaleX(-1);
+}

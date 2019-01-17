@@ -288,7 +288,7 @@
               icon: 'icon-Checkmark_2_x40_2xpng_2'
             });
             this.name = this.userData.name;
-            console.log(' resp for user is ', resp);
+            window.location.href = `/users/${resp.data.user.id}`
           }).catch(error => {
             if (error.response.status === 422) {
               this.internalError = error.response.data.errors
@@ -304,6 +304,7 @@
             this.$toasted.show(resp.data.message, {
               icon: 'icon-Checkmark_2_x40_2xpng_2'
             });
+            window.location.href = `/users/${resp.data.user.id}`
           }).catch(error => {
             if (error.response.status === 422) {
               this.internalError = error.response.data.errors

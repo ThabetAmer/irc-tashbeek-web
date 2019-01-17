@@ -1033,7 +1033,6 @@ body, html {
   }
 }
 
-
 @media only screen and (max-width: 500px) {
   #sidebar.minified{
     height: 80px;
@@ -1042,3 +1041,8 @@ body, html {
   }
 }
 
+[dir=rtl] .fa-chevron-right,
+[dir=rtl] .fa-chevron-left{
+
+  transform: scaleX(-1);
+}

@@ -62,9 +62,13 @@ class CaseFilter implements FilterInterface
     {
         foreach ($filters as $name => $value) {
 
-//            if (trim($value) === "" || is_null($value)) {
-//                continue;
-//            }
+            if(is_array($value)){
+                $value = array_filter($value);
+            }
+
+            if (!$value) {
+                continue;
+            }
 
             $filterType = studly_case(array_get($properties->get($name)->attributes, 'type'));
 

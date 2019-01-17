@@ -31,10 +31,12 @@ Route::group([
     Route::get('/firms', 'FirmController@index')->name('firms');
     Route::get('/firms/{firm}', 'FirmController@show')->name('firms.show');
 
-    Route::get('/users', 'UserControllerView@index')->name('users');
-    Route::get('/users/create', 'UserControllerView@create')->name('users.create');
-    Route::get('/users/{user}/edit', 'UserControllerView@edit')->name('users.edit');
-    Route::get('/users/{user}', 'UserControllerView@show')->name('users.show');
+    Route::group(['prefix' => 'users', 'middleware' => ['permission:users_management']], function () {
+        Route::get('/', 'UserControllerView@index')->name('users');
+        Route::get('/create', 'UserControllerView@create')->name('users.create');
+        Route::get('/{user}/edit', 'UserControllerView@edit')->name('users.edit');
+        Route::get('/{user}', 'UserControllerView@show')->name('users.show');
+    });
 
     Route::get('/job-openings', 'JobOpeningController@index')->name('job-openings');
     Route::get('/job-openings/{jobOpening}/match', 'JobOpeningMatchController@index')->name('job-openings.match');

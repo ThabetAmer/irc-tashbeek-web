@@ -94,6 +94,6 @@ return [
     'user_deleted' => 'تم حذف المستخدم بنجاح.',
     'user_activated' => 'تم تفعيل المستخدم بنجاح.',
     'user_deactivated' => 'تم تعطيل المستخدم بنجاح',
-    'export' => 'تحميل Excel',
+    'export' => 'تحميل إكسل',
     'no_date_selected' => 'لم يتم تحديد تاريخ معين'
 ];

@@ -210,6 +210,12 @@
               label:'Due Date'
 
           },
+          {
+            name: "background",
+            label:'Background',
+            valueHandler: (row) => Object.values(row.followup.background).join(', ')
+
+          }
         ],
         loading: false,
         viewType: 'calendar',

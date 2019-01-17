@@ -5,7 +5,7 @@
     ></breadcrumbs>
     <div class="" id="all-users">
         <user-view
-                :user-prop="{{$user->toJson()}}"
+                :user="{{$user->toJson()}}"
                 :roles="{{$roles->toJson()}}"
                 :view-only="true"
         ></user-view>

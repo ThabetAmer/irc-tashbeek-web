@@ -1,5 +1,5 @@
 <template>
-  <div class="user-container">
+  <div class="userData-container">
     <Panel
       custom-class=""
       :title="name"
@@ -21,34 +21,28 @@
             class="sm:mx-auto"
             :src="profileImagePreview"
             :size="150"
-            :username="user && user.name ? user.name : ''"
+            :username="userData && userData.name ? userData.name : ''"
           />
           <Transition name="fade">
             <div
               v-if="showEdit"
               class="sm:mx-auto w-150 mt-5 sm:mb-5 text-center"
             >
-              <Btn
-                btn-class=""
-                theme="default"
-                @click="openViewer"
+              <span
+                class=" rounded-full cursor-pointer inline-block overflow-hidden rounded   border border-grey-light py-2 px-4 "
               >
-                <div
-                  slot="text"
-                  class="flex items-center"
-                >
-                  <i class="icon-Photo_x40_2xpng_2 mr-2" />
-                  {{ (uploadedImage ? 'irc.change': 'irc.upload') | trans }}
+                <div class="absolute pl-4 pt-1 flex items-center text-grey-darkest font-bold">
+                  <i class=" icon-Photo_x40_2xpng_2 mr-2" />
+                  Upload
                 </div>
-              </Btn>
-
-              <input
-                ref="fileInput"
-                accept="image/*"
-                aria-hidden="true"
-                type="file"
-                @change="handleFileChange"
-              >
+                <input
+                  ref="fileInput"
+                  class="cursor-pointer w-full h-full opacity-0 "
+                  accept="image/*"
+                  type="file"
+                  @change="handleFileChange"
+                >
+              </span>
             </div>
           </Transition>
         </div>
@@ -63,7 +57,7 @@
               </label>
               <input
                 id="grid-first-name"
-                v-model="user.name"
+                v-model="userData.name"
                 :disabled="!showEdit"
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
                px-4 leading-tight focus:outline-none focus:bg-white ${!showEdit ? 'cursor-not-allowed':''}  ${!internalError['name'] ? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
@@ -86,7 +80,7 @@
               </label>
               <input
                 id="email"
-                v-model="user.email"
+                v-model="userData.email"
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
                px-4 leading-tight focus:outline-none focus:bg-white  ${!internalError['email']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="text"
@@ -111,7 +105,7 @@
               </label>
               <input
                 id="password"
-                v-model="user.password"
+                v-model="userData.password"
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
                px-4 leading-tight focus:outline-none focus:bg-white  ${!internalError['password']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="password"
@@ -136,7 +130,7 @@
               </label>
               <input
                 id="password_confirm"
-                v-model="user.password_confirmation"
+                v-model="userData.password_confirmation"
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
                px-4 leading-tight focus:outline-none focus:bg-white  ${!internalError['password']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="password"
@@ -184,7 +178,7 @@
             @click="handleUserCreate"
           >
             <p slot="text">
-              {{ (userProp ? 'irc.update_user':'irc.create_user') | trans }}
+              {{ (user ? 'irc.update_user':'irc.create_user') | trans }}
             </p>
           </Btn>
         </div>
@@ -201,7 +195,7 @@
   export default {
     components: {Avatar},
     props: {
-      userProp: {
+      user: {
         type: Object,
         default: () => ({})
       },
@@ -219,45 +213,45 @@
         internalError: [],
         showEdit: true,
         uploadedImage: null,
-        uploadedProfileImagePreview:null,
-        user: {},
+        uploadedProfileImagePreview: null,
+        userData: {},
         name: '',
         checkboxes: [],
         availableRoles: [],
         selectedRoles: []
       }
     },
-    computed:{
-      formData(){
+    computed: {
+      formData() {
         const fd = new FormData;
 
-        fd.append('name', this.user.name)
-        fd.append('email', this.user.email)
+        fd.append('name', this.userData.name)
+        fd.append('email', this.userData.email)
 
-        if(this.user.password){
-          fd.append('password', this.user.password)
+        if (this.userData.password) {
+          fd.append('password', this.userData.password)
         }
 
-        if(this.user.password_confirmation){
-          fd.append('password_confirmation', this.user.password_confirmation)
+        if (this.userData.password_confirmation) {
+          fd.append('password_confirmation', this.userData.password_confirmation)
         }
 
         this.selectedRoles.forEach(role => {
           fd.append('roles[]', role)
         })
 
-        if(this.uploadedImage){
+        if (this.uploadedImage) {
           fd.append('profile_picture', this.uploadedImage)
         }
         return fd
       },
 
-      profileImagePreview(){
-        if(this.uploadedProfileImagePreview){
+      profileImagePreview() {
+        if (this.uploadedProfileImagePreview) {
           return this.uploadedProfileImagePreview
         }
 
-        return this.user.profile_picture
+        return this.userData.profile_picture
       }
     },
     beforeMount() {
@@ -266,11 +260,11 @@
       }
     },
     mounted() {
-      if (this.userProp) {
-        this.user = this.userProp;
-        this.name = this.user.name;
-      }else {
-        this.user = {};
+      if (this.user) {
+        this.userData = this.user;
+        this.name = this.userData.name;
+      } else {
+        this.userData = {};
         this.uploadedImage = "";
         this.name = this.$options.filters.trans('irc.create_new_user');
       }
@@ -286,23 +280,23 @@
     },
     methods: {
       handleUserCreate() {
-        if (this.user.id) {
-          updateUser(this.user.id, this.formData).then(resp => {
+        if (this.userData.id) {
+          updateUser(this.userData.id, this.formData).then(resp => {
             this.$toasted.show(resp.data.message, {
               icon: 'icon-Checkmark_2_x40_2xpng_2'
             });
-            this.name = this.user.name;
+            this.name = this.userData.name;
           }).catch(error => {
             if (error.response.status === 422) {
               this.internalError = error.response.data.errors
             } else {
-              this.$toasted.error("Something went wrong, cannot update user.");
+              this.$toasted.error("Something went wrong, cannot update userData.");
             }
           });
         }
         else {
           createUser(this.formData).then(resp => {
-            this.name = this.user.name;
+            this.name = this.userData.name;
             this.internalError = [];
             this.$toasted.show(resp.data.message, {
               icon: 'icon-Checkmark_2_x40_2xpng_2'
@@ -311,7 +305,7 @@
             if (error.response.status === 422) {
               this.internalError = error.response.data.errors
             } else {
-              this.$toasted.error("Something went wrong, cannot create user.");
+              this.$toasted.error("Something went wrong, cannot create userData.");
             }
           });
         }
@@ -329,26 +323,27 @@
 
         this.uploadedImage = e.target.files[0];
 
-        if(!this.uploadedImage){
-          this.uploadedProfileImagePreview = this.user.profile_picture
+        if (!this.uploadedImage) {
+          this.uploadedProfileImagePreview = this.userData.profile_picture
           return
         }
 
-        let reader  = new FileReader();
+
+        let reader = new FileReader();
 
         reader.addEventListener("load", () => {
           this.uploadedProfileImagePreview = reader.result;
         }, false);
 
-        if( this.uploadedImage ){
+        if (this.uploadedImage) {
 
-          if ( /\.(jpe?g|png|gif)$/i.test( this.uploadedImage.name ) ) {
+          if (/\.(jpe?g|png|gif)$/i.test(this.uploadedImage.name)) {
             /*
               Fire the readAsDataURL method which will read the file in and
               upon completion fire a 'load' event which we will listen to and
               display the image in the preview.
             */
-            reader.readAsDataURL( this.uploadedImage );
+            reader.readAsDataURL(this.uploadedImage);
           }
         }
 

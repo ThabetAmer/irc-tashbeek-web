@@ -36,18 +36,17 @@ export default {
       }
     },
     filterChange(event, loadData) {
-
       if (this.filterTimeout) {
         clearTimeout(this.filterTimeout)
       }
 
       this.userFilters = this.userFilters.map(filter => {
         if (filter.name === event.name) {
-          return {
-            ...filter,
-            filterValue: event.value
+            return {
+              ...filter,
+              filterValue: event.value
+            }
           }
-        }
         return filter
       })
 
@@ -74,7 +73,7 @@ export default {
       if (userFilters.length > 0) {
         return userFilters
       }
-      return filtersList.slice(0, )
+      return filtersList.slice(0,)
     },
   },
 }

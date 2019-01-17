@@ -21,7 +21,7 @@
             class="sm:mx-auto"
             :src="profileImagePreview"
             :size="150"
-            :username="userData && userData.name ? userData.name : ''"
+            :username="userData && userData.name ? userData.name : 'New User'"
           />
           <Transition name="fade">
             <div
@@ -178,7 +178,7 @@
             @click="handleUserCreate"
           >
             <p slot="text">
-              {{ (user ? 'irc.update_user':'irc.create_user') | trans }}
+              {{ create ? 'irc.create_user':'irc.update_user' | trans }}
             </p>
           </Btn>
         </div>
@@ -218,7 +218,8 @@
         name: '',
         checkboxes: [],
         availableRoles: [],
-        selectedRoles: []
+        selectedRoles: [],
+        create: true
       }
     },
     computed: {
@@ -268,6 +269,7 @@
         this.uploadedImage = "";
         this.name = this.$options.filters.trans('irc.create_new_user');
       }
+      this.create = Object.keys(this.user).length === 0 && this.user.constructor === Object;
 
       this.availableRoles = this.roles.map(role => ({
         ...role,
@@ -286,6 +288,7 @@
               icon: 'icon-Checkmark_2_x40_2xpng_2'
             });
             this.name = this.userData.name;
+            console.log(' resp for user is ', resp);
           }).catch(error => {
             if (error.response.status === 422) {
               this.internalError = error.response.data.errors

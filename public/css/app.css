@@ -58969,14 +58969,6 @@ a[aria-expanded=true] {
   display: none;
 }
 
-[dir=ltr] #sidebar.minified #sidebarCollapse {
-  margin-right: 30px !important;
-}
-
-[dir=rtl] #sidebar.minified #sidebarCollapse {
-  margin-left: 30px !important;
-}
-
 #sidebar.minified .user-section {
   min-height: 50px;
 }
@@ -60040,11 +60032,39 @@ html {
   .wrapper.collapsed .body-container {
     max-width: calc(100% - 50px) !important;
   }
+
+  .wrapper:not(.collapsed) .body-container {
+    max-width: 100% !important;
+  }
 }
 
 @media only screen and (min-width: 768px) {
   .wrapper.collapsed .body-container {
     max-width: calc(100% - 50px) !important;
+  }
+
+  .wrapper:not(.collapsed) .body-container {
+    max-width: calc(74%) !important;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .wrapper.collapsed .body-container {
+    max-width: calc(100% - 50px) !important;
+  }
+
+  .wrapper:not(.collapsed) .body-container {
+    max-width: calc(79%) !important;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .wrapper.collapsed .body-container {
+    max-width: calc(100% - 50px) !important;
+  }
+
+  .wrapper:not(.collapsed) .body-container {
+    max-width: calc(80%) !important;
   }
 }
 
@@ -60052,17 +60072,25 @@ html {
   .wrapper.collapsed .body-container {
     max-width: calc(100% - 10px) !important;
   }
+
+  .wrapper:not(.collapsed) .body-container {
+    max-width: calc(80%) !important;
+  }
 }
 
 @media only screen and (min-width: 1500px) {
   .wrapper.collapsed .body-container {
     max-width: calc(100% - 250px) !important;
   }
+
+  .wrapper:not(.collapsed) .body-container {
+    max-width: calc(80%) !important;
+  }
 }
 
 @media only screen and (max-width: 768px) {
   #sidebar {
-    position: absolute;
+    position: fixed;
     z-index: 99;
     height: 100%;
   }
@@ -60132,4 +60160,12 @@ html {
   -webkit-transform: scaleX(-1);
           transform: scaleX(-1);
   display: inline-block;
+}
+
+#sidebar.minified .toggle-lang {
+  flex-direction: column;
+}
+
+[dir] #sidebar.minified .toggle-lang .minifiy-button {
+  margin-top: 10px;
 }

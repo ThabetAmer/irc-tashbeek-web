@@ -55,7 +55,7 @@
     </Multiselect>
     <button
       v-if="hasRemove && value"
-      class="clear-filter-button  flex items-center absolute pin-r pin-t mt-3 mr-1 cursor-pointer text-white text-xxs rounded-full"
+      class="clear-filter-button  flex items-center absolute pin-r pin-t mt-3 mr-3 cursor-pointer text-white text-xxs rounded-full"
       @click="$emit('clear')"
     >
       <i

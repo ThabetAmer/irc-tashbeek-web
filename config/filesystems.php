@@ -68,6 +68,7 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public/uploads'),
             'url' => '/storage/uploads',
+            'visibility' => 'public',
         ]
 
 

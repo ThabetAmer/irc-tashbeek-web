@@ -5,22 +5,24 @@
         v-if="filter.type === 'select'"
         :key="filter.name+'-'+filter.type"
         label="label"
+        :multiple="true"
         track-by="value"
         :has-remove="true"
         :value="getOptionValue(filter)"
         :options="filter.options"
         :placeholder="filter.label"
-        wrapper-class="sm:w-full md:w-1/2 lg:w-1/3 xl:w-1/7  pr-2 h-50"
+        wrapper-class="sm:w-full md:w-1/2 lg:w-1/3 xl:w-1/5  pr-2 h-50"
         custom-class="mb-2 note-select filter-input multiselect-with-remove"
         @clear="handleClear(filter.name)"
-        @select="handleSelect(filter.name, $event)"
+        @select="handleSelect(filter, $event)"
+        @remove="handleRemove(filter, $event)"
       />
       <DatePicker
         v-else-if="filter.type === 'date'"
         :key="filter.name+'-'+filter.type"
         lang="en"
         :value="filter.filterValue"
-        wrapper-class="sm:w-full md:w-1/2 lg:w-1/3  xl:w-1/7  pr-2 h-50"
+        wrapper-class="sm:w-full md:w-1/2 lg:w-1/3  xl:w-1/5  pr-2 h-50"
         input-class="height-align text-sm
         mb-2 mr-2 p-2 text-grey-darkest font-bold
         w-full bg-grey-lighter rounded"
@@ -38,7 +40,7 @@
         input-class="height-align
         mb-2 mr-2 p-2 text-grey-darkest font-bold
         w-full bg-grey-lighter rounded"
-        wrapper-class="sm:w-full md:w-1/2 lg:w-1/3  xl:w-1/7   pr-2 h-50"
+        wrapper-class="sm:w-full md:w-1/2 lg:w-1/3  xl:w-1/5   pr-2 h-50"
         :has-remove="true"
         :placeholder="filter.label"
         :value="filter.filterValue"
@@ -53,7 +55,7 @@
       :user-filters="userFilters"
       :placeholder="'irc.more' | trans"
       :multiple="true"
-      custom-class="mb-2 note-select pr-2 sm:w-full md:w-1/2 lg:w-1/3  xl:w-1/7 filter-selector"
+      custom-class="mb-2 note-select pr-2 sm:w-full md:w-1/2 lg:w-1/3  xl:w-1/5 filter-selector"
       @select="handleFilterSelect"
     />
   </div>
@@ -69,32 +71,47 @@
      * all props have their needed types
      * and are passed using the mixin
      */
-    components: {FilterSelect,DatePicker },
+    components: {FilterSelect, DatePicker},
     mixins: [HasFilters],
-    data(){
-      return{
-        vall:''
+    data() {
+      return {
+        vall: ''
       }
     },
     methods: {
-      inputDate(eve){
-        console.log(' dd ',eve);
+      inputDate(eve) {
+        console.log(' dd ', eve);
         this.val = eve;
       },
-      handleSelect(name, selected) {
+      handleSelect(filter, selected) {
+        const value = Array.isArray(filter.filterValue) ? [...filter.filterValue] : []
+        const index = value.indexOf(selected.value);
+        if (index === -1) {
+          value.push(selected.value);
+        } else {
+          value.splice(index, 1);
+        }
         this.$emit('change', {
-          name,
-          value: selected.value
+          value,
+          name: filter.name
         })
       },
-      handleClear(name){
+      handleRemove(filter, removed) {
+        const value = [...filter.filterValue];
+        const indexToRemove = value.indexOf(removed.value);
+        value.splice(indexToRemove, 1);
+        this.$emit('change', {
+          value,
+          name: filter.name
+        })
+      },
+      handleClear(name) {
         this.$emit('change', {
           name,
-          value:null
+          value: null
         })
       },
       handleTextInput(name, value) {
-        console.log(' val is ', value);
         this.$emit('change', {
           name,
           value
@@ -105,22 +122,26 @@
           name: select.name
         })
       },
-      getOptionValue(filter){
-        if(!filter.filterValue){
+      getOptionValue(filter) {
+        if (!filter.filterValue) {
           return undefined
         }
 
-        const optionIndex = filter.options.findIndex(option => option.value == filter.filterValue )
+        let selected = filter.filterValue.reduce((selected,value) => {
+          const index = filter.options.findIndex(option => option.value == value)
+          if (index !== -1) {
+            selected.push(filter.options[index])
+          }
+          return selected;
+        },[]);
 
-        if(optionIndex === -1){
+        if (!selected.length) {
           return undefined
         }
-
-        return {
-          ...filter.options[optionIndex]
-        }
+        return selected
       }
     }
+
   }
 </script>
 

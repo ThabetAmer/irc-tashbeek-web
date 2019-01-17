@@ -26,6 +26,7 @@
       :placeholder="placeholder"
       @input="handleInput"
       @select="handleSelect"
+      @remove="handleRemove"
     >
       <template
         slot="option"
@@ -92,7 +93,7 @@
         }
       },
       multiple: {
-        type: [Boolean, String],
+        type: Boolean,
         default: false
       },
       placeholder: {
@@ -128,6 +129,9 @@
       },
       handleSelect(selectedOption) {
         this.$emit('select', selectedOption);
+      },
+      handleRemove(removedOption) {
+        this.$emit('remove', removedOption);
       }
     }
   }

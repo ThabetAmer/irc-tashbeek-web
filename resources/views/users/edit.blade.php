@@ -6,7 +6,7 @@
     <div class="" id="all-users">
         <user-view
                 :roles="{{$roles->toJson()}}"
-                :user-prop="{{$user->toJson() }}"
+                :user="{{$user->toJson() }}"
         ></user-view>
     </div>
 @endsection

@@ -18,6 +18,8 @@
     <slot name="text">
       button
     </slot>
+
+    <slot name="extra-button" />
   </button>
 </template>
 

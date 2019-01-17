@@ -198,7 +198,6 @@
               {{ 'irc.notes' | trans }}
             </button>
           </li>
-
         </ul>
 
         <Btn
@@ -216,15 +215,15 @@
             v-if="jobOpeningView === 'all'"
             class=""
           >
-            <Screenbox/>
-            <Screenbox/>
+            <Screenbox />
+            <Screenbox />
           </div>
 
           <div
             v-if="jobOpeningView === 'screening'"
             class=""
           >
-            <Screenbox/>
+            <Screenbox />
           </div>
 
           <div

@@ -252,6 +252,9 @@
         starredNote: null
       }
     },
+    computed: {
+        homeUrl: function () { return window.homeUrl; }
+    },
     mounted() {
       this.matchedEndPoint = `api/firms/${this.firm.id}/matches`;
 
@@ -283,9 +286,6 @@
         console.log('Error : ', error);
       });
 
-    },
-    computed: {
-        homeUrl: function () { return window.homeUrl; }
     },
     methods: {
       changeStarredNote(note) {

@@ -13,7 +13,6 @@
         >
           {{ 'irc.export' | trans }}
         </button>
-
       </div>
 
 

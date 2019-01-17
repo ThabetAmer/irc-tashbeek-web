@@ -60028,9 +60028,9 @@ html {
   max-width: calc(80%) !important;
 }
 
-@media only screen and (min-width: 400px) {
+@media only screen and (min-width: 300px) {
   .wrapper.collapsed .body-container {
-    max-width: calc(100% - 50px) !important;
+    max-width: calc(100% - 10px) !important;
   }
 
   .wrapper:not(.collapsed) .body-container {
@@ -60040,7 +60040,17 @@ html {
 
 @media only screen and (min-width: 768px) {
   .wrapper.collapsed .body-container {
-    max-width: calc(100% - 50px) !important;
+    max-width: calc(100% - 90px) !important;
+  }
+
+  .wrapper:not(.collapsed) .body-container {
+    max-width: calc(73%) !important;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .wrapper.collapsed .body-container {
+    max-width: calc(100% - 100px) !important;
   }
 
   .wrapper:not(.collapsed) .body-container {
@@ -60048,23 +60058,13 @@ html {
   }
 }
 
-@media only screen and (min-width: 992px) {
-  .wrapper.collapsed .body-container {
-    max-width: calc(100% - 50px) !important;
-  }
-
-  .wrapper:not(.collapsed) .body-container {
-    max-width: calc(79%) !important;
-  }
-}
-
 @media only screen and (min-width: 1200px) {
   .wrapper.collapsed .body-container {
-    max-width: calc(100% - 50px) !important;
+    max-width: calc(100% - 120px) !important;
   }
 
   .wrapper:not(.collapsed) .body-container {
-    max-width: calc(80%) !important;
+    max-width: calc(78%) !important;
   }
 }
 
@@ -60168,4 +60168,12 @@ html {
 
 [dir] #sidebar.minified .toggle-lang .minifiy-button {
   margin-top: 10px;
+}
+
+@media only screen and (max-width: 500px) {
+  #sidebar.minified {
+    height: 80px;
+    overflow: hidden;
+    opacity: .6;
+  }
 }

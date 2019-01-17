@@ -5,7 +5,7 @@
         <i class=" icon-Right_Arrow_1_1" />
         <a
           :href="homeUrl"
-          class="menu-link no-underline text-sm"
+          class="menu-link no-underline text-xs  lg:text-sm"
         >
           <!--<a>Login</a>-->
           {{ 'irc.dashboard' | trans }}
@@ -18,7 +18,7 @@
         <i class=" icon-Right_Arrow_1_1" />
         <a
           :href="crumb.link ? crumb.link :'javascript:void(0)'"
-          :class="`menu-link no-underline text-sm ${crumb.link ? 'cursor-pointer':'cursor-default'}`"
+          :class="`menu-link no-underline text-xs  lg:text-sm ${crumb.link ? 'cursor-pointer':'cursor-default'}`"
         >
           <!--<a>Login</a>-->
           {{ crumb.name }}

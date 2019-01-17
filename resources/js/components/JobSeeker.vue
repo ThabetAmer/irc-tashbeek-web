@@ -1,6 +1,6 @@
 <template>
-  <div class="flex">
-    <div class="w-1/3 pr-2">
+  <div class="flex flex-wrap">
+    <div class="w-full lg:w-1/3 lg:pr-2">
       <Panel
         custom-class="min-h-900 "
         :has-title="hasTitle"
@@ -130,34 +130,21 @@
         />
       </Panel>
     </div>
-    <div class="w-2/3 px-2">
+    <div class="w-full lg:w-2/3 lg:px-2">
       <Panel
-        custom-class="min-h-900 max-h-900 overflow-y-auto"
+        custom-class="min-h-900 max-h-900 "
         :has-title="hasTitle"
         :title="'irc.job_openings' | trans"
       >
         <ul class="flex list-reset border-0 custom-navs mb-4">
           <li
-            class="flex-inline mr-1"
-            @click="changeJobOpeningview('all')"
-          >
-            <button
-              :class="{active: jobOpeningView === 'all'}"
-              class="nav-link  border-0 py-2 px-4
-                                 rounded-full  no-underline
-                                 text-grey-dark text-sm font-semibold "
-            >
-              {{ 'irc.all' | trans }}
-            </button>
-          </li>
-          <li
-            class="flex-inline mr-1"
+            class="flex-inline"
             @click="changeJobOpeningview('screening')"
           >
             <button
               :class="{active: jobOpeningView === 'screening'}"
-              class="nav-link border-0 no-underline py-2 px-4
-                                                text-grey-dark text-sm font-semibold"
+              class="nav-link border-0 no-underline py-2 px-2 lg:py-2 lg:px-4
+                                                text-grey-dark text-xs lg:text-sm font-semibold"
             >
               {{ 'irc.screening' | trans }}
             </button>
@@ -165,72 +152,70 @@
 
 
           <li
-            class="flex-inline mr-1"
+            class="flex-inline"
             @click="changeJobOpeningview('matched')"
           >
             <button
               :class="{active: jobOpeningView === 'matched'}"
-              class="nav-link border-0 no-underline  py-2 px-4
-                                                text-grey-dark text-sm font-semibold"
+              class="nav-link border-0 no-underline py-2 px-2 lg:py-2 lg:px-4
+                                                text-grey-dark text-xs lg:text-sm font-semibold"
             >
               {{ 'irc.matched' | trans }}
             </button>
           </li>
 
           <li
-            class="flex-inline mr-1"
+            class="flex-inline "
             @click="changeJobOpeningview('candidate')"
           >
             <button
               :class="{active: jobOpeningView === 'candidate'}"
-              class="nav-link border-0 no-underline  py-2 px-4
-                                                text-grey-dark text-sm font-semibold"
+              class="nav-link border-0 no-underline py-2 px-2 lg:py-2 lg:px-4
+                                                text-grey-dark text-xs lg:text-sm font-semibold"
             >
               {{ 'irc.candidates' | trans }}
             </button>
           </li>
 
           <li
-            class="flex-inline mr-1"
+            class="flex-inline"
             @click="changeJobOpeningview('notes')"
           >
             <button
               :class="{active: jobOpeningView === 'notes'}"
-              class="nav-link border-0 no-underline  py-2 px-4
-                        text-grey-dark text-sm font-semibold"
+              class="nav-link border-0 no-underline py-2 px-2 lg:py-2 lg:px-4
+                                                text-grey-dark text-xs lg:text-sm font-semibold"
             >
               {{ 'irc.notes' | trans }}
             </button>
           </li>
-          <li
-            v-if="showAddNote"
-            class="absolute mr-4 pin-r"
-          >
-            <Btn
-              :theme="'success'"
-              :btn-class="'mb-2 text-sm fade in show'"
-              @click="addNoteClick"
-            >
-              <template slot="text">
-                {{ 'irc.add_note' | trans }}
-              </template>
-            </Btn>
-          </li>
+
         </ul>
+
+        <Btn
+          v-if="showAddNote"
+          :theme="'success'"
+          :btn-class="'mb-2 text-sm  absolute mr-4 mt-4 pin-t pin-r'"
+          @click="addNoteClick"
+        >
+          <template slot="text">
+            {{ 'irc.add_note' | trans }}
+          </template>
+        </Btn>
         <div class="tab-content">
           <div
             v-if="jobOpeningView === 'all'"
             class=""
           >
-            <Screenbox />
-            <Screenbox />
+            <Screenbox/>
+            <Screenbox/>
           </div>
 
           <div
             v-if="jobOpeningView === 'screening'"
             class=""
           >
-            <Screenbox />
+            <Screenbox/>
           </div>
 
           <div
@@ -310,7 +295,7 @@
     },
     data() {
       return {
-        jobOpeningView: 'all',
+        jobOpeningView: 'screening',
         showFullNote: false,
         showAddNote: false,
         hasTitle: true,
@@ -333,22 +318,24 @@
 
       getNotes() {
         getNotes('job-seeker', this.jobSeeker.id)
-          .then(({data}) => {
-            this.notes = data.data;
-            this.notes.forEach(note => {
-              if (note.is_starred) {
-                this.starredNote = note;
-              }
-            })
-          }).catch(error => {
-            console.log('Error : ', error);
-          });
+            .then(({data}) => {
+              this.notes = data.data;
+              this.notes.forEach(note => {
+                if (note.is_starred) {
+                  this.starredNote = note;
+                }
+              })
+            }).catch(error => {
+          console.log('Error : ', error);
+        });
       },
       changeJobOpeningview(view) {
         this.$forceUpdate();
         this.jobOpeningView = view;
         if (view === 'notes') {
           this.showAddNote = true;
+        } else {
+          this.showAddNote = false;
         }
       },
       addNoteClick() {
@@ -361,34 +348,38 @@
       addNoteToList(noteText, type) {
 
         addNote('job-seeker', this.jobSeeker.id, {note: noteText, type})
-          .then(resp => {
-            this.notes.push(resp.data.note);
-          }).catch(error => {
-            this.$toasted.show(error.response.data.message, {
+            .then(resp => {
+              this.notes.push(resp.data.note);
+            }).catch(error => {
+          this.$toasted.show(error.response.data.message, {
             icon: 'icon-Error_x40_2xpng_2',
-            className:'toast-error'
+            className: 'toast-error'
           })
         });
 
       },
       changeStarredNote(note) {
         starNote('job-seeker', this.jobSeeker.id, note.id)
-          .then(({data}) => {
+            .then(({data}) => {
 
-            if (data.note.is_starred) {
-              this.starredNote = data.note;
-            }else {
-              this.starredNote = null;
-            }
+              if (data.note.is_starred) {
+                this.starredNote = data.note;
+              } else {
+                this.starredNote = null;
+              }
 
-            this.$toasted.show(data.message, {
-              icon: 'icon-Stars_x40_2xpng_2 mr-2'
+              this.$toasted.show(data.message, {
+                icon: 'icon-Stars_x40_2xpng_2 mr-2'
+              })
+
+              this.notes.forEach(note => {
+                note.is_starred = (data.note.id === note.id) && (data.note.is_starred);
+              })
             })
-
-            this.notes.forEach(note => {
-              note.is_starred = (data.note.id === note.id) && (data.note.is_starred);
-            })
-          });
+            .catch(error => {
+              console.log('Error ', error)
+            });
+        ;
       }
     },
 

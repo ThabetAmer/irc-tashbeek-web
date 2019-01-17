@@ -70,8 +70,5 @@ return [
             'url' => '/storage/uploads',
             'visibility' => 'public',
         ]
-
-
     ],
-
 ];

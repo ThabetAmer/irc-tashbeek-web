@@ -101,5 +101,8 @@ return [
     'notes_has_been' => 'Notes has been ',
     'starred' => 'Starred.',
     'unstarred' => 'Unstarred.',
+    'days_ago' => 'day ago|days ago',
+    'after_n_days' => '{0} today|{1} after :value day|[2,*] after :value days'
+
 
 ];

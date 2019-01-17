@@ -40,10 +40,11 @@ class Followup extends Model
     public function getDueDateAttribute()
     {
         $followupDate = Carbon::parse($this->followup_date);
+        $diffInDays = $followupDate->diffInDays(now());
         if (now()->lt($followupDate)) {
-            return $followupDate->diffInDays(now()) + 1;
+            return trans_choice('irc.after_n_days', $diffInDays + 1, ['value' => $diffInDays + 1]);
         }
-        return 0;
+        return $diffInDays . ' ' . trans_choice('irc.days_ago', $diffInDays);
     }
 
     public function followup()

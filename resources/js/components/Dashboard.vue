@@ -204,7 +204,12 @@
             label: 'Job seeker',
             valueHandler: (row) => row.followup.name
 
-          }
+          },
+          {
+              name: "due_date",
+              label:'Due Date'
+
+          },
         ],
         loading: false,
         viewType: 'calendar',

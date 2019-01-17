@@ -44,8 +44,8 @@ so you need execute the commands in the following order to avoid producing broke
 ```* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1```
 
 You can edit the Schedules from
-* ```app/Console/Kernel.php```
 
+* ```app/Console/Kernel.php```
 * [Laravel Docs](https://laravel.com/docs/5.7/scheduling#defining-schedules)
  
  

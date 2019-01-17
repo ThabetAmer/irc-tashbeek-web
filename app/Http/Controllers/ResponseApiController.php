@@ -35,6 +35,7 @@ class ResponseApiController extends Controller
         if (request('export')) {
             return export(CaseExport::class, $caseType . '_' . now()->format('Y:m:d'), $collection);
         }
+
         return $collection;
     }
 

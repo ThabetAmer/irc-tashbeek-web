@@ -60125,3 +60125,9 @@ html {
           transform: scaleX(-1);
   display: inline-block;
 }
+
+[dir=rtl] .fa-chevron-right,
+[dir=rtl] .fa-chevron-left {
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+}

@@ -4,5 +4,5 @@
     <breadcrumbs
             :crumbs="[{name:'{{trans('irc.all_job_seekers')}}', link:'{{route('job-seekers')}}'},{name:'{{$jobSeeker->displayName()}}', link:''}]"
     ></breadcrumbs>
-    <job-seeker :job-seeker="{{$jobSeeker->toJson()}}"></job-seeker>
+    <job-seeker :job-seeker="{{ json_encode(case_resource('job-seeker',$jobSeeker)->toArray(request())) }}"></job-seeker>
 @endsection

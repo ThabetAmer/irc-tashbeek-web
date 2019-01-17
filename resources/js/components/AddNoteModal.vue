@@ -30,7 +30,7 @@
         :options="SelectOptions"
         track-by="name"
         :placeholder="'irc.type_of_followup' | trans"
-        custom-class="w-1/2 bg-grey-lighter note-select"
+        custom-class="w-full md:w-1/2 bg-grey-lighter note-select"
         @select="handleSelect"
       />
 

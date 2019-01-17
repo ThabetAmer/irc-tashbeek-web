@@ -128,7 +128,7 @@
         </div>
       </div>
     </div>
-    <div class="sm:w-full xl:w-1/3">
+    <div class="w-full sm:w-full xl:w-1/3">
       <Panel
         :title="`irc.recent_activity` | trans"
         custom-class=" pl-6 xl:pr-2   min-h-900"

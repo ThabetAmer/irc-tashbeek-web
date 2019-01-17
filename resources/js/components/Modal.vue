@@ -7,7 +7,6 @@
       <div class="modal-wrapper">
         <div
           :class="`modal-container pl-12 relative rounded ${customClass}` "
-          :style="{width:width}"
         >
           <a
             href="javascript:void(0)"
@@ -16,7 +15,7 @@
             <i
               class="icon-X_x40_2xpng_2
                         absolute text-grey-dark
-                        text-xl mt-6 ml-4 pin-t pin-l"
+                        text-md mt-3 ml-2 md:text-xl md:mt-6 md:ml-4 pin-t pin-l"
             />
           </a>
           <div

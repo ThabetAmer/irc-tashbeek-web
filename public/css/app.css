@@ -58813,6 +58813,36 @@ be a descendant of the grid when it is being dragged.
                   transform: scale(1.1);
 }
 
+@media only screen and (min-width: 300px) {
+  .modal-container {
+    width: 90%;
+  }
+  [dir] .modal-container {
+    padding: 1.5rem 2rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .modal-container {
+    width: 75%;
+  }
+  [dir] .modal-container {
+    padding: 1.5rem 4rem;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .modal-container {
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .modal-container {
+    width: 50%;
+  }
+}
+
 #sidebar {
   /* don't forget to add all the previously mentioned styles here too */
   color: #fff;

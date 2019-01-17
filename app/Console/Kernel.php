@@ -24,8 +24,21 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+         $schedule->command('sync:structure')->weekends();
+
+         $schedule->command('sync:users')->dailyAt('16:00');
+
+         $schedule->command('sync:data job-seeker')->dailyAt('17:00');
+
+         $schedule->command('sync:data firm')->dailyAt('17:00');
+
+         $schedule->command('sync:data job-opening')->dailyAt('17:03');
+
+         $schedule->command('sync:data match')->dailyAt('17:06');
+
+         $schedule->command('sync:activities job-seeker-monthly-followup')->dailyAt('17:10');
+
+         $schedule->command('sync:activities firm-monthly-followup')->dailyAt('17:10');
     }
 
     /**

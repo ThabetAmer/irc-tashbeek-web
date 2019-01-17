@@ -34,7 +34,9 @@
               <span
                 v-if="jobSeeker.nationality && jobSeeker.gender"
                 class="mx-1"
-              >•</span>
+              >
+                •
+              </span>
 
               <span
                 v-if="jobSeeker.gender"
@@ -46,7 +48,9 @@
               <span
                 v-if="jobSeeker.gender && jobSeeker.age"
                 class="mx-1"
-              >•</span>
+              >
+                •
+              </span>
 
               <span
                 v-if="jobSeeker.age"

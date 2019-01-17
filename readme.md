@@ -30,12 +30,24 @@ On project root directory run the following commands:
  * `php artisan sync:activities {job-seeker-monthly-followup|firm-monthly-followup}`
  
 ## Data Sync Priorities
- some cases must be synced before others due to relationship between these cases and it must be exists on the database to ensure data are appearing on system.
+executing sync commands manually may results to sync data with missing required fields 
+so you need execute the commands in the following order to avoid producing broken relationships.
  
  * users
  * job-seeker
  * job-opening
  * match
  * activities
+ 
+ 
+## Sync Cron Jobs
+```* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1```
+
+You can edit the Schedules from
+* ```app/Console/Kernel.php```
+
+* [Laravel Docs](https://laravel.com/docs/5.7/scheduling#defining-schedules)
+ 
+ 
  
  

@@ -79,7 +79,10 @@ class CaseDataResource extends ResourceCollection
             'headers' => $headers,
             'filters' => $filters,
             'columns' => $columns,
-            'sorting' => $this->getSorting($request, $properties)
+            'sorting' => $this->getSorting($request, $properties),
+            'permissions' => [
+                'notes' => $this->canAddNotes($request),
+            ]
         ];
     }
 
@@ -123,6 +126,15 @@ class CaseDataResource extends ResourceCollection
         }
 
         return $columns;
+    }
+
+    protected function canAddNotes($request)
+    {
+        try{
+            return $request->user()->hasPermissionTo("notes.{$this->caseType}");
+        }catch (\Throwable $e){
+            return false;
+        }
     }
 
 }

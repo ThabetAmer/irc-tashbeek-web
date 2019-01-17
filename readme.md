@@ -48,6 +48,6 @@ You can edit the Schedules from
 * ```app/Console/Kernel.php```
 * [Laravel Docs](https://laravel.com/docs/5.7/scheduling#defining-schedules)
  
- 
+  
  
  

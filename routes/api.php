@@ -32,11 +32,9 @@ Route::group([
 
     Route::get('recent-activities', 'RecentActivitiesController@index')->name('api.recent-activities');
 
-    Route::resource('users', 'UserController');
+    Route::resource('users', 'UserController')->middleware(['permission:users_management']);
 
-    Route::resource('users', 'UserController');
-
-    Route::group(['prefix' => 'users'], function () {
+    Route::group(['prefix' => 'users', 'middleware' => ['permission:users_management']], function () {
         Route::post('{user}/activate', 'UserController@activate');
         Route::post('{user}/deactivate', 'UserController@deactivate');
     });

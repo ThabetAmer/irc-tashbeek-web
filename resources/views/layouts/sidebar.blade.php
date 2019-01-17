@@ -58,7 +58,7 @@
                 </a>
             </li>
         @endif
-
+        @if(\Auth::user()->hasPermissionTo('users_management'))
         <li class="uppercase  text-white {{  request()->is('*users*') ?'active' :''}}">
             <a href="{{route('users')}}"
                class="text-white flex items-center  text-sm remove-text-minified py-4 relative mb-3">
@@ -66,6 +66,7 @@
                 <span class="sm:text-xs xl:text-base hide-min">{{__('irc.users')}}</span>
             </a>
         </li>
+        @endif
 
 
         <li class="uppercase  text-white">

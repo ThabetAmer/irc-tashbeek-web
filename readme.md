@@ -40,7 +40,7 @@ so you need execute the commands in the following order to avoid producing broke
  * activities
  
  
-## Sync Cron Jobs
+## Cron Jobs
 ```* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1```
 
 You can edit the Schedules from

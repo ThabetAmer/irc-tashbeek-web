@@ -25,8 +25,7 @@ class FollowUpCard extends Card
         switch ($this->method) {
             case 'count':
             default:
-                return $query->ofType($this->for)->count();
-
+                return $query->ofType($this->for)->currentUser()->count();
         }
     }
 

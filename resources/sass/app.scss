@@ -355,7 +355,7 @@ table.scrollable-fixed-header {
   width: 100%;
 
   thead, tbody, tr, td, th {
-    display: block;
+    //display: block;
   }
 
   tr:after {
@@ -367,11 +367,6 @@ table.scrollable-fixed-header {
 
   thead {
     /* fallback */
-  }
-
-  tbody td, thead th {
-    width: 19.2%;
-    float: left;
   }
 }
 

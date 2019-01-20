@@ -15,6 +15,8 @@ class JobOpeningMatchController extends Controller
     {
         abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
 
+        $jobOpening->load('firm');
+
         return view('job-opening.match', compact('jobOpening'));
     }
 

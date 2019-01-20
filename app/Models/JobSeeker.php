@@ -54,7 +54,12 @@ class JobSeeker extends Model implements SyncableInterface
             $clause->where('matches.job_opening_id', $jobOpeningId);
         });
 
-        $builder->addSelect('matches.is_candidate');
+
+        if(!$builder->getQuery()->columns || !count($builder->getQuery()->columns)){
+            $builder->select($this->getTable().'.*');
+        }
+
+        $builder->addSelect('matches.status as match_status');
     }
 
     public function basicInfo()

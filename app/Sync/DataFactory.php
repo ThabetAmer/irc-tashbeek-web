@@ -78,13 +78,17 @@ class DataFactory
      */
     protected function saveItem($caseObject, $case)
     {
+        if(!$caseObject->canSave($case)){
+            return ;
+        }
+
         if($this->removeClosedCase($case, $caseObject)){
             return ;
         }
 
         $data = $this->getCaseFields($caseObject, $case);
 
-        $model = $caseObject->model()::updateOrCreate(array_only($data, 'commcare_id'), $data);
+        $model = $caseObject->model()::updateOrCreate($caseObject->savingKeys($data), $data);
 
         $this->scheduleFollowups($model);
     }

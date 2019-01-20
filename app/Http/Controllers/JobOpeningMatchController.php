@@ -32,6 +32,8 @@ class JobOpeningMatchController extends Controller
 
         $query->sort($sortableCase);
 
+        $query->withCandidateInJobOpening($jobOpening->id);
+
         $results = $query->paginate(50);
 
         $collection = case_resource_collection($caseType, $results, $caseType);

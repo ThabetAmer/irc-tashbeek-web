@@ -95,5 +95,12 @@ return [
     'user_activated' => 'تم تفعيل المستخدم بنجاح.',
     'user_deactivated' => 'تم تعطيل المستخدم بنجاح',
     'export' => 'تحميل إكسل',
-    'no_date_selected' => 'لم يتم تحديد تاريخ معين'
+    'no_date_selected' => 'لم يتم تحديد تاريخ معين',
+
+
+    'notes_created_successfully' => 'تم اضافة الملاحظة بنجاح',
+    'cannot_find_case_type' => 'Cannot find this case type',
+    'notes_has_been_starred' => 'تم تعين ملاحظة مميزة',
+    'notes_has_been_unstarred' => 'تم الالغاء',
+
 ];

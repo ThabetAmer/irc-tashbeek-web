@@ -75,7 +75,7 @@ class CaseNotesController extends Controller
             'is_starred' => $isStar
         ]);
 
-        $message = trans('irc.notes_has_been') . ($isStar?trans('irc.starred'):trans('irc.unstarred') );
+        $message = ($isStar?trans('irc.notes_has_been_starred'):trans('irc.notes_has_been_unstarred') );
 
         return response()->json([
             'message' => $message,

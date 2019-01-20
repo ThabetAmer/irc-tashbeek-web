@@ -99,23 +99,23 @@ if (!function_exists('withCount')) {
 if (!function_exists('trans_commcare')) {
     function trans_commcare($options, $default = null, $locale = null)
     {
-        if(!$locale){
+        if (!$locale) {
             $locale = \App::getLocale();
         }
 
-        if(array_has($options,$locale)){
+        if (array_has($options, $locale)) {
             return $options[$locale];
         }
 
         $alias = config('laravellocalization.supportedLocales.' . $locale . '.' . 'alias');
 
-        if(array_has($options,$alias)){
+        if (array_has($options, $alias)) {
             return $options[$alias];
         }
 
         $fallbackLocale = config('app.fallback_locale');
 
-        if(array_has($options,$fallbackLocale)){
+        if (array_has($options, $fallbackLocale)) {
             return $options[$fallbackLocale];
         }
 
@@ -124,27 +124,28 @@ if (!function_exists('trans_commcare')) {
 }
 
 if (!function_exists('switch_url')) {
-    function switch_url($html = false){
+    function switch_url($html = false)
+    {
 
         $locale = \App::getLocale();
 
         $locales = [];
 
-        foreach(config('laravellocalization.supportedLocales') as $key => $value){
-            if($locale !== $key){
-                $locales[] = array_merge($value,['locale_key' => $key]);
+        foreach (config('laravellocalization.supportedLocales') as $key => $value) {
+            if ($locale !== $key) {
+                $locales[] = array_merge($value, ['locale_key' => $key]);
             }
         }
 
-        if(!count($locales)){
-            return ;
+        if (!count($locales)) {
+            return;
         }
 
         $first = reset($locales);
 
         $url = \LaravelLocalization::getLocalizedURL($first['locale_key']);
 
-        if(!$html){
+        if (!$html) {
             return $url;
         }
 
@@ -168,3 +169,51 @@ if (!function_exists('export')) {
         return $class->apply();
     }
 }
+
+
+if (!function_exists('map_options')) {
+    function map_options($data, $model)
+    {
+        $fields = app(\App\Repositories\PropertyMetaData\PropertyMetaDataRepositoryInterface::class)->typeIs(case_type($model));
+
+        $optionsRepository = app(\App\Repositories\PropertyOption\PropertyOptionRepositoryInterface::class);
+
+        foreach ($data as $key => $value) {
+
+            if (empty($value) && (string)$value !== "0") {
+                continue;
+            }
+
+            $field = $fields->where('column_name', $key)->first();
+
+
+            if (!$field) {
+                continue;
+            }
+
+
+            if ($field->type() !== 'select') {
+                continue;
+            }
+
+
+            $option = $optionsRepository->CommCareAndPropertyIs($value, $field->id);
+
+            if (!$option) {
+                continue;
+            }
+
+            $name = $option->name();
+
+            if (empty(trim($name))) {
+                continue;
+            }
+
+            $data[$key] = $name;
+        }
+
+        return $data;
+    }
+}
+
+

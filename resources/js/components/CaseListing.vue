@@ -3,21 +3,25 @@
     <Panel
       custom-class=""
     >
-      <slot name="header" />
+      <slot name="header"/>
 
-      <div class="text-right">
-        <button
-          class="bg-transparent pr-2 hover:bg-blue text-xs lg:text-sm text-blue-dark font-semibold hover:text-white
-        py-2 px-2 border rounded-full border-blue hover:border-transparent rounded mb-3"
+      <div class="flex justify-end">
+        <Btn
+          btn-class="bg-transparent pr-2 hover:bg-grey-lightest flex items-center text-xs lg:text-sm text-blue-dark font-semibold
+          py-2 px-2 border rounded-full border-blue rounded mb-3"
+          :loading="exportLoading"
+          :disabled="exportLoading"
+          v-if="exportAllowed"
           @click="exportData"
         >
-          {{ 'irc.export' | trans }}
-        </button>
+          <span slot="extra-button" class="mr-2"><img width="15" src="../../img/excel_icon.svg" alt=""></span>
+          <span slot="text"> {{ 'irc.export' | trans }}</span>
+        </Btn>
       </div>
 
 
       <Filters
-        v-if="filters.length > 0 && hasFilters"
+        v-if="hasFilters && filters.length > 0"
         :filters="filters"
         :user-filters="userFilters"
         @change="filterChange($event, loadData)"
@@ -81,12 +85,12 @@
             class="flex-1 text-xl  text-green-dark"
             @click="viewNotes(row.id)"
           >
-            <i class="icon-Page_1_x40_2xpng_2" />
+            <i class="icon-Page_1_x40_2xpng_2"/>
           </button>
         </td>
       </Datatable>
 
-      <PageLoader v-else />
+      <PageLoader v-else/>
     </Panel>
 
     <ViewNoteModal
@@ -118,6 +122,10 @@
         type: String,
         default: ""
       },
+      exportAllowed: {
+        type: Boolean,
+        default: true
+      },
       changeUrl: {
         type: Boolean,
         default: true
@@ -134,7 +142,8 @@
         loading: false,
         rows: [],
         headers: [],
-        permissions:{}
+        permissions: {},
+        exportLoading: false
       }
     },
     mounted() {
@@ -168,7 +177,7 @@
         let apiResponse = this.apiRequest(params);
 
         return apiResponse.then(({data}) => {
-          if(this.changeUrl){
+          if (this.changeUrl) {
             this.changeUrlUsingParams(params);
           }
           this.rows = data.data;
@@ -178,7 +187,7 @@
           this.headers = data.headers;
           this.filters = data.filters;
           this.sorting = data.sorting;
-          if (this.userFilters.length === 0) {
+          if (this.userFilters.length === 0 && this.hasFilters) {
             this.userFilters = this.initialUserFilters(data.filters.slice(0, 3), filters);
           }
           this.pagination = {
@@ -204,13 +213,17 @@
         history.pushState({}, document.title, url);
       },
       exportData() {
-        exportDatByUrl(this.type,{
-            filters: {
-                ...this.userFiltersToParams(),
-            },
-            export: true,
-            paginate: "false"
-        }).then(exportDataHelper.exportCallback)
+        this.exportLoading = true;
+        exportDatByUrl(this.type, {
+          filters: {
+            ...this.userFiltersToParams(),
+          },
+          export: true,
+          paginate: "false"
+        }).then(resp => {
+          this.exportLoading = false;
+          exportDataHelper.exportCallback(resp)
+        })
       },
       viewNotes(caseId) {
         this.showNotesModal = true;
@@ -220,7 +233,8 @@
         this.showNotesModal = false;
 
       },
-      apiRequest(params = {}){
+      apiRequest(params = {}) {
+        console.log(' end point is ', this.endpoint)
         if (this.endPoint.trim() !== "") {
           return getListingByUrl(this.endPoint, params)
         } else {

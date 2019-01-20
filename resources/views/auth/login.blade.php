@@ -3,7 +3,7 @@
 @section('content')
     <div class="w-full max-w-24 mx-auto">
         <div class="image-top">
-            <div class=" p-4 rounded-t  " style="background: rgba(64, 94, 128, 1);">
+            <div class=" p-4 rounded-t text-center " style="background: rgba(64, 94, 128, 1);">
                 <img style="height: 140px;" src="{{ asset('img/logo_big.png') }}" alt="">
             </div>
         </div>
@@ -11,7 +11,7 @@
             @csrf
             <div class="mb-4">
                 <label class="block text-grey-darker text-sm font-bold mb-2" for="username">
-                    Username
+                    Email
                 </label>
                 <input id="email" type="email" style=""
                        class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline{{ $errors->has('email') ? ' border-red is-invalid' : '' }}"

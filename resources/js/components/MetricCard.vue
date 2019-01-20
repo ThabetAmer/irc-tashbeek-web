@@ -12,7 +12,7 @@
                         w-1/3 border-green-dark
                         text-left border-solid
                         font-bold border-b-4
-                        text-2xl"
+                        text-xl"
       >
         {{ value }}
       </div>
@@ -20,7 +20,7 @@
       <div
         class="text text-black
                         text-left font-bold
-                        sm:text-xs hd:text-sm mt-2 uppercase"
+                        text-xs mt-2 uppercase"
       >
         {{ label }}
       </div>
@@ -53,7 +53,7 @@
         },
         computed:{
             iconClasses(){
-                return classNames([this.iconClass,'text-2xl',
+                return classNames([this.iconClass,'text-xl',
                     'text-green-dark' ]);
             }
         }

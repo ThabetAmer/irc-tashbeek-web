@@ -68,4 +68,5 @@ class JobSeeker extends Model implements SyncableInterface
             $this
         );
     }
+
 }

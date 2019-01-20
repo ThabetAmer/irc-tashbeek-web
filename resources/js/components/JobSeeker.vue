@@ -125,8 +125,8 @@
         <Notebox
           v-if="starredNote"
           :body="starredNote.note"
-          :date="starredNote.date"
-          :author="starredNote.author"
+          :date="starredNote.created_at_text"
+          :author="starredNote.user.name"
           :show-star="false"
           :show-creator-details="false"
           custom-class="border-none pl-0"

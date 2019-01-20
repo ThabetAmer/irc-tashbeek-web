@@ -98,6 +98,9 @@
       v-else
       custom-class="min-h-200 text-lg mb-4"
     />
+    <div class=" text-xs my-3 pl-2" v-if="rows.length > 0">
+      Viewing {{rows.length}} out of {{pagination.total}}
+    </div>
     <Pagination
       v-if="pagination.lastPage > 1"
       :total-pages="pagination.lastPage"
@@ -158,7 +161,6 @@
         default: () => []
       }
     },
-
     mounted(){
       console.log(
         this.$scopedSlots

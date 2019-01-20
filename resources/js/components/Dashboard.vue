@@ -5,7 +5,7 @@
         <div
           v-for="card in cards"
           :key="card.label + card.value"
-          class="lg:pr-2 w-full sm:w-full lg:w-1/2 qhd:w-1/3"
+          class="lg:pr-2 w-full sm:w-full lg:w-1/3 qhd:w-1/3"
         >
           <Component
             :is="card.component"

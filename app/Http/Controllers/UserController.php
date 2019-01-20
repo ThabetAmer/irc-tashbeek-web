@@ -14,8 +14,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = app(UsersList::class)->get([], $this->perPage());
-        return UserResource::collection($users);
+        $users = app(UsersList::class)->get($this->perPage());
+        return (new UserResource($users));
     }
 
     public function edit(User $user)

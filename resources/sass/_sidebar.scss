@@ -141,9 +141,10 @@
   }
 
   .wrapper:not(.collapsed) {
-    .body-container {
+    .body-container:not(.login) {
       max-width: calc(95%) !important;
       padding-left: 16.5rem;
+
     }
 
   }
@@ -194,7 +195,7 @@
 
 @media (min-width: 992px) {
   .wrapper:not(.collapsed) {
-    .body-container {
+    .body-container:not(.login) {
       max-width: calc(98%) !important;
       padding-left: 16.5rem;
     }

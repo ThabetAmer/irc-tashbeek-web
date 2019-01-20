@@ -3,7 +3,7 @@
     <Panel
       custom-class=""
     >
-      <div class="text-right">
+      <div class="text-right mb-3">
         <Btn
           theme="success"
           @click="addUser"

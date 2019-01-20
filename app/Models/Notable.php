@@ -11,6 +11,7 @@ trait Notable
     {
         return $this->notes()->create([
             'note' => $data['note'],
+            'type' => $data['type'],
             'user_id' => $data['user_id'] ?? auth()->id()
         ]);
     }

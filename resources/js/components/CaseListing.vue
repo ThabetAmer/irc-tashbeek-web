@@ -166,13 +166,7 @@
         };
         this.loading = true
 
-        let apiResponse;
-
-        if (this.endPoint.trim() !== "") {
-          apiResponse = getListingByUrl(this.endPoint, params)
-        } else {
-          apiResponse = getListing(this.type, params)
-        }
+        let apiResponse = this.apiRequest(params);
 
         return apiResponse.then(({data}) => {
           if(this.changeUrl){
@@ -212,11 +206,11 @@
       },
       exportData() {
         exportDatByUrl(this.type,{
-          filters: {
-            ...this.userFiltersToParams(),
-          },
-          export: true,
-          paginate: "false"
+            filters: {
+                ...this.userFiltersToParams(),
+            },
+            export: true,
+            paginate: "false"
         }).then(exportDataHelper.exportCallback)
       },
       viewNotes(caseId) {
@@ -227,7 +221,13 @@
         this.showNotesModal = false;
 
       },
-
+      apiRequest(params = {}){
+        if (this.endPoint.trim() !== "") {
+          return getListingByUrl(this.endPoint, params)
+        } else {
+          return getListing(this.type, params)
+        }
+      }
     }
   }
 </script>

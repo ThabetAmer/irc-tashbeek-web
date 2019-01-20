@@ -355,7 +355,7 @@
       },
       addNoteToList(noteText, type) {
 
-        addNote('job-seeker', this.jobSeeker.id, {note: noteText, type})
+        addNote('job-seeker', this.jobSeeker.id, {note: noteText, type: type ? type.name : ''})
             .then(resp => {
               this.notes.push(resp.data.note);
             }).catch(error => {

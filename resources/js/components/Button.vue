@@ -19,7 +19,7 @@
       v-if="loading"
       class="mr-2"
     >
-      <spinner size="xs" />
+      <Spinner size="xs" />
     </span>
 
     <slot name="text">

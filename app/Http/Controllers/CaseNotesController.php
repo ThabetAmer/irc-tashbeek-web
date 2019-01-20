@@ -33,6 +33,7 @@ class CaseNotesController extends Controller
 
         $note = $record->addNote([
             'note' => request('note'),
+            'type' => request('type'),
             'user_id' => auth()->id()
         ]);
 
@@ -59,16 +60,14 @@ class CaseNotesController extends Controller
 
         $note = $record->notes()->find($noteId);
 
+        abort_unless($note, 404);
+
         $isStar = !$note->is_starred;
 
         if($isStar){
             $record->notes()->update([
                 'is_starred' => false
             ]);
-        }
-
-        if(!$note){
-            abort(404);
         }
 
         $note->update([

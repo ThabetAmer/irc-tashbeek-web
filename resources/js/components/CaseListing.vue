@@ -11,6 +11,7 @@
           py-2 px-2 border rounded-full border-blue rounded mb-3"
           :loading="exportLoading"
           :disabled="exportLoading"
+          v-if="exportAllowed"
           @click="exportData"
         >
           <span slot="extra-button" class="mr-2"><img width="15" src="../../img/excel_icon.svg" alt=""></span>
@@ -120,6 +121,10 @@
       endPoint: {
         type: String,
         default: ""
+      },
+      exportAllowed: {
+        type: Boolean,
+        default: true
       },
       changeUrl: {
         type: Boolean,

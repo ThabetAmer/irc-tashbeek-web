@@ -1,9 +1,13 @@
 <template>
   <div>
-    <Panel
-      custom-class=""
+    <case-listing
+      :end-point="usersEndPoint"
+      :change-url="false"
+      :export-allowed="false"
+      :has-filters="true"
+      type="firm"
     >
-      <div class="text-right mb-3">
+      <div slot="header" class="text-right mb-3">
         <Btn
           theme="success"
           @click="addUser"
@@ -17,70 +21,47 @@
           </div>
         </Btn>
       </div>
-      <case-listing
-        :end-point="usersEndPoint"
-        :change-url="false"
-        :has-filters="false"
-        type="firm"
 
-      ></case-listing>
-
-      <!--<Filters-->
-      <!--v-if="filters.length > 0"-->
-      <!--:filters="filters"-->
-      <!--:user-filters="userFilters"-->
-      <!--@change="filterChange($event, loadData)"-->
-      <!--@filterSelect="filterSelect($event, loadData)"-->
-      <!--/>-->
-      <Datatable
-        v-if="!loading"
-        :header="headers"
-        :rows="rows"
-        :pagination="pagination"
-        @pagechanged="loadData({page: $event})"
-        @perPage="loadData({perPage: $event})"
+      <template
+        slot="end-td"
+        slot-scope="{row}"
       >
-        <td
-          slot="extra"
-          slot-scope="{row}"
+        <button
+          v-tooltip="{placement: 'top',content:$options.filters.trans('irc.view'),classes:['tooltip-datatable']}"
+          class="flex-1 text-xl mr-1 text-green-dark"
+          @click="viewAccount(row)"
         >
-          <button
-            v-tooltip="{placement: 'top',content:$options.filters.trans('irc.view'),classes:['tooltip-datatable']}"
-            class="flex-1 text-xl mr-1 text-green-dark"
-            @click="viewAccount(row)"
-          >
-            <i class="icon-Eye_x40_2xpng_2" />
-          </button>
+          <i class="icon-Eye_x40_2xpng_2" />
+        </button>
 
-          <button
-            v-tooltip="{placement: 'top',content:$options.filters.trans('irc.edit'),classes:['tooltip-datatable']}"
-            class="flex-1 text-xl mr-1 text-green-dark"
-            @click="editAccount(row)"
-          >
-            <i class="icon-Pencil_x40_2xpng_2" />
-          </button>
+        <button
+          v-tooltip="{placement: 'top',content:$options.filters.trans('irc.edit'),classes:['tooltip-datatable']}"
+          class="flex-1 text-xl mr-1 text-green-dark"
+          @click="editAccount(row)"
+        >
+          <i class="icon-Pencil_x40_2xpng_2" />
+        </button>
 
-          <button
-            v-if="row.status ==='activated'"
-            v-tooltip="{placement: 'top',content:$options.filters.trans('irc.deactivate'),classes:['tooltip-datatable']}"
-            class="flex-1 text-xl  text-green-dark"
-            @click="deActivateUser(row)"
-          >
-            <i class="icon-Lock_x40_2xpng_2" />
-          </button>
+        <button
+          v-if="row.status ==='activated'"
+          v-tooltip="{placement: 'top',content:$options.filters.trans('irc.deactivate'),classes:['tooltip-datatable']}"
+          class="flex-1 text-xl  text-green-dark"
+          @click="deActivateUser(row)"
+        >
+          <i class="icon-Lock_x40_2xpng_2" />
+        </button>
 
-          <button
-            v-else
-            v-tooltip="{placement: 'top',content: $options.filters.trans('irc.activate') ,classes:['tooltip-datatable']}"
-            class="flex-1 text-xl  text-green-dark"
-            @click="reActivateUser(row)"
-          >
-            <i class="icon-Unlock_x40_2xpng_2" />
-          </button>
-        </td>
-      </Datatable>
-      <PageLoader v-else />
-    </Panel>
+        <button
+          v-else
+          v-tooltip="{placement: 'top',content: $options.filters.trans('irc.activate') ,classes:['tooltip-datatable']}"
+          class="flex-1 text-xl  text-green-dark"
+          @click="reActivateUser(row)"
+        >
+          <i class="icon-Unlock_x40_2xpng_2" />
+        </button>
+      </template>
+    </case-listing>
+
   </div>
 </template>
 

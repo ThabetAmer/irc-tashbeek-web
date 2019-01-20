@@ -5,7 +5,7 @@
         <div
           v-for="card in cards"
           :key="card.label + card.value"
-          class="lg:pr-2 sm:w-full lg:w-1/2 qhd:w-1/3"
+          class="lg:pr-2 w-full sm:w-full lg:w-1/2 qhd:w-1/3"
         >
           <Component
             :is="card.component"
@@ -128,10 +128,10 @@
         </div>
       </div>
     </div>
-    <div class="sm:w-full xl:w-1/3">
+    <div class="w-full sm:w-full xl:w-1/3">
       <Panel
         :title="`irc.recent_activity` | trans"
-        custom-class=" pl-6 pr-2   min-h-900"
+        custom-class=" pl-6 xl:pr-2   min-h-900"
       >
         <div class="days-container max-h-800 overflow-y-auto">
           <div

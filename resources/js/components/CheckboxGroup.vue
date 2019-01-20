@@ -12,6 +12,7 @@
       v-for="checkbox in checkboxes"
       :key="checkbox.value"
       :label="checkbox.label"
+      label-class="pt-1"
       :check-id="checkbox.value"
       :checked="checkbox.checked"
       :disabled="disabled"

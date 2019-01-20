@@ -5,12 +5,15 @@
     >
       <slot name="header" />
 
-      <button
-        class="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded float-right"
-        @click="exportData"
-      >
-        {{ 'irc.export' | trans }}
-      </button>
+      <div class="text-right">
+        <button
+          class="bg-transparent pr-2 hover:bg-blue text-xs lg:text-sm text-blue-dark font-semibold hover:text-white
+        py-2 px-2 border border-blue hover:border-transparent rounded mb-3"
+          @click="exportData"
+        >
+          {{ 'irc.export' | trans }}
+        </button>
+      </div>
 
 
       <Filters

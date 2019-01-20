@@ -4,21 +4,21 @@
       custom-class=""
       :title="name"
     >
-      <Btn
+      <a
         v-if="viewOnly && !showEdit"
-        class="m-3 absolute pin-r pin-t"
-        theme="default"
-        @click="enableFields"
+        :href="`${homeUrl}/users/${user.id}/edit`"
+        class="m-3 absolute pin-r pin-t text-xs lg:text-sm rounded-full py-2 px-4 bg-white border no-underline
+        border-grey-light hover:bg-grey-lightest text-grey-darkest"
       >
         <div slot="text">
           <i class="icon-Pencil_x40_2xpng_2 mr-2" />
           {{ 'irc.edit_user' | trans }}
         </div>
-      </Btn>
+      </a>
       <div class="w-full flex-wrap flex mb-10">
-        <div class="sm:w-full lg:w-1/3 hd:w-1/5 pt-5 pl-5">
+        <div class="w-full sm:w-full lg:w-1/3 hd:w-1/5 pt-5 pl-5">
           <Avatar
-            class="sm:mx-auto"
+            class="mx-auto sm:mx-auto"
             :src="profileImagePreview"
             :size="150"
             :username="userData && userData.name ? userData.name : 'New User'"
@@ -26,7 +26,7 @@
           <Transition name="fade">
             <div
               v-if="showEdit"
-              class="sm:mx-auto w-150 mt-5 sm:mb-5 text-center"
+              class="mx-auto sm:mx-auto w-150 mt-5 sm:mb-5 text-center"
             >
               <span
                 class=" rounded-full cursor-pointer inline-block overflow-hidden rounded   border border-grey-light py-2 px-4 "
@@ -219,7 +219,8 @@
         checkboxes: [],
         availableRoles: [],
         selectedRoles: [],
-        create: true
+        create: true,
+        homeUrl: window.homeUrl
       }
     },
     computed: {

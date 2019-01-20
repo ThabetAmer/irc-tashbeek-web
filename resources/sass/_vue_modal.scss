@@ -26,10 +26,11 @@
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.modal-header{
+.modal-header {
   border: none !important;
 
 }
+
 .modal-header h3 {
   margin-top: 0;
   //color: #42b983;
@@ -60,7 +61,7 @@
   opacity: 0;
 }
 
-.modal-footer{
+.modal-footer {
   border: none !important;
 }
 
@@ -68,4 +69,32 @@
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+@media only screen and (min-width: 300px) {
+  .modal-container {
+    width: 90%;
+    padding: 1.5rem 2rem;
+
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .modal-container {
+    width: 75%;
+    padding: 1.5rem 4rem;
+
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .modal-container {
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .modal-container {
+    width: 50%;
+  }
 }

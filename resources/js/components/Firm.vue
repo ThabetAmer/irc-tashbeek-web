@@ -1,6 +1,6 @@
 <template>
-  <div class="flex">
-    <div class="w-1/3 pr-2">
+  <div class="flex flex-wrap">
+    <div class="w-full lg:w-1/3 lg:pr-2">
       <Panel
         custom-class="min-h-642"
         :has-title="hasTitle"
@@ -102,7 +102,7 @@
         />
       </Panel>
     </div>
-    <div class="w-2/3 px-2">
+    <div class="w-full lg:w-2/3 lg:px-2">
       <Panel
         :has-title="hasTitle"
         custom-class="max-h-600 overflow-y-auto"
@@ -195,6 +195,7 @@
             :date="note.created_at_text"
             :author="note.user.name"
             :body="note.note"
+            :is-starred="note.is_starred"
             @noteStarred="changeStarredNote"
           />
         </div>
@@ -237,7 +238,7 @@
     },
     data() {
       return {
-        notesLoading:true,
+        notesLoading: true,
         showAddModalNote: false,
         viewType: 'current',
         hasTitle: true,
@@ -250,6 +251,9 @@
         notes: [],
         starredNote: null
       }
+    },
+    computed: {
+        homeUrl: function () { return window.homeUrl; }
     },
     mounted() {
       this.matchedEndPoint = `api/firms/${this.firm.id}/matches`;
@@ -283,30 +287,31 @@
       });
 
     },
-    computed: {
-        homeUrl: function () { return window.homeUrl; }
-    },
     methods: {
       changeStarredNote(note) {
         starNote('firm', this.firm.id, note.id)
-            .then(resp => {
-              if (resp.data.note.is_starred) {
-                this.starredNote = resp.data.note;
-              }
-              else {
+            .then(({data})=> {
+              if (data.note.is_starred) {
+                this.starredNote = data.note;
+              } else {
                 this.starredNote = null;
-
               }
-              this.$toasted.show(resp.data.message, {
+
+              this.$toasted.show(data.message, {
                 icon: 'icon-Stars_x40_2xpng_2 mr-2'
               })
+
+              this.notes.forEach(note => {
+                note.is_starred = (data.note.id === note.id) && (data.note.is_starred);
+              });
             })
             .catch(error => {
+              console.log('Error ', error)
             });
 
       },
-      addNoteToList(noteText,type) {
-        addNote('firm', this.firm.id, {note: noteText,type:type})
+      addNoteToList(noteText, type) {
+        addNote('firm', this.firm.id, {note: noteText, type: type})
             .then(resp => {
               this.notes.push(resp.data.note);
             }).catch(error => {

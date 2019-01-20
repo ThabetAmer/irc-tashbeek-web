@@ -5,12 +5,13 @@
     >
       <slot name="header" />
 
-      <div class="text-right">
+      <div class="flex justify-end">
         <button
-          class="bg-transparent pr-2 hover:bg-blue text-xs lg:text-sm text-blue-dark font-semibold hover:text-white
-        py-2 px-2 border rounded-full border-blue hover:border-transparent rounded mb-3"
+          class="bg-transparent pr-2 hover:bg-grey-lightest flex items-center text-xs lg:text-sm text-blue-dark font-semibold
+        py-2 px-2 border rounded-full border-blue rounded mb-3"
           @click="exportData"
         >
+          <span class="mr-2"><img width="15" src="../../img/excel_icon.svg" alt=""></span>
           {{ 'irc.export' | trans }}
         </button>
       </div>

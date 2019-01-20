@@ -3,6 +3,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\JoinClause;
 
 class JobSeeker extends Model implements SyncableInterface
 {
@@ -39,10 +40,21 @@ class JobSeeker extends Model implements SyncableInterface
         return $this->first_name . ' ' . $this->last_name;
     }
 
-
     public function matches()
     {
         return $this->belongsToMany(JobOpening::class, 'matches')->withPivot(['is_candidate']);
+    }
+
+    public function scopeWithCandidateInJobOpening(Builder $builder, $jobOpeningId)
+    {
+        $builder->leftJoin('matches',function(JoinClause $clause) use($jobOpeningId){
+
+            $clause->on('job_seekers.id' , '=', 'matches.job_seeker_id');
+
+            $clause->where('matches.job_opening_id', $jobOpeningId);
+        });
+
+        $builder->addSelect('matches.is_candidate');
     }
 
     public function basicInfo()

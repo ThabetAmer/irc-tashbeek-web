@@ -21,17 +21,24 @@ class JobOpeningMatchController extends Controller
     {
         abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
 
-        $query = $jobOpening->matches();
+        $caseType = 'job-seeker';
+
+        $query = get_case_type_model($caseType)->query();
 
         $query->filter($filter);
 
         $query->sort($sortableCase);
 
-        $results = $query->paginate(200);
+        $results = $query->paginate(50);
 
-        $caseType = 'job-seeker';
+        $collection = case_resource_collection($caseType, $results, $caseType);
 
-        return case_resource_collection($caseType, $results, $caseType);
+
+        $collection->additional([
+            'matches' => $jobOpening->matchesFromPivot()->pluck('job_seeker_id')
+        ]);
+
+        return $collection;
     }
 
     public function store(JobOpening $jobOpening)

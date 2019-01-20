@@ -172,9 +172,9 @@
             this.changeUrlUsingParams(params);
           }
           this.rows = data.data;
-          this.$emit('fetch', {
-            data: data.data
-          })
+
+          this.$emit('fetch', data)
+
           this.headers = data.headers;
           this.filters = data.filters;
           this.sorting = data.sorting;

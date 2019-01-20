@@ -76,8 +76,7 @@
     },
     methods: {
       onFetch(response) {
-        this.selections = response.data.filter(item => Boolean(item.pivot.is_candidate) === true)
-            .map(item => item.id)
+        this.selections = response.matches
       },
       handleSelection(id) {
         const index = this.selections.indexOf(id)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Export\CaseExport;
 use App\Http\Controllers\Controller;
 use App\Http\Filters\CaseFilter;
 use App\Http\Requests\JobSeekerRequest;
@@ -46,7 +47,13 @@ class JobSeekerController extends Controller
 
         $caseType = 'job-opening';
 
-        return case_resource_collection($caseType, $results, $caseType);
+        $collection = case_resource_collection($caseType, $results, $caseType);
+
+        if (request('export')) {
+            return export(CaseExport::class, $caseType . '_' . now()->format('Y:m:d'), $collection);
+        }
+
+        return $collection;
     }
 
     public function candidates(JobSeeker $jobSeeker, CaseFilter $filter, SortableCase $sortableCase)
@@ -65,6 +72,12 @@ class JobSeekerController extends Controller
 
         $caseType = 'job-opening';
 
-        return case_resource_collection($caseType, $results, $caseType);
+        $collection = case_resource_collection($caseType, $results, $caseType);
+
+        if (request('export')) {
+            return export(CaseExport::class, $caseType . '_' . now()->format('Y:m:d'), $collection);
+        }
+
+        return $collection;
     }
 }

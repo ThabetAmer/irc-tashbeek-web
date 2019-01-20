@@ -1,6 +1,5 @@
 <template>
   <CaseListing
-    v-if="!loading"
     :end-point="route"
     type="job-seeker"
     @fetch="onFetch"
@@ -14,6 +13,8 @@
           <Btn
             btn-class="text-xs"
             theme="success"
+            :loading="loading"
+            :disabled="loading"
             @click="saveMatches"
           >
             <span slot="text">
@@ -50,17 +51,6 @@
       />
     </template>
   </CaseListing>
-
-  <Panel v-else>
-    <div class="text-center py-16">
-      <Spinner
-        size="lg"
-      />
-      <div class="mt-5">
-        Saving Matches
-      </div>
-    </div>
-  </Panel>
 </template>
 
 <script>
@@ -87,7 +77,7 @@
     methods: {
       onFetch(response) {
         this.selections = response.data.filter(item => Boolean(item.pivot.is_candidate) === true)
-          .map(item => item.id)
+            .map(item => item.id)
       },
       handleSelection(id) {
         const index = this.selections.indexOf(id)
@@ -100,13 +90,17 @@
       },
       saveMatches() {
         this.loading = true;
+        let _self = this;
         axios.post(`/api/job-openings/${this.jobOpening.id}/matches`, {
           matches: this.selections
         }).then(({data}) => {
-          this.loading = false;
+          setTimeout(function () {
+            _self.loading = false;
+          }, 700)
           this.$toasted.show('Matches saved', {
             icon: 'icon-Floppy_Disk_1_1',
           })
+
         })
 
       }

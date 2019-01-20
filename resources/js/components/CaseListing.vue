@@ -165,13 +165,7 @@
         };
         this.loading = true
 
-        let apiResponse;
-
-        if (this.endPoint.trim() !== "") {
-          apiResponse = getListingByUrl(this.endPoint, params)
-        } else {
-          apiResponse = getListing(this.type, params)
-        }
+        let apiResponse = this.apiRequest(params);
 
         return apiResponse.then(({data}) => {
           if(this.changeUrl){
@@ -210,13 +204,15 @@
         history.pushState({}, document.title, url);
       },
       exportData() {
-        exportDatByUrl(this.type,{
+        this.apiRequest({
           filters: {
             ...this.userFiltersToParams(),
           },
           export: true,
           paginate: "false"
-        }).then(exportDataHelper.exportCallback)
+        })
+
+          .then(exportDataHelper.exportCallback)
       },
       viewNotes(caseId) {
         this.showNotesModal = true;
@@ -226,7 +222,13 @@
         this.showNotesModal = false;
 
       },
-
+      apiRequest(params = {}){
+        if (this.endPoint.trim() !== "") {
+          return getListingByUrl(this.endPoint, params)
+        } else {
+          return getListing(this.type, params)
+        }
+      }
     }
   }
 </script>

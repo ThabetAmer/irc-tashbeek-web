@@ -21,6 +21,6 @@ class JobOpening extends Model implements SyncableInterface
 
     public function matchesFromPivot()
     {
-        return $this->hasMany(Match::class);
+        return $this->hasMany(Match::class)->whereNotNull('job_seeker_id');
     }
 }

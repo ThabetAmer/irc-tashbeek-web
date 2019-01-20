@@ -26,7 +26,7 @@ class Schema
             }
 
             if ($method === 'create' || !LaravelSchema::hasColumn($table->getTable(), 'commcare_id')) {
-                $table->string('commcare_id', 60)->index();
+                $table->string('commcare_id', 60)->index()->nullable()->default(null);
             }
 
             if ($method === 'create') {

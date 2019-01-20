@@ -2,7 +2,6 @@
   <CaseListing
     :end-point="route"
     type="job-seeker"
-    @fetch="onFetch"
   >
     <template slot="header">
       <div class="text-left mb-2">
@@ -10,18 +9,17 @@
           <h1 class="flex-1">
             {{ jobOpening.job_title }}
           </h1>
-          <Btn
-            v-if="isFetching"
+          <AnchorLink
             btn-class="text-xs"
             theme="success"
             :loading="loading"
             :disabled="loading"
-            @click="saveMatches"
+            :href="matchesUrl"
           >
             <span slot="text">
-              {{ 'irc.save_matches' | trans }}
+              {{ 'irc.back' | trans }}
             </span>
-          </Btn>
+          </AnchorLink>
         </div>
         <div class="mb-4">
           <label class="text-green-theme font-bold text-xs uppercase mb-2">
@@ -32,24 +30,6 @@
           </div>
         </div>
       </div>
-    </template>
-    <template
-      slot="head-start-td"
-    >
-      Select
-    </template>
-
-    <template
-      slot="start-td"
-      slot-scope="{row}"
-      class="pl-6"
-    >
-      <CheckboxField
-        :checked="selections.indexOf(row.id) !== -1"
-        label=""
-        label-class="theme-radio-label -mt-6"
-        @change="handleSelection(row.id)"
-      />
     </template>
   </CaseListing>
 </template>
@@ -67,20 +47,18 @@
       route: {
         type: String,
         required: true
+      },
+      matchesUrl:{
+        type:String,
+        required: true
       }
     },
     data() {
       return {
-        selections: [],
-        loading: false,
-        isFetching : true
+        loading: false
       }
     },
     methods: {
-      onFetch(response) {
-        this.selections = response.matches
-        this.isFetching = false;
-      },
       handleSelection(id) {
         const index = this.selections.indexOf(id)
 

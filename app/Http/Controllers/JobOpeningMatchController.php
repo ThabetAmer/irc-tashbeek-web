@@ -33,6 +33,40 @@ class JobOpeningMatchController extends Controller
 
         $collection = case_resource_collection($caseType, $results, $caseType);
 
+        $collection->additional([
+            'matches' => $jobOpening->matchesFromPivot()->pluck('job_seeker_id')
+        ]);
+
+        return $collection;
+    }
+
+
+    public function saved(JobOpening $jobOpening)
+    {
+        abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
+
+        if(request()->wantsJson()){
+            return $this->savedMatches($jobOpening, request());
+        }
+        return view('job-opening.saved', compact('jobOpening'));
+    }
+
+
+    public function savedList(JobOpening $jobOpening, CaseFilter $filter, SortableCase $sortableCase)
+    {
+        abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
+
+        $caseType = 'job-seeker';
+
+        $query = $jobOpening->matches();
+
+        $query->filter($filter);
+
+        $query->sort($sortableCase);
+
+        $results = $query->paginate(50);
+
+        $collection = case_resource_collection($caseType, $results, $caseType);
 
         $collection->additional([
             'matches' => $jobOpening->matchesFromPivot()->pluck('job_seeker_id')
@@ -40,6 +74,7 @@ class JobOpeningMatchController extends Controller
 
         return $collection;
     }
+
 
     public function store(JobOpening $jobOpening)
     {
@@ -52,12 +87,21 @@ class JobOpeningMatchController extends Controller
 
         $matches = request('matches');
 
-        Match::where('job_opening_id',$jobOpening->id)->whereNotIn('job_seeker_id',$matches)->update([
-            'is_candidate' => 0
-        ]);
+        Match::where('job_opening_id', $jobOpening->id)->whereNotIn('job_seeker_id', $matches)->delete();
 
-        Match::where('job_opening_id',$jobOpening->id)->whereIn('job_seeker_id',$matches)->update([
-            'is_candidate' => 1
-        ]);
+
+        foreach($matches as $match){
+            $data = [
+                'job_seeker_id' => $match
+            ];
+
+            $attributes = [
+                'job_seeker_id' => $match,
+                'job_opening_id' => $jobOpening->id
+            ];
+
+            Match::updateOrCreate($attributes, $data);
+        }
     }
+
 }

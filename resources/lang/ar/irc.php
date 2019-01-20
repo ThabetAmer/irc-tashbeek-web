@@ -11,6 +11,8 @@ return [
     'users' => 'المستخدمين',
     'logout' => 'تسجيل خروج',
     'job_openings' => 'الوظائف المتاحة',
+    'match_job' => 'Match Job',
+    'view_notes' => 'عرض الملاحظات',
 
     'total_monthly_intakes' => 'عدد المدخلات الشهرية',
     'total_pending_followups' => 'متابعات معلقة',

@@ -20,7 +20,7 @@
 
 
       <Filters
-        v-if="filters.length > 0 && hasFilters"
+        v-if="hasFilters && filters.length > 0"
         :filters="filters"
         :user-filters="userFilters"
         @change="filterChange($event, loadData)"
@@ -182,7 +182,7 @@
           this.headers = data.headers;
           this.filters = data.filters;
           this.sorting = data.sorting;
-          if (this.userFilters.length === 0) {
+          if (this.userFilters.length === 0 && this.hasFilters) {
             this.userFilters = this.initialUserFilters(data.filters.slice(0, 3), filters);
           }
           this.pagination = {
@@ -229,6 +229,7 @@
 
       },
       apiRequest(params = {}) {
+        console.log(' end point is ', this.endpoint)
         if (this.endPoint.trim() !== "") {
           return getListingByUrl(this.endPoint, params)
         } else {

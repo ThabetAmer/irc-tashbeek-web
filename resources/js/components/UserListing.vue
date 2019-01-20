@@ -17,6 +17,13 @@
           </div>
         </Btn>
       </div>
+      <case-listing
+        :end-point="usersEndPoint"
+        :change-url="false"
+        :has-filters="false"
+        type="firm"
+
+      ></case-listing>
 
       <!--<Filters-->
       <!--v-if="filters.length > 0"-->
@@ -90,6 +97,7 @@
     props: {},
     data() {
       return {
+        usersEndPoint:'',
         users: [],
         rows: [],
         headers: [
@@ -112,11 +120,13 @@
     },
     mounted() {
       const queryStringObject = queryString.parse();
-
       this.loadData({
         page: queryStringObject.page,
         perPage: queryStringObject.perPage
       });
+    },
+    created() {
+      this.usersEndPoint = `api/users`;
     },
     methods: {
       loadData({filters = {}, page = null, sorting = {}, perPage = 15} = {}) {

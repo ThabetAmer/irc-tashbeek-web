@@ -19,6 +19,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -38,7 +42,8 @@ export default {
           style = 'bg-red hover:bg-red-dark text-white'
           break
       }
-      return classNames([style, 'font-bold', 'rounded-full', 'py-2', 'px-4', this.btnClass]);
+      return classNames([style, 'font-bold', 'rounded-full', 'py-2', 'px-4',
+        this.btnClass, this.loading ? 'flex items-center' : '', this.disabled ? 'cursor-not-allowed' : '']);
     }
   },
 }

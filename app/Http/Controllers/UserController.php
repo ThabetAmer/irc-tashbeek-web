@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = app(UsersList::class)->get([], $this->perPage());
+        $users = app(UsersList::class)->get($this->perPage());
         return UserResource::collection($users);
     }
 

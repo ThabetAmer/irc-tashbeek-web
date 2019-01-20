@@ -12,7 +12,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia
 {
-    use Notifiable, SoftDeletes, MediaFunctionality, Notifiable, HasRoles;
+    use Notifiable, SoftDeletes, MediaFunctionality, Notifiable, HasRoles, HasFilter;
 
     /**
      * The attributes that are mass assignable.

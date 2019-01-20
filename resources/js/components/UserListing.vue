@@ -7,7 +7,10 @@
       :has-filters="true"
       type="firm"
     >
-      <div slot="header" class="text-right mb-3">
+      <div
+        slot="header"
+        class="text-right mb-3"
+      >
         <Btn
           theme="success"
           @click="addUser"
@@ -61,7 +64,6 @@
         </button>
       </template>
     </case-listing>
-
   </div>
 </template>
 

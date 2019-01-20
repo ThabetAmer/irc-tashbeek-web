@@ -21,7 +21,7 @@
 
                 @if ($errors->has('email'))
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong class="text-xs text-red">{{ $errors->first('email') }}</strong>
                                     </span>
                 @endif
             </div>
@@ -35,13 +35,13 @@
 
                 @if ($errors->has('password'))
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong class="text-xs text-red">{{ $errors->first('password') }}</strong>
                                     </span>
                 @endif
 
 
                 @if ($errors->has('deactivated_user'))
-                    <span class="text-red-dark"><strong>{{$errors->first('deactivated_user')}}</strong></span>
+                    <span class="text-red-dark"><strong class="text-xs text-red">{{$errors->first('deactivated_user')}}</strong></span>
                 @endif
             </div>
 

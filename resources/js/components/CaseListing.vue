@@ -3,19 +3,30 @@
     <Panel
       custom-class=""
     >
-      <slot name="header"/>
+      <slot name="header" />
 
       <div class="flex justify-end">
         <Btn
+          v-if="exportAllowed"
           btn-class="bg-transparent pr-2 hover:bg-grey-lightest flex items-center text-xs lg:text-sm text-blue-dark font-semibold
           py-2 px-2 border rounded-full border-blue rounded mb-3"
           :loading="exportLoading"
           :disabled="exportLoading"
-          v-if="exportAllowed"
           @click="exportData"
         >
-          <span slot="extra-button" class="mr-2"><img width="15" src="../../img/excel_icon.svg" alt=""></span>
-          <span slot="text"> {{ 'irc.export' | trans }}</span>
+          <span
+            slot="extra-button"
+            class="mr-2"
+          >
+            <img
+              width="15"
+              src="../../img/excel_icon.svg"
+              alt=""
+            >
+          </span>
+          <span slot="text">
+            {{ 'irc.export' | trans }}
+          </span>
         </Btn>
       </div>
 
@@ -85,12 +96,12 @@
             class="flex-1 text-xl  text-green-dark"
             @click="viewNotes(row.id)"
           >
-            <i class="icon-Page_1_x40_2xpng_2"/>
+            <i class="icon-Page_1_x40_2xpng_2" />
           </button>
         </td>
       </Datatable>
 
-      <PageLoader v-else/>
+      <PageLoader v-else />
     </Panel>
 
     <ViewNoteModal

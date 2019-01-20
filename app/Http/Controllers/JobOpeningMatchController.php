@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Export\CaseExport;
 use App\Http\Filters\CaseFilter;
 use App\Http\Sortable\SortableCase;
 use App\Models\JobOpening;
@@ -68,9 +69,10 @@ class JobOpeningMatchController extends Controller
 
         $collection = case_resource_collection($caseType, $results, $caseType);
 
-        $collection->additional([
-            'matches' => $jobOpening->matchesFromPivot()->pluck('job_seeker_id')
-        ]);
+        if (request('export')) {
+            return export(CaseExport::class, $caseType . '_' . now()->format('Y:m:d'), $collection);
+        }
+
 
         return $collection;
     }

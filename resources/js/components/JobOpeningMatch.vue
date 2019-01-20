@@ -2,6 +2,7 @@
   <CaseListing
     :end-point="route"
     type="job-seeker"
+    :export-allowed="false"
     @fetch="onFetch"
   >
     <template slot="header">
@@ -11,8 +12,8 @@
             {{ jobOpening.job_title }}
           </h1>
           <Btn
-            v-if="isFetching"
-            btn-class="text-xs"
+            v-if="!isFetching"
+            btn-class="text-xs mr-2"
             theme="success"
             :loading="loading"
             :disabled="loading"
@@ -22,6 +23,19 @@
               {{ 'irc.save_matches' | trans }}
             </span>
           </Btn>
+
+          <AnchorLink
+            v-if="!isFetching && savedSelections.length > 0"
+            btn-class="text-xs"
+            theme="primary"
+            :loading="loading"
+            :disabled="loading"
+            :href="savedMatchesUrl"
+          >
+            <span slot="text">
+              {{ 'irc.saved_matches' | trans }}
+            </span>
+          </AnchorLink>
         </div>
         <div class="mb-4">
           <label class="text-green-theme font-bold text-xs uppercase mb-2">
@@ -72,13 +86,21 @@
     data() {
       return {
         selections: [],
+        savedSelections:[],
         loading: false,
         isFetching : true
+      }
+    },
+    computed:{
+      savedMatchesUrl(){
+        const currentLocation = window.location.pathname.replace(/^\/|\/$/g, '');
+        return `/${currentLocation}/saved`
       }
     },
     methods: {
       onFetch(response) {
         this.selections = response.matches
+        this.savedSelections = [...response.matches]
         this.isFetching = false;
       },
       handleSelection(id) {
@@ -101,13 +123,11 @@
             icon: 'icon-Floppy_Disk_1_1',
           })
 
-          setTimeout(function () {
-            const currentLocation = window.location.pathname.replace(/^\/|\/$/g, '');
-            window.location = `/${currentLocation}/saved`
+          setTimeout(() => {
+            window.location = this.savedMatchesUrl
           }, 700)
         })
-
-      }
+      },
     }
   }
 </script>

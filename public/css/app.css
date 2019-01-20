@@ -60251,3 +60251,15 @@ html {
   -webkit-transform: scaleX(-1);
           transform: scaleX(-1);
 }
+
+.login .form-check-label {
+  display: initial;
+}
+
+[dir=ltr] .login .form-check-label {
+  padding-left: 5px;
+}
+
+[dir=rtl] .login .form-check-label {
+  padding-right: 5px;
+}

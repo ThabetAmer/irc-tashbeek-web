@@ -15,10 +15,16 @@
     @click="$emit('click')"
     @focus="$emit('focus')"
   >
+    <span
+      v-if="loading"
+      class="mr-2"
+    >
+      <spinner size="xs" />
+    </span>
+
     <slot name="text">
       button
     </slot>
-
     <slot name="extra-button" />
   </button>
 </template>

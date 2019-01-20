@@ -69,4 +69,22 @@ trait PermissionsUtility
 
         $this->givePermissionsToRoles($roles, $permissions);
     }
+
+    protected function removePermission($permissions, $guard = 'web'){
+        if(!is_array($permissions)){
+            $permissions = [$permissions];
+        }
+
+        foreach ($permissions as $permission){
+            try{
+                $permission = Permission::findByName($permission, $guard);
+
+                $permission->delete();
+
+            }catch(\Throwable $e){
+                //
+            }
+        }
+
+    }
 }

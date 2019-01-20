@@ -77,6 +77,7 @@
           class="mr-2 pr-2"
         >
           <button
+            v-if="permissions.notes === true"
             class="flex-1 text-xl  text-green-dark"
             @click="viewNotes(row.id)"
           >
@@ -133,6 +134,7 @@
         loading: false,
         rows: [],
         headers: [],
+        permissions:{}
       }
     },
     mounted() {
@@ -191,6 +193,7 @@
             perPage: parseInt(data.meta.per_page),
             currentPage: data.meta.current_page
           };
+          this.permissions = data.permissions || {}
           this.loading = false;
         }).catch(error => {
           console.log('Error : ', error);

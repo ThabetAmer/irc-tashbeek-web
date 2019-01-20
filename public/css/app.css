@@ -58924,8 +58924,8 @@ a[aria-expanded=true] {
   }
 
   #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 220px;
+    max-width: 220px;
     min-height: 100vh;
   }
 }
@@ -58947,8 +58947,8 @@ a[aria-expanded=true] {
   }
 
   #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 220px;
+    max-width: 220px;
     min-height: 100vh;
   }
 }
@@ -58970,8 +58970,8 @@ a[aria-expanded=true] {
   }
 
   #sidebar {
-    min-width: 270px;
-    max-width: 270px;
+    min-width: 240px;
+    max-width: 240px;
     min-height: 100vh;
   }
 }
@@ -59006,8 +59006,13 @@ a[aria-expanded=true] {
     flex-direction: column;
   }
 
+  .toggle-lang a {
+    font-size: .875rem;
+  }
+
   [dir] .toggle-lang a {
     margin-bottom: .3rem;
+    padding-top: .5rem;
   }
 
   #sidebar.minified {

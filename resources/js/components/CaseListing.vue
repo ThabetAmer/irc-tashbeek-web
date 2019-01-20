@@ -204,15 +204,13 @@
         history.pushState({}, document.title, url);
       },
       exportData() {
-        this.apiRequest({
-          filters: {
-            ...this.userFiltersToParams(),
-          },
-          export: true,
-          paginate: "false"
-        })
-
-          .then(exportDataHelper.exportCallback)
+        exportDatByUrl(this.type,{
+            filters: {
+                ...this.userFiltersToParams(),
+            },
+            export: true,
+            paginate: "false"
+        }).then(exportDataHelper.exportCallback)
       },
       viewNotes(caseId) {
         this.showNotesModal = true;

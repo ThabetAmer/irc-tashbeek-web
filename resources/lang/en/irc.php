@@ -98,11 +98,8 @@ return [
 
     'notes_created_successfully' => 'Note has been created successfully.',
     'cannot_find_case_type' => 'Cannot find this case type',
-    'notes_has_been' => 'Notes has been ',
-    'starred' => 'Starred.',
-    'unstarred' => 'Unstarred.',
-    'days_ago' => 'day ago|days ago',
-    'after_n_days' => '{0} today|{1} after :value day|[2,*] after :value days'
+    'notes_has_been_starred' => 'Notes has been Starred.',
+    'notes_has_been_unstarred' => 'Notes has been Unstarred.',
 
 
 ];

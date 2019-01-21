@@ -38,7 +38,7 @@
               <a
                 v-if="firm.city"
                 class="link text-blue-dark font-bold"
-                :href="`${homeUrl}/firms?filters[city]=${firm.city}`"
+                :href="`${homeUrl}/firms?filters[city]=${firm.city_key}`"
               >
                 {{ firm.city }}
               </a>

@@ -217,7 +217,9 @@
         showEdit: true,
         uploadedImage: null,
         uploadedProfileImagePreview: null,
-        userData: {},
+        userData: {
+
+        },
         name: '',
         checkboxes: [],
         availableRoles: [],
@@ -265,11 +267,17 @@
       }
     },
     mounted() {
-      if (this.user) {
+      if (Object.keys( this.user).length !== 0 &&  this.user.constructor === Object) {
         this.userData = this.user;
         this.name = this.userData.name;
       } else {
-        this.userData = {};
+        this.userData = {
+          name:"",
+          email:"",
+          password:"",
+          password_confirmation:""
+
+        };
         this.uploadedImage = "";
         this.name = this.$options.filters.trans('irc.create_new_user');
       }

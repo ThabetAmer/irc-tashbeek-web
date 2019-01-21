@@ -60307,3 +60307,8 @@ html {
     right: 38%;
   }
 }
+
+.swal2-popup .swal2-header,
+.swal2-popup .swal2-actions {
+  font-size: .7rem;
+}

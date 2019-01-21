@@ -59,11 +59,6 @@ class User extends Authenticatable implements HasMedia
         });
     }
 
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
-
     public function getProfilePictureAttribute()
     {
         $media = $this->getAllAttachmentsAttribute(true, 'profile_picture')->first();

@@ -20,6 +20,13 @@ class Schema
 
             foreach ($fields as $field) {
                 $column = $table->{$field['column_type']}($field['column_name'])->nullable();
+
+                $defaultValue = array_get($field,'default');
+
+                if($defaultValue){
+                    $column->default($defaultValue);
+                }
+
                 if ($method === 'table' && LaravelSchema::hasColumn($table->getTable(), $field['column_name'])) {
                     $column->change();
                 }

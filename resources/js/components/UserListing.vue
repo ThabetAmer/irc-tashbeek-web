@@ -2,7 +2,7 @@
   <div>
     <case-listing
       :end-point="usersEndPoint"
-      :change-url="false"
+      :change-url="true"
       :export-allowed="false"
       :has-filters="true"
       type="firm"

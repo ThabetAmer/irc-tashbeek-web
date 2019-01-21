@@ -60271,3 +60271,25 @@ html {
 [dir=rtl] .login .form-check-label {
   padding-right: 5px;
 }
+
+#calendar.fc-rtl .fc-highlight:after {
+  position: absolute;
+  width: 30px;
+  top: 3px;
+  opacity: .5;
+  height: 30px;
+  content: "";
+}
+
+#calendar.fc-rtl .fc-day-grid .fc-row:first-child .fc-highlight:after {
+  top: 7px;
+}
+
+@media only screen and (min-width: 500px) {
+  [dir=ltr] #calendar.fc-rtl .fc-highlight:after {
+    left: 38%;
+  }
+  [dir=rtl] #calendar.fc-rtl .fc-highlight:after {
+    right: 38%;
+  }
+}

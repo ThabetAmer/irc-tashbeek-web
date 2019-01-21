@@ -62,7 +62,7 @@
                   <FullCalendar
                     ref="fullCalendar"
                     :events="events"
-                    :config="config"
+                    :config="calConfig"
                     @day-click="dayClicked"
                   />
                 </div>
@@ -76,7 +76,7 @@
                   />
                   <PageLoader
                     v-else-if="loading"
-                    message="Events are being loaded!"
+                    :message="'irc.events_are_being_loaded' | trans"
                   />
 
                   <div v-else>
@@ -133,12 +133,12 @@
         </div>
       </div>
     </div>
-    <div class="w-full sm:w-full xl:w-1/3">
+    <div class="w-full sm:w-full  pb-3 xl:w-1/3">
       <Panel
         :title="`irc.recent_activity` | trans"
-        custom-class=" pl-6 xl:pr-2   min-h-900"
+        custom-class=" pl-6 xl:pr-2  min-h-full"
       >
-        <div class="days-container max-h-800 overflow-y-auto">
+        <div class="days-container overflow-y-auto">
           <div
             v-for="day in recent"
             :key="day.name"
@@ -230,7 +230,7 @@
         selectedDate: '',
         daySelected: false,
         hasTitle: true,
-        config: {
+        calConfig: {
           editable: false,
           self: this,
           eventLimitText: "",
@@ -249,6 +249,8 @@
             center: '',
             right: 'prev,next'
           },
+          locale:document.documentElement.lang === 'ar' ?  'ar':'en',
+          isRTL:document.documentElement.lang === 'ar',
           themeSystem: 'bootstrap4',
           themeButtonIcons: {
             prev: 'left-single-arrow',
@@ -327,8 +329,8 @@
         console.log(date)
         this.daySelected = true;
         let selectedString = moment(date, "DD MMMM");
-        this.selectedDateHuman = selectedString.format("DD MMMM");
-        this.selectedDate = selectedString.format("YYYY-MM-DD");
+        this.selectedDateHuman = this.calConfig.isRTL ? selectedString.locale('ar').format("DD MMMM") : selectedString.format("DD MMMM");
+        this.selectedDate = selectedString.locale('en').format("YYYY-MM-DD");
         this.loading = true;
         this.getFollowups(this.selectedDate, this.pagination.page);
       },

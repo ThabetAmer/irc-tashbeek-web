@@ -10,6 +10,8 @@ class JobOpening extends Model implements SyncableInterface
 
     protected $guarded = ['id'];
 
+    protected $appends = ['matches_url'];
+
     public function firm()
     {
         return $this->belongsTo(Firm::class);
@@ -22,5 +24,10 @@ class JobOpening extends Model implements SyncableInterface
     public function matchesFromPivot()
     {
         return $this->hasMany(Match::class)->whereNotNull('job_seeker_id');
+    }
+
+    public function getMatchesUrlAttribute($value)
+    {
+        return route('job-openings.match', $this->id);
     }
 }

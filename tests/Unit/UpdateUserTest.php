@@ -23,6 +23,8 @@ class UpdateUserTest extends TestCase
 
         $this->loginApi($user);
 
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
+
         $response = $this->put('api/users/' . $user->id, []);
 
         $response->assertStatus(302);
@@ -38,6 +40,8 @@ class UpdateUserTest extends TestCase
 
         $this->loginApi($user);
 
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
+
         $response = $this->put('api/users/' . $user->id, []);
 
         $response->assertStatus(302);
@@ -49,6 +53,8 @@ class UpdateUserTest extends TestCase
     public function test_email_is_unique_in_update()
     {
         $this->loginApi();
+
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
 
         $user1 = factory(User::class)->create(['email' => 'sehweil@gmail.com']);
 
@@ -67,6 +73,8 @@ class UpdateUserTest extends TestCase
 
         $this->loginApi($user);
 
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
+
         $this->json('put', 'api/users/' . $user->id, ['name' => 's', 'email' => 'gg@gmail.com'])
             ->assertStatus(200)
             ->assertJsonMissingValidationErrors(['password']);
@@ -78,6 +86,8 @@ class UpdateUserTest extends TestCase
         $user = $this->createUser();
 
         $this->loginApi($user);
+
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
 
         $data = [
             'name' => 's',
@@ -99,6 +109,8 @@ class UpdateUserTest extends TestCase
         $user = $this->createUser();
 
         $this->loginApi($user);
+
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
 
         $data = [
             'name' => 's',
@@ -123,6 +135,8 @@ class UpdateUserTest extends TestCase
 
         $this->loginApi($user);
 
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
+
         $data = [
             'name' => 's',
             'email' => 'gg@gmail.com',
@@ -143,6 +157,8 @@ class UpdateUserTest extends TestCase
         $user = $this->createUser();
 
         $this->loginApi($user);
+
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
 
         $profilePicture = UploadedFile::fake()->image('avatar.jpg');
 
@@ -180,6 +196,8 @@ class UpdateUserTest extends TestCase
 
         $this->loginApi($user);
 
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
+
         $data = [
             'name' => 'Mohammed',
             'email' => 'sehweil@gmail.com',
@@ -192,7 +210,7 @@ class UpdateUserTest extends TestCase
 
         $user = $user->fresh();
 
-        $this->assertNull($user->profile_picture);
+        $this->assertEquals('/profile_picture.svg', $user->profile_picture);
     }
 
 
@@ -201,6 +219,8 @@ class UpdateUserTest extends TestCase
         $user = $this->createUser();
 
         $this->loginApi($user);
+
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
 
         $data = [
             'name' => 'Hassan',
@@ -233,9 +253,11 @@ class UpdateUserTest extends TestCase
 
         $this->loginApi($user);
 
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
+
         $user->assignRole([$role1->id,$role2->id]);
 
-        $this->assertCount(2, $user->roles);
+        $this->assertCount(3, $user->roles);
 
         $data = [
             'name' => 'Hassan',
@@ -264,12 +286,14 @@ class UpdateUserTest extends TestCase
 
         $this->loginApi($user);
 
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
+
         $user->assignRole([
             $role1->id,
             $role2->id
         ]);
 
-        $this->assertCount(2, $user->roles);
+        $this->assertCount(3, $user->roles);
 
         $data = [
             'name' => 'Hassan',
@@ -285,7 +309,6 @@ class UpdateUserTest extends TestCase
         $this->assertCount(0, $user->roles);
 
     }
-
 
     private function createUser()
     {

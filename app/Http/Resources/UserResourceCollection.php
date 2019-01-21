@@ -81,12 +81,6 @@ class UserResourceCollection extends ResourceCollection
                 'options' => [],
                 'type' => 'text'
             ],
-            [
-                'label' => 'Created At',
-                'name' => 'created_at',
-                'options' => [],
-                'type' => 'text',
-            ],
         ];
     }
 }

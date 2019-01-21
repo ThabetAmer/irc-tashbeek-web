@@ -82,7 +82,8 @@ class Match extends AbstractCase
                     'en' => 'Status',
                     'ara' => 'Status'
                 ],
-                'valueHandler' => MatchStatus::class
+                'valueHandler' => MatchStatus::class,
+                'default' => \App\Models\Match::STATUS_CANDIDATE
             ],
         ];
     }

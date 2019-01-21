@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Export\CaseExport;
 use App\Http\Filters\CaseFilter;
+use App\Http\Filters\MatchStatusFilter;
+use App\Http\Resources\CaseResources\JobOpeningMatchResourceCollection;
 use App\Http\Sortable\SortableCase;
 use App\Models\JobOpening;
 use App\Models\Match;
@@ -20,7 +22,7 @@ class JobOpeningMatchController extends Controller
         return view('job-opening.match', compact('jobOpening'));
     }
 
-    public function matches(JobOpening $jobOpening, CaseFilter $filter, SortableCase $sortableCase)
+    public function matches(JobOpening $jobOpening, CaseFilter $filter, MatchStatusFilter $matchStatusFilter, SortableCase $sortableCase)
     {
         abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
 
@@ -28,15 +30,17 @@ class JobOpeningMatchController extends Controller
 
         $query = get_case_type_model($caseType)->query();
 
+        $query->withCandidateInJobOpening($jobOpening->id);
+
         $query->filter($filter);
+
+        $query->filter($matchStatusFilter);
 
         $query->sort($sortableCase);
 
-        $query->withCandidateInJobOpening($jobOpening->id);
-
         $results = $query->paginate(50);
 
-        $collection = case_resource_collection($caseType, $results, $caseType);
+        $collection = new JobOpeningMatchResourceCollection($results, $caseType);
 
         $collection->additional([
             'matches' => $jobOpening->matchesFromPivot()->pluck('job_seeker_id')
@@ -72,7 +76,7 @@ class JobOpeningMatchController extends Controller
 
         $results = $query->paginate(50);
 
-        $collection = case_resource_collection($caseType, $results, $caseType);
+        $collection = new JobOpeningMatchResourceCollection($results, $caseType);
 
         if (request('export')) {
             return export(CaseExport::class, $caseType . '_' . now()->format('Y:m:d'), $collection);

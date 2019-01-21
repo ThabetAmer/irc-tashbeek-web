@@ -136,7 +136,7 @@
     <div class="w-full sm:w-full  pb-3 xl:w-1/3">
       <Panel
         :title="`irc.recent_activity` | trans"
-        custom-class=" pl-6 xl:pr-2  min-h-full"
+        custom-class=" pl-6 xl:pr-2  min-h-full max-h-800 overflow-y-auto "
       >
         <div class="days-container overflow-y-auto">
           <div

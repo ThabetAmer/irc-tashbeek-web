@@ -26,10 +26,10 @@
               >
                 <button
                   data-toggle="tab"
-                  class="nav-link border-0
-                                            rounded-full p-3 h-50 w-50
-                                            text-grey-dark text-2xl font-semibold"
-                  :class="{active: viewType == 'calendar'}"
+                  :class="`nav-link border-0
+                        flex items-center
+                        rounded-full p-3 w-40 h-40
+                        text-grey-dark text-xl font-semibold ${viewType == 'calendar' ? 'active':''}`"
                 >
                   <i class="icon-Calendar_2_x40_2xpng_2" />
                 </button>
@@ -40,8 +40,10 @@
               >
                 <button
                   data-toggle="tab"
-                  class="nav-link border-0 p-3  h-50 w-50 text-grey-dark text-2xl font-semibold"
-                  :class="{active: viewType != 'calendar'}"
+                  :class="`nav-link border-0
+                        flex items-center
+                        rounded-full p-3 w-40 h-40
+                        text-grey-dark text-xl font-semibold ${viewType != 'calendar' ? 'active':''}`"
                 >
                   <i
                     class="icon-List_3_x40_2xpng_2"
@@ -60,21 +62,21 @@
                   <FullCalendar
                     ref="fullCalendar"
                     :events="events"
-                    :config="config"
+                    :config="calConfig"
                     @day-click="dayClicked"
                   />
                 </div>
 
                 <div class="selected-day mt-4">
                   <EmptyState
-                    v-if="followups.length===0 && !loading"
+                    v-if="!daySelected && !loading"
                     icon="icon-Calendar_1_x40_2xpng_2 text-5xl mt-3 block"
                     :message="'irc.no_date_selected' | trans"
                     custom-class="mt-5 min-h-300 text-lg"
                   />
                   <PageLoader
                     v-else-if="loading"
-                    message="Events are being loaded!"
+                    :message="'irc.events_are_being_loaded' | trans"
                   />
 
                   <div v-else>
@@ -83,7 +85,10 @@
                       bg="light"
                       custom-class="border-transparent border-0"
                     >
-                      <template slot="tools">
+                      <template
+                        v-if="followups.length > 0"
+                        slot="tools"
+                      >
                         <button
                           class="bg-white text-base hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-3 border border-blue hover:border-transparent rounded"
                           @click="exportData"
@@ -128,12 +133,12 @@
         </div>
       </div>
     </div>
-    <div class="w-full sm:w-full xl:w-1/3">
+    <div class="w-full sm:w-full  pb-3 xl:w-1/3">
       <Panel
         :title="`irc.recent_activity` | trans"
-        custom-class=" pl-6 xl:pr-2   min-h-900"
+        custom-class=" pl-6 xl:pr-2  min-h-full max-h-800 overflow-y-auto "
       >
-        <div class="days-container max-h-800 overflow-y-auto">
+        <div class="days-container overflow-y-auto">
           <div
             v-for="day in recent"
             :key="day.name"
@@ -225,7 +230,7 @@
         selectedDate: '',
         daySelected: false,
         hasTitle: true,
-        config: {
+        calConfig: {
           editable: false,
           self: this,
           eventLimitText: "",
@@ -244,6 +249,8 @@
             center: '',
             right: 'prev,next'
           },
+          locale:document.documentElement.lang === 'ar' ?  'ar':'en',
+          isRTL:document.documentElement.lang === 'ar',
           themeSystem: 'bootstrap4',
           themeButtonIcons: {
             prev: 'left-single-arrow',
@@ -322,8 +329,8 @@
         console.log(date)
         this.daySelected = true;
         let selectedString = moment(date, "DD MMMM");
-        this.selectedDateHuman = selectedString.format("DD MMMM");
-        this.selectedDate = selectedString.format("YYYY-MM-DD");
+        this.selectedDateHuman = this.calConfig.isRTL ? selectedString.locale('ar').format("DD MMMM") : selectedString.format("DD MMMM");
+        this.selectedDate = selectedString.locale('en').format("YYYY-MM-DD");
         this.loading = true;
         this.getFollowups(this.selectedDate, this.pagination.page);
       },

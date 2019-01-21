@@ -96,6 +96,7 @@ return [
     'user_deactivated' => 'User deactivated successfully',
     'export' => 'Export to Excel',
     'no_date_selected' => 'No date selected',
+    'events_are_being_loaded' => 'Events are being loaded!',
 
     'notes_created_successfully' => 'Note has been created successfully.',
     'cannot_find_case_type' => 'Cannot find this case type',

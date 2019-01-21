@@ -8,6 +8,7 @@ use App\Http\Filters\CaseFilter;
 use App\Http\Requests\JobSeekerRequest;
 use App\Http\Sortable\SortableCase;
 use App\Models\JobSeeker;
+use App\Models\Match;
 use Illuminate\Http\Request;
 
 class JobSeekerController extends Controller
@@ -37,7 +38,7 @@ class JobSeekerController extends Controller
     {
         abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
 
-        $query = $jobSeeker->matches();
+        $query = $jobSeeker->matchedMatches();
 
         $query->filter($filter);
 
@@ -60,13 +61,11 @@ class JobSeekerController extends Controller
     {
         abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
 
-        $query = $jobSeeker->matches();
+        $query = $jobSeeker->candidateMatches();
 
         $query->filter($filter);
 
         $query->sort($sortableCase);
-
-        $query->where('is_candidate',1);
 
         $results = $query->paginate();
 

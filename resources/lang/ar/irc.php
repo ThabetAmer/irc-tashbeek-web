@@ -98,6 +98,7 @@ return [
     'user_deactivated' => 'تم تعطيل المستخدم بنجاح',
     'export' => 'تحميل إكسل',
     'no_date_selected' => 'لم يتم تحديد تاريخ معين',
+    'events_are_being_loaded' => 'جاري تحميل المتابعات!',
 
 
     'notes_created_successfully' => 'تم اضافة الملاحظة بنجاح',

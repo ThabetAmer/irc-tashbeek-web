@@ -54287,7 +54287,7 @@
     z-index: auto;
   }
 }
-/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
    ========================================================================== */
@@ -54311,6 +54311,14 @@ html {
 
 [dir] body {
   margin: 0;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+
+main {
+  display: block;
 }
 
 /**
@@ -58990,7 +58998,7 @@ a[aria-expanded=true] {
   #sidebar:not(.minified) {
     height: 80px !important;
     width: 80px !important;
-    overflow: hidden !important;
+    overflow: hidden;
     opacity: .6;
   }
 
@@ -59009,10 +59017,24 @@ a[aria-expanded=true] {
 
   #sidebar.minified {
     opacity: .9;
+    overflow-y: auto;
+    max-height: 100% !important;
   }
 }
 
 @media (min-width: 768px) {
+  #sidebar:not(.minified) {
+    overflow: auto;
+  }
+
+  #sidebar.minified {
+    overflow: auto;
+  }
+
+  #sidebar {
+    overflow-y: auto;
+  }
+
   #sidebar .toggle-lang {
     flex-direction: row !important;
   }
@@ -59987,7 +60009,7 @@ html {
 .fc-highlight:after {
   position: absolute;
   width: 30px;
-  top: 2px;
+  top: 3px;
   opacity: .5;
   height: 30px;
   content: "";
@@ -59999,11 +60021,11 @@ html {
 }
 
 [dir=ltr] .fc-highlight:after {
-  right: 39%;
+  right: 38%;
 }
 
 [dir=rtl] .fc-highlight:after {
-  left: 39%;
+  left: 38%;
 }
 
 .fc-day-grid .fc-row:first-child .fc-highlight:after {
@@ -60262,4 +60284,31 @@ html {
 
 [dir=rtl] .login .form-check-label {
   padding-right: 5px;
+}
+
+#calendar.fc-rtl .fc-highlight:after {
+  position: absolute;
+  width: 30px;
+  top: 3px;
+  opacity: .5;
+  height: 30px;
+  content: "";
+}
+
+#calendar.fc-rtl .fc-day-grid .fc-row:first-child .fc-highlight:after {
+  top: 7px;
+}
+
+@media only screen and (min-width: 500px) {
+  [dir=ltr] #calendar.fc-rtl .fc-highlight:after {
+    left: 38%;
+  }
+  [dir=rtl] #calendar.fc-rtl .fc-highlight:after {
+    right: 38%;
+  }
+}
+
+.swal2-popup .swal2-header,
+.swal2-popup .swal2-actions {
+  font-size: .7rem;
 }

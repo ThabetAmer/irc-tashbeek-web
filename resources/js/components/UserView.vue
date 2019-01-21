@@ -284,35 +284,39 @@
     methods: {
       handleUserCreate() {
         if (this.userData.id) {
-          updateUser(this.userData.id, this.formData).then(resp => {
-            this.$toasted.show(resp.data.message, {
-              icon: 'icon-Checkmark_2_x40_2xpng_2'
-            });
-            this.name = this.userData.name;
-            window.location.href = `${this.homeUrl}/users/${resp.data.user.id}`
-          }).catch(error => {
-            if (error.response.status === 422) {
-              this.internalError = error.response.data.errors
-            } else {
-              this.$toasted.error("Something went wrong, cannot update userData.");
-            }
-          });
+          updateUser(this.userData.id, this.formData)
+              .then(resp => {
+                this.$toasted.show(resp.data.message, {
+                  icon: 'icon-Checkmark_2_x40_2xpng_2'
+                });
+                this.name = this.userData.name;
+                window.location.href = `${this.homeUrl}/users/${resp.data.user.id}`
+              })
+              .catch(error => {
+                if (error.response.status === 422) {
+                  this.internalError = error.response.data.errors
+                } else {
+                  this.$toasted.error("Something went wrong, cannot update userData.");
+                }
+              });
         }
         else {
-          createUser(this.formData).then(resp => {
-            this.name = this.userData.name;
-            this.internalError = [];
-            this.$toasted.show(resp.data.message, {
-              icon: 'icon-Checkmark_2_x40_2xpng_2'
-            });
-            window.location.href = `${this.homeUrl}/users/${resp.data.user.id}`
-          }).catch(error => {
-            if (error.response.status === 422) {
-              this.internalError = error.response.data.errors
-            } else {
-              this.$toasted.error("Something went wrong, cannot create userData.");
-            }
-          });
+          createUser(this.formData)
+              .then(resp => {
+                this.name = this.userData.name;
+                this.internalError = [];
+                this.$toasted.show(resp.data.message, {
+                  icon: 'icon-Checkmark_2_x40_2xpng_2'
+                });
+                window.location.href = `${this.homeUrl}/users/${resp.data.user.id}`
+              })
+              .catch(error => {
+                if (error.response.status === 422) {
+                  this.internalError = error.response.data.errors
+                } else {
+                  this.$toasted.error("Something went wrong, cannot create userData.");
+                }
+              });
         }
       },
 

@@ -42,7 +42,17 @@ class JobSeeker extends Model implements SyncableInterface
 
     public function matches()
     {
-        return $this->belongsToMany(JobOpening::class, 'matches')->withPivot(['is_candidate']);
+        return $this->belongsToMany(JobOpening::class, 'matches')->withPivot(['status as match_status']);
+    }
+
+    public function matchedMatches()
+    {
+        return $this->matches()->where('matches.status', Match::STATUS_MATCHED);
+    }
+
+    public function candidateMatches()
+    {
+        return $this->matches()->where('matches.status', Match::STATUS_CANDIDATE);
     }
 
     public function scopeWithCandidateInJobOpening(Builder $builder, $jobOpeningId)

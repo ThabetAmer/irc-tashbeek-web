@@ -9,7 +9,7 @@
         track-by="value"
         :has-remove="true"
         :value="getOptionValue(filter)"
-        :options="filter.options"
+        :options="options(filter.options)"
         :placeholder="filter.label"
         wrapper-class="w-full sm:w-full md:w-1/2 lg:w-1/3 xl:w-1/5  pr-2 h-50"
         custom-class="mb-2 note-select filter-input multiselect-with-remove"
@@ -79,6 +79,11 @@
       }
     },
     methods: {
+      options(options) {
+        return options.filter(option => {
+          return option.label !== ""
+        })
+      },
       inputDate(eve) {
         console.log(' dd ', eve);
         this.val = eve;
@@ -127,13 +132,13 @@
           return undefined
         }
 
-        let selected = filter.filterValue.reduce((selected,value) => {
+        let selected = filter.filterValue.reduce((selected, value) => {
           const index = filter.options.findIndex(option => option.value == value)
           if (index !== -1) {
             selected.push(filter.options[index])
           }
           return selected;
-        },[]);
+        }, []);
 
         if (!selected.length) {
           return undefined

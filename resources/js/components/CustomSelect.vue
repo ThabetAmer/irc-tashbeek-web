@@ -45,7 +45,6 @@
         >
           {{ option.label }}
         </span>
-
         <span
           v-else
           dir="auto"

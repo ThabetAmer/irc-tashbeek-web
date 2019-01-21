@@ -59995,7 +59995,7 @@ html {
 .fc-highlight:after {
   position: absolute;
   width: 30px;
-  top: 2px;
+  top: 3px;
   opacity: .5;
   height: 30px;
   content: "";
@@ -60007,11 +60007,11 @@ html {
 }
 
 [dir=ltr] .fc-highlight:after {
-  right: 39%;
+  right: 38%;
 }
 
 [dir=rtl] .fc-highlight:after {
-  left: 39%;
+  left: 38%;
 }
 
 .fc-day-grid .fc-row:first-child .fc-highlight:after {

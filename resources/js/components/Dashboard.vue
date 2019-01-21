@@ -26,10 +26,10 @@
               >
                 <button
                   data-toggle="tab"
-                  class="nav-link border-0
-                                            rounded-full p-3 h-50 w-50
-                                            text-grey-dark text-2xl font-semibold"
-                  :class="{active: viewType == 'calendar'}"
+                  :class="`nav-link border-0
+                        flex items-center
+                        rounded-full p-3 w-40 h-40
+                        text-grey-dark text-xl font-semibold ${viewType == 'calendar' ? 'active':''}`"
                 >
                   <i class="icon-Calendar_2_x40_2xpng_2" />
                 </button>
@@ -40,8 +40,10 @@
               >
                 <button
                   data-toggle="tab"
-                  class="nav-link border-0 p-3  h-50 w-50 text-grey-dark text-2xl font-semibold"
-                  :class="{active: viewType != 'calendar'}"
+                  :class="`nav-link border-0
+                        flex items-center
+                        rounded-full p-3 w-40 h-40
+                        text-grey-dark text-xl font-semibold ${viewType != 'calendar' ? 'active':''}`"
                 >
                   <i
                     class="icon-List_3_x40_2xpng_2"
@@ -67,7 +69,7 @@
 
                 <div class="selected-day mt-4">
                   <EmptyState
-                    v-if="followups.length===0 && !loading"
+                    v-if="!daySelected && !loading"
                     icon="icon-Calendar_1_x40_2xpng_2 text-5xl mt-3 block"
                     :message="'irc.no_date_selected' | trans"
                     custom-class="mt-5 min-h-300 text-lg"
@@ -83,7 +85,10 @@
                       bg="light"
                       custom-class="border-transparent border-0"
                     >
-                      <template slot="tools">
+                      <template
+                        v-if="followups.length > 0"
+                        slot="tools"
+                      >
                         <button
                           class="bg-white text-base hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-3 border border-blue hover:border-transparent rounded"
                           @click="exportData"

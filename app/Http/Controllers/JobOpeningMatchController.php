@@ -53,6 +53,7 @@ class JobOpeningMatchController extends Controller
         if(request()->wantsJson()){
             return $this->savedMatches($jobOpening, request());
         }
+
         return view('job-opening.saved', compact('jobOpening'));
     }
 

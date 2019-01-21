@@ -17,44 +17,75 @@ class UserResourceCollection extends ResourceCollection
         return parent::toArray($request);
     }
 
-
-
     public function with($request)
     {
+
+        $headers = $this->headers();
+        $filters = $this->filters();
+
         return [
-            'headers' => [
-                [
-                    'label' => 'Name',
-                    'name' => 'name'
-                ],
-                [
-                    'label' => 'Email',
-                    'name' => 'email'
-                ],
-                [
-                    'label' => 'Created At',
-                    'name' => 'created_at'
-                ]
+            'headers' => $headers,
+            'filters' => $filters,
+            'sorting' => $this->getSorting($request, $headers),
+        ];
+    }
+
+
+    protected function getSorting($request, $headers)
+    {
+
+        $headers = collect($headers)->keyBy('name');
+
+        $sorting = $request->input('sorting', []);
+
+        if (!is_array($sorting) || !$headers->has($request->input('sorting.column'))) {
+            $sorting = [];
+        }
+
+        return [
+            'column' => array_get($sorting, 'column'),
+            'type' => array_get($sorting, 'type') === 'asc' ? 'asc' : 'desc',
+        ];
+    }
+
+    protected function headers()
+    {
+        return [
+            [
+                'label' => 'Name',
+                'name' => 'name'
             ],
-            'filters' => [
-                [
-                    'label' => 'Name',
-                    'name' => 'name',
-                    'options' => [],
-                    'type' => 'text'
-                ],
-                [
-                    'label' => 'Email',
-                    'name' => 'email',
-                    'options' => [],
-                    'type' => 'text'
-                ],
-                [
-                    'label' => 'Created At',
-                    'name' => 'created_at',
-                    'options' => [],
-                    'type' => 'text',
-                ],
+            [
+                'label' => 'Email',
+                'name' => 'email'
+            ],
+            [
+                'label' => 'Created At',
+                'name' => 'created_at'
+            ]
+        ];
+    }
+
+    protected function filters()
+    {
+        return [
+            [
+                'label' => 'Name',
+                'name' => 'name',
+                'options' => [],
+                'type' => 'text'
+            ],
+            [
+                'label' => 'Email',
+                'name' => 'email',
+                'options' => [],
+                'type' => 'text'
+            ],
+            [
+                'label' => 'Created At',
+                'name' => 'created_at',
+                'options' => [],
+                'type' => 'text',
             ],
         ];
     }

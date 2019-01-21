@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\Resource;
 
-class UserResource extends ResourceCollection
+class UserResource extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -16,46 +16,4 @@ class UserResource extends ResourceCollection
     {
         return parent::toArray($request);
     }
-
-    public function with($request)
-    {
-        return [
-            'headers' => [
-                [
-                    'label' => 'Name',
-                    'name' => 'name'
-                ],
-                [
-                    'label' => 'Email',
-                    'name' => 'email'
-                ],
-                [
-                    'label' => 'Created At',
-                    'name' => 'created_at'
-                ]
-            ],
-            'filters' => [
-                [
-                    'label' => 'Name',
-                    'name' => 'name',
-                    'options' => [],
-                    'type' => 'text'
-                ],
-                [
-                    'label' => 'Email',
-                    'name' => 'email',
-                    'options' => [],
-                    'type' => 'text'
-                ],
-                [
-                    'label' => 'Created At',
-                    'name' => 'created_at',
-                    'options' => [],
-                    'type' => 'text',
-                ],
-            ],
-        ];
-    }
-
-
 }

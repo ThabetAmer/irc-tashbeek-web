@@ -1,6 +1,6 @@
 <template>
   <div>
-    <case-listing
+    <CaseListing
       :end-point="usersEndPoint"
       :change-url="true"
       :export-allowed="false"
@@ -63,7 +63,7 @@
           <i class="icon-Unlock_x40_2xpng_2" />
         </button>
       </template>
-    </case-listing>
+    </CaseListing>
   </div>
 </template>
 

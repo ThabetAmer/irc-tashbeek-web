@@ -18,4 +18,9 @@ class JobOpening extends Model implements SyncableInterface
     public function matches(){
         return $this->belongsToMany(JobSeeker::class,'matches')->withPivot(['is_candidate']);
     }
+
+    public function matchesFromPivot()
+    {
+        return $this->hasMany(Match::class)->whereNotNull('job_seeker_id');
+    }
 }

@@ -10,6 +10,11 @@ class Match extends Model implements SyncableInterface
 
     protected $guarded = ['id'];
 
+    const STATUS_MATCHED = 'matched';
+
+    const STATUS_NEW = 'new';
+
+    const STATUS_HIRED = 'hired';
 
     public function jobSeeker()
     {

@@ -7,7 +7,7 @@
 
       <div class="flex justify-end">
         <Btn
-          v-if="exportAllowed"
+          v-if="exportAllowed && !loading"
           btn-class="bg-transparent pr-2 hover:bg-grey-lightest flex items-center text-xs lg:text-sm text-blue-dark font-semibold
           py-2 px-2 border rounded-full border-blue rounded mb-3"
           :loading="exportLoading"
@@ -115,7 +115,12 @@
 </template>
 
 <script>
-  import {get as getListing, getByUrl as getListingByUrl, exportData as exportDatByUrl} from '../API/caseListing'
+  import {
+    get as getListing,
+    getByUrl as getListingByUrl,
+    exportData as exportDataByType,
+    exportDataByUrl
+  } from '../API/caseListing'
   import FiltersProvider from "../mixins/FiltersProvider";
   import queryString from '../helpers/QueryString'
   import sortingProvider from "../mixins/sortingProvider";
@@ -192,9 +197,9 @@
             this.changeUrlUsingParams(params);
           }
           this.rows = data.data;
-          this.$emit('fetch', {
-            data: data.data
-          })
+
+          this.$emit('fetch', data)
+
           this.headers = data.headers;
           this.filters = data.filters;
           this.sorting = data.sorting;
@@ -225,7 +230,7 @@
       },
       exportData() {
         this.exportLoading = true;
-        exportDatByUrl(this.type, {
+        this.exportRequest({
           filters: {
             ...this.userFiltersToParams(),
           },
@@ -245,11 +250,17 @@
 
       },
       apiRequest(params = {}) {
-        console.log(' end point is ', this.endpoint)
         if (this.endPoint.trim() !== "") {
           return getListingByUrl(this.endPoint, params)
         } else {
           return getListing(this.type, params)
+        }
+      },
+      exportRequest(params = {}) {
+        if (this.endPoint.trim() !== "") {
+          return exportDataByUrl(this.endPoint, params)
+        } else {
+          return exportDataByType(this.type, params)
         }
       }
     }

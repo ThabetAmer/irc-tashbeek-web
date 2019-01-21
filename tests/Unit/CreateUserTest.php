@@ -20,6 +20,8 @@ class CreateUserTest extends TestCase
     {
         $this->loginApi();
 
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
+
         $response = $this->post('api/users', []);
 
         $response->assertStatus(302);
@@ -33,6 +35,8 @@ class CreateUserTest extends TestCase
     {
         $this->loginApi();
 
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
+
         $response = $this->post('api/users', []);
 
         $response->assertStatus(302);
@@ -44,6 +48,8 @@ class CreateUserTest extends TestCase
     public function test_email_is_unique_in_create()
     {
         $this->loginApi();
+
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
 
         factory(User::class)->create(['email' => 'sehweil@gmail.com']);
 
@@ -57,6 +63,8 @@ class CreateUserTest extends TestCase
     {
         $this->loginApi();
 
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
+
         $this->json('POST', 'api/users', ['password' => null])
             ->assertStatus(422)
             ->assertJsonValidationErrors(['password']);
@@ -68,6 +76,9 @@ class CreateUserTest extends TestCase
     {
         $this->loginApi();
 
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
+
+
         $this->json('POST', 'api/users', ['password_confirmation' => null])
             ->assertStatus(422)
             ->assertJsonValidationErrors(['password']);
@@ -76,6 +87,8 @@ class CreateUserTest extends TestCase
     public function test_password_confirmation_and_password_not_matched()
     {
         $this->loginApi();
+
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
 
         $this->json('POST', 'api/users', [
             'password' => 'password_1',
@@ -89,6 +102,8 @@ class CreateUserTest extends TestCase
     public function test_check_if_password_saved_encrypted()
     {
         $this->loginApi();
+
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
 
         $data = [
             'name' => 'Mohammed',
@@ -111,6 +126,8 @@ class CreateUserTest extends TestCase
 
         $this->loginApi();
 
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
+
         Storage::fake('upload');
 
         $data = [
@@ -127,9 +144,11 @@ class CreateUserTest extends TestCase
     }
 
 
-    public function test_profile_picture_if_empty()
+    public function test_profile_picture_has_default()
     {
         $this->loginApi();
+
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
 
         Storage::fake('upload');
 
@@ -144,13 +163,19 @@ class CreateUserTest extends TestCase
         $this->json('POST', 'api/users', $data);
 
         $user = User::find(1);
-        $this->assertNull($user->profile_picture);
+
+        $this->assertEquals('/profile_picture.svg', $user->profile_picture);
     }
 
 
     public function test_create_user()
     {
+
+        $this->withoutExceptionHandling();
+
         $this->loginApi();
+
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
 
         $data = [
             'name' => 'Mohammed',
@@ -175,9 +200,9 @@ class CreateUserTest extends TestCase
     {
         $role = factory(Role::class)->create();
 
-        $this->withoutExceptionHandling();
-
         $this->loginApi();
+
+        $this->createUserRoleWithPermission(auth()->user(), 'users_management');
 
         $data = [
             'name' => 'Mohammed',

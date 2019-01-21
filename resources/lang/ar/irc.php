@@ -105,5 +105,6 @@ return [
     'cannot_find_case_type' => 'Cannot find this case type',
     'notes_has_been_starred' => 'تم تعين ملاحظة مميزة',
     'notes_has_been_unstarred' => 'تم الالغاء',
-
+    'back' => 'عودة للخلف',
+    'saved_matches' => 'المرشحين'
 ];

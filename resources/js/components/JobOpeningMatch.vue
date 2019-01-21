@@ -1,5 +1,6 @@
 <template>
   <CaseListing
+    :per-page="50"
     :end-point="route"
     type="job-seeker"
     :export-allowed="false"

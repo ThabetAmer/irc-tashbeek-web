@@ -149,6 +149,10 @@
       hasFilters: {
         type: Boolean,
         default: true
+      },
+      perPage:{
+        type:Number,
+        default:15
       }
     },
     data() {
@@ -173,7 +177,7 @@
       });
     },
     methods: {
-      loadData({filters = {}, page = null, sorting = {}, perPage = 15} = {}) {
+      loadData({filters = {}, page = null, sorting = {}, perPage = this.perPage} = {}) {
         filters = filters && typeof filters === "object" ? filters : {}
         sorting = sorting && typeof sorting === "object" ? sorting : {}
         const params = {

@@ -38,7 +38,7 @@ class JobOpeningMatchController extends Controller
 
         $query->sort($sortableCase);
 
-        $results = $query->paginate(50);
+        $results = $query->paginate($this->perPage());
 
         $collection = new JobOpeningMatchResourceCollection($results, $caseType);
 
@@ -76,7 +76,7 @@ class JobOpeningMatchController extends Controller
 
         $query->sort($sortableCase);
 
-        $results = $query->paginate(50);
+        $results = $query->paginate($this->perPage());
 
         $collection = new JobOpeningMatchResourceCollection($results, $caseType);
 
@@ -115,6 +115,18 @@ class JobOpeningMatchController extends Controller
 
             Match::updateOrCreate($attributes, $data);
         }
+    }
+
+    protected function perPage()
+    {
+        $perPage = request("perPage");
+        $perPagesLimit = [15, 30, 50];
+
+        if (!in_array($perPage, $perPagesLimit)) {
+            $perPage = 50;
+        }
+
+        return $perPage;
     }
 
 }

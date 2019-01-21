@@ -63,10 +63,12 @@ class CaseFilter implements FilterInterface
         foreach ($filters as $name => $value) {
 
             if(is_array($value)){
-                $value = array_filter($value);
+                $value = array_filter($value,function($value){
+                    return $this->isValidValue($value);
+                });
             }
 
-            if (!$value) {
+            if (!$this->isValidValue($value)) {
                 continue;
             }
 
@@ -127,5 +129,14 @@ class CaseFilter implements FilterInterface
         } else {
             $builder->where($name, $value);
         }
+    }
+
+    protected function isValidValue($value)
+    {
+        if(is_array($value)){
+            return count($value) > 0;
+        }
+
+        return !is_null($value) && trim($value) !== "";
     }
 }

@@ -93,8 +93,13 @@ class CaseDataResource extends ResourceCollection
         $sorting = $request->input('sorting', []);
 
         if (!is_array($sorting) || (!in_array(array_get($sorting, 'column'), withCount($model)) and !$properties->has($request->input('sorting.column')))) {
-            $sorting = [];
+            $sorting = [
+                'column' => null,
+                'type' => array_get($sorting, 'type')
+            ];
         }
+
+
 
         return [
             'column' => array_get($sorting, 'column'),

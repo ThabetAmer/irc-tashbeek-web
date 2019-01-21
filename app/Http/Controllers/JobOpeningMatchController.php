@@ -7,6 +7,7 @@ use App\Http\Filters\CaseFilter;
 use App\Http\Filters\MatchStatusFilter;
 use App\Http\Resources\CaseResources\JobOpeningMatchResourceCollection;
 use App\Http\Sortable\SortableCase;
+use App\Http\Sortable\SortableMatch;
 use App\Models\JobOpening;
 use App\Models\Match;
 
@@ -22,7 +23,7 @@ class JobOpeningMatchController extends Controller
         return view('job-opening.match', compact('jobOpening'));
     }
 
-    public function matches(JobOpening $jobOpening, CaseFilter $filter, MatchStatusFilter $matchStatusFilter, SortableCase $sortableCase)
+    public function matches(JobOpening $jobOpening, CaseFilter $filter, MatchStatusFilter $matchStatusFilter, SortableCase $sortableCase, SortableMatch $sortableMatch)
     {
         abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
 
@@ -37,6 +38,8 @@ class JobOpeningMatchController extends Controller
         $query->filter($matchStatusFilter);
 
         $query->sort($sortableCase);
+
+        $query->sort($sortableMatch);
 
         $results = $query->paginate($this->perPage());
 
@@ -61,8 +64,7 @@ class JobOpeningMatchController extends Controller
         return view('job-opening.saved', compact('jobOpening'));
     }
 
-
-    public function savedList(JobOpening $jobOpening, CaseFilter $filter, SortableCase $sortableCase, MatchStatusFilter $matchStatusFilter)
+    public function savedList(JobOpening $jobOpening, CaseFilter $filter, SortableCase $sortableCase, SortableMatch $sortableMatch, MatchStatusFilter $matchStatusFilter)
     {
         abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
 
@@ -75,6 +77,8 @@ class JobOpeningMatchController extends Controller
         $query->filter($matchStatusFilter);
 
         $query->sort($sortableCase);
+
+        $query->sort($sortableMatch);
 
         $results = $query->paginate($this->perPage());
 

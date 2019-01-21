@@ -197,6 +197,7 @@
         let apiResponse = this.apiRequest(params);
 
         return apiResponse.then(({data}) => {
+
           if (this.changeUrl) {
             this.changeUrlUsingParams(params);
           }
@@ -207,9 +208,11 @@
           this.headers = data.headers;
           this.filters = data.filters;
           this.sorting = data.sorting;
+
           if (this.userFilters.length === 0 && this.hasFilters) {
             this.userFilters = this.initialUserFilters(data.filters.slice(0, 3), filters);
           }
+
           this.pagination = {
             total: data.meta.total,
             lastPage: data.meta.last_page,

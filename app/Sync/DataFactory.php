@@ -170,7 +170,9 @@ class DataFactory
             return ;
         }
 
-        foreach(config('case.job-seeker.followup_schedule') as $key => $schedule){
+        $caseType = case_type($model);
+
+        foreach(config('case.'.$caseType.'.followup_schedule') as $key => $schedule){
 
             $followUp = $model->followups()->where('type','scheduled')->where('followup_period',$key)->first();
 

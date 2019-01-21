@@ -967,3 +967,11 @@ body, html {
 
   transform: scaleX(-1);
 }
+
+
+.login{
+  .form-check-label{
+    display: initial;
+    padding-left: 5px;
+  }
+}

@@ -3,19 +3,30 @@
     <Panel
       custom-class=""
     >
-      <slot name="header"/>
+      <slot name="header" />
 
       <div class="flex justify-end">
         <Btn
+          v-if="exportAllowed && !loading"
           btn-class="bg-transparent pr-2 hover:bg-grey-lightest flex items-center text-xs lg:text-sm text-blue-dark font-semibold
           py-2 px-2 border rounded-full border-blue rounded mb-3"
           :loading="exportLoading"
           :disabled="exportLoading"
-          v-if="exportAllowed"
           @click="exportData"
         >
-          <span slot="extra-button" class="mr-2"><img width="15" src="../../img/excel_icon.svg" alt=""></span>
-          <span slot="text"> {{ 'irc.export' | trans }}</span>
+          <span
+            slot="extra-button"
+            class="mr-2"
+          >
+            <img
+              width="15"
+              src="../../img/excel_icon.svg"
+              alt=""
+            >
+          </span>
+          <span slot="text">
+            {{ 'irc.export' | trans }}
+          </span>
         </Btn>
       </div>
 
@@ -85,12 +96,12 @@
             class="flex-1 text-xl  text-green-dark"
             @click="viewNotes(row.id)"
           >
-            <i class="icon-Page_1_x40_2xpng_2"/>
+            <i class="icon-Page_1_x40_2xpng_2" />
           </button>
         </td>
       </Datatable>
 
-      <PageLoader v-else/>
+      <PageLoader v-else />
     </Panel>
 
     <ViewNoteModal
@@ -104,7 +115,12 @@
 </template>
 
 <script>
-  import {get as getListing, getByUrl as getListingByUrl, exportData as exportDatByUrl} from '../API/caseListing'
+  import {
+    get as getListing,
+    getByUrl as getListingByUrl,
+    exportData as exportDataByType,
+    exportDataByUrl
+  } from '../API/caseListing'
   import FiltersProvider from "../mixins/FiltersProvider";
   import queryString from '../helpers/QueryString'
   import sortingProvider from "../mixins/sortingProvider";
@@ -181,9 +197,9 @@
             this.changeUrlUsingParams(params);
           }
           this.rows = data.data;
-          this.$emit('fetch', {
-            data: data.data
-          })
+
+          this.$emit('fetch', data)
+
           this.headers = data.headers;
           this.filters = data.filters;
           this.sorting = data.sorting;
@@ -214,7 +230,7 @@
       },
       exportData() {
         this.exportLoading = true;
-        exportDatByUrl(this.type, {
+        this.exportRequest({
           filters: {
             ...this.userFiltersToParams(),
           },
@@ -234,11 +250,17 @@
 
       },
       apiRequest(params = {}) {
-        console.log(' end point is ', this.endpoint)
         if (this.endPoint.trim() !== "") {
           return getListingByUrl(this.endPoint, params)
         } else {
           return getListing(this.type, params)
+        }
+      },
+      exportRequest(params = {}) {
+        if (this.endPoint.trim() !== "") {
+          return exportDataByUrl(this.endPoint, params)
+        } else {
+          return exportDataByType(this.type, params)
         }
       }
     }

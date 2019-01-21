@@ -97,11 +97,22 @@ return [
     'export' => 'Export to Excel',
     'no_date_selected' => 'No date selected',
 
-
     'notes_created_successfully' => 'Note has been created successfully.',
     'cannot_find_case_type' => 'Cannot find this case type',
     'notes_has_been_starred' => 'Notes has been Starred.',
     'notes_has_been_unstarred' => 'Notes has been Unstarred.',
+
+    'back' => 'Back',
+
+    'saved_matches' => 'Saved Matches',
+    'jobseeker_status' => 'JobSeeker Status',
+
+    'match_statuses' => [
+        \App\Models\Match::STATUS_NEW => 'New',
+        \App\Models\Match::STATUS_CANDIDATE => 'Candidate',
+        \App\Models\Match::STATUS_MATCHED => 'Matched',
+        \App\Models\Match::STATUS_HIRED => 'Hired',
+    ],
 
 
 ];

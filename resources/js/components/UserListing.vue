@@ -1,13 +1,16 @@
 <template>
   <div>
-    <case-listing
+    <CaseListing
       :end-point="usersEndPoint"
-      :change-url="false"
+      :change-url="true"
       :export-allowed="false"
       :has-filters="true"
       type="firm"
     >
-      <div slot="header" class="text-right mb-3">
+      <div
+        slot="header"
+        class="text-right mb-3"
+      >
         <Btn
           theme="success"
           @click="addUser"
@@ -60,8 +63,7 @@
           <i class="icon-Unlock_x40_2xpng_2" />
         </button>
       </template>
-    </case-listing>
-
+    </CaseListing>
   </div>
 </template>
 

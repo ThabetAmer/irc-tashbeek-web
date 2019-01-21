@@ -98,8 +98,11 @@
       v-else
       custom-class="min-h-200 text-lg mb-4"
     />
-    <div class=" text-xs my-3 pl-2" v-if="rows.length > 0">
-      Viewing {{rows.length}} out of {{pagination.total}}
+    <div
+      v-if="rows.length > 0"
+      class=" text-xs my-3 pl-2"
+    >
+      Viewing {{ rows.length }} out of {{ pagination.total }}
     </div>
     <Pagination
       v-if="pagination.lastPage > 1"
@@ -160,11 +163,6 @@
         type: Array,
         default: () => []
       }
-    },
-    mounted(){
-      console.log(
-        this.$scopedSlots
-      )
     },
     methods:{
       getRowValue(row,{valueHandler,name}){

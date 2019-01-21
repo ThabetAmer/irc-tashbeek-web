@@ -21,7 +21,10 @@
     >
       <Spinner size="xs" />
     </span>
-    <slot name="extra-button" />
+    <slot
+      v-if="!loading"
+      name="extra-button"
+    />
 
     <slot name="text">
       button

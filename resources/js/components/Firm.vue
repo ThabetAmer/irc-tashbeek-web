@@ -282,9 +282,7 @@
                 this.starredNote = note;
               }
             })
-          }).catch(error => {
-        console.log('Error : ', error);
-      });
+          });
 
     },
     methods: {
@@ -304,11 +302,7 @@
               this.notes.forEach(note => {
                 note.is_starred = (data.note.id === note.id) && (data.note.is_starred);
               });
-            })
-            .catch(error => {
-              console.log('Error ', error)
             });
-
       },
       addNoteToList(noteText, type) {
         addNote('firm', this.firm.id, {note: noteText, type: type})

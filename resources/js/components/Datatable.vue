@@ -164,11 +164,6 @@
         default: () => []
       }
     },
-    mounted(){
-      console.log(
-        this.$scopedSlots
-      )
-    },
     methods:{
       getRowValue(row,{valueHandler,name}){
         if(valueHandler && typeof valueHandler === "function"){

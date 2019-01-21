@@ -106,5 +106,13 @@ return [
     'notes_has_been_starred' => 'تم تعين ملاحظة مميزة',
     'notes_has_been_unstarred' => 'تم الالغاء',
     'back' => 'عودة للخلف',
-    'saved_matches' => 'المرشحين'
+    'saved_matches' => 'المرشحين',
+    'jobseeker_status' => 'حالة المتقدم',
+
+    'match_statuses' => [
+        \App\Models\Match::STATUS_NEW => 'جديد',
+        \App\Models\Match::STATUS_CANDIDATE => 'مرشح',
+        \App\Models\Match::STATUS_MATCHED => 'متوافق',
+        \App\Models\Match::STATUS_HIRED => 'تم التوظيف',
+    ],
 ];

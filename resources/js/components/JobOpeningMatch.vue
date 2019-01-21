@@ -39,6 +39,15 @@
         </div>
         <div class="mb-4">
           <label class="text-green-theme font-bold text-xs uppercase mb-2">
+            {{ 'irc.firm_name' | trans }}
+          </label>
+          <div class="text-black">
+            {{ jobOpening.firm.firm_name }}
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="text-green-theme font-bold text-xs uppercase mb-2">
             {{ 'irc.job_description' | trans }}
           </label>
           <div class="text-black">

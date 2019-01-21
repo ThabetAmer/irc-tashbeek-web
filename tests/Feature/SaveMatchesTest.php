@@ -227,4 +227,34 @@ class SaveMatchesTest extends TestCase
 
         $this->assertCount(2, $jobOpening->matches()->get());
     }
+
+    public function test_it_has_candidate_as_default_value()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->loginApi();
+
+        $this->createUserRoleWithPermission(auth()->user(), 'cases.match.save');
+
+        $this->syncStructure('job-opening');
+
+        $this->syncStructure('job-seeker');
+
+        $this->syncStructure('match');
+
+        $jobOpening = factory(JobOpening::class)->create();
+
+        $jobSeekers = factory(JobSeeker::class,5)->create();
+
+        $this->assertCount(5, JobSeeker::all());
+
+        $this->json('post', route('api.matches', $jobOpening->id), [
+            'matches' => [
+                $jobSeekers->get(0)->id,
+                $jobSeekers->get(1)->id,
+            ]
+        ])->assertStatus(200);
+
+        $this->assertEquals(Match::STATUS_CANDIDATE, $jobOpening->matches()->first()->pivot->status);
+    }
 }

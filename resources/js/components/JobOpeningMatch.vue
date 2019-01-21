@@ -27,7 +27,7 @@
             {{ 'irc.firm_name' | trans }}
           </label>
           <div class="text-black">
-            {{ jobOpening.job_description }}
+            {{ jobOpening.firm.firm_name }}
           </div>
         </div>
 

@@ -62,7 +62,7 @@ class JobOpeningMatchController extends Controller
     }
 
 
-    public function savedList(JobOpening $jobOpening, CaseFilter $filter, SortableCase $sortableCase)
+    public function savedList(JobOpening $jobOpening, CaseFilter $filter, SortableCase $sortableCase, MatchStatusFilter $matchStatusFilter)
     {
         abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
 
@@ -71,6 +71,8 @@ class JobOpeningMatchController extends Controller
         $query = $jobOpening->matches();
 
         $query->filter($filter);
+
+        $query->filter($matchStatusFilter);
 
         $query->sort($sortableCase);
 

@@ -111,7 +111,7 @@
   #sidebar:not(.minified) {
     height: 80px !important;
     width: 80px !important;
-    overflow: hidden !important;
+    overflow: hidden ;
     opacity: .6;
     .toggle-lang {
       flex-direction: column;
@@ -127,11 +127,20 @@
   }
   #sidebar.minified {
     opacity: 0.9;
+    overflow-y: auto ;
+    max-height: 100% !important;
   }
 }
 
 @media (min-width: 768px) {
+  #sidebar:not(.minified) {
+    overflow: auto ;
+  }
+  #sidebar.minified{
+    overflow: auto ;
+  }
   #sidebar {
+    overflow-y: auto ;
     .toggle-lang {
       flex-direction: row !important;
     }

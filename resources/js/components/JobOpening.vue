@@ -13,9 +13,12 @@
         {{ city }}
       </div>
     </div>
-    <div class="flex-1 text-right text-green-dark font-bold">
+    <a
+      :href="jobOpening.matches_url"
+      class="no-underline flex-1 text-right text-green-dark font-bold"
+    >
       {{ jobOpening.matches_number }} Matches
-    </div>
+    </a>
   </div>
 </template>
 

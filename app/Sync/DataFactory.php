@@ -178,7 +178,7 @@ class DataFactory
 
             if(!$followUp){
                 $model->followups()->create([
-                    'followup_date' => \Carbon\Carbon::parse($model->opened_at)->modify($schedule)->toDateTimeString(),
+                    'followup_date' => \Carbon\Carbon::parse($model->opened_at)->modify($schedule)->toDateString(),
                     'followup_period' => $key,
                     'type' => 'scheduled',
                     'user_id' => $model->user_id,

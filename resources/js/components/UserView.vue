@@ -33,7 +33,7 @@
               >
                 <div class="absolute pl-4 pt-1 flex items-center text-grey-darkest font-bold">
                   <i class=" icon-Photo_x40_2xpng_2 mr-2" />
-                  Upload
+                  {{ 'irc.upload' | trans }}
                 </div>
                 <input
                   ref="fileInput"

@@ -85,10 +85,10 @@ class JobOpening extends AbstractCase
                 'column_type' => 'text',
                 'alias' => 'manager_gender'
             ],
-            'employed' => [
-                'column_name' => 'employed',
-                'column_type' => 'string'
-            ]
+//            'employed' => [
+//                'column_name' => 'employed',
+//                'column_type' => 'string'
+//            ]
         ];
     }
 

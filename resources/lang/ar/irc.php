@@ -99,6 +99,7 @@ return [
     'export' => 'تحميل إكسل',
     'no_date_selected' => 'لم يتم تحديد تاريخ معين',
     'events_are_being_loaded' => 'جاري تحميل المتابعات!',
+    'no_screening' => 'لا يوجد نشاطات!',
 
 
     'notes_created_successfully' => 'تم اضافة الملاحظة بنجاح',

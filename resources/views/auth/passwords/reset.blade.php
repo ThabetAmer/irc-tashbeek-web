@@ -53,7 +53,7 @@
 
 
                 <label for="password-confirm"
-                       class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                       class="block text-grey-darker text-sm font-bold mb-2">{{ __('Confirm Password') }}</label>
 
                 <input id="password-confirm" type="password"
                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight focus:outline-none focus:shadow-outline form-control form-control"

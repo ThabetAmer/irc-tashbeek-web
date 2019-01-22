@@ -151,26 +151,30 @@
               {{ day.name }}
             </div>
             <ul class="list-reset">
-              <li
+              <template
                 v-for="activity in day.items"
-                :key="activity.id"
-                class="relative text-left text-black border-grey-lighter border-solid
-                            border-b-2 font-semibold text-md  py-5 flex items-center "
               >
-                <Component
-                  :is="activity.component.name"
-                  v-if="activity.component"
-                  :icon-class="activity.component.value+' text-grey-darker text-1xl mr-2'"
-                />
-                <a
-                  class="no-underline text-black"
-                  :href="activity.entity.details_url"
+                <li
+                  v-if="activity.entity && activity.entity.id "
+                  :key="activity.id"
+                  class="relative text-left text-black border-grey-lighter border-solid
+                              border-b-2 font-semibold text-md  py-5 flex items-center "
                 >
-                  <span class="text-sm">
-                    {{ activity.title }} •  {{ activity.entity.name }}
-                  </span>
-                </a>
-              </li>
+                  <Component
+                    :is="activity.component.name"
+                    v-if="activity.component"
+                    :icon-class="activity.component.value+' text-grey-darker text-1xl mr-2'"
+                  />
+                  <a
+                    class="no-underline text-black"
+                    :href="activity.entity.details_url"
+                  >
+                    <span class="text-sm">
+                      {{ activity.title }} •  {{ activity.entity.name }}
+                    </span>
+                  </a>
+                </li>
+              </template>
             </ul>
           </div>
         </div>
@@ -179,11 +183,11 @@
   </div>
 
   <div v-else>
-      <EmptyState
-        icon=" icon-Grid_10_1 text-5xl mt-3 block"
-        :message="'irc.admin_dashboard' | trans"
-        custom-class="mt-5 min-h-500 text-lg border border-grey-light rounded"
-      />
+    <EmptyState
+      icon=" icon-Grid_10_1 text-5xl mt-3 block"
+      :message="'irc.admin_dashboard' | trans"
+      custom-class="mt-5 min-h-500 text-lg border border-grey-light rounded"
+    />
   </div>
 </template>
 

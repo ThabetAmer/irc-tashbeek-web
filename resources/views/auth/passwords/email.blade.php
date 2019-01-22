@@ -12,6 +12,11 @@
               class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             @csrf
             <div class="text-grey-darkest font-bold text-base mb-3">Send reset link</div>
+
+            @if (session('status'))
+                <alert type="success" message="{{ session('status') }}"></alert>
+            @endif
+
             <div class="mb-4">
                 <label class="block text-grey-darker text-sm font-bold mb-2" for="username">
                     Email

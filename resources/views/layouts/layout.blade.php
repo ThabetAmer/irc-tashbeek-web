@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-      dir="{{ config('laravellocalization.supportedLocales.' . app()->getLocale() . '.' . 'dir', 'ltr') }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ config('laravellocalization.supportedLocales.' . app()->getLocale() . '.' . 'dir', 'ltr') }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,9 +9,9 @@
 
     @if(auth()->check())
         <meta name="api-token" content="{{ auth()->user()->api_token }}">
-@endif
+    @endif
 
-<!-- Fonts -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
@@ -28,10 +27,9 @@
     @if(auth()->check())
         @include('layouts.sidebar')
     @endif
-
-    <div class="p-10 container body-container mx-auto pr-2 sm:pl-16 md:pl-10 {{!auth()->check() ? ' flex items-center login' :''}}"
-         id="app">
-        @if(auth()->check())
+    <div class="p-10 container body-container mx-auto pr-2 sm:pl-16 md:pl-10  {{!auth()->check() ? ' flex justify-center flex-col login' :''}}" id="app">
+        @if (session('status') && auth()->check())
+            <alert type="success" message="{{ session('status') }}"></alert>
         @endif
         @yield('content')
     </div>

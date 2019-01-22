@@ -11,7 +11,8 @@
         :value="getOptionValue(filter)"
         :options="options(filter.options)"
         :placeholder="filter.label"
-        wrapper-class="w-full sm:w-full md:w-1/2 lg:w-1/3 xl:w-1/5  pr-2 h-50"
+        :wrapper-class="`w-full pr-2
+        ${getOptionValue(filter) && getOptionValue(filter).length > 1 ? 'md:w-full lg:w-full xl:w-1/3':' md:w-1/2 lg:w-1/3 xl:w-1/5 '}`"
         custom-class="mb-2 note-select filter-input multiselect-with-remove"
         @clear="handleClear(filter.name)"
         @select="handleSelect(filter, $event)"

@@ -36,4 +36,24 @@ class ResetPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    public function rules() {
+
+        $passwordRegexValidation = config('irc.password_regex_validation');
+
+        return [
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => "required|confirmed|min:8|regex:$passwordRegexValidation",
+        ];
+
+    }
+
+    public function validationErrorMessages()
+    {
+        return [
+            'password.regex' => trans('passwords.password_rules')
+        ];
+    }
+
 }

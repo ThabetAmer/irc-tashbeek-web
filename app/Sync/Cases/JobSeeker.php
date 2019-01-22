@@ -1,6 +1,8 @@
 <?php namespace App\Sync\Cases;
 
 
+use App\Sync\QuestionHandler\ActualInterventionReceivedHandler;
+
 class JobSeeker extends AbstractCase
 {
     public $model = \App\Models\JobSeeker::class;
@@ -85,6 +87,7 @@ class JobSeeker extends AbstractCase
             'actual_intervention_received' => [
                 'column_name' => 'actual_intervention_received',
                 'column_type' => 'string',
+                'valueHandler' => ActualInterventionReceivedHandler::class
             ],
 
         ];

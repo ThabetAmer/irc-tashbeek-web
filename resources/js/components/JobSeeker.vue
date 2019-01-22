@@ -116,6 +116,22 @@
               </span>
             </div>
           </ListItem>
+
+          <ListItem
+            icon="icon-Diamond_x40_2xpng_2"
+          >
+            <div>
+              <span>{{ 'irc.type_of_treatment' | trans }}: </span>
+              <span>
+                <a
+                  class="link text-blue-dark font-bold"
+                  :href="`${homeUrl}/job-seekers?filters[actual_intervention_received]=${jobSeeker.actual_intervention_received_key}`"
+                >
+                  {{ jobSeeker.actual_intervention_received }}
+                </a>
+              </span>
+            </div>
+          </ListItem>
         </ul>
 
         <div class="stared-note uppercase text-green text-left font-bold mt-10 -mb-2">
@@ -262,9 +278,9 @@
             <NotesList
               case-type="job-seeker"
               :case-id="jobSeeker.id"
+              :additional-note="addedNote"
               @starred="starredNote = $event"
               @fetched="starredNote = $event.starred"
-              :additional-note="addedNote"
             />
           </div>
         </div>
@@ -306,6 +322,11 @@
         matchedEndPoint: '',
         candidateEndPoint: '',
         addedNote: null
+      }
+    },
+    computed:{
+      homeUrl(){
+        return window.homeUrl
       }
     },
     created() {

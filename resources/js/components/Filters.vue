@@ -133,7 +133,9 @@
           return undefined
         }
 
-        let selected = filter.filterValue.reduce((selected, value) => {
+        const filterValue = Array.isArray(filter.filterValue)?filter.filterValue:[filter.filterValue]
+
+        let selected = filterValue.reduce((selected, value) => {
           const index = filter.options.findIndex(option => option.value == value)
           if (index !== -1) {
             selected.push(filter.options[index])

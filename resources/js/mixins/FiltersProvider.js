@@ -57,9 +57,11 @@ export default {
       }, 600)
     },
     initialUserFilters(filtersList, filtersObject) {
+
       if (Object.keys(filtersObject).length === 0) {
         return filtersList.slice(0, 3)
       }
+
       const userFilters = filtersList.filter(filter => {
         const filterValue = filtersObject[filter.name];
         return typeof filterValue !== "undefined"
@@ -73,7 +75,7 @@ export default {
       if (userFilters.length > 0) {
         return userFilters
       }
-      return filtersList.slice(0,)
+      return filtersList.slice(0)
     },
   },
 }

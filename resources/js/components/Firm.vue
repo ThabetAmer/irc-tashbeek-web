@@ -190,9 +190,9 @@
         <NotesList
           case-type="firm"
           :case-id="firm.id"
+          :additional-note="addedNote"
           @starred="starredNote = $event"
           @fetched="starredNote = $event.starred"
-          :additional-note="addedNote"
         />
 
         <!--<notebox></notebox>-->

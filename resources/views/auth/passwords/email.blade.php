@@ -10,6 +10,7 @@
         </div>
         <form method="POST" action="{{ route('password.email') }}"
               class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+
             @csrf
             <div class="text-grey-darkest font-bold text-base mb-3">Send reset link</div>
             <div class="mb-4">

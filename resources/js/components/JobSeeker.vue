@@ -259,26 +259,7 @@
             v-if="jobOpeningView === 'notes'"
             class=""
           >
-            <div v-if="notes && notes.length > 0">
-              <Notebox
-                v-for="note in notes"
-                :id="note.id"
-                :key="note.id"
-                :date="note.created_at_text"
-                :author="note.user.name"
-                :is-starred="note.is_starred"
-                :body="note.note"
-                @noteStarred="changeStarredNote"
-              />
-            </div>
-
-            <EmptyState
-              v-else
-              icon="icon-Note_x40_2xpng_2 text-3xl mt-3 block"
-              message="You don't have any notes!"
-              custom-class="mt-5 min-h-200 text-lg"
-            />
-            <!--<notebox></notebox>-->
+            <NotesList case-type="job-seeker" :case-id="jobSeeker.id"></NotesList>
           </div>
         </div>
       </Panel>

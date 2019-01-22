@@ -45,6 +45,7 @@ Vue.component('UsersListing',require('./components/UserListing.vue').default);
 Vue.component('UserView',require('./components/UserView.vue').default);
 Vue.component('JobOpeningMatch', require('./components/JobOpeningMatch.vue').default);
 Vue.component('JobOpeningSavedMatches', require('./components/JobOpeningSavedMatches.vue').default);
+Vue.component('NotesList', require('./components/NotesList').default);
 
 
 // UI components

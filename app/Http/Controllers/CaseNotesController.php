@@ -16,7 +16,7 @@ class CaseNotesController extends Controller
 
         $record = $case->query()->where('id',$id)->firstOrFail();
 
-        $results = $record->notes()->with('user')->latest()->paginate(5);
+        $results = $record->notes()->with('user')->latest()->paginate(1);
 
         return NoteResource::collection($results);
     }

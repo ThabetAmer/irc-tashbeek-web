@@ -16,6 +16,7 @@ return [
     'admin_dashboard' => 'This is the Admin dashboard',
     'job_opening_match' => 'Job opening match',
     'job_opening_saved_match' => 'Job opening saved match',
+    'no_screening' => 'No screening to show!',
 
     'total_monthly_intakes' => 'Total Monthly Intakes',
     'total_pending_followups' => 'Total number of pending follow-ups',

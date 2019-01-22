@@ -212,18 +212,21 @@
         </Btn>
         <div class="tab-content">
           <div
-            v-if="jobOpeningView === 'all'"
-            class=""
-          >
-            <Screenbox />
-            <Screenbox />
-          </div>
-
-          <div
             v-if="jobOpeningView === 'screening'"
             class=""
           >
-            <Screenbox />
+            <div v-if="screening.length > 0">
+              <Screenbox
+                v-for="screen in screening"
+                :key="screen.id"
+                :screen="screen"
+              />
+            </div>
+            <EmptyState
+              v-else
+              :message="'irc.no_screening' | trans"
+              custom-class="mt-5 min-h-200 text-lg"
+            />
           </div>
 
           <div
@@ -291,6 +294,7 @@
 
 <script>
   import {get as getNotes} from '../API/noteAPI'
+  import {get as getScreening} from '../API/screeningAPI'
   import {post as addNote} from '../API/noteAPI'
   import {setNoteStarred as starNote} from '../API/noteAPI'
 
@@ -313,6 +317,7 @@
         starredNote: null,
         notes: [],
         matches: [],
+        screening: [],
         matchedEndPoint: '',
         candidateEndPoint: ''
       }
@@ -321,9 +326,19 @@
       this.matchedEndPoint = `api/job-seekers/${this.jobSeeker.id}/matches`;
       this.candidateEndPoint = `api/job-seekers/${this.jobSeeker.id}/candidates`;
       this.getNotes();
+      this.getScreening();
     },
     methods: {
-
+      getScreening() {
+        getScreening(this.jobSeeker.id)
+            .then(({data})=> {
+              // console.log(' screening is ', resp)
+              this.screening=data.data;
+            })
+            .catch(error => {
+              console.log(' error! ',error)
+            });
+      },
       getNotes() {
         getNotes('job-seeker', this.jobSeeker.id)
             .then(({data}) => {

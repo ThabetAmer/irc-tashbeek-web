@@ -76,16 +76,16 @@ class JobSeeker extends AbstractCase
             ],
             'national_id' => [
                 'column_name' => 'national_id',
-                'column_type' => 'text',
+                'column_type' => 'string',
             ],
             'moi' => [
                 'column_name' => 'moi',
-                'column_type' => 'text',
+                'column_type' => 'string',
             ],
-//            'actual_intervention_received' => [
-//                'column_name' => 'actual_intervention_received',
-//                'column_type' => 'text',
-//            ],
+            'actual_intervention_received' => [
+                'column_name' => 'actual_intervention_received',
+                'column_type' => 'string',
+            ],
 
         ];
     }

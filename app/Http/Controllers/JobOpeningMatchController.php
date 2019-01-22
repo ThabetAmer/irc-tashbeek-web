@@ -130,7 +130,7 @@ class JobOpeningMatchController extends Controller
             $perPage = 50;
         }
 
-        return $perPage;
+        return intval($perPage);
     }
 
 }

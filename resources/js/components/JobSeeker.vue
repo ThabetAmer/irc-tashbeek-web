@@ -141,7 +141,7 @@
     </div>
     <div class="w-full lg:w-2/3 lg:px-2">
       <Panel
-        custom-class="min-h-900 max-h-900 "
+        custom-class="min-h-900 max-h-900 overflow-y-auto "
         :has-title="hasTitle"
         :title="'irc.job_openings' | trans"
       >
@@ -358,13 +358,13 @@
         addNote('job-seeker', this.jobSeeker.id, {note: noteText, type: type ? type.name : ''})
             .then(resp => {
               this.notes.push(resp.data.note);
-            }).catch(error => {
-          this.$toasted.show(error.response.data.message, {
-            icon: 'icon-Error_x40_2xpng_2',
-            className: 'toast-error'
-          })
-        });
-
+            })
+            .catch(error => {
+              this.$toasted.show(error.response.data.errors.note[0], {
+                icon: 'icon-Error_x40_2xpng_2',
+                className: 'toast-error'
+              })
+            });
       },
       changeStarredNote(note) {
         starNote('job-seeker', this.jobSeeker.id, note.id)

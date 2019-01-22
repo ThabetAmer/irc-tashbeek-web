@@ -3,14 +3,17 @@
     -->
   <div :class="' notebox p-8 text-left  border  border-grey-light relative mb-3 '+' '+`${customClass}`">
     <div class=" text-grey-dark text-sm mb-1">
-      {{screen.created_at_text}}
+      {{ screen.created_at_text }}
     </div>
 
     <div class="mb-4 text-base text-black font-bold ">
-      {{screen.title}}
+      {{ screen.title }}
     </div>
-    <div v-if="screen.note" class=" text-sm text-black font-semibold">
-      {{screen.note}}
+    <div
+      v-if="screen.note"
+      class=" text-sm text-black font-semibold"
+    >
+      {{ screen.note }}
     </div>
   </div>
 </template>

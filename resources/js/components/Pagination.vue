@@ -14,7 +14,12 @@
           @click="onClickFirstPage"
         >
           <template slot="text">
-            <img class="mt-3px" width="16" src="../../img/left-chevron_double.svg" alt="">
+            <img
+              class="mt-3px"
+              width="16"
+              src="../../img/left-chevron_double.svg"
+              alt=""
+            >
           </template>
         </Btn>
       </li>
@@ -28,7 +33,12 @@
           @click="onClickPreviousPage"
         >
           <template slot="text">
-            <img class="mt-3px" width="16" src="../../img/left-chevron.svg" alt="">
+            <img
+              class="mt-3px"
+              width="16"
+              src="../../img/left-chevron.svg"
+              alt=""
+            >
           </template>
         </Btn>
       </li>
@@ -60,7 +70,12 @@
           @click="onClickNextPage"
         >
           <template slot="text">
-            <img class="mt-3px" width="16" src="../../img/right-chevron.svg" alt="">
+            <img
+              class="mt-3px"
+              width="16"
+              src="../../img/right-chevron.svg"
+              alt=""
+            >
           </template>
         </Btn>
       </li>
@@ -74,7 +89,12 @@
           @click="onClickLastPage"
         >
           <template slot="text">
-            <img class="mt-3px" width="16" src="../../img/right-chevron_double.svg" alt="">
+            <img
+              class="mt-3px"
+              width="16"
+              src="../../img/right-chevron_double.svg"
+              alt=""
+            >
           </template>
         </Btn>
       </li>
@@ -91,6 +111,7 @@
             :options="perPageOptions"
             track-by="value"
             placeholder="rows per page"
+            :searchable="false"
             :value="perPage"
             @select="handlePerPage($event.value)"
           />

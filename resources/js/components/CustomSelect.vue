@@ -20,6 +20,7 @@
       select-label=""
       deselect-label=""
       selected-label=""
+      :searchable="searchable"
       :multiple="multiple"
       :track-by="trackBy"
       :label="label"
@@ -90,6 +91,10 @@
         default: function () {
           return []
         }
+      },
+      searchable: {
+        type: Boolean,
+        default: true
       },
       multiple: {
         type: Boolean,

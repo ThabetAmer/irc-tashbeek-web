@@ -143,7 +143,7 @@
       <Panel
         custom-class="min-h-900 max-h-900 overflow-y-auto "
         :has-title="hasTitle"
-        :title="'irc.job_openings' | trans"
+        :title="'irc.recent_activity' | trans"
       >
         <ul class="flex list-reset border-0 custom-navs mb-4">
           <li

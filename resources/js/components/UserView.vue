@@ -81,6 +81,7 @@
               <input
                 id="email"
                 v-model="userData.email"
+                :disabled="!showEdit"
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
                px-4 leading-tight focus:outline-none focus:bg-white  ${!internalError['email']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="text"
@@ -106,6 +107,7 @@
               <input
                 id="password"
                 v-model="userData.password"
+                :disabled="!showEdit"
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
                px-4 leading-tight focus:outline-none focus:bg-white  ${!internalError['password']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="password"
@@ -131,6 +133,7 @@
               <input
                 id="password_confirm"
                 v-model="userData.password_confirmation"
+                :disabled="!showEdit"
                 :class="`appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3
                px-4 leading-tight focus:outline-none focus:bg-white  ${!internalError['password']? 'focus:border-grey border border-grey-lighter focus:border-grey':'border border-red '}`"
                 type="password"

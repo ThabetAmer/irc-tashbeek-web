@@ -1,5 +1,6 @@
 <template>
   <CaseListing
+    :per-page="50"
     :end-point="route"
     type="job-seeker"
     :export-allowed="false"
@@ -108,7 +109,7 @@
     },
     methods: {
       onFetch(response) {
-        this.selections = response.matches
+        this.selections = [...new Set([...this.selections, ...response.matches])]
         this.savedSelections = [...response.matches]
         this.isFetching = false;
       },

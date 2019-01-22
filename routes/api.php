@@ -51,6 +51,7 @@ Route::group([
 
     Route::get('/job-seekers/{jobSeeker}/matches', 'JobSeekerController@matches')->name('api.job-seeker.matches');
     Route::get('/job-seekers/{jobSeeker}/candidates', 'JobSeekerController@candidates')->name('api.job-seeker.candidates');
+    Route::get('/job-seekers/{jobSeeker}/screening', 'JobSeekerController@screening')->name('api.job-seeker.screening');
 
     Route::get('/firms/{firm}/matches', 'FirmController@matches')->name('api.firm.matches');
 

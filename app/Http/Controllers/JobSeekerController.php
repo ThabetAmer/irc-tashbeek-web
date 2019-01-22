@@ -6,6 +6,7 @@ use App\Export\CaseExport;
 use App\Http\Controllers\Controller;
 use App\Http\Filters\CaseFilter;
 use App\Http\Requests\JobSeekerRequest;
+use App\Http\Resources\RecentActivityResource;
 use App\Http\Sortable\SortableCase;
 use App\Models\JobSeeker;
 use App\Models\Match;
@@ -78,5 +79,17 @@ class JobSeekerController extends Controller
         }
 
         return $collection;
+    }
+
+
+    public function screening(JobSeeker $jobSeeker)
+    {
+        abort_unless(auth()->user()->hasPermissionTo("cases.job-seeker"), 403);
+
+        $query = $jobSeeker->recentActivities();
+
+        $results = $query->paginate();
+
+        return RecentActivityResource::collection($results);
     }
 }

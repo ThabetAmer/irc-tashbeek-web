@@ -15,10 +15,11 @@
         v-for="note in notes"
         :id="note.id"
         :key="note.id"
-        :show-star="false"
         :date="note.created_at_text"
         :author="note.user.name"
         :body="note.note"
+        :is-starred="note.is_starred"
+        @noteStarred="changeStarredNote"
       />
 
       <div
@@ -44,6 +45,8 @@
 <script>
   import {get as getNotes} from '../API/noteAPI'
   import PaginationMixin from '../mixins/paginationMixin'
+  import {setNoteStarred as starNote} from '../API/noteAPI'
+
   export default {
     name: "NotesList",
     mixins: [PaginationMixin],
@@ -60,11 +63,29 @@
         type: Number,
         required: true
       },
+      additionalNote:{
+        type:[Object],
+        default: null
+      }
     },
     data() {
       return {
         notes: [],
-        loading: true
+        loading: true,
+        lastAdditionalNote: {}
+      }
+    },
+    watch:{
+      additionalNote(newValue){
+        if(!newValue){
+          return
+        }
+
+        if(this.lastAdditionalNote === newValue.id ){
+          return
+        }
+
+        this.notes.unshift(newValue)
       }
     },
     created() {
@@ -81,7 +102,28 @@
             this.setPaginationFromMeta(data.meta)
 
             this.loading = false;
+
+            this.$emit('fetched', data)
           })
+      },
+      changeStarredNote(note) {
+        starNote(this.caseType, this.caseId, note.id)
+          .then(({data}) => {
+
+            this.$toasted.show(data.message, {
+              icon: 'icon-Stars_x40_2xpng_2 mr-2'
+            })
+
+            this.notes.forEach(note => {
+              note.is_starred = (data.note.id === note.id) && (data.note.is_starred);
+            })
+
+            this.$emit('starred', data.note.is_starred ? data.note : null)
+          })
+          .catch(error => {
+            console.log('Error ', error)
+          });
+        ;
       }
     },
   }

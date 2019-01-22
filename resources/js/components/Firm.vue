@@ -187,29 +187,14 @@
           </template>
         </Btn>
 
-        <div v-if="notes.length && !notesLoading">
-          <Notebox
-            v-for="note in notes"
-            :id="note.id"
-            :key="note.id"
-            :date="note.created_at_text"
-            :author="note.user.name"
-            :body="note.note"
-            :is-starred="note.is_starred"
-            @noteStarred="changeStarredNote"
-          />
-        </div>
-        <div v-else-if="!notes.length && notesLoading">
-          <PageLoader
-            :message="'irc.notes_loading' | trans"
-          />
-        </div>
-        <EmptyState
-          v-else
-          icon="icon-Note_x40_2xpng_2 text-3xl mt-3 block"
-          :message="'irc.no_notes_available' | trans"
-          custom-class="mt-5 min-h-200 text-lg"
+        <NotesList
+          case-type="firm"
+          :case-id="firm.id"
+          @starred="starredNote = $event"
+          @fetched="starredNote = $event.starred"
+          :additional-note="addedNote"
         />
+
         <!--<notebox></notebox>-->
       </Panel>
     </div>
@@ -248,8 +233,8 @@
         matches: [],
         matchedEndPoint: '',
         jobOpeningsLoading: true,
-        notes: [],
-        starredNote: null
+        starredNote: null,
+        addedNote: null
       }
     },
     computed: {
@@ -272,47 +257,13 @@
         this.jobOpeningsLoading = false
         this.jobOpenings = data.data
       });
-
-      getNotes('firm', this.firm.id)
-          .then(({data}) => {
-            this.notes = data.data;
-            this.notesLoading = false;
-            this.notes.forEach(note => {
-              if (note.is_starred) {
-                this.starredNote = note;
-              }
-            })
-          });
-
     },
     methods: {
-      changeStarredNote(note) {
-        starNote('firm', this.firm.id, note.id)
-            .then(({data})=> {
-              if (data.note.is_starred) {
-                this.starredNote = data.note;
-              } else {
-                this.starredNote = null;
-              }
-
-              this.$toasted.show(data.message, {
-                icon: 'icon-Stars_x40_2xpng_2 mr-2'
-              })
-
-              this.notes.forEach(note => {
-                note.is_starred = (data.note.id === note.id) && (data.note.is_starred);
-              });
-            });
-      },
       addNoteToList(noteText, type) {
         addNote('firm', this.firm.id, {note: noteText, type: type})
             .then(resp => {
-              this.notes.push(resp.data.note);
-            }).catch(error => {
-          console.log('Error : ', error);
-        });
-
-
+              this.addedNote = resp.data.note;
+            })
       },
       changeViewType(type) {
         this.viewType = type;

@@ -158,6 +158,9 @@
           let total = this.totalPages - this.maxVisibleButtons + 1;
           return total < 1 ? 1 : total;
         }
+        if((this.totalPages-this.currentPage) < this.maxVisibleButtons){
+          return (this.totalPages -this.maxVisibleButtons + 1);
+        }
         return this.currentPage - 1;
       },
       endPage() {

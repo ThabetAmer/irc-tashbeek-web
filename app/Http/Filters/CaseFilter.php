@@ -131,6 +131,36 @@ class CaseFilter implements FilterInterface
         }
     }
 
+    /**
+     * Trigger field type uses range query
+     * @param $builder
+     * @param $name
+     * @param $value
+     */
+    protected function searchTrigger($builder, $name, $value){
+        if(!is_array($value)){
+            $builder->where($name, $value);
+        }
+
+        $value = (array) $value;
+
+        $from = (string) array_get($value, 'from');
+        $to = (string) array_get($value, 'to');
+
+        if(empty($from) && empty($to)){
+            return ;
+        }
+
+        if(!empty($from)){
+            $builder->where($name,'>=',$value);
+        }
+
+        if(!empty($to)){
+            $builder->where($name,'<=',$to);
+        }
+
+    }
+
     protected function isValidValue($value)
     {
         if(is_array($value)){

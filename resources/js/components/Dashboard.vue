@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-wrap">
+  <div
+    v-if="!isAdmin"
+    class="flex flex-wrap"
+  >
     <div class="sm:w-full xl:w-2/3">
       <div class="flex flex-wrap">
         <div
@@ -175,6 +178,14 @@
       </Panel>
     </div>
   </div>
+
+  <div v-else>
+      <EmptyState
+        icon=" icon-Grid_10_1 text-5xl mt-3 block"
+        :message="'irc.admin_dashboard' | trans"
+        custom-class="mt-5 min-h-500 text-lg border border-grey-light rounded"
+      />
+  </div>
 </template>
 
 
@@ -199,10 +210,12 @@
         selectedDateHuman: "",
         endPoint: "",
         cards: [],
+        userRoles: '',
+        isAdmin: null,
         tableHeaders: [
           {
             name: "type",
-            label:'Type'
+            label: 'Type'
 
           },
           {
@@ -212,13 +225,13 @@
 
           },
           {
-              name: "due_date",
-              label:'Due Date'
+            name: "due_date",
+            label: 'Due Date'
 
           },
           {
             name: "background",
-            label:'Background',
+            label: 'Background',
             valueHandler: (row) => Object.values(row.followup.background).join(', ')
 
           }
@@ -250,8 +263,8 @@
             center: '',
             right: 'prev,next'
           },
-          locale:document.documentElement.lang === 'ar' ?  'ar':'en',
-          isRTL:document.documentElement.lang === 'ar',
+          locale: document.documentElement.lang === 'ar' ? 'ar' : 'en',
+          isRTL: document.documentElement.lang === 'ar',
           themeSystem: 'bootstrap4',
           themeButtonIcons: {
             prev: 'left-single-arrow',
@@ -262,9 +275,6 @@
           },
           viewRender: function (view, el) {
             this.getCounts(view.calendar.currentDate.format("YYYY-MM"));
-          }.bind(this),
-          unselect: function (view, el) {
-            this.dayUnselected(view, el);
           }.bind(this)
         },
         page: 1,
@@ -280,6 +290,8 @@
     computed: {},
     watch: {},
     created() {
+      this.userRoles = window.userRoles.map(role => role.id);
+      this.isAdmin = this.userRoles.indexOf(1) > -1;
     },
     mounted() {
       this.getRecentActivity();
@@ -359,16 +371,16 @@
 
 
       },
-      exportData(){
+      exportData() {
 
         let selectedDate = this.selectedDate;
-        if(this.viewType == "table"){
-            selectedDate = null;
+        if (this.viewType == "table") {
+          selectedDate = null;
         }
 
-          exportDataByUrl(selectedDate, this.pagination.page, {export: true})
+        exportDataByUrl(selectedDate, this.pagination.page, {export: true})
             .then(response => {
-                exportDataHelper.exportCallback(response);
+              exportDataHelper.exportCallback(response);
             });
       }
 

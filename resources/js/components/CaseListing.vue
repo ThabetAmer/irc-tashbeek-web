@@ -3,7 +3,7 @@
     <Panel
       custom-class=""
     >
-      <slot name="header" />
+      <slot name="header"/>
 
       <div class="flex justify-end">
         <Btn
@@ -97,12 +97,12 @@
             class="flex-1 text-xl  text-green-dark"
             @click="viewNotes(row.id)"
           >
-            <i class="icon-Page_1_x40_2xpng_2" />
+            <i class="icon-Page_1_x40_2xpng_2"/>
           </button>
         </td>
       </Datatable>
 
-      <PageLoader v-else />
+      <PageLoader v-else/>
     </Panel>
 
     <ViewNoteModal
@@ -151,9 +151,9 @@
         type: Boolean,
         default: true
       },
-      perPage:{
-        type:Number,
-        default:15
+      perPage: {
+        type: Number,
+        default: 0
       }
     },
     data() {
@@ -164,11 +164,13 @@
         rows: [],
         headers: [],
         permissions: {},
-        exportLoading: false
+        exportLoading: false,
+        perPageData: 0
       }
     },
     mounted() {
       const queryStringObject = queryString.parse();
+      this.perPageData = this.perPage;
       this.loadData({
         page: queryStringObject.page,
         filters: queryStringObject.filters,
@@ -178,7 +180,7 @@
       });
     },
     methods: {
-      loadData({filters = {}, page = null, sorting = {}, perPage = this.perPage} = {}) {
+      loadData({filters = {}, page = null, sorting = {}, perPage = this.perPageData} = {}) {
         filters = filters && typeof filters === "object" ? filters : {}
         sorting = sorting && typeof sorting === "object" ? sorting : {}
         const params = {
@@ -187,14 +189,13 @@
             ...this.userFiltersToParams()
           },
           page: !isNaN(parseInt(page, 10)) ? page : this.pagination.currentPage,
-          perPage: !isNaN(parseInt(perPage, 15)) ? perPage : this.pagination.perPage,
+          perPage: !isNaN(parseInt(perPage, 15)) && perPage != 0 ? perPage : this.pagination.perPage,
           sorting: {
             ...this.sorting,
             ...sorting,
           }
         };
         this.loading = true
-
         let apiResponse = this.apiRequest(params);
 
         return apiResponse.then(({data}) => {
@@ -220,6 +221,10 @@
             perPage: parseInt(data.meta.per_page),
             currentPage: data.meta.current_page
           };
+
+          if(this.pagination.perPage != this.perPageData){
+            this.perPageData = this.pagination.perPage;
+          }
           this.permissions = data.permissions || {}
           this.loading = false;
         }).catch(error => {

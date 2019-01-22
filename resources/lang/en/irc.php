@@ -13,6 +13,9 @@ return [
     'job_openings' => 'Job Openings',
     'match_job' => 'Match Job',
     'view_notes' => 'View Notes',
+    'admin_dashboard' => 'This is the Admin dashboard',
+    'job_opening_match' => 'Job opening match',
+    'job_opening_saved_match' => 'Job opening saved match',
 
     'total_monthly_intakes' => 'Total Monthly Intakes',
     'total_pending_followups' => 'Total number of pending follow-ups',

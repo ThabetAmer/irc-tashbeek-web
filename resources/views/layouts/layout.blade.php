@@ -38,9 +38,11 @@
 </html>
 
 <script type="text/javascript">
-    window.appURL = '{{ url('/') }}';
-    window.homeUrl = '{{ route('home') }}'
-
+  window.appURL = '{{ url('/') }}';
+  window.homeUrl = '{{ route('home') }}'
+  @auth
+      window.userRoles = {!! auth()->user()->roles->toJson() !!}
+    @endauth
 </script>
 
 <script
@@ -49,12 +51,12 @@
         crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar').toggleClass('minified');
-            $('.wrapper ').toggleClass('collapsed');
-        });
+  $(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+      $('#sidebar').toggleClass('minified');
+      $('.wrapper ').toggleClass('collapsed');
     });
+  });
 </script>
 
 <script src="{{asset('./js/messages.js')}}"></script>

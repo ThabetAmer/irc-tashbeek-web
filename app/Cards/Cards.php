@@ -30,8 +30,7 @@ class Cards
                 ->for(Firm::class)
                 ->authorize($this->isEsso())
                 ->count(),
-            ValueCard::make(trans('irc.total_job_openings'))
-                ->model(JobOpening::class)
+            JobOpeningCard::make(trans('irc.total_job_openings'))
                 ->authorize($this->isEsso())
                 ->count(),
             FirmCard::make(trans('irc.total_firms_per_user'))

@@ -3770,6 +3770,10 @@
   min-height: 300px;
 }
 
+.min-h-500 {
+  min-height: 500px;
+}
+
 .min-h-642 {
   min-height: 642px;
 }
@@ -10563,6 +10567,10 @@
     min-height: 300px;
   }
 
+  .sm\:min-h-500 {
+    min-height: 500px;
+  }
+
   .sm\:min-h-642 {
     min-height: 642px;
   }
@@ -17339,6 +17347,10 @@
 
   .md\:min-h-300 {
     min-height: 300px;
+  }
+
+  .md\:min-h-500 {
+    min-height: 500px;
   }
 
   .md\:min-h-642 {
@@ -24119,6 +24131,10 @@
     min-height: 300px;
   }
 
+  .lg\:min-h-500 {
+    min-height: 500px;
+  }
+
   .lg\:min-h-642 {
     min-height: 642px;
   }
@@ -30895,6 +30911,10 @@
 
   .xl\:min-h-300 {
     min-height: 300px;
+  }
+
+  .xl\:min-h-500 {
+    min-height: 500px;
   }
 
   .xl\:min-h-642 {
@@ -37675,6 +37695,10 @@
     min-height: 300px;
   }
 
+  .hd\:min-h-500 {
+    min-height: 500px;
+  }
+
   .hd\:min-h-642 {
     min-height: 642px;
   }
@@ -44453,6 +44477,10 @@
     min-height: 300px;
   }
 
+  .fhd\:min-h-500 {
+    min-height: 500px;
+  }
+
   .fhd\:min-h-642 {
     min-height: 642px;
   }
@@ -51229,6 +51257,10 @@
 
   .qhd\:min-h-300 {
     min-height: 300px;
+  }
+
+  .qhd\:min-h-500 {
+    min-height: 500px;
   }
 
   .qhd\:min-h-642 {
@@ -59755,7 +59787,6 @@ table.scrollable-fixed-header thead {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-height: 42px !important;
   min-height: 42px !important;
 }
 
@@ -60303,4 +60334,9 @@ html {
 .swal2-popup .swal2-header,
 .swal2-popup .swal2-actions {
   font-size: .7rem;
+}
+
+.multiselect__tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -13,6 +13,9 @@ return [
     'job_openings' => 'Job Openings',
     'match_job' => 'Match Job',
     'view_notes' => 'View Notes',
+    'admin_dashboard' => 'This is the Admin dashboard',
+    'job_opening_match' => 'Job opening match',
+    'job_opening_saved_match' => 'Job opening saved match',
 
     'total_monthly_intakes' => 'Total Monthly Intakes',
     'total_pending_followups' => 'Total number of pending follow-ups',
@@ -85,8 +88,8 @@ return [
     'updating' => 'Updating',
     'viewing' => 'Viewing',
 
-    'confirm_deactivate_user' => 'Are you sure to Deactivate user?',
-    'confirm_activate_user' => 'Are you sure to Deactivate user?',
+    'confirm_deactivate_user' => 'Are you sure to deactivate user?',
+    'confirm_activate_user' => 'Are you sure to activate user?',
     'cancel' => 'Cancel',
 
     'user_created' => 'User created successfully',
@@ -114,6 +117,8 @@ return [
         \App\Models\Match::STATUS_MATCHED => 'Matched',
         \App\Models\Match::STATUS_HIRED => 'Hired',
     ],
+
+
 
 
 ];

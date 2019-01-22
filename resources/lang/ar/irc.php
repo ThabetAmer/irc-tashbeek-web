@@ -115,4 +115,6 @@ return [
         \App\Models\Match::STATUS_MATCHED => 'متوافق',
         \App\Models\Match::STATUS_HIRED => 'تم التوظيف',
     ],
+
+    'admin_dashboard' => 'لوحة التحكم الخاصة بالادمن'
 ];

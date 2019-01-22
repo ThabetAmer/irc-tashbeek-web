@@ -23,6 +23,12 @@ class JobOpeningMatchResourceCollection extends CaseDataResource
             'options' => $this->matchStatuses()
         ];
 
+        $sortable = ['match_status'];
+
+        if(empty(array_get($with['sorting'],'column')) && in_array($request->input('sorting.column'),$sortable)){
+            $with['sorting']['column'] = $request->input('sorting.column');
+        }
+
         return $with;
     }
 

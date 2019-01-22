@@ -33,7 +33,7 @@ class CaseNotesController extends Controller
 
         $note = $record->addNote([
             'note' => request('note'),
-            'type' => request('type'),
+            'type' => request('type.name'),
             'user_id' => auth()->id()
         ]);
 

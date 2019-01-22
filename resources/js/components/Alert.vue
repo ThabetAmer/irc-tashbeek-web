@@ -1,6 +1,6 @@
 <template>
   <div :class="[typeClass]">
-    {{message}}
+    {{ message }}
   </div>
 </template>
 
@@ -9,10 +9,12 @@
     name: "Alert",
     props:{
       message:{
-        type:String
+        type:String,
+        required: true,
       },
       type:{
-        type:String
+        type:String,
+        required: true,
       }
     },
     computed:{

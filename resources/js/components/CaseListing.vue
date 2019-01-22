@@ -3,7 +3,7 @@
     <Panel
       custom-class=""
     >
-      <slot name="header"/>
+      <slot name="header" />
 
       <div class="flex justify-end">
         <Btn
@@ -97,12 +97,12 @@
             class="flex-1 text-xl  text-green-dark"
             @click="viewNotes(row.id)"
           >
-            <i class="icon-Page_1_x40_2xpng_2"/>
+            <i class="icon-Page_1_x40_2xpng_2" />
           </button>
         </td>
       </Datatable>
 
-      <PageLoader v-else/>
+      <PageLoader v-else />
     </Panel>
 
     <ViewNoteModal

@@ -73,6 +73,7 @@ Vue.component('Filters',require('./components/Filters.vue').default);
 Vue.component('Pagination',require('./components/Pagination.vue').default);
 Vue.component('Screenbox',require('./components/Screenbox.vue').default);
 Vue.component('ViewNoteModal',require('./components/ViewNotesModal.vue').default);
+Vue.component('Alert',require('./components/Alert.vue').default);
 Vue.component('Popper',Popper);
 
 

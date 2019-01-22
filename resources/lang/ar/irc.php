@@ -35,7 +35,7 @@ return [
     'no_starred_note' => 'لا يوجد ملاحظة مميزة.',
 
     'all' => 'الجميع',
-    'screening' => 'Screening',
+    'screening' => 'اخر النشاطات',
     'matches' => 'المتوافقين',
     'matched' => 'المتوافقين',
     'candidates' => 'المرشحين',

@@ -13,6 +13,7 @@ return [
     'job_openings' => 'Job Openings',
     'match_job' => 'Match Job',
     'view_notes' => 'View Notes',
+    'admin_dashboard' => 'This is the Admin dashboard',
 
     'total_monthly_intakes' => 'Total Monthly Intakes',
     'total_pending_followups' => 'Total number of pending follow-ups',

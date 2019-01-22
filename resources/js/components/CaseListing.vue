@@ -81,6 +81,7 @@
           <td>
             <slot
               :row="row"
+              :load-data="loadData"
               name="end-td"
             />
           </td>

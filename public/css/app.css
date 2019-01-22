@@ -59763,7 +59763,6 @@ table.scrollable-fixed-header thead {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-height: 42px !important;
   min-height: 42px !important;
 }
 
@@ -60311,4 +60310,9 @@ html {
 .swal2-popup .swal2-header,
 .swal2-popup .swal2-actions {
   font-size: .7rem;
+}
+
+.multiselect__tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
 }

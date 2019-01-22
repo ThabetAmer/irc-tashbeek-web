@@ -157,6 +157,7 @@
           if(result.value){
             deactivateUser(user.id)
                 .then(resp => {
+                  user.status = 'deactivated';
                   this.$toasted.show(resp.data.message, {
                     icon: 'icon-Lock_x40_2xpng_2'
                   });
@@ -183,6 +184,7 @@
           if(result.value){
             activateUser(user.id)
                 .then(resp => {
+                  user.status = 'activated';
                   this.$toasted.show(resp.data.message, {
                     icon: 'icon-Unlock_x40_2xpng_2'
                   })

@@ -508,7 +508,7 @@ table.scrollable-fixed-header {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-height: 42px !important;
+  //max-height: 42px !important;
   min-height: 42px !important;
 
   cursor: pointer;
@@ -998,4 +998,10 @@ body, html {
   .swal2-header,.swal2-actions {
     font-size: 0.7rem;
   }
+}
+
+
+.multiselect__tags-wrap{
+  display: flex;
+  flex-wrap: wrap;
 }

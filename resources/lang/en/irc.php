@@ -85,8 +85,8 @@ return [
     'updating' => 'Updating',
     'viewing' => 'Viewing',
 
-    'confirm_deactivate_user' => 'Are you sure to Deactivate user?',
-    'confirm_activate_user' => 'Are you sure to Deactivate user?',
+    'confirm_deactivate_user' => 'Are you sure to deactivate user?',
+    'confirm_activate_user' => 'Are you sure to activate user?',
     'cancel' => 'Cancel',
 
     'user_created' => 'User created successfully',

@@ -74,7 +74,24 @@
           class="absolute pin-t pin-r text-xl hover:text-2xl px-3 py-4 font-bold text-green-dark"
           @click="noteStarClicked"
         >
-          <i class="icon-Star_x40_2xpng_2" />
+          <Transition
+            v-if="!isStarred"
+            mode="out-in"
+            name=""
+          >
+            <i :class="`icon-Star_x40_2xpng_2`" />
+          </Transition>
+
+          <Transition
+            v-else
+            mode="out-in"
+            name="bounce"
+          >
+            <img
+              width="20"
+              src="../../../public/svg/star-filled.svg"
+            >
+          </Transition>
         </button>
       </div>
 

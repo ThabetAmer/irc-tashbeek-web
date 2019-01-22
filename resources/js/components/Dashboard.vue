@@ -151,6 +151,7 @@
               <li
                 v-for="activity in day.items"
                 :key="activity.id"
+                v-if="activity.entity && activity.entity.id "
                 class="relative text-left text-black border-grey-lighter border-solid
                             border-b-2 font-semibold text-md  py-5 flex items-center "
               >

@@ -274,9 +274,6 @@
           },
           viewRender: function (view, el) {
             this.getCounts(view.calendar.currentDate.format("YYYY-MM"));
-          }.bind(this),
-          unselect: function (view, el) {
-            this.dayUnselected(view, el);
           }.bind(this)
         },
         page: 1,

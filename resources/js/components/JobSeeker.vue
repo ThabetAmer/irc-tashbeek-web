@@ -259,7 +259,10 @@
             v-if="jobOpeningView === 'notes'"
             class=""
           >
-            <NotesList case-type="job-seeker" :case-id="jobSeeker.id"></NotesList>
+            <NotesList
+              case-type="job-seeker"
+              :case-id="jobSeeker.id"
+            />
           </div>
         </div>
       </Panel>

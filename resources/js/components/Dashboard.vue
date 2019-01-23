@@ -342,7 +342,6 @@
         }
       },
       dayClicked: function (date, jsEvent, view) {
-        console.log(date)
         this.daySelected = true;
         let selectedString = moment(date, "DD MMMM");
         this.selectedDateHuman = this.calConfig.isRTL ? selectedString.locale('ar').format("DD MMMM") : selectedString.format("DD MMMM");

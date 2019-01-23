@@ -35,7 +35,7 @@
       >
         <span
           v-if="option.label && option.label.length > 13"
-          v-tooltip="{content:option.label,classes:['tooltip-datatable']}"
+          v-tooltip="{offset:'50',content:option.label,classes:['tooltip-datatable']}"
           dir="auto"
         >
           {{ option.label }}

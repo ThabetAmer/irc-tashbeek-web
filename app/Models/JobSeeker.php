@@ -85,14 +85,12 @@ class JobSeeker extends Model implements SyncableInterface
 
     public function basicInfo()
     {
-        return map_options(
-            [
-                'age' => $this->age,
-                'gender' => $this->gender,
-                'city' => $this->city
-            ],
-            $this
-        );
+        $data = [
+            'age' => $this->age,
+            'gender' => $this->gender,
+            'city' => $this->city
+        ];
+        return array_only(map_options($data,$this), array_keys($data));
     }
 
 }

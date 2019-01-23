@@ -21,13 +21,11 @@ class Cards
                 ->authorize($this->isEso())
                 ->count(),
             FollowUpCard::make(trans('irc.total_pending_followups'))
-                ->for(JobSeeker::class)
                 ->authorize($this->isEso())
                 ->count(),
 
             // ESSO
             FollowUpCard::make(trans('irc.total_pending_followups'))
-                ->for(Firm::class)
                 ->authorize($this->isEsso())
                 ->count(),
             JobOpeningCard::make(trans('irc.total_job_openings'))

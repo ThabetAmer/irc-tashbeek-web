@@ -24,10 +24,14 @@ class FollowUpCard extends Card
 
         $query->currentUser();
 
+        if($this->for){
+            $query->ofType($this->for);
+        }
+
         switch ($this->method) {
             case 'count':
             default:
-                return $query->ofType($this->for)->count();
+                return $query->count();
         }
     }
 

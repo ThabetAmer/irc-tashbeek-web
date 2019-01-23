@@ -64,6 +64,7 @@ Vue.component('JobOpening',require('./components/JobOpening.vue').default);
 Vue.component('PageLoader',require('./components/PageLoader.vue').default);
 Vue.component('AnchorLink',require('./components/Link.vue').default);
 Vue.component('CustomSelect',require('./components/CustomSelect.vue').default);
+Vue.component('RangeFilter',require('./components/RangeFilter.vue').default);
 Vue.component('CheckboxGroup',require('./components/CheckboxGroup.vue').default);
 Vue.component('ValueCard',require('./components/MetricCard.vue').default);
 Vue.component('AddNoteModal',require('./components/AddNoteModal.vue').default);

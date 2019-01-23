@@ -94,6 +94,7 @@
         >
           <button
             v-if="permissions.notes === true"
+            v-tooltip="{placement: 'left',content:'View notes' ,classes:['tooltip-datatable']}"
             class="flex-1 text-xl  text-green-dark"
             @click="viewNotes(row.id)"
           >

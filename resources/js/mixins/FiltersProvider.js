@@ -20,9 +20,17 @@ export default {
       const userFilterIndex = this.userFilters.findIndex(filter => filter.name === name)
 
       if (userFilterIndex === -1) {
-        this.userFilters.push({
-          ...this.filters[filterIndex]
-        })
+        if(this.filters[filterIndex].type === 'trigger'){
+          let triggerFilter = {...this.filters[filterIndex]};
+          triggerFilter.filterValue = {from:'',to:''};
+          this.userFilters.push(triggerFilter)
+        }
+        else{
+          this.userFilters.push({
+            ...this.filters[filterIndex]
+          })
+        }
+
       } else {
         const removedFilter = this.userFilters[userFilterIndex];
 
@@ -42,9 +50,20 @@ export default {
 
       this.userFilters = this.userFilters.map(filter => {
         if (filter.name === event.name) {
-            return {
-              ...filter,
-              filterValue: event.value
+            if(filter.type !== 'trigger'){
+              return {
+                ...filter,
+                filterValue: event.value
+              }
+            }
+            else{
+              return {
+                ...filter,
+                filterValue: {
+                  from: event.value.from,
+                  to: event.value.to
+                }
+              }
             }
           }
         return filter

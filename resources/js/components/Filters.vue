@@ -12,7 +12,7 @@
         :options="options(filter.options)"
         :placeholder="filter.label"
         :wrapper-class="`w-full pr-2
-        ${getOptionValue(filter) && getOptionValue(filter).length > 1 ? 'md:w-full lg:w-full xl:w-1/3':' md:w-1/2 lg:w-1/3 xl:w-1/5 '}`"
+        ${getOptionValue(filter) && getOptionValue(filter).length > 2 ? 'md:w-full lg:w-full xl:w-1/3':' md:w-1/2 lg:w-1/3 xl:w-1/5 '}`"
         custom-class="mb-2 note-select filter-input multiselect-with-remove"
         @clear="handleClear(filter.name)"
         @select="handleSelect(filter, $event)"
@@ -35,19 +35,14 @@
         @cleared="handleClear(filter.name)"
         @input="handleTextInput(filter.name,$event)"
       />
-      <!--<TextInput-->
-        <!--v-else-if="filter.type === 'trigger'"-->
-        <!--:key="filter.name+'-'+filter.type"-->
-        <!--input-class="height-align-->
-        <!--mb-2 mr-2 p-2 text-grey-darkest font-bold-->
-        <!--w-full bg-grey-lighter rounded"-->
-        <!--wrapper-class="w-full sm:w-full md:w-1/2 lg:w-1/3  xl:w-1/5   pr-2 h-50"-->
-        <!--:has-remove="true"-->
-        <!--:placeholder="filter.label"-->
-        <!--:value="filter.filterValue"-->
-        <!--@clear="handleClear(filter.name)"-->
-        <!--@input="handleTextInput(filter.name,$event)"-->
-      <!--/>-->
+      <RangeFilter
+        v-else-if="filter.type === 'trigger'"
+        :key="filter.name+'-'+filter.type"
+        :filter="filter"
+        :value="filter.filterValue"
+        @clear="handleClear(filter.name,$event)"
+        @input="handleTextInput(filter.name,$event)"
+      />
       <TextInput
         v-else
         :key="filter.name+'-'+filter.type"
@@ -99,7 +94,6 @@
         })
       },
       inputDate(eve) {
-        console.log(' dd ', eve);
         this.val = eve;
       },
       handleSelect(filter, selected) {
@@ -124,10 +118,10 @@
           name: filter.name
         })
       },
-      handleClear(name) {
+      handleClear(name, value = null) {
         this.$emit('change', {
           name,
-          value: null
+          value: value
         })
       },
       handleTextInput(name, value) {
@@ -146,7 +140,7 @@
           return undefined
         }
 
-        const filterValue = Array.isArray(filter.filterValue)?filter.filterValue:[filter.filterValue]
+        const filterValue = Array.isArray(filter.filterValue) ? filter.filterValue : [filter.filterValue]
 
         let selected = filterValue.reduce((selected, value) => {
           const index = filter.options.findIndex(option => option.value == value)

@@ -3,7 +3,7 @@
     <Panel
       custom-class=""
     >
-      <slot name="header" />
+      <slot name="header"/>
 
       <div class="flex justify-end">
         <Btn
@@ -94,16 +94,16 @@
         >
           <button
             v-if="permissions.notes === true"
-            v-tooltip="{placement: 'left',content:'View notes' ,classes:['tooltip-datatable']}"
+            v-tooltip="{placement: 'left',content:$options.filters.trans('irc.view_notes'),classes:['tooltip-datatable']}"
             class="flex-1 text-xl  text-green-dark"
             @click="viewNotes(row.id)"
           >
-            <i class="icon-Page_1_x40_2xpng_2" />
+            <i class="icon-Page_1_x40_2xpng_2"/>
           </button>
         </td>
       </Datatable>
 
-      <PageLoader v-else />
+      <PageLoader v-else/>
     </Panel>
 
     <ViewNoteModal
@@ -166,7 +166,7 @@
         headers: [],
         permissions: {},
         exportLoading: false,
-        perPageData: 0
+        perPageData: 0,
       }
     },
     mounted() {
@@ -223,7 +223,7 @@
             currentPage: data.meta.current_page
           };
 
-          if(this.pagination.perPage != this.perPageData){
+          if (this.pagination.perPage != this.perPageData) {
             this.perPageData = this.pagination.perPage;
           }
           this.permissions = data.permissions || {}

@@ -19,6 +19,7 @@ return [
     'no_screening' => 'No screening to show!',
     'viewing' => 'Viewing',
     'out_of' => 'out of',
+    'all_notes' => 'All notes',
 
 
     'total_monthly_intakes' => 'Total Monthly Intakes',

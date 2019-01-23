@@ -60692,3 +60692,13 @@ html {
   display: flex;
   flex-wrap: wrap;
 }
+
+[dir=ltr] .flip-image {
+  -webkit-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+}
+
+[dir=rtl] .flip-image {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}

@@ -13,6 +13,7 @@ return [
     'job_openings' => 'الوظائف المتاحة',
     'match_job' => 'Match Job',
     'view_notes' => 'عرض الملاحظات',
+    'all_notes' => 'كل الملاحظات',
 
     'total_monthly_intakes' => 'عدد المدخلات الشهرية',
     'total_pending_followups' => 'متابعات معلقة',

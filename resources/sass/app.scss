@@ -1005,3 +1005,8 @@ body, html {
   display: flex;
   flex-wrap: wrap;
 }
+
+
+.flip-image{
+  transform: rotate(-180deg);
+}

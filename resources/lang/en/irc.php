@@ -115,6 +115,7 @@ return [
     'cannot_find_case_type' => 'Cannot find this case type',
     'notes_has_been_starred' => 'Notes has been Starred.',
     'notes_has_been_unstarred' => 'Notes has been Unstarred.',
+    'remember_me' => 'Remember me',
 
     'back' => 'Back',
 

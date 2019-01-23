@@ -262,4 +262,17 @@ if (!function_exists('array_search_key_by_value')) {
     }
 }
 
+/**
+ * Force url to switch it's language to current lang
+ */
+if (!function_exists('force_url_lang')) {
+    function force_url_lang($url, $locale = null)
+    {
+        if(!$locale){
+            $locale = \App::getLocale();
+        }
+
+        return \LaravelLocalization::getLocalizedURL($locale, $url);
+    }
+}
 

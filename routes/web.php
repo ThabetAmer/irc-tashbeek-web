@@ -11,7 +11,14 @@
 |
 */
 
-Auth::routes();
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [
+        'localize',
+    ]
+], function(){
+    Auth::routes(['register' => false]);
+});
 
 Route::group([
 

@@ -117,7 +117,7 @@ return [
     'back' => 'عودة للخلف',
     'saved_matches' => 'المرشحين',
     'jobseeker_status' => 'حالة المتقدم',
-
+    'remember_me' => 'تذكدني',
     'match_statuses' => [
         \App\Models\Match::STATUS_NEW => 'جديد',
         \App\Models\Match::STATUS_CANDIDATE => 'مرشح',

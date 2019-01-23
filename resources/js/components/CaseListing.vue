@@ -45,6 +45,7 @@
         :rows="rows"
         :pagination="pagination"
         :sorting="sorting"
+        :permissions="permissions"
         @pagechanged="loadData({page: $event})"
         @perPage="loadData({perPage: $event})"
         @sort="handleSort($event, loadData)"

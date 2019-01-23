@@ -109,7 +109,8 @@ class JobOpeningMatchController extends Controller
 
         foreach($matches as $match){
             $data = [
-                'job_seeker_id' => $match
+                'job_seeker_id' => $match,
+                'firm_id' => $jobOpening->firm_id
             ];
 
             $attributes = [

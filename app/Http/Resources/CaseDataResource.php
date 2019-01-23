@@ -75,14 +75,21 @@ class CaseDataResource extends ResourceCollection
 
         $headers[0]['clickable_from'] = 'details_url';
 
+        $permissions = [
+            'notes' => $this->canAddNotes($request),
+            'can_see' => $this->hasPermissionOn($request,'cases.' . $this->caseType)
+        ];
+
+        if($this->caseType === 'job-opening'){
+            $permissions['can_see'] =    $this->hasPermissionOn($request,'cases.matches');
+        }
+
         return [
             'headers' => $headers,
             'filters' => $filters,
             'columns' => $columns,
             'sorting' => $this->getSorting($request, $properties),
-            'permissions' => [
-                'notes' => $this->canAddNotes($request),
-            ]
+            'permissions' => $permissions
         ];
     }
 
@@ -137,6 +144,14 @@ class CaseDataResource extends ResourceCollection
     {
         try{
             return $request->user()->hasPermissionTo("notes.{$this->caseType}");
+        }catch (\Throwable $e){
+            return false;
+        }
+    }
+    protected function hasPermissionOn($request,$permission)
+    {
+        try{
+            return $request->user()->hasPermissionTo($permission);
         }catch (\Throwable $e){
             return false;
         }

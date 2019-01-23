@@ -52,7 +52,7 @@
                 :text="row[head.name].component.text"
               />
               <span
-                v-else-if="head.clickable_from && row[head.clickable_from]"
+                v-else-if="permissions.can_see !== false && head.clickable_from && row[head.clickable_from]"
                 class="py-1 whitespace-no-wrap  block"
                 dir="auto"
               >
@@ -162,6 +162,10 @@
       rows: {
         type: Array,
         default: () => []
+      },
+      permissions : {
+        type: Object,
+        default:() => ({})
       }
     },
     methods:{

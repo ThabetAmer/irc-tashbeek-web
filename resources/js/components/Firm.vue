@@ -143,6 +143,7 @@
               <JobOpening
                 v-for="jobOpening in jobOpenings"
                 :key="jobOpening.id"
+                :can-see="canSeeMatches"
                 :city="firm.city || firm.district"
                 :job-opening="jobOpening"
               />
@@ -234,7 +235,8 @@
         matchedEndPoint: '',
         jobOpeningsLoading: true,
         starredNote: null,
-        addedNote: null
+        addedNote: null,
+        canSeeMatches:true
       }
     },
     computed: {
@@ -256,6 +258,7 @@
       }).then(({data}) => {
         this.jobOpeningsLoading = false
         this.jobOpenings = data.data
+        this.canSeeMatches = data.permissions.can_see
       });
     },
     methods: {

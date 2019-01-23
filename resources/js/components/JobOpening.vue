@@ -14,11 +14,18 @@
       </div>
     </div>
     <a
+      v-if="canSee"
       :href="jobOpening.matches_url"
       class="no-underline flex-1 text-right text-green-dark font-bold"
     >
       {{ jobOpening.matches_number }} Matches
     </a>
+    <div
+      v-else
+      class="no-underline flex-1 text-right text-green-dark font-bold"
+    >
+      {{ jobOpening.matches_number }} Matches
+    </div>
   </div>
 </template>
 
@@ -34,6 +41,10 @@
       city: {
         type: String,
         default: ""
+      },
+      canSee:{
+        type:Boolean,
+        default: true
       }
     }
   }

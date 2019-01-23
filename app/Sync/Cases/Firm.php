@@ -41,7 +41,6 @@ class Firm extends AbstractCase
                 'column_name' => 'sector',
                 'column_type' => 'string',
                 'alias' => 'sector',
-                'property' => true
             ],
             'ffname' =>[
                 'column_name' => 'ffname',

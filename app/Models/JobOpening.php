@@ -12,6 +12,8 @@ class JobOpening extends Model implements SyncableInterface
 
     protected $appends = ['matches_url'];
 
+    public $withCount = ['matches','hiredMatches'];
+
     public function firm()
     {
         return $this->belongsTo(Firm::class);
@@ -19,6 +21,10 @@ class JobOpening extends Model implements SyncableInterface
 
     public function matches(){
         return $this->belongsToMany(JobSeeker::class,'matches')->withPivot(['status']);
+    }
+
+    public function hiredMatches(){
+        return $this->matches()->where('matches.status',  Match::STATUS_HIRED);
     }
 
     public function matchesFromPivot()

@@ -45,7 +45,7 @@ class Followup extends Model
     public function getDueDateAttribute()
     {
         $followupDate = Carbon::parse($this->followup_date);
-        return $followupDate->diffForHumans();
+        return $followupDate->diffForHumans(now(),false, false, 2);
     }
 
     public function followup()

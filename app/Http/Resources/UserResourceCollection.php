@@ -52,15 +52,15 @@ class UserResourceCollection extends ResourceCollection
     {
         return [
             [
-                'label' => 'Name',
+                'label' => trans('irc.name'),
                 'name' => 'name'
             ],
             [
-                'label' => 'Email',
+                'label' => trans('irc.email'),
                 'name' => 'email'
             ],
             [
-                'label' => 'Created At',
+                'label' => trans('irc.created_at'),
                 'name' => 'created_at'
             ]
         ];
@@ -70,13 +70,13 @@ class UserResourceCollection extends ResourceCollection
     {
         return [
             [
-                'label' => 'Name',
+                'label' =>  trans('irc.name'),
                 'name' => 'name',
                 'options' => [],
                 'type' => 'text'
             ],
             [
-                'label' => 'Email',
+                'label' =>  trans('irc.email'),
                 'name' => 'email',
                 'options' => [],
                 'type' => 'text'

@@ -17,6 +17,10 @@ return [
     'job_opening_match' => 'Job opening match',
     'job_opening_saved_match' => 'Job opening saved match',
     'no_screening' => 'No screening to show!',
+    'viewing' => 'Viewing',
+    'out_of' => 'out of',
+    'all_notes' => 'All notes',
+
 
     'total_monthly_intakes' => 'Total Monthly Intakes',
     'total_pending_followups' => 'Total number of pending follow-ups',
@@ -30,6 +34,11 @@ return [
     'name' => 'Name',
     'email' => 'Email',
     'created_at' => 'Created at',
+    'send_reset_link' => 'Send reset link',
+    'reset_password' => 'Reset password',
+    'back_to_login' => 'Back to login',
+    'forgot_password' => 'Forgot Your Password?',
+    'login' => 'Login',
 
     'id' => 'ID',
     'living_in' => 'Living in',

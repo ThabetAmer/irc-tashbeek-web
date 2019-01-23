@@ -13,6 +13,7 @@ return [
     'job_openings' => 'الوظائف المتاحة',
     'match_job' => 'Match Job',
     'view_notes' => 'عرض الملاحظات',
+    'all_notes' => 'كل الملاحظات',
 
     'total_monthly_intakes' => 'عدد المدخلات الشهرية',
     'total_pending_followups' => 'متابعات معلقة',
@@ -27,8 +28,13 @@ return [
     'name' => 'الاسم',
     'email' => 'البريد الالكتروني',
     'created_at' => 'تاريخ الانشاء',
+    'send_reset_link' => 'ارسال رابط اعادة التفعيل',
+    'reset_password' => 'تغيير كلمةالمرور',
+    'back_to_login' => 'العودة الى صفحة الدخول',
+    'forgot_password' => 'هل نسيت كلمة المرور؟',
+    'login' => 'الدخول',
 
-    'id' => 'ID',
+    'id' => 'الرقم',
     'living_in' => 'يعيش في',
     'will_work_qiz' => 'Willing to work in QIZ',
     'starred_note' => 'ملاحظة مميزة',
@@ -40,6 +46,8 @@ return [
     'matched' => 'المتوافقين',
     'candidates' => 'المرشحين',
     'notes' => 'الملاحظات',
+    'viewing' => 'عرض',
+    'out_of' => 'من اصل',
 
     'add_note' => 'اضافة ملاحظة',
     'type_of_followup' => 'نوع المتابعة',

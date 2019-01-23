@@ -15,7 +15,8 @@
         >
           <template slot="text">
             <img
-              class="mt-3px"
+
+              :class="`mt-3px ${windowLanguage === 'ar' ? 'flip-image':'' }`"
               width="16"
               src="../../img/left-chevron_double.svg"
               alt=""
@@ -34,7 +35,7 @@
         >
           <template slot="text">
             <img
-              class="mt-3px"
+              :class="`mt-3px ${windowLanguage === 'ar' ? 'flip-image':'' }`"
               width="16"
               src="../../img/left-chevron.svg"
               alt=""
@@ -71,7 +72,7 @@
         >
           <template slot="text">
             <img
-              class="mt-3px"
+              :class="`mt-3px ${windowLanguage === 'ar' ? 'flip-image':'' }`"
               width="16"
               src="../../img/right-chevron.svg"
               alt=""
@@ -90,7 +91,7 @@
         >
           <template slot="text">
             <img
-              class="mt-3px"
+              :class="`mt-3px ${windowLanguage === 'ar' ? 'flip-image':'' }`"
               width="16"
               src="../../img/right-chevron_double.svg"
               alt=""
@@ -153,6 +154,7 @@
     },
     data() {
       return {
+        windowLanguage:document.documentElement.lang,
         perPageOptions: [
           {
             label: "15",

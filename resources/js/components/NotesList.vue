@@ -3,12 +3,12 @@
     <EmptyState
       v-if="notes.length === 0 && !loading"
       icon="icon-Note_x40_2xpng_2 text-3xl mt-3 block"
-      message="You don't have any notes!"
+      :message="'irc.no_notes_available' | trans"
       custom-class="mt-5 min-h-200 text-lg"
     />
     <PageLoader
       v-else-if="loading"
-      message="Notes are being fetched"
+      :message="'irc.notes_loading' | trans"
     />
     <div v-else>
       <Notebox
@@ -26,7 +26,7 @@
         v-if="notes.length > 0"
         class=" text-xs my-3 pl-2"
       >
-        Viewing {{ notes.length }} out of {{ pagination.total }}
+        {{ 'irc.viewing' | trans }} {{ notes.length }} {{ 'irc.out_of' | trans }} {{ pagination.total }}
       </div>
 
       <Pagination

@@ -34,6 +34,11 @@ return [
     'name' => 'Name',
     'email' => 'Email',
     'created_at' => 'Created at',
+    'send_reset_link' => 'Send reset link',
+    'reset_password' => 'Reset password',
+    'back_to_login' => 'Back to login',
+    'forgot_password' => 'Forgot Your Password?',
+    'login' => 'Login',
 
     'id' => 'ID',
     'living_in' => 'Living in',

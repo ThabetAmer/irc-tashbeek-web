@@ -4,7 +4,8 @@
 
     <div class="w-full max-w-24 mx-auto">
         <div class="image-top">
-            <div class=" p-4 rounded-t text-center " style="background: rgba(64, 94, 128, 1);">
+            <div class="image-container p-4 rounded-t text-center " style="background: rgba(64, 94, 128, 1);">
+                {!! switch_url(true) !!}
                 <img style="height: 140px;" src="{{ asset('img/logo_big.png') }}" alt="">
             </div>
         </div>
@@ -17,7 +18,7 @@
 
             <div class="mb-4">
                 <label class="block text-grey-darker text-sm font-bold mb-2" for="username">
-                    Email
+                    {{trans('irc.email')}}
                 </label>
                 <input id="email" type="email"
                        class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
@@ -31,7 +32,7 @@
             </div>
             <div class="mb-4">
                 <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
-                    Password
+                    {{trans('irc.password')}}
                 </label>
                 <input id="password" type="password"
                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight focus:outline-none focus:shadow-outline form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
@@ -53,7 +54,7 @@
 
 
                 <label for="password-confirm"
-                       class="block text-grey-darker text-sm font-bold mb-2">{{ __('Confirm Password') }}</label>
+                       class="block text-grey-darker text-sm font-bold mb-2">{{ __(trans('irc.confirm_password')) }}</label>
 
                 <input id="password-confirm" type="password"
                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight focus:outline-none focus:shadow-outline form-control form-control"
@@ -65,7 +66,7 @@
             <div class="flex items-center justify-between">
                 <button type="submit"
                         class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    {{ __('Reset Password') }}
+                    {{ __(trans('irc.reset_password'))}}
                 </button>
 
             </div>

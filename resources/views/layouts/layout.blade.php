@@ -27,6 +27,9 @@
     @if(auth()->check())
         @include('layouts.sidebar')
     @endif
+        {{--<div class="bg-red ">--}}
+            {{--{!! switch_url(true) !!}--}}
+        {{--</div>--}}
     <div class="p-10 container body-container mx-auto pr-2 sm:pl-16 md:pl-10  {{!auth()->check() ? ' flex justify-center flex-col login' :''}}" id="app">
         @if (session('status') && auth()->check())
             <alert type="success" message="{{ session('status') }}"></alert>

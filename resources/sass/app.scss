@@ -1010,3 +1010,15 @@ body, html {
 .flip-image{
   transform: rotate(-180deg);
 }
+
+.image-top .image-container{
+  position: relative;
+  a{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: .75rem;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+}

@@ -35,6 +35,19 @@
         @cleared="handleClear(filter.name)"
         @input="handleTextInput(filter.name,$event)"
       />
+      <!--<TextInput-->
+        <!--v-else-if="filter.type === 'trigger'"-->
+        <!--:key="filter.name+'-'+filter.type"-->
+        <!--input-class="height-align-->
+        <!--mb-2 mr-2 p-2 text-grey-darkest font-bold-->
+        <!--w-full bg-grey-lighter rounded"-->
+        <!--wrapper-class="w-full sm:w-full md:w-1/2 lg:w-1/3  xl:w-1/5   pr-2 h-50"-->
+        <!--:has-remove="true"-->
+        <!--:placeholder="filter.label"-->
+        <!--:value="filter.filterValue"-->
+        <!--@clear="handleClear(filter.name)"-->
+        <!--@input="handleTextInput(filter.name,$event)"-->
+      <!--/>-->
       <TextInput
         v-else
         :key="filter.name+'-'+filter.type"

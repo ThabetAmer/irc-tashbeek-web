@@ -102,7 +102,7 @@
       v-if="rows.length > 0"
       class=" text-xs my-3 pl-2"
     >
-      {{'irc.viewing' | trans}} {{ rows.length }} {{'irc.out_of' | trans}} {{ pagination.total }}
+      {{ 'irc.viewing' | trans }} {{ rows.length }} {{ 'irc.out_of' | trans }} {{ pagination.total }}
     </div>
     <Pagination
       v-if="pagination.lastPage > 1"

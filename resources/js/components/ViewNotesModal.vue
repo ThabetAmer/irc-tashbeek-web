@@ -11,7 +11,7 @@
       class="relative w-full text-left mb-8"
     >
       <div class=" text-lg text-grey-darker">
-        {{'irc.all_notes' | trans}}
+        {{ 'irc.all_notes' | trans }}
       </div>
     </div>
 

@@ -29,7 +29,7 @@ return [
     'email' => 'البريد الالكتروني',
     'created_at' => 'تاريخ الانشاء',
 
-    'id' => 'ID',
+    'id' => 'الرقم',
     'living_in' => 'يعيش في',
     'will_work_qiz' => 'Willing to work in QIZ',
     'starred_note' => 'ملاحظة مميزة',

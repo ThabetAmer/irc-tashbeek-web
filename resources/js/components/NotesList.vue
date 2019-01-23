@@ -26,7 +26,7 @@
         v-if="notes.length > 0"
         class=" text-xs my-3 pl-2"
       >
-        {{'irc.viewing' | trans}} {{ notes.length }} {{'irc.out_of' | trans}} {{ pagination.total }}
+        {{ 'irc.viewing' | trans }} {{ notes.length }} {{ 'irc.out_of' | trans }} {{ pagination.total }}
       </div>
 
       <Pagination

@@ -24,17 +24,23 @@ class SortableMatch implements SortableInterface
     {
 
         if (!$this->request->has('sorting.column')) {
-            return;
+            $this->request->replace([
+                'sorting' => [
+                    'column' => 'score',
+                    'type' => 'desc',
+                ],
+            ]);
         }
 
         $columnName = $this->request->input('sorting.column');
 
         $sortables = [
-            'match_status' => 'matches.status'
+            'match_status' => 'matches.status',
+            'score' => 'match_scores.score',
         ];
 
-        if(!array_key_exists($columnName, $sortables)){
-            return ;
+        if (!array_key_exists($columnName, $sortables)) {
+            return;
         }
 
         $sortingType = $this->request->input('sorting.type');

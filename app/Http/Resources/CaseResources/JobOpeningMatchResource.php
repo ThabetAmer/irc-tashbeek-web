@@ -20,7 +20,7 @@ class JobOpeningMatchResource extends CaseResource
 
         $data['match_status'] = $this->matchStatus();
 
-        $data['score'] = $this->match_score ? ($this->match_score * 100) . '%' : '';
+        $data['score'] = ($this->match_score ? ($this->match_score * 100) : 0) . '%';
 
         return $data;
     }

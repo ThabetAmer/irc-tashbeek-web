@@ -218,3 +218,48 @@ if (!function_exists('map_options')) {
 }
 
 
+if (!function_exists('array_insert_after')) {
+    /**
+     * @url https://gist.github.com/wpscholar/0deadce1bbfa4adb4e4c
+     *
+     * @param array $array
+     * @param $key
+     * @param $value
+     * @return array
+     */
+    function array_insert_after(array $array, $key, $value)
+    {
+        $keys = array_keys($array);
+        $index = array_search($key, $keys, true);
+        $pos = false === $index ? count($array) : $index + 1;
+        if (!is_array($value)) {
+            $value = [$value];
+        }
+        return array_merge(array_slice($array, 0, $pos), $value, array_slice($array, $pos));
+    }
+}
+
+
+
+if (!function_exists('array_search_key_by_value')) {
+    /**
+     * @url https://stackoverflow.com/questions/6661530/php-multidimensional-array-search-by-value
+     *
+     * @param array $array
+     * @param $key
+     * @param $value
+     * @return array
+     */
+    function array_search_key_by_value(array $array, $key, $value)
+    {
+        foreach ($array as $k => $val) {
+            if (array_get($val, $key) === $value) {
+                return $k;
+            }
+        }
+
+        return null;
+    }
+}
+
+

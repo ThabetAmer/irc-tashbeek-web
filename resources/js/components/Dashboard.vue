@@ -223,7 +223,7 @@
           },
           {
             name: "followup",
-            label: 'Job seeker',
+            label: 'Name',
             valueHandler: (row) => row.followup.name
 
           },

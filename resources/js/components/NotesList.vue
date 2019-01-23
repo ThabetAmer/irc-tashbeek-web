@@ -84,7 +84,7 @@
         if(this.lastAdditionalNote === newValue.id ){
           return
         }
-
+        this.pagination.total +=1;
         this.notes.unshift(newValue)
       }
     },

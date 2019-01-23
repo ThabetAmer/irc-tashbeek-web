@@ -60717,3 +60717,7 @@ html {
 [dir=rtl] .image-top .image-container a {
   left: 0;
 }
+
+.body-container {
+  transition: all .3s;
+}

@@ -23,9 +23,20 @@ class JobOpeningMatchResourceCollection extends CaseDataResource
             'options' => $this->matchStatuses()
         ];
 
+        $with['headers'] = array_insert_after(
+            $with['headers'],
+            1,
+            [
+                [
+                    'label' => trans('irc.score'),
+                    'name' => 'score'
+                ]
+            ]
+        );
+
         $sortable = ['match_status'];
 
-        if(empty(array_get($with['sorting'],'column')) && in_array($request->input('sorting.column'),$sortable)){
+        if (empty(array_get($with['sorting'], 'column')) && in_array($request->input('sorting.column'), $sortable)) {
             $with['sorting']['column'] = $request->input('sorting.column');
         }
 
@@ -36,7 +47,7 @@ class JobOpeningMatchResourceCollection extends CaseDataResource
     {
         $statuses = [];
 
-        foreach(trans('irc.match_statuses') as $key => $value){
+        foreach (trans('irc.match_statuses') as $key => $value) {
             $statuses[] = [
                 'label' => $value,
                 'value' => $key

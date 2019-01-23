@@ -53,7 +53,7 @@
                            id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                     <label class="form-check-label text-sm" for="remember">
-                        {{ __('Remember Me') }}
+                        {{ __(trans('irc.remember_me')) }}
                     </label>
                     {{--<span class="text-sm">--}}
                     {{--Send me your newsletter!--}}

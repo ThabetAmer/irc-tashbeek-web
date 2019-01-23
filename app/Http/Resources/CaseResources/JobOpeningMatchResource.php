@@ -20,20 +20,23 @@ class JobOpeningMatchResource extends CaseResource
 
         $data['match_status'] = $this->matchStatus();
 
+        $data['score'] = ((double) $this->match_score * 100). '%';
+
         return $data;
     }
 
-    protected function matchStatus(){
+    protected function matchStatus()
+    {
 
         $status = null;
 
-        if($this->pivot){
+        if ($this->pivot) {
             $status = $this->pivot->status;
-        }else if($this->match_status){
+        } else if ($this->match_status) {
             $status = $this->match_status;
         }
 
-        if(empty($status)){
+        if (empty($status)) {
             $status = Match::STATUS_NEW;
         }
 

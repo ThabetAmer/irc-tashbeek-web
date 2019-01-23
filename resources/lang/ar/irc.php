@@ -117,7 +117,7 @@ return [
     'back' => 'عودة للخلف',
     'saved_matches' => 'المرشحين',
     'jobseeker_status' => 'حالة المتقدم',
-
+    'remember_me' => 'تذكدني',
     'match_statuses' => [
         \App\Models\Match::STATUS_NEW => 'جديد',
         \App\Models\Match::STATUS_CANDIDATE => 'مرشح',
@@ -128,5 +128,7 @@ return [
     'admin_dashboard' => 'لوحة التحكم الخاصة بالادمن',
     'type_of_treatment' => 'ما هو التدخل الذي قدمته لهذا المستفيد؟',
 
-    'hired_matches_count' => 'تم توظيفهم'
+    'hired_matches_count' => 'تم توظيفهم',
+    'score' => 'النتيجة',
+
 ];

@@ -57,19 +57,30 @@ class JobSeeker extends Model implements SyncableInterface
 
     public function scopeWithCandidateInJobOpening(Builder $builder, $jobOpeningId)
     {
-        $builder->leftJoin('matches',function(JoinClause $clause) use($jobOpeningId){
+        $builder
+            ->leftJoin('matches', function (JoinClause $clause) use ($jobOpeningId) {
 
-            $clause->on('job_seekers.id' , '=', 'matches.job_seeker_id');
+                $clause->on('job_seekers.id', '=', 'matches.job_seeker_id');
 
-            $clause->where('matches.job_opening_id', $jobOpeningId);
-        });
+                $clause->where('matches.job_opening_id', $jobOpeningId);
+
+            })
+            ->leftJoin('match_scores', function (JoinClause $clause) use ($jobOpeningId) {
+
+                $clause->on('job_seekers.id', '=', 'match_scores.job_seeker_id');
+
+                $clause->where('match_scores.job_opening_id', $jobOpeningId);
+
+            });
 
 
-        if(!$builder->getQuery()->columns || !count($builder->getQuery()->columns)){
-            $builder->select($this->getTable().'.*');
+        if (!$builder->getQuery()->columns || !count($builder->getQuery()->columns)) {
+            $builder->select($this->getTable() . '.*');
         }
 
         $builder->addSelect('matches.status as match_status');
+
+        $builder->addSelect('match_scores.score as match_score');
     }
 
     public function basicInfo()

@@ -128,5 +128,7 @@ return [
     'admin_dashboard' => 'لوحة التحكم الخاصة بالادمن',
     'type_of_treatment' => 'ما هو التدخل الذي قدمته لهذا المستفيد؟',
 
-    'hired_matches_count' => 'تم توظيفهم'
+    'hired_matches_count' => 'تم توظيفهم',
+    'score' => 'النتيجة',
+
 ];

@@ -40,6 +40,8 @@ return [
     'matched' => 'المتوافقين',
     'candidates' => 'المرشحين',
     'notes' => 'الملاحظات',
+    'viewing' => 'عرض',
+    'out_of' => 'من اصل',
 
     'add_note' => 'اضافة ملاحظة',
     'type_of_followup' => 'نوع المتابعة',

@@ -25,7 +25,7 @@ return [
     'total_monthly_intakes' => 'Total Monthly Intakes',
     'total_pending_followups' => 'Total number of pending follow-ups',
     'total_job_openings' => 'Current job openings',
-    'total_firms_per_user' => 'Total firm intakes per user',
+    'total_firms_per_user' => 'Total firm intakes',
     'followups' => 'Follow-ups',
     'recent_activity' => 'Recent Activity',
     'no_data_to_present' => 'No data to be presented',

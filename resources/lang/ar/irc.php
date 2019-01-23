@@ -18,7 +18,7 @@ return [
     'total_monthly_intakes' => 'عدد المدخلات الشهرية',
     'total_pending_followups' => 'متابعات معلقة',
     'total_job_openings' => 'الوظائف المفتوحة',
-    'total_firms_per_user' => 'اصحاب العمل لكل مستخدم',
+    'total_firms_per_user' => 'اصحاب العمل.',
     'followups' => 'المتابعات',
     'recent_activity' => 'اخر النشاطات',
     'no_data_to_present' => 'لا يوجد بيانات لعرضها.',

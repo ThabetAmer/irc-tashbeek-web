@@ -16,9 +16,13 @@ class CaseNotesController extends Controller
 
         $record = $case->query()->where('id',$id)->firstOrFail();
 
-        $results = $record->notes()->with('user')->latest()->paginate(5);
+        $results = $record->notes()->with('user')->latest()->paginate(10);
 
-        return NoteResource::collection($results);
+        $starredNote = $record->notes()->with('user')->onlyStarred()->first();
+
+        return NoteResource::collection($results)->additional([
+            'starred' => $starredNote ? new NoteResource($starredNote) : null
+        ]);
     }
 
     public function store($caseType, $id)

@@ -196,6 +196,7 @@ if (!function_exists('map_options')) {
                 continue;
             }
 
+            $data[$key . '_key'] = $value;
 
             $option = $optionsRepository->CommCareAndPropertyIs($value, $field->id);
 

@@ -120,6 +120,7 @@ return [
     ],
 
 
+    'type_of_treatment' => 'Type of treatment'
 
 
 ];

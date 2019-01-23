@@ -125,8 +125,8 @@
   export default {
     name: 'Pagination',
     props: {
-      perPageEnabled:{
-        type:Boolean,
+      perPageEnabled: {
+        type: Boolean,
         default: true
       },
       maxVisibleButtons: {
@@ -179,9 +179,12 @@
           let total = this.totalPages - this.maxVisibleButtons + 1;
           return total < 1 ? 1 : total;
         }
-        if((this.totalPages-this.currentPage) < this.maxVisibleButtons){
-          return (this.totalPages -this.maxVisibleButtons + 1);
+        if ((this.totalPages - this.currentPage) < this.maxVisibleButtons) {
+          const currentPage = (this.totalPages - this.maxVisibleButtons + 1);
+
+          return currentPage <= 0 ? 1 : currentPage ;
         }
+
         return this.currentPage - 1;
       },
       endPage() {

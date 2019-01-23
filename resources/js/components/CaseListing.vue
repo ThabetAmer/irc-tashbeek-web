@@ -212,7 +212,7 @@
           this.sorting = data.sorting;
 
           if (this.userFilters.length === 0 && this.hasFilters) {
-            this.userFilters = this.initialUserFilters(data.filters.slice(0, 3), filters);
+            this.userFilters = this.initialUserFilters(data.filters, filters);
           }
 
           this.pagination = {

@@ -63,7 +63,7 @@ return [
     'notes_loading' => 'جاري تحميل الملاحظات، يرجى الانتظار.',
     'no_notes_available' => 'لا يوجد اي ملاحظات.',
     'openings_count' => 'عدد الوظائف',
-    'job_id' => 'Job ID',
+    'job_id' => 'رقم الوظيفة',
     'firm_name' => 'اسم المؤسسة',
     'date_opened' => 'تاريخ الانشاء',
     'save_matches' => 'حفظ المرشحين',

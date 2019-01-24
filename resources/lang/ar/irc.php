@@ -133,4 +133,8 @@ return [
 
     'roles' => 'الادوار',
 
+    'notes_options' => [
+        'follow_up' => 'المتابعة',
+    ]
+
 ];

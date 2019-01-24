@@ -14,7 +14,7 @@ class CaseNotesController extends Controller
 
         abort_unless(auth()->user()->hasPermissionTo("notes.{$caseType}"), 403);
 
-        $record = $case->query()->where('id',$id)->firstOrFail();
+        $record = $case->query()->where('id', $id)->firstOrFail();
 
         $results = $record->notes()->with('user')->latest()->paginate(10);
 
@@ -33,7 +33,7 @@ class CaseNotesController extends Controller
 
         $case = $this->getCaseModelOrFail($caseType);
 
-        $record = $case->query()->where('id',$id)->firstOrFail();
+        $record = $case->query()->where('id', $id)->firstOrFail();
 
         $note = $record->addNote([
             'note' => request('note'),
@@ -49,10 +49,10 @@ class CaseNotesController extends Controller
 
     protected function getCaseModelOrFail($caseType)
     {
-        try{
+        try {
             return get_case_type_model($caseType);
-        }catch(\Throwable $e){
-            abort(404, trans('irc.cannot_find_case_type') );
+        } catch (\Throwable $e) {
+            abort(404, trans('irc.cannot_find_case_type'));
         }
     }
 
@@ -60,7 +60,7 @@ class CaseNotesController extends Controller
     {
         $case = $this->getCaseModelOrFail($caseType);
 
-        $record = $case->query()->where('id',$id)->firstOrFail();
+        $record = $case->query()->where('id', $id)->firstOrFail();
 
         $note = $record->notes()->find($noteId);
 
@@ -68,7 +68,7 @@ class CaseNotesController extends Controller
 
         $isStar = !$note->is_starred;
 
-        if($isStar){
+        if ($isStar) {
             $record->notes()->update([
                 'is_starred' => false
             ]);
@@ -78,7 +78,7 @@ class CaseNotesController extends Controller
             'is_starred' => $isStar
         ]);
 
-        $message = ($isStar?trans('irc.notes_has_been_starred'):trans('irc.notes_has_been_unstarred') );
+        $message = ($isStar ? trans('irc.notes_has_been_starred') : trans('irc.notes_has_been_unstarred'));
 
         return response()->json([
             'message' => $message,

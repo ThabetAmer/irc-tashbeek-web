@@ -10,6 +10,7 @@
             {{ jobOpening.job_title }}
           </h1>
           <AnchorLink
+            v-if="canBack"
             btn-class="text-xs"
             theme="success"
             :loading="loading"
@@ -51,6 +52,10 @@
       matchesUrl:{
         type:String,
         required: true
+      },
+      canBack:{
+        type:Boolean,
+        default: true
       }
     },
     data() {

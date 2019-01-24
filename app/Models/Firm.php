@@ -53,4 +53,11 @@ class Firm extends Model implements SyncableInterface
     {
         return $this->belongsToMany(JobSeeker::class, 'matches');
     }
+
+
+    public function hiredMatches()
+    {
+        return $this->matches()->where('matches.status', Match::STATUS_HIRED);
+    }
+
 }

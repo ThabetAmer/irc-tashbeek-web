@@ -68,7 +68,7 @@ class CaseDataResource extends ResourceCollection
             $filters[] = [
                 'name' => $property->column_name,
                 'label' => $label,
-                'type' => strtolower($property->attributes['type']) ?? 'text',
+                'type' => isset($property->attributes['type']) ? strtolower($property->attributes['type'])  : 'text',
                 'options' => PropertyOptionsResource::collection(collect($property->attributes['options'] ?? [])),
             ];
         }

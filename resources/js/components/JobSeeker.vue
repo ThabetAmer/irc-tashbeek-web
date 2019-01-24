@@ -355,12 +355,10 @@
       addNoteClick() {
         this.showAddModalNote = true;
       },
-
       closeModalNote() {
         this.showAddModalNote = false;
       },
       addNoteToList(noteText, type) {
-
         addNote('job-seeker', this.jobSeeker.id, {note: noteText, type: type ? type.name : ''})
           .then(resp => {
             this.addedNote = resp.data.note;

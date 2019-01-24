@@ -262,7 +262,6 @@
                 this.starredNote = note;
               }
             })
-            // console.log(' notes are ',data.data )
           });
 
       getCaseListing('job-opening', {

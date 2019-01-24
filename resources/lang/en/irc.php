@@ -133,5 +133,6 @@ return [
     'type_of_treatment' => 'Type of treatment',
     'hired_matches_count' => 'Number of hired',
     'score' => 'Score',
+    'roles' => 'Roles'
 
 ];

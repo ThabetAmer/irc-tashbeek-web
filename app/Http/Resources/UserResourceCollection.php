@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Spatie\Permission\Models\Role;
 
 class UserResourceCollection extends ResourceCollection
 {
@@ -80,6 +81,17 @@ class UserResourceCollection extends ResourceCollection
                 'name' => 'email',
                 'options' => [],
                 'type' => 'text'
+            ],
+            [
+                'label' =>  trans('irc.roles'),
+                'name' => 'role',
+                'options' => Role::all()->map(function($role){
+                    return [
+                      'value' => $role->id,
+                      'label' => $role->name
+                    ];
+                }),
+                'type' => 'select'
             ],
         ];
     }

@@ -7,11 +7,11 @@ use Illuminate\Database\Query\JoinClause;
 
 class JobOpening extends Model implements SyncableInterface
 {
-    use MorphToForm, HasFilter, Sortable, Notable;
+    use MorphToForm, HasFilter, Sortable, Notable, Mapping;
 
     protected $guarded = ['id'];
 
-    protected $appends = ['matches_url'];
+    protected $appends = ['matches_url','saved_matches_url'];
 
     public $withCount = ['matches', 'hiredMatches'];
 
@@ -51,5 +51,9 @@ class JobOpening extends Model implements SyncableInterface
     public function getMatchesUrlAttribute($value)
     {
         return route('job-openings.match', $this->id);
+    }
+    public function getSavedMatchesUrlAttribute($value)
+    {
+        return route('job-openings.saved', $this->id);
     }
 }

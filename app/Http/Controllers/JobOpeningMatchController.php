@@ -55,8 +55,6 @@ class JobOpeningMatchController extends Controller
 
     public function saved(JobOpening $jobOpening)
     {
-        abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
-
         if(request()->wantsJson()){
             return $this->savedMatches($jobOpening, request());
         }
@@ -66,8 +64,6 @@ class JobOpeningMatchController extends Controller
 
     public function savedList(JobOpening $jobOpening, CaseFilter $filter, SortableCase $sortableCase, SortableMatch $sortableMatch, MatchStatusFilter $matchStatusFilter)
     {
-        abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
-
         $caseType = 'job-seeker';
 
         $query = $jobOpening->matches();

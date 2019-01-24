@@ -13,6 +13,7 @@ class JobSeeker extends Model implements SyncableInterface
         HasFilter,
         MorphToForm,
         HasFollowup,
+        Mapping,
         HasActivity;
 
     protected $appends = [
@@ -53,6 +54,11 @@ class JobSeeker extends Model implements SyncableInterface
     public function candidateMatches()
     {
         return $this->matches()->where('matches.status', Match::STATUS_CANDIDATE);
+    }
+
+    public function hiredMatches()
+    {
+        return $this->matches()->where('matches.status', Match::STATUS_HIRED);
     }
 
     public function scopeWithCandidateInJobOpening(Builder $builder, $jobOpeningId)

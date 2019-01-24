@@ -1,8 +1,6 @@
 <?php namespace App\Http\Filters;
 
-use App\Sync\Cases\Match;
 use Illuminate\Http\Request;
-use App\Models\PropertyMetaData;
 use Illuminate\Database\Eloquent\Builder;
 
 class MatchStatusFilter implements FilterInterface

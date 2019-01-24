@@ -127,7 +127,7 @@
                                 text-grey-dark text-sm font-semibold"
               @click="changeViewType('matches')"
             >
-              {{ 'irc.matches' | trans }}
+              {{ 'irc.match_statuses.hired' | trans }}
             </button>
           </li>
 

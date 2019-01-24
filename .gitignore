@@ -16,3 +16,4 @@ yarn-error.log
 report
 public/js/
 public/css/
+!storage/app/field-team.csv

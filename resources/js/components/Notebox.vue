@@ -29,8 +29,10 @@
     <div class=" text-left text-sm text-black font-bold">
       {{ body }}
     </div>
-
-    <div class="flex mt-4">
+    <div v-if="type" class="note-type text-green text-xs mt-4">
+      {{type}}
+    </div>
+    <div class="flex ">
       <div
         v-if="showCreatorDetails"
         class="flex-1"
@@ -135,6 +137,10 @@
       author: {
         type: String,
         default: 'Mohammad Karmi'
+      },
+      type: {
+        type: String,
+        default: null
       },
       body: {
         type: String,

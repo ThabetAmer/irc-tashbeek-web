@@ -13,6 +13,7 @@ class JobSeeker extends Model implements SyncableInterface
         HasFilter,
         MorphToForm,
         HasFollowup,
+        Mapping,
         HasActivity;
 
     protected $appends = [

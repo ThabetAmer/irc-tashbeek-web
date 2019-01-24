@@ -26,6 +26,8 @@ class SaveMatchesTest extends TestCase
 
     public function test_save_matches_requires_match_save_permission()
     {
+        $this->withoutExceptionHandling();
+
         $this->loginApi();
 
         $this->createPermissions('cases.match.save');

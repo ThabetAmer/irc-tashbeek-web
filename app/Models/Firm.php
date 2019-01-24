@@ -14,6 +14,7 @@ class Firm extends Model implements SyncableInterface
         Sortable,
         HasFollowup,
         Notable,
+        Mapping,
         HasActivity;
 
     public $withCount = ['openings'];

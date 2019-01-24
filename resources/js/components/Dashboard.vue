@@ -57,7 +57,7 @@
 
             <div class="tab-content">
               <div
-                v-if="viewType =='calendar'"
+                v-show="viewType =='calendar'"
                 id="calendarTab"
                 class="tab-pane fade in active show "
               >
@@ -117,7 +117,7 @@
               </div>
 
               <div
-                v-else
+                v-show="viewType !='calendar'"
                 id="list"
                 class="tab-pane fade in max-h-600"
               >
@@ -339,6 +339,10 @@
         this.viewType = type;
         if (type === 'table') {
           this.getFollowups(null, this.pagination.currentPage);
+        }
+        else{
+          this.dayClicked(moment())
+
         }
       },
       dayClicked: function (date, jsEvent, view) {

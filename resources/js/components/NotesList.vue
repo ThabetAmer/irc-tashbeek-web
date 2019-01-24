@@ -16,6 +16,7 @@
         :id="note.id"
         :key="note.id"
         :date="note.created_at_text"
+        :type="note.type"
         :author="note.user.name"
         :body="note.note"
         :is-starred="note.is_starred"

@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-wrap">
-    <div class="w-full lg:w-1/3 lg:pr-2">
+    <div class="w-full lg:w-1/3 lg:pr-2 pb-3">
       <Panel
-        custom-class="min-h-642"
+        custom-class="min-h-full"
         :has-title="hasTitle"
         :title="firm.firm_name"
       >
@@ -87,8 +87,8 @@
         <Notebox
           v-if="starredNote"
           :body="starredNote.note"
-          :date="starredNote.date"
-          :author="starredNote.author"
+          :date="starredNote.created_at_text"
+          :author="starredNote.user.name"
           :show-star="false"
           :show-creator-details="false"
           custom-class="border-none pl-0"
@@ -105,7 +105,7 @@
     <div class="w-full lg:w-2/3 lg:px-2">
       <Panel
         :has-title="hasTitle"
-        custom-class="max-h-600 overflow-y-auto"
+        custom-class="min-h-full min-h-700 max-h-700 overflow-y-auto"
         :title="'irc.job_openings' | trans"
       >
         <ul class="list-reset flex border-0 custom-navs mb-4">
@@ -128,6 +128,17 @@
               @click="changeViewType('matches')"
             >
               {{ 'irc.matches' | trans }}
+            </button>
+          </li>
+
+          <li class=" flex-inline mr-2">
+            <button
+              :class="{active:viewType === 'notes'}"
+              class="nav-link border-0 py-2 px-4
+                                text-grey-dark text-sm font-semibold"
+              @click="changeViewType('notes')"
+            >
+              {{ 'irc.notes' | trans }}
             </button>
           </li>
         </ul>
@@ -171,32 +182,31 @@
               :change-url="false"
             />
           </div>
+
+          <div
+            v-if="viewType === 'notes'"
+            id="notes"
+            class="tab-pane fade in"
+          >
+            <Btn
+              :theme="'success'"
+              :btn-class="'mb-2 uppercase absolute pin-t pin-r mt-4 mr-4'"
+              @click="showAddModalNote = true"
+            >
+              <template slot="text">
+                {{ 'irc.add_note' | trans }}
+              </template>
+            </Btn>
+
+            <NotesList
+              case-type="firm"
+              :case-id="firm.id"
+              :additional-note="addedNote"
+              @starred="starredNote = $event"
+              @fetched="starredNote = $event.starred"
+            />
+          </div>
         </div>
-      </Panel>
-
-      <Panel
-        :has-title="hasTitle"
-        :title="'irc.notes' | trans"
-      >
-        <Btn
-          :theme="'success'"
-          :btn-class="'mb-2 uppercase absolute pin-t pin-r mt-4 mr-4'"
-          @click="showAddModalNote = true"
-        >
-          <template slot="text">
-            {{ 'irc.add_note' | trans }}
-          </template>
-        </Btn>
-
-        <NotesList
-          case-type="firm"
-          :case-id="firm.id"
-          :additional-note="addedNote"
-          @starred="starredNote = $event"
-          @fetched="starredNote = $event.starred"
-        />
-
-        <!--<notebox></notebox>-->
       </Panel>
     </div>
 
@@ -244,6 +254,16 @@
     },
     mounted() {
       this.matchedEndPoint = `api/firms/${this.firm.id}/matches`;
+      getNotes('firm', this.firm.id)
+          .then(({data}) => {
+            // this.notes = data.data;
+            data.data.forEach(note =>{
+              if(note.is_starred){
+                this.starredNote = note;
+              }
+            })
+            // console.log(' notes are ',data.data )
+          });
 
       getCaseListing('job-opening', {
         filters: {
@@ -267,6 +287,12 @@
             .then(resp => {
               this.addedNote = resp.data.note;
             })
+            .catch(error=>{
+              this.$toasted.show(error.response.data.errors.note[0], {
+                icon: 'icon-Error_x40_2xpng_2',
+                className: 'toast-error'
+              })
+            });
       },
       changeViewType(type) {
         this.viewType = type;

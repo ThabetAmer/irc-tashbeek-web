@@ -31,7 +31,29 @@ class UserFilter implements FilterInterface
     {
         $filters = $this->getFilters();
         foreach ($filters as $key => $value) {
-            $builder = $builder->where($key, 'LIKE', "%$value%");
+            if(is_array($value)){
+                $value = array_filter($value,function($value){
+                    return $this->isValidValue($value);
+                });
+            }
+
+            if (!$this->isValidValue($value)) {
+                continue;
+            }
+
+            switch ($key){
+                case 'role':
+                    $builder->whereHas('roles',function($query) use($value){
+                        if(!is_array($value)){
+                            $value = [$value];
+                        }
+                        $query->whereIn('id', $value);
+                    });
+                    break;
+                default:
+                    $builder = $builder->where($key, 'LIKE', "%$value%");
+                    break;
+            }
         }
     }
 
@@ -50,5 +72,15 @@ class UserFilter implements FilterInterface
         return $filters;
     }
 
+
+
+    protected function isValidValue($value)
+    {
+        if(is_array($value)){
+            return count($value) > 0;
+        }
+
+        return !is_null($value) && trim($value) !== "";
+    }
 
 }

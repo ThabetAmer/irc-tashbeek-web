@@ -131,6 +131,8 @@ return [
     'hired_matches_count' => 'تم توظيفهم',
     'score' => 'النتيجة',
 
+    'roles' => 'الادوار',
+
     'notes_options' => [
         'follow_up' => 'المتابعة',
     ]

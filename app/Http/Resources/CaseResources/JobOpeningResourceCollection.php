@@ -22,9 +22,6 @@ class JobOpeningResourceCollection extends CaseDataResource
             }
         }
 
-
-
-
         $with['headers'] = array_insert_after(
           $with['headers'],
             array_search_key_by_value($with['headers'],'name','num_vacancies'),
@@ -36,6 +33,8 @@ class JobOpeningResourceCollection extends CaseDataResource
           ]
         );
 
+
+        $with['permissions'] = array_get($with, 'permissions', []);
 
         return $with;
     }

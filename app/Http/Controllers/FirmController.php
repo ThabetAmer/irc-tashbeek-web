@@ -36,9 +36,7 @@ class FirmController extends Controller
 
     public function matches(Firm $firm, CaseFilter $filter, SortableCase $sortableCase)
     {
-//        abort_unless(auth()->user()->hasPermissionTo("cases.match"), 403);
-
-        $query = $firm->matches();
+        $query = $firm->hiredMatches();
 
         $query->filter($filter);
 

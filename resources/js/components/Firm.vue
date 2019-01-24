@@ -184,7 +184,7 @@
           </div>
 
           <div
-            v-if="viewType === 'notes'"
+            v-show="viewType === 'notes'"
             id="notes"
             class="tab-pane fade in"
           >
@@ -256,14 +256,6 @@
     },
     mounted() {
       this.matchedEndPoint = `api/firms/${this.firm.id}/matches`;
-      getNotes('firm', this.firm.id)
-          .then(({data}) => {
-            data.data.forEach(note => {
-              if (note.is_starred) {
-                this.starredNote = note;
-              }
-            })
-          });
 
       getCaseListing('job-opening', {
         filters: {

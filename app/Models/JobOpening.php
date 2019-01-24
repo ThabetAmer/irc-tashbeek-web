@@ -33,7 +33,7 @@ class JobOpening extends Model implements SyncableInterface
             });
 
 
-        $builder->addSelect('match_scores.score as match_score');
+        $builder->addSelect('match_scores.score as score');
 
         return $builder;
     }

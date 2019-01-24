@@ -86,7 +86,7 @@ class JobSeeker extends Model implements SyncableInterface
 
         $builder->addSelect('matches.status as match_status');
 
-        $builder->addSelect('match_scores.score as match_score');
+        $builder->addSelect('match_scores.score as score');
     }
 
     public function basicInfo()

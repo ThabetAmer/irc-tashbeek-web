@@ -47,7 +47,7 @@ class JobOpeningMatchResource extends CaseResource
 
     protected function matchScore()
     {
-        return ((double)$this->match_score * 100) . '%';
+        return ((double)$this->score * 100) . '%';
     }
 
 

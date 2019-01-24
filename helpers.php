@@ -240,7 +240,6 @@ if (!function_exists('array_insert_after')) {
 }
 
 
-
 if (!function_exists('array_search_key_by_value')) {
     /**
      * @url https://stackoverflow.com/questions/6661530/php-multidimensional-array-search-by-value
@@ -268,7 +267,7 @@ if (!function_exists('array_search_key_by_value')) {
 if (!function_exists('force_url_lang')) {
     function force_url_lang($url, $locale = null)
     {
-        if(!$locale){
+        if (!$locale) {
             $locale = \App::getLocale();
         }
 
@@ -276,3 +275,16 @@ if (!function_exists('force_url_lang')) {
     }
 }
 
+
+if (!function_exists('array_only_sorted_by_keys')) {
+    function array_only_sorted_by_keys($array, $keys)
+    {
+        $newArray = [];
+        foreach ($keys as $index => $key) {
+            if (isset($array[$key])) {
+                $newArray[$key] = $array[$key];
+            }
+        }
+        return $newArray;
+    }
+}

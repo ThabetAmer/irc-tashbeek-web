@@ -131,4 +131,6 @@ return [
     'hired_matches_count' => 'تم توظيفهم',
     'score' => 'النتيجة',
 
+    'roles' => 'الادوار',
+
 ];

@@ -27,7 +27,7 @@ class UsersSync
 
     public function make($page = 1)
     {
-        $this->sync($page, $this->request);
+//        $this->sync($page, $this->request);
 
         $this->sync($page, $this->mobileWorkersRequest);
     }
@@ -66,6 +66,9 @@ class UsersSync
         $user->commcare_id = $data['id'];
 
         $user->name = array_get($data,'first_name') . ' ' . array_get($data,'last_name');
+
+        $user->commcare_username = array_get($data,'username');
+
 
         $user->save();
     }

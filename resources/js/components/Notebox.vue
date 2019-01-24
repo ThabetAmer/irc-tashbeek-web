@@ -12,7 +12,7 @@
         mode="out-in"
         name=""
       >
-        <i :class="`icon-Star_x40_2xpng_2`" />
+        <i :class="`icon-Star_x40_2xpng_2`"/>
       </Transition>
 
       <Transition
@@ -41,7 +41,7 @@
           {{ 'irc.from' | trans }} {{ author }}
         </div>
         <div class="uppercase">
-          {{ date }}
+          {{ getTranslatedDate }}
         </div>
       </div>
 
@@ -51,7 +51,7 @@
           @click="showFullNoteModal"
         >
           {{ 'irc.view_more' | trans }}
-          <i class=" align-text-bottom icon-Right_Arrow_1_1 text-xl ml-2" />
+          <i class=" align-text-bottom icon-Right_Arrow_1_1 text-xl ml-2"/>
         </button>
       </div>
     </div>
@@ -69,7 +69,7 @@
           {{ 'irc.note_from' | trans }} {{ author }}
         </div>
         <div class="text-grey text-sm mb-1">
-          {{ date }}
+          {{ getTranslatedDate }}
         </div>
         <button
           v-if="showStar"
@@ -81,7 +81,7 @@
             mode="out-in"
             name=""
           >
-            <i :class="`icon-Star_x40_2xpng_2`" />
+            <i :class="`icon-Star_x40_2xpng_2`"/>
           </Transition>
 
           <Transition
@@ -111,6 +111,8 @@
 
 
 <script>
+  import moment from 'moment'
+
   export default {
     /**
      * all props have their needed types
@@ -166,6 +168,7 @@
     data() {
       return {
         showFullNote: false,
+        locale: document.documentElement.lang === 'ar' ? 'ar' : 'en'
       }
     },
     methods: {
@@ -180,7 +183,14 @@
       showFullNoteModal() {
         this.showFullNote = true;
       }
-    }
+    },
+    computed: {
+      getTranslatedDate() {
+        if (this.date) {
+          return moment(this.date).locale(this.locale).format('dddd DD MMMM')
+        }
+      }
+    },
   }
 </script>
 

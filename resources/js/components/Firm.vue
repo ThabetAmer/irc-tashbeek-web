@@ -89,6 +89,7 @@
           :body="starredNote.note"
           :date="starredNote.created_at_text"
           :author="starredNote.user.name"
+          :type="starredNote.type"
           :show-star="false"
           :show-creator-details="false"
           custom-class="border-none pl-0"

@@ -246,19 +246,20 @@
         jobOpeningsLoading: true,
         starredNote: null,
         addedNote: null,
-        canSeeMatches:true
+        canSeeMatches: true
       }
     },
     computed: {
-        homeUrl: function () { return window.homeUrl; }
+      homeUrl: function () {
+        return window.homeUrl;
+      }
     },
     mounted() {
       this.matchedEndPoint = `api/firms/${this.firm.id}/matches`;
       getNotes('firm', this.firm.id)
           .then(({data}) => {
-            // this.notes = data.data;
-            data.data.forEach(note =>{
-              if(note.is_starred){
+            data.data.forEach(note => {
+              if (note.is_starred) {
                 this.starredNote = note;
               }
             })
@@ -286,7 +287,7 @@
             .then(resp => {
               this.addedNote = resp.data.note;
             })
-            .catch(error=>{
+            .catch(error => {
               this.$toasted.show(error.response.data.errors.note[0], {
                 icon: 'icon-Error_x40_2xpng_2',
                 className: 'toast-error'

@@ -62,6 +62,7 @@
           </ListItem>
 
           <ListItem
+            v-if="jobSeeker.city || jobSeeker.district"
             icon="icon-Location_Pin_1_1"
           >
             <span>
@@ -90,6 +91,7 @@
           </ListItem>
 
           <ListItem
+            v-if="jobSeeker.mobile_num"
             icon="icon-Phone_1_x40_2xpng_2"
           >
             {{ jobSeeker.mobile_num }}

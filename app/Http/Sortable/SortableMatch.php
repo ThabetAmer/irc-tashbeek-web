@@ -24,7 +24,7 @@ class SortableMatch implements SortableInterface
     {
 
         if (!$this->request->has('sorting.column')) {
-            $this->request->replace([
+            $this->request->merge([
                 'sorting' => [
                     'column' => 'score',
                     'type' => 'desc',

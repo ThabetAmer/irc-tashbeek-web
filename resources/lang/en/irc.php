@@ -134,4 +134,8 @@ return [
     'hired_matches_count' => 'Number of hired',
     'score' => 'Score',
 
+    'notes_options' => [
+        'follow_up' => 'Follow Up',
+    ],
+
 ];

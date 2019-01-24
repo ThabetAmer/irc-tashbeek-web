@@ -359,7 +359,7 @@
         this.showAddModalNote = false;
       },
       addNoteToList(noteText, type) {
-        addNote('job-seeker', this.jobSeeker.id, {note: noteText, type: type ? type.name : ''})
+        addNote('job-seeker', this.jobSeeker.id, {note: noteText, type: type ? type : ''})
           .then(resp => {
             this.addedNote = resp.data.note;
           })

@@ -7,7 +7,7 @@ use Illuminate\Database\Query\JoinClause;
 
 class JobOpening extends Model implements SyncableInterface
 {
-    use MorphToForm, HasFilter, Sortable, Notable;
+    use MorphToForm, HasFilter, Sortable, Notable, Mapping;
 
     protected $guarded = ['id'];
 

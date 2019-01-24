@@ -91,7 +91,7 @@ if (!function_exists('withCount')) {
     {
         $withCountArray = $model->withCount ?? [];
         return array_map(function ($value) {
-            return $value . '_count';
+            return snake_case($value) . '_count';
         }, $withCountArray);
     }
 }

@@ -11,7 +11,7 @@ return [
     'users' => 'المستخدمين',
     'logout' => 'تسجيل خروج',
     'job_openings' => 'الوظائف المتاحة',
-    'match_job' => 'Match Job',
+    'match_job' => 'بحث عن مرشحين',
     'view_notes' => 'عرض الملاحظات',
     'all_notes' => 'كل الملاحظات',
 
@@ -135,6 +135,10 @@ return [
 
     'notes_options' => [
         'follow_up' => 'المتابعة',
-    ]
+    ],
+
+    'job_opening_match' => 'اختيار المتوافقين مع الوظيفة',
+
+    'job_opening_saved_match' => 'المتوافقين مع الوظيفة'
 
 ];

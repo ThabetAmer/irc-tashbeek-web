@@ -76,7 +76,7 @@ class JobOpeningMatchController extends Controller
 
         $query->sort($sortableMatch);
 
-        $results = $query->paginate($this->perPage());
+        $results = $this->handlePagination($query);
 
         $collection = new JobOpeningMatchResourceCollection($results, $caseType);
 
@@ -129,5 +129,18 @@ class JobOpeningMatchController extends Controller
 
         return intval($perPage);
     }
+
+
+    public function handlePagination($query)
+    {
+        if (request('export')) {
+            $results = $query->get();
+        } else {
+            $results = $query->paginate($this->perPage());
+        }
+        return $results;
+    }
+
+
 
 }

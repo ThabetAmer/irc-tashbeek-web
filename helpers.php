@@ -281,9 +281,7 @@ if (!function_exists('array_only_sorted_by_keys')) {
     {
         $newArray = [];
         foreach ($keys as $index => $key) {
-            if (isset($array[$key])) {
-                $newArray[$key] = $array[$key];
-            }
+            $newArray[$key] = $array[$key];
         }
         return $newArray;
     }

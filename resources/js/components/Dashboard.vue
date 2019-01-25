@@ -12,7 +12,7 @@
         >
           <Component
             :is="card.component"
-            :icon-class="'icon-Add_x40_2xpng_2'"
+            :icon-class="card.icon || 'icon-Add_x40_2xpng_2'"
             :value="parseInt(card.value)"
             :label="card.label"
           />

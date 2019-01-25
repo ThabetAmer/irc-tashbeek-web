@@ -52,6 +52,9 @@ return [
     'matched' => 'Matched',
     'candidates' => 'Candidates',
     'notes' => 'Notes',
+    'type' => 'Type',
+    'due_date' => 'Due Date',
+    'background' => 'Background',
 
     'add_note' => 'Add Note',
     'type_of_followup' => 'Type of follow-up',

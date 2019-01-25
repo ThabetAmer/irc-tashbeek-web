@@ -109,6 +109,9 @@ return [
     'events_are_being_loaded' => 'جاري تحميل المتابعات!',
     'no_screening' => 'لا يوجد نشاطات!',
 
+    'type' => 'النوع',
+    'due_date' => 'تاريخ الاستحقاق',
+    'background' => 'الخلفية',
 
     'notes_created_successfully' => 'تم اضافة الملاحظة بنجاح',
     'cannot_find_case_type' => 'Cannot find this case type',

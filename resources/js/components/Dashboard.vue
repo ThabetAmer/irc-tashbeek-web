@@ -148,7 +148,7 @@
             class=""
           >
             <div class="text-left text-green-dark font-bold text-xs mt-8 -mb-1">
-              {{ day.name }}
+              {{ lang === 'ar' ? getArabicDateRecent(day.name) : day.name }}
             </div>
             <ul class="list-reset">
               <template
@@ -218,23 +218,23 @@
         tableHeaders: [
           {
             name: "type",
-            label: 'Type'
+            label: this.$options.filters.trans('irc.type')
 
           },
           {
             name: "followup",
-            label: 'Name',
+            label: this.$options.filters.trans('irc.name'),
             valueHandler: (row) => row.followup.name
 
           },
           {
             name: "due_date",
-            label: 'Due Date'
+            label: this.$options.filters.trans('irc.due_date')
 
           },
           {
             name: "background",
-            label: 'Background',
+            label: this.$options.filters.trans('irc.background'),
             valueHandler: (row) => Object.values(row.followup.background).join(', ')
 
           }
@@ -278,12 +278,13 @@
           },
           viewRender: function (view, el) {
             this.getCounts(
-              moment(view.calendar.currentDate).locale('en').format("YYYY-MM")
+                moment(view.calendar.currentDate).locale('en').format("YYYY-MM")
             )
 
           }.bind(this)
         },
         page: 1,
+        lang: document.documentElement.lang === 'ar' ? 'ar' : 'en',
         pagination: {
           total: 0,
           lastPage: 3,
@@ -311,6 +312,12 @@
       this.dayClicked(moment())
     },
     methods: {
+      getArabicDateRecent(date){
+        return moment(date).locale('ar').format("dddd DD MMMM")
+      },
+      convertNumberToArabic(str) {
+        console.log(' num in arabic is ', str.replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]));
+      },
       getRecentActivity() {
         getRecentActivity()
             .then(resp => {
@@ -326,16 +333,18 @@
             .then(resp => {
               this.counts = resp.data.data;
               this.counts.forEach(day => {
+                console.log('kkk ')
+                // console.log('kkk ',convertNumberToArabic(toString(day.followup_count)))
                 this.events.push({
                   start: day.followup_date,
-                  title: day.followup_count,
+                  title: this.lang === 'ar' ? String(day.followup_count).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]) : day.followup_count,
                   className: moment().diff(moment(day.followup_date), 'days') > 0 ? 'past' : 'future',
                 })
               });
               this.loading = false;
             })
             .catch(error => {
-              console.log('error');
+              console.log('error ggg');
             });
       },
       changeViewType(type) {
@@ -343,7 +352,7 @@
         if (type === 'table') {
           this.getFollowups(null, this.pagination.currentPage);
         }
-        else{
+        else {
           this.dayClicked(moment())
 
         }

@@ -108,8 +108,8 @@ class CreateUserTest extends TestCase
         $data = [
             'name' => 'Mohammed',
             'email' => 'sehweil@gmail.com',
-            'password' => 'sehweil',
-            'password_confirmation' => 'sehweil',
+            'password' => 'sehweil1234',
+            'password_confirmation' => 'sehweil1234',
 
         ];
 
@@ -133,14 +133,15 @@ class CreateUserTest extends TestCase
         $data = [
             'name' => 'Mohammed',
             'email' => 'sehweil@gmail.com',
-            'password' => 'sehweil',
-            'password_confirmation' => 'sehweil',
+            'password' => 'sehweil1234',
+            'password_confirmation' => 'sehweil1234',
             'profile_picture' => UploadedFile::fake()->image('avatar.jpg')
         ];
 
-        $this->json('POST', 'api/users', $data);
-        Storage::disk('upload')->assertExists('/1/avatar.jpg');
+       $this->json('POST', 'api/users', $data);
 
+
+        Storage::disk('upload')->assertExists('/1/avatar.jpg');
     }
 
 
@@ -155,8 +156,8 @@ class CreateUserTest extends TestCase
         $data = [
             'name' => 'Mohammed',
             'email' => 'sehweil@gmail.com',
-            'password' => 'sehweil',
-            'password_confirmation' => 'sehweil',
+            'password' => 'sehweil1234',
+            'password_confirmation' => 'sehweil1234',
             'profile_picture' => null
         ];
 
@@ -180,8 +181,8 @@ class CreateUserTest extends TestCase
         $data = [
             'name' => 'Mohammed',
             'email' => 'sehweil@gmail.com',
-            'password' => 'sehweil',
-            'password_confirmation' => 'sehweil',
+            'password' => 'sehweil1234',
+            'password_confirmation' => 'sehweil1234',
 
         ];
 
@@ -207,8 +208,8 @@ class CreateUserTest extends TestCase
         $data = [
             'name' => 'Mohammed',
             'email' => 'ali@gmail.com',
-            'password' => 'sehweil',
-            'password_confirmation' => 'sehweil',
+            'password' => 'sehweil1234',
+            'password_confirmation' => 'sehweil1234',
             'roles' => [
                 $role->id
             ],

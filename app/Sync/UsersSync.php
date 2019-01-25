@@ -27,7 +27,7 @@ class UsersSync
 
     public function make($page = 1)
     {
-//        $this->sync($page, $this->request);
+        $this->sync($page, $this->request);
 
         $this->sync($page, $this->mobileWorkersRequest);
     }

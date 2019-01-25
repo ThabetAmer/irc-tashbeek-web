@@ -115,8 +115,8 @@ class UpdateUserTest extends TestCase
         $data = [
             'name' => 's',
             'email' => 'gg@gmail.com',
-            'password' => 'password',
-            'password_confirmation' => 'password'
+            'password' => 'password33333',
+            'password_confirmation' => 'password33333'
         ];
 
         $this->json('put', 'api/users/' . $user->id, $data)
@@ -168,7 +168,6 @@ class UpdateUserTest extends TestCase
         $user
             ->addMedia($profilePicture)
             ->toMediaCollection($collectionName, $diskName);
-
 
         Storage::disk('upload')->assertExists('/1/avatar.jpg');
 
@@ -225,8 +224,8 @@ class UpdateUserTest extends TestCase
         $data = [
             'name' => 'Hassan',
             'email' => 'hassan@gmail.com',
-            'password' => 'hassan',
-            'password_confirmation' => 'hassan',
+            'password' => 'hassan123123',
+            'password_confirmation' => 'hassan123123',
         ];
 
         $response = $this->json('PUT', 'api/users/' . $user->id, $data);
@@ -262,8 +261,8 @@ class UpdateUserTest extends TestCase
         $data = [
             'name' => 'Hassan',
             'email' => 'hassan@gmail.com',
-            'password' => 'hassan',
-            'password_confirmation' => 'hassan',
+            'password' => 'hassan123123',
+            'password_confirmation' => 'hassan123123',
             'roles' => [1],
         ];
 
@@ -298,8 +297,8 @@ class UpdateUserTest extends TestCase
         $data = [
             'name' => 'Hassan',
             'email' => 'hassan@gmail.com',
-            'password' => 'hassan',
-            'password_confirmation' => 'hassan',
+            'password' => 'hassan123123',
+            'password_confirmation' => 'hassan123123',
         ];
 
         $response = $this->json('PUT', 'api/users/' . $user->id, $data);
@@ -315,7 +314,7 @@ class UpdateUserTest extends TestCase
         $user = factory(User::class)->create([
             'name' => 'Mohammed',
             'email' => 'sehweil@gmail.com',
-            'password' => bcrypt('sehweil'),
+            'password' => bcrypt('hassan123123'),
         ]);
 
         return $user;

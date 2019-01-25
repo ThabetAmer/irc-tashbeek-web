@@ -26,12 +26,12 @@ class SaveMatchesTest extends TestCase
 
     public function test_save_matches_requires_match_save_permission()
     {
-        $this->withoutExceptionHandling();
-
         $this->loginApi();
 
         $this->createPermissions('cases.match.save');
 
+        $this->syncStructure('job-seeker');
+        $this->syncStructure('match');
         $this->syncStructure('job-opening');
 
         $jobOpening = factory(JobOpening::class)->create();
@@ -46,7 +46,8 @@ class SaveMatchesTest extends TestCase
         $this->loginApi();
 
         $this->createUserRoleWithPermission(auth()->user(), 'cases.match.save');
-
+        $this->syncStructure('job-seeker');
+        $this->syncStructure('match');
         $this->syncStructure('job-opening');
 
         $jobOpening = factory(JobOpening::class)->create();
@@ -61,6 +62,8 @@ class SaveMatchesTest extends TestCase
 
         $this->createUserRoleWithPermission(auth()->user(), 'cases.match.save');
 
+        $this->syncStructure('job-seeker');
+        $this->syncStructure('match');
         $this->syncStructure('job-opening');
 
         $jobOpening = factory(JobOpening::class)->create();
@@ -68,6 +71,7 @@ class SaveMatchesTest extends TestCase
         $this->json('post', route('api.matches', $jobOpening->id),[
             'matches' => 'string'
         ])->assertJsonValidationErrors('matches');
+
     }
 
     public function test_save_matches_requires_matches_items_to_be_numeric()
@@ -76,6 +80,8 @@ class SaveMatchesTest extends TestCase
 
         $this->createUserRoleWithPermission(auth()->user(), 'cases.match.save');
 
+        $this->syncStructure('job-seeker');
+        $this->syncStructure('match');
         $this->syncStructure('job-opening');
 
 
@@ -99,11 +105,12 @@ class SaveMatchesTest extends TestCase
 
         $this->createUserRoleWithPermission(auth()->user(), 'cases.match.save');
 
-        $this->syncStructure('job-opening');
-
         $this->syncStructure('job-seeker');
 
         $this->syncStructure('match');
+
+        $this->syncStructure('job-opening');
+
 
         $jobOpening = factory(JobOpening::class)->create();
 

@@ -12,7 +12,7 @@
         mode="out-in"
         name=""
       >
-        <i :class="`icon-Star_x40_2xpng_2`"/>
+        <i :class="`icon-Star_x40_2xpng_2`" />
       </Transition>
 
       <Transition
@@ -29,8 +29,11 @@
     <div class=" text-left text-sm text-black font-bold">
       {{ body }}
     </div>
-    <div v-if="type" class="note-type text-green text-xs mt-4">
-      {{type}}
+    <div
+      v-if="type"
+      class="note-type text-green text-xs mt-4"
+    >
+      {{ type }}
     </div>
     <div class="flex ">
       <div
@@ -51,7 +54,7 @@
           @click="showFullNoteModal"
         >
           {{ 'irc.view_more' | trans }}
-          <i class=" align-text-bottom icon-Right_Arrow_1_1 text-xl ml-2"/>
+          <i class=" align-text-bottom icon-Right_Arrow_1_1 text-xl ml-2" />
         </button>
       </div>
     </div>
@@ -81,7 +84,7 @@
             mode="out-in"
             name=""
           >
-            <i :class="`icon-Star_x40_2xpng_2`"/>
+            <i :class="`icon-Star_x40_2xpng_2`" />
           </Transition>
 
           <Transition
@@ -171,6 +174,15 @@
         locale: document.documentElement.lang === 'ar' ? 'ar' : 'en'
       }
     },
+    computed: {
+      getTranslatedDate() {
+        if (this.date) {
+          return moment(this.date).locale(this.locale).format('dddd DD MMMM')
+        }
+
+        return null
+      }
+    },
     methods: {
       noteStarClicked() {
         this.$emit('noteStarred', {
@@ -182,13 +194,6 @@
       },
       showFullNoteModal() {
         this.showFullNote = true;
-      }
-    },
-    computed: {
-      getTranslatedDate() {
-        if (this.date) {
-          return moment(this.date).locale(this.locale).format('dddd DD MMMM')
-        }
       }
     },
   }

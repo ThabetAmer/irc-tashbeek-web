@@ -277,7 +277,10 @@
 
           },
           viewRender: function (view, el) {
-            this.getCounts(view.calendar.currentDate.format("YYYY-MM"));
+            this.getCounts(
+              moment(view.calendar.currentDate).locale('en').format("YYYY-MM")
+            )
+
           }.bind(this)
         },
         page: 1,

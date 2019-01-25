@@ -34,6 +34,7 @@ class JobOpening extends Model implements SyncableInterface
 
 
         $builder->addSelect('match_scores.score as score');
+        $builder->addSelect('job_seekers.*');
 
         return $builder;
     }

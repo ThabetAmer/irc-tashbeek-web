@@ -129,7 +129,7 @@
           matches: this.selections
         }).then(({data}) => {
 
-          this.$toasted.show('Matches saved', {
+          this.$toasted.show(this.$options.filters.trans('irc.matches_saved'), {
             icon: 'icon-Floppy_Disk_1_1',
           })
 

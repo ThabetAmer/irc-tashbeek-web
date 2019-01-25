@@ -139,6 +139,8 @@ return [
 
     'job_opening_match' => 'اختيار المتوافقين مع الوظيفة',
 
-    'job_opening_saved_match' => 'المتوافقين مع الوظيفة'
+    'job_opening_saved_match' => 'المتوافقين مع الوظيفة',
+
+    'matches_saved' => 'تم حفظ المتوافقين.'
 
 ];

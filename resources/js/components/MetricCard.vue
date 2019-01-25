@@ -14,7 +14,7 @@
                         font-bold border-b-4
                         text-xl"
       >
-        {{ value }}
+        {{ getValue }}
       </div>
 
       <div
@@ -30,34 +30,53 @@
 
 
 <script>
-    import classNames from "classnames"
+  import classNames from "classnames"
 
-    export default {
-        /**
-         * all props have their needed types
-         * and are passed using the mixin
-         */
-        props:{
-            iconClass:{
-                type:String,
-                default:""
-            },
-            value:{
-                type:[String,Number],
-                default:0
-            },
-            label:{
-                type:String,
-                default:""
-            }
-        },
-        computed:{
-            iconClasses(){
-                return classNames([this.iconClass,'text-xl',
-                    'text-green-dark' ]);
-            }
+  export default {
+    props: {
+      iconClass: {
+        type: String,
+        default: ""
+      },
+      value: {
+        type: [String, Number],
+        default: 0
+      },
+      label: {
+        type: String,
+        default: ""
+      }
+    },
+    /**
+     * all props have their needed types
+     * and are passed using the mixin
+     */
+    data() {
+      return {
+        lang: document.documentElement.lang === 'ar' ? 'ar' : 'en'
+      }
+    },
+    computed: {
+      getValue() {
+        if (this.value) {
+          if (this.lang === 'ar') {
+            return String(this.value).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])
+          }
+          else {
+            return this.value;
+          }
         }
+        if (this.lang === 'ar') {
+          return "٠"
+        }
+        return 0;
+      },
+      iconClasses() {
+        return classNames([this.iconClass, 'text-xl',
+          'text-green-dark']);
+      }
     }
+  }
 </script>
 
 <style lang="scss">

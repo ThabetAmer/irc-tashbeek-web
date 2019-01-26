@@ -14,7 +14,7 @@
                 :can-back="{{ auth()->user()->hasPermissionTo('cases.match') ? 'true':'false' }}"
                 route="{{route('api.matches.saved',[$jobOpening->id])}}"
                 matches-url="{{route('job-openings.match',[$jobOpening->id])}}"
-                :job-opening="{{$jobOpening}}"></job-opening-saved-matches>
+                :job-opening="{{ json_encode(case_resource('job-opening',$jobOpening)->toArray(request())) }}"></job-opening-saved-matches>
     </div>
 @endsection
 

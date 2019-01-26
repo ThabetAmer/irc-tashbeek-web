@@ -16,11 +16,12 @@ class Cards
         return [
 
             // ESO
-            JobSeekerCard::make(trans('irc.total_monthly_intakes'))
+            JobSeekerCard::make(trans('irc.total_job_seekers_monthly_intakes'))
                 ->model(JobSeeker::class)
                 ->authorize($this->isEso())
                 ->with('icon', 'icon-Users_2_x40_2xpng_2')
                 ->count(),
+
             FollowUpCard::make(trans('irc.total_pending_followups'))
                 ->authorize($this->isEso())
                 ->with('icon', 'icon-Calendar_2_x40_2xpng_2')

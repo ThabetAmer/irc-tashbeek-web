@@ -154,7 +154,8 @@ class RecentActivityFactory
                         'note' => $comment,
                         'user_id' => $model->user_id,
                         'commcare_id' => $model->commcare_id,
-                        'created_at' => $model->created_at->toDateTimeString()
+                        'created_at' => $model->created_at->toDateTimeString(),
+                        'type' => 'follow_up'
                     ]);
                 }else{
                     $note->update([

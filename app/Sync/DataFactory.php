@@ -205,7 +205,7 @@ class DataFactory
                         'note' => $esoComments,
                         'user_id' => $model->user_id,
                         'commcare_id' => $model->commcare_id,
-                        'created_at' => $model->opened_at
+                        'created_at' => $model->opened_at,
                     ]);
                 }else{
                     $note->update([

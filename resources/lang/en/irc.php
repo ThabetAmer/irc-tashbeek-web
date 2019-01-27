@@ -23,6 +23,7 @@ return [
 
 
     'total_monthly_intakes' => 'Total Monthly Intakes',
+    'total_job_seekers_monthly_intakes' => 'Total Monthly Intakes',
     'total_pending_followups' => 'Total number of pending follow-ups',
     'total_job_openings' => 'Current job openings',
     'total_firms_per_user' => 'Total firm intakes',

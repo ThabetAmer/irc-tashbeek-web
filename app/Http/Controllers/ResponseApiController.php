@@ -32,6 +32,10 @@ class ResponseApiController extends Controller
 
         $query->mapping($mappingCase);
 
+        if(empty(request('sorting.column'))){
+            $query->orderBy('opened_at', 'desc');
+        }
+
         $results = $this->handlePagination($query);
 
         $collection = case_resource_collection($caseType, $results, $caseType);

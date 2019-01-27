@@ -152,7 +152,11 @@ class DataFactory
     protected function removeClosedCase($case, $caseObject)
     {
         if(array_get($case,'closed') === true){
-            $caseObject->model()::where('commcare_id',$case['id'])->delete();
+            $m = $caseObject->model()::where('commcare_id',$case['id'])->first();
+
+            if($m){
+                $m->delete();
+            }
 
             return true;
         }

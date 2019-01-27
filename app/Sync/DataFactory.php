@@ -139,7 +139,7 @@ class DataFactory
 
         $data['commcare_id'] = $case['id'];
 
-        $userId = array_get($case,'opened_by', $data['user_id']);
+        $userId = array_get($case,'opened_by', $case['user_id']);
 
         $data['user_id'] = optional(User::where('commcare_id',$userId)->first())->id ;
 

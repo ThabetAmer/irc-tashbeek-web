@@ -60,7 +60,7 @@
       getValue() {
         if (this.value) {
           if (this.lang === 'ar') {
-            return String(this.value).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])
+            return (this.value).toLocaleString('ar-EG')
           }
           else {
             return this.value;

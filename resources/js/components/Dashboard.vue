@@ -315,9 +315,6 @@
       getArabicDateRecent(date){
         return moment(date).locale('ar').format("dddd DD MMMM")
       },
-      convertNumberToArabic(str) {
-        console.log(' num in arabic is ', str.replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]));
-      },
       getRecentActivity() {
         getRecentActivity()
             .then(resp => {
@@ -337,7 +334,7 @@
                 // console.log('kkk ',convertNumberToArabic(toString(day.followup_count)))
                 this.events.push({
                   start: day.followup_date,
-                  title: this.lang === 'ar' ? String(day.followup_count).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]) : day.followup_count,
+                  title: this.lang === 'ar' ? (day.followup_count).toLocaleString('ar-EG') : day.followup_count,
                   className: moment().diff(moment(day.followup_date), 'days') > 0 ? 'past' : 'future',
                 })
               });

@@ -109,6 +109,8 @@ class Match extends AbstractCase
             return false;
         }
 
+        return true;
+
         return \App\Models\Match::where('job_seeker_id',$jobSeekerId)->where('job_opening_id',$jobOpeningId)->count() === 1;
     }
 

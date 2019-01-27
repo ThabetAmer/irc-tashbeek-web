@@ -11,10 +11,12 @@ class JobOpeningMatchResourceCollection extends CaseDataResource
     {
         $with = parent::with($request);
 
-        $with['headers'][] = [
-            'label' => trans('irc.jobseeker_status'),
-            'name' => 'match_status',
-        ];
+        $with['headers'] = array_insert_after($with['headers'], 1, [
+            [
+                'label' => trans('irc.jobseeker_status'),
+                'name' => 'match_status',
+            ]
+        ]);
 
         $with['filters'][] = [
             'name' => 'match_status',

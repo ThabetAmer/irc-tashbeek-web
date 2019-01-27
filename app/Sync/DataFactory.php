@@ -198,12 +198,20 @@ class DataFactory
         $esoComments = array_get($case, 'properties.eso_comments');
 
         if(!empty(trim($esoComments))){
-
             if(method_exists($model,'notes')){
-                $model->notes()->create([
-                    'note' => $esoComments,
-                    'user_id' => $model->user_id
-                ]);
+                $note = $model->notes()->where('commcare_id',$model->commcare_id )->first();
+                if(!$note){
+                    $model->notes()->create([
+                        'note' => $esoComments,
+                        'user_id' => $model->user_id,
+                        'commcare_id' => $model->commcare_id,
+                        'created_at' => $model->created_at->toDateTimeString()
+                    ]);
+                }else{
+                    $note->update([
+                        'note' => $esoComments,
+                    ]);
+                }
             }
         }
     }

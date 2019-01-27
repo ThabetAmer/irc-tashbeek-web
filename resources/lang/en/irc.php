@@ -145,4 +145,5 @@ return [
 
     'matches_saved' => 'Matches Saved',
     'date' => 'Date',
+    'added_on' => 'Added'
 ];

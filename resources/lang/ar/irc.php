@@ -146,6 +146,8 @@ return [
     'job_opening_saved_match' => 'المتوافقين مع الوظيفة',
 
     'matches_saved' => 'تم حفظ المتوافقين.',
-    'date' => 'التاريخ'
+    'date' => 'التاريخ',
+
+    'added_on' => 'اضيف في'
 
 ];

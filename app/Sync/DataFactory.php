@@ -90,6 +90,8 @@ class DataFactory
 
         $model = $caseObject->model()::updateOrCreate($caseObject->savingKeys($data), $data);
 
+        $this->createNotes($model, $case);
+
         $this->scheduleFollowups($model);
     }
 
@@ -186,6 +188,21 @@ class DataFactory
                     'followup_period' => $key,
                     'type' => 'scheduled',
                     'user_id' => $model->user_id,
+                ]);
+            }
+        }
+    }
+
+    public function createNotes($model, $case)
+    {
+        $esoComments = array_get($case, 'properties.eso_comments');
+
+        if(!empty(trim($esoComments))){
+
+            if(method_exists($model,'notes')){
+                $model->notes()->create([
+                    'note' => $esoComments,
+                    'user_id' => $model->user_id
                 ]);
             }
         }

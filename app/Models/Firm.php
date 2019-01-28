@@ -45,8 +45,11 @@ class Firm extends Model implements SyncableInterface
         $data = [
             'gender' => $this->district,
             'city' => $this->city,
-            'contact_mobile' => $this->contact_mobile
+            'contact_mobile' => $this->contact_mobile,
+            'followup_contact_mobile' => $this->followup_contact_mobile,
         ];
+        $data = array_filter($data);
+
         return array_only(map_options($data,$this), array_keys($data));
     }
 

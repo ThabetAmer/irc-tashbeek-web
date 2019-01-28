@@ -84,7 +84,7 @@ Vue.filter('trans', function (key,value) {
   return window.Lang.get(key);
 })
 
-Vue.filter('formatted_date', function (key,value) {
+Vue.filter('formatted_date', function (value) {
   return moment(value).locale(window.locale).format('dddd DD MMMM')
 })
 

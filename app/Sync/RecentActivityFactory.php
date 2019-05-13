@@ -27,6 +27,8 @@ class RecentActivityFactory
      */
     protected $request;
 
+    private $trials = 3;
+
     /**
      * StructureFactory constructor.
      * @param FormRequest $request
@@ -46,17 +48,17 @@ class RecentActivityFactory
     public function make($formName, $page = 1)
     {
 
-        if(!array_key_exists($formName,static::FORMS)){
+        if (!array_key_exists($formName, static::FORMS)) {
             throw new \InvalidArgumentException("$formName is invalid");
         }
 
         $form = static::FORMS[$formName];
 
-        if(!isset($form['case_type'])){
+        if (!isset($form['case_type'])) {
             throw new \InvalidArgumentException("case_type is not exists in {$formName} definition.");
         }
 
-        if(!isset($form['form_id'])){
+        if (!isset($form['form_id'])) {
             throw new \InvalidArgumentException("form_id is not exists in {$formName} definition.");
         }
 
@@ -64,14 +66,26 @@ class RecentActivityFactory
 
         $caseType = $form['case_type'];
 
-        $response = $this->request->data([
-            'page' => $page,
-            'xmlns' => 'http://openrosa.org/formdesigner/' . $xmlns
-        ]);
+        $response = null;
 
-        $this->saveItems($caseType, $response['objects']);
+        do {
+            try {
+                $response = $this->request->data([
+                    'page' => $page,
+                    'xmlns' => 'http://openrosa.org/formdesigner/' . $xmlns
+                ]);
 
-        if (!is_null($response['meta']['next'])) {
+                $this->saveItems($caseType, $response['objects']);
+            } catch (\Exception $exception) {
+
+            }
+        } while ($this->trials-- != 0 && !$response);
+
+        if (!$response) {
+            throw new \Exception('RecentActivityFactory: Failed to get data from commcare [page: ' . $page . ']');
+        }
+
+        if (($response ?? null) && !is_null($response['meta']['next'])) {
             $this->make($formName, $page + 1);
         }
     }
@@ -99,29 +113,29 @@ class RecentActivityFactory
     {
         $model = get_case_type_model($caseType);
 
-        $commCareId = array_get($form,'form.case.@case_id');
+        $commCareId = array_get($form, 'form.case.@case_id');
 
         $query = $model->query()->where('commcare_id', $commCareId);
 
         $record = $query->first();
 
-        if(!$record){
+        if (!$record) {
             return;
         }
 
-        if($record->recentActivities()->where('commcare_id',$form['id'])->first()){
-            return ;
+        if ($record->recentActivities()->where('commcare_id', $form['id'])->first()) {
+            return;
         }
 
         $userId = null;
 
-        if(!empty(array_get($form,'form.meta.userID'))){
-            $userId = optional(User::where('commcare_id',array_get($form,'form.meta.userID'))->first())->id;
+        if (!empty(array_get($form, 'form.meta.userID'))) {
+            $userId = optional(User::where('commcare_id', array_get($form, 'form.meta.userID'))->first())->id;
         };
 
         $record->recentActivities()->create([
             'commcare_id' => $form['id'],
-            'title' => array_get($form,'form.@name'),
+            'title' => array_get($form, 'form.@name'),
             'created_at' => app(DateHandler::class)->resolve($form['received_on']),
             'user_id' => $userId
         ]);
@@ -146,10 +160,10 @@ class RecentActivityFactory
     {
         $comment = array_get($case, 'form.ex.comments');
 
-        if(!empty(trim($comment))){
-            if(method_exists($model,'notes')){
-                $note = $model->notes()->where('commcare_id',$model->commcare_id )->first();
-                if(!$note){
+        if (!empty(trim($comment))) {
+            if (method_exists($model, 'notes')) {
+                $note = $model->notes()->where('commcare_id', $model->commcare_id)->first();
+                if (!$note) {
                     $model->notes()->create([
                         'note' => $comment,
                         'user_id' => $model->user_id,
@@ -157,7 +171,7 @@ class RecentActivityFactory
                         'created_at' => $model->created_at->toDateTimeString(),
                         'type' => 'follow_up'
                     ]);
-                }else{
+                } else {
                     $note->update([
                         'note' => $comment,
                     ]);

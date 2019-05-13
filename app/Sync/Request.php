@@ -31,7 +31,7 @@ abstract class Request
 
     protected function buildParamsHttpQuery($params)
     {
-        $params['limit'] = array_get($params, 'limit') ?? 80;
+        $params['limit'] = array_get($params, 'limit') ?? 400;
 
         $params['page'] = array_get($params, 'page') ?? 1;
         $page = $params['page'];

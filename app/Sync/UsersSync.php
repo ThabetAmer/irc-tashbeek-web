@@ -14,6 +14,8 @@ class UsersSync
      */
     private $mobileWorkersRequest;
 
+    private $trials = 3;
+
     /**
      * UsersSync constructor.
      * @param UsersRequest $request
@@ -79,11 +81,25 @@ class UsersSync
 
     protected function sync($page = 1, $request)
     {
-        $response = $request->data(['page' => $page]);
+        $response = null;
 
-        $this->saveUsers($response['objects']);
+        $trials = $this->trials;
 
-        if (!is_null($response['meta']['next'])) {
+        do {
+            try {
+                $response = $request->data(['page' => $page]);
+                $this->saveUsers($response['objects']);
+            } catch (\Exception $exception) {
+
+            }
+        } while ($trials-- != 0 && !$response);
+
+        if (!$response) {
+            throw new \Exception('UsersSync: Failed to get data from commcare [page: ' . $page . ']');
+        }
+
+        if (($response ?? null) and !is_null($response['meta']['next'])) {
+            $trials = $this->trials;
             $this->sync($page + 1, $request);
         }
     }

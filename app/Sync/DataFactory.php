@@ -24,6 +24,8 @@ class DataFactory
      */
     protected $request;
 
+    private $trials = 3;
+
     /**
      * StructureFactory constructor.
      * @param DataRequest $request
@@ -46,11 +48,26 @@ class DataFactory
 
         $case = app($this->getClassFromType($caseType));
 
-        $response = $this->request->data($case->caseType(), ['page' => $page]);
+        $response = null;
 
-        $this->saveItems($case, $response['objects']);
+        $trials = $this->trials;
 
-        if (!is_null($response['meta']['next'])) {
+        do {
+            logger('trials:' . $trials);
+            try {
+                $response = $this->request->data($case->caseType(), ['page' => $page]);
+                $this->saveItems($case, $response['objects']);
+            } catch (\Exception $exception) {
+
+            }
+        } while ($trials-- != 0 && !$response);
+
+        if (!$response) {
+            throw new \Exception('DataFactory: Failed to get data from commcare [page: ' . $page . ']');
+        }
+
+        if (($response ?? null) and !is_null($response['meta']['next'])) {
+            $trials = $this->trials;
             $this->make($caseType, $page + 1);
         }
     }
@@ -78,12 +95,12 @@ class DataFactory
      */
     protected function saveItem($caseObject, $case)
     {
-        if(!$caseObject->canSave($case)){
-            return ;
+        if (!$caseObject->canSave($case)) {
+            return;
         }
 
-        if($this->removeClosedCase($case, $caseObject)){
-            return ;
+        if ($this->removeClosedCase($case, $caseObject)) {
+            return;
         }
 
         $data = $this->getCaseFields($caseObject, $case);
@@ -124,11 +141,11 @@ class DataFactory
 
             $value = array_get(array_get($case, 'properties'), $questionId);
 
-            if(empty($value) && isset($question['alias'])){
+            if (empty($value) && isset($question['alias'])) {
                 $value = array_get(array_get($case, 'properties'), $question['alias']);
             }
 
-            if(isset($question['valueHandler'])){
+            if (isset($question['valueHandler'])) {
                 $value = app($question['valueHandler'])->handle($case, $questionId, $question, $caseObject);
             }
 
@@ -139,9 +156,9 @@ class DataFactory
 
         $data['commcare_id'] = $case['id'];
 
-        $userId = array_get($case,'opened_by', $case['user_id']);
+        $userId = array_get($case, 'opened_by', $case['user_id']);
 
-        $data['user_id'] = optional(User::where('commcare_id',$userId)->first())->id ;
+        $data['user_id'] = optional(User::where('commcare_id', $userId)->first())->id;
 
         return $data;
     }
@@ -155,10 +172,10 @@ class DataFactory
      */
     protected function removeClosedCase($case, $caseObject)
     {
-        if(array_get($case,'closed') === true){
-            $m = $caseObject->model()::where('commcare_id',$case['id'])->first();
+        if (array_get($case, 'closed') === true) {
+            $m = $caseObject->model()::where('commcare_id', $case['id'])->first();
 
-            if($m){
+            if ($m) {
                 $m->delete();
             }
 
@@ -174,17 +191,17 @@ class DataFactory
      */
     protected function scheduleFollowups($model)
     {
-        if(!method_exists($model,'followups') || empty($model->opened_at)){
-            return ;
+        if (!method_exists($model, 'followups') || empty($model->opened_at)) {
+            return;
         }
 
         $caseType = case_type($model);
 
-        foreach(config('case.'.$caseType.'.followup_schedule') as $key => $schedule){
+        foreach (config('case.' . $caseType . '.followup_schedule') as $key => $schedule) {
 
-            $followUp = $model->followups()->where('type','scheduled')->where('followup_period',$key)->first();
+            $followUp = $model->followups()->where('type', 'scheduled')->where('followup_period', $key)->first();
 
-            if(!$followUp){
+            if (!$followUp) {
                 $model->followups()->create([
                     'followup_date' => \Carbon\Carbon::parse($model->opened_at)->modify($schedule)->toDateString(),
                     'followup_period' => $key,
@@ -199,17 +216,17 @@ class DataFactory
     {
         $esoComments = array_get($case, 'properties.eso_comments');
 
-        if(!empty(trim($esoComments))){
-            if(method_exists($model,'notes')){
-                $note = $model->notes()->where('commcare_id',$model->commcare_id )->first();
-                if(!$note){
+        if (!empty(trim($esoComments))) {
+            if (method_exists($model, 'notes')) {
+                $note = $model->notes()->where('commcare_id', $model->commcare_id)->first();
+                if (!$note) {
                     $model->notes()->create([
                         'note' => $esoComments,
                         'user_id' => $model->user_id,
                         'commcare_id' => $model->commcare_id,
                         'created_at' => $model->opened_at,
                     ]);
-                }else{
+                } else {
                     $note->update([
                         'note' => $esoComments,
                     ]);

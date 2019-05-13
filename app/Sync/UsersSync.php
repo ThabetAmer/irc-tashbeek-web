@@ -83,6 +83,8 @@ class UsersSync
     {
         $response = null;
 
+        $trials = $this->trials;
+
         do {
             try {
                 $response = $request->data(['page' => $page]);
@@ -90,13 +92,14 @@ class UsersSync
             } catch (\Exception $exception) {
 
             }
-        } while ($this->trials-- != 0 && !$response);
+        } while ($trials-- != 0 && !$response);
 
         if (!$response) {
             throw new \Exception('UsersSync: Failed to get data from commcare [page: ' . $page . ']');
         }
 
         if (($response ?? null) and !is_null($response['meta']['next'])) {
+            $trials = $this->trials;
             $this->sync($page + 1, $request);
         }
     }

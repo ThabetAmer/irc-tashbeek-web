@@ -68,6 +68,8 @@ class RecentActivityFactory
 
         $response = null;
 
+        $trials = $this->trials;
+
         do {
             try {
                 $response = $this->request->data([
@@ -79,13 +81,14 @@ class RecentActivityFactory
             } catch (\Exception $exception) {
 
             }
-        } while ($this->trials-- != 0 && !$response);
+        } while ($trials-- != 0 && !$response);
 
         if (!$response) {
             throw new \Exception('RecentActivityFactory: Failed to get data from commcare [page: ' . $page . ']');
         }
 
         if (($response ?? null) && !is_null($response['meta']['next'])) {
+            $trials = $this->trials;
             $this->make($formName, $page + 1);
         }
     }

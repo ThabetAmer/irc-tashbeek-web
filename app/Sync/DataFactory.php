@@ -50,20 +50,24 @@ class DataFactory
 
         $response = null;
 
+        $trials = $this->trials;
+
         do {
+            logger('trials:' . $trials);
             try {
                 $response = $this->request->data($case->caseType(), ['page' => $page]);
                 $this->saveItems($case, $response['objects']);
             } catch (\Exception $exception) {
 
             }
-        } while ($this->trials-- != 0 && !$response);
+        } while ($trials-- != 0 && !$response);
 
         if (!$response) {
             throw new \Exception('DataFactory: Failed to get data from commcare [page: ' . $page . ']');
         }
 
         if (($response ?? null) and !is_null($response['meta']['next'])) {
+            $trials = $this->trials;
             $this->make($caseType, $page + 1);
         }
     }

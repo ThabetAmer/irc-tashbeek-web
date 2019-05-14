@@ -73,6 +73,7 @@ return [
     'openings_count' => 'Openings Count',
     'job_id' => 'Job ID',
     'firm_name' => 'Firm name',
+    'firm_city' => 'Firm city',
     'date_opened' => 'Date opened',
     'save_matches' => 'Save Matches',
     'job_description' => 'Job Description',

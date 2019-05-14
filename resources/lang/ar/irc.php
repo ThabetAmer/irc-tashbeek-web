@@ -66,6 +66,7 @@ return [
     'openings_count' => 'عدد الوظائف',
     'job_id' => 'رقم الوظيفة',
     'firm_name' => 'اسم المؤسسة',
+    'firm_city' => 'المدينة',
     'date_opened' => 'تاريخ الانشاء',
     'save_matches' => 'حفظ المرشحين',
     'job_description' => 'الوصف الوظيفي',

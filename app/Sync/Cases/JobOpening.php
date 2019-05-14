@@ -49,6 +49,17 @@ class JobOpening extends AbstractCase
                     'ara' => trans('irc.firm_name',[], 'ar')
                 ],
             ],
+            'firm_city' => [
+                'column_name' => 'firm_city',
+                'column_type' => 'text',
+                'valueHandler' => \App\Sync\QuestionHandler\JobOpeningFirmCityHandler::class,
+                'property' => true,
+                'type' => 'select',
+                'translations' => [
+                    'en' => trans('irc.firm_city',[],'en'),
+                    'ara' => trans('irc.firm_city',[], 'ar')
+                ],
+            ],
             'date_opened' => [
                 'column_name' => 'date_opened',
                 'column_type' => 'dateTime',

@@ -13,7 +13,7 @@ class ResetAllPasswords extends Command
      *
      * @var string
      */
-    protected $signature = 'set:passwords';
+    protected $signature = 'set:passwords {used_id?}';
 
     /**
      * The console command description.
@@ -40,9 +40,11 @@ class ResetAllPasswords extends Command
     public function handle()
     {
 
+        $userId = $this->argument('used_id');
+
         $confirmed = $this->confirm('Do you really wish to run this command?');
 
-        if (! $confirmed) {
+        if (!$confirmed) {
             $this->comment('Command Cancelled!');
 
             return false;
@@ -50,7 +52,13 @@ class ResetAllPasswords extends Command
 
         $password = $this->ask('What is the password?', 'irc1234!');
 
-        foreach(User::all() as $user){
+        $users = User::query()
+            ->when($userId, function ($query) use ($userId) {
+                return $query
+                    ->where('id', '=', $userId);
+            })->get();
+
+        foreach ($users as $user) {
             $user->password = Hash::make($password);
             $user->save();
             $this->info('Set password for ' . $user->name);

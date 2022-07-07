@@ -34,7 +34,7 @@
         "webpack-shell-plugin": "^0.5.0"
     },
     "dependencies": {
-        "moment": "^2.23.0",
+        "moment": "^2.29.4",
         "qs": "^6.6.0",
         "underscore": "^1.9.1",
         "v-tooltip": "^2.0.0-rc.33",

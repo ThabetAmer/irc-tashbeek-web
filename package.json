@@ -35,7 +35,7 @@
     },
     "dependencies": {
         "moment": "^2.23.0",
-        "qs": "^6.6.0",
+        "qs": "^6.6.1",
         "underscore": "^1.9.1",
         "v-tooltip": "^2.0.0-rc.33",
         "vue-avatar": "^2.1.7",
